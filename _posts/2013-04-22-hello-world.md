@@ -6,14 +6,13 @@ title: 你好，世界
 
 我的第一篇文章
 
-{% highlight javascript%}
+```javascript%
 
 	function demo(){
 		var i = 10;
 		console.log('abc');
 	}
-
-{% endhighlight %}
+```
 
 # Less学习笔记
 -----------------------------------
@@ -33,12 +32,12 @@ title: 你好，世界
 
 **注意对伪类的继承写法**：
 
-{% highlight css%}
+```css
 
 	a { text-decoration: none;
       	&:hover { border-width: 1px }
     }
-{% endhighlight %}
+```
 
 ### 函数&操作符
 - 处理*数值*的加减乘除调整设值
@@ -47,7 +46,7 @@ title: 你好，世界
 
 示例：
 
-{% highlight less%}
+```css
 
 	// LESS
 	@base-color: #111;
@@ -57,6 +56,6 @@ title: 你好，世界
 	  color: (@base-color + #003300);
 	  border-color: desaturate(@red, 10%);
 	}
-{% endhighlight %}
+```
 
 {{ page.date | date_to_string }}
