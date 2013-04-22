@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  [译]设计更好的JavaScript API
+category: '翻译'
+tags: 'JavaScript API'
 ---
+
 # {{ page.title }}
 
 By Rodney Rehm
