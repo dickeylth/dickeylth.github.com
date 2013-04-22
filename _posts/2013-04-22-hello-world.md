@@ -6,10 +6,14 @@ title: 你好，世界
 
 我的第一篇文章
 
+{% highlight javascript%}
+
 	function demo(){
 		var i = 10;
 		console.log('abc');
 	}
+
+{% endhighlight %}
 
 # Less学习笔记
 -----------------------------------
