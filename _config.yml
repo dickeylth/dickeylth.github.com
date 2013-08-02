@@ -1,4 +1,4 @@
-# This is the default format. 
+﻿# This is the default format. 
 # For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
 permalink: /:categories/:year/:month/:day/:title 
 
@@ -9,8 +9,8 @@ pygments: true
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : Jekyll Bootstrap
-tagline: Site Tagline
+title : 前端探幽
+tagline: 日啖新知，不亦乐乎
 author :
   name : Dickey
   email : tiehang.lth@taobao.com

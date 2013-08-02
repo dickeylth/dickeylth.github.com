@@ -1,4 +1,4 @@
----
+﻿---
 layout: post
 title: 设计更好的JavaScript API
 category: '翻译'
