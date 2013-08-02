@@ -1,8 +1,8 @@
-﻿---
+---
 layout: post
-title: 设计更好的JavaScript API
-category: '翻译'
-tags: 'JavaScript API'
+title: "设计更好的JavaScript API"
+category: translation
+tags: ['JavaScript API']
 ---
 
 # {{ page.title }}
@@ -20,16 +20,28 @@ By Rodney Rehm
 Perter Drucker曾经说过：“计算机是个白痴”。不要为白痴写代码，为人而写吧！让我们展开讨论如何设计开发者们会喜欢使用的API。
 
 ## 目录
-* 连贯接口
-* 一致性
-* 处理参数
-* 可扩展性
-* 钩子机制
-* 生成访问器
-* 引用之怖
-* 连续性问题
-* 处理错误
-* 处理异步
-* 调试连贯接口
-* 文档化API
-* 结论
+- 连贯接口
+- 
+- 一致性
+- 
+- 处理参数
+- 
+- 可扩展性
+- 
+- 钩子机制
+- 
+- 生成访问器
+- 
+- 引用之怖
+- 
+- 连续性问题
+- 
+- 处理错误
+- 
+- 处理异步
+- 
+- 调试连贯接口
+- 
+- 文档化API
+- 
+- 结论
