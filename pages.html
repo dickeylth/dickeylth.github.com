@@ -9,5 +9,13 @@ group: navigation
 <h2>所有页面</h2>
 <ul>
 {% assign pages_list = site.pages %}
+{% assign group != 'demo' %}
+{% include JB/pages_list %}
+</ul>
+
+<h2>我的Demos</h2>
+<ul>
+{% assign pages_list = site.pages %}
+{% assign group = 'demo' %}
 {% include JB/pages_list %}
 </ul>
