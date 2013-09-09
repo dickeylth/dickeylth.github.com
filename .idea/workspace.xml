@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bee8ce4c-9a01-4400-9d30-fec0da01f40e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2013-04-21-DesigningBetterJavaScriptAPIs.md" afterPath="$PROJECT_DIR$/_posts/2013-04-21-DesigningBetterJavaScriptAPIs.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="dickeylth.github.com.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -85,10 +86,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="post.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="post.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_includes/themes/twitter/post.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="8" selection-start="797" selection-end="797" vertical-scroll-proportion="0.6708595">
+            <state line="11" column="122" selection-start="321" selection-end="321" vertical-scroll-proportion="-3.84">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="7" selection-start="33" selection-end="33" vertical-scroll-proportion="0.06374502">
               <folding />
             </state>
           </provider>
@@ -136,6 +146,7 @@
         <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/_posts/2013-04-21-DesigningBetterJavaScriptAPIs.md" />
         <option value="$PROJECT_DIR$/_includes/themes/twitter/post.html" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -446,7 +457,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/_includes/themes/twitter/post.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="8" selection-start="797" selection-end="797" vertical-scroll-proportion="0.6708595">
+        <state line="11" column="122" selection-start="321" selection-end="321" vertical-scroll-proportion="-3.84">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="7" selection-start="33" selection-end="33" vertical-scroll-proportion="0.06374502">
           <folding />
         </state>
       </provider>
