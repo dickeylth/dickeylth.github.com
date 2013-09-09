@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bee8ce4c-9a01-4400-9d30-fec0da01f40e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/index.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sitemap.txt" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/archive.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2013-04-21-DesigningBetterJavaScriptAPIs.md" afterPath="$PROJECT_DIR$/_posts/2013-04-21-DesigningBetterJavaScriptAPIs.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_config.yml" afterPath="$PROJECT_DIR$/_config.yml" />
     </list>
     <ignored path="dickeylth.github.com.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,7 +42,7 @@
       <file leaf-file-name="2013-04-21-DesigningBetterJavaScriptAPIs.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/_posts/2013-04-21-DesigningBetterJavaScriptAPIs.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="141" column="154" selection-start="5154" selection-end="5154" vertical-scroll-proportion="-11.03681">
+            <state line="41" column="339" selection-start="1531" selection-end="1531" vertical-scroll-proportion="0.36605316">
               <folding />
             </state>
           </provider>
@@ -448,7 +444,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/_posts/2013-04-21-DesigningBetterJavaScriptAPIs.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="141" column="154" selection-start="5154" selection-end="5154" vertical-scroll-proportion="-11.03681">
+        <state line="41" column="339" selection-start="1531" selection-end="1531" vertical-scroll-proportion="0.36605316">
           <folding />
         </state>
       </provider>

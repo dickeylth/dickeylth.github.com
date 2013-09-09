@@ -63,7 +63,7 @@ Perter Drucker曾经说过：“计算机是个白痴”。不要为白痴写代
 注意我们如何不必将元素的引用赋给一个变量然后一再地重复书写代码。
 
 ### 命令查询分离
-[命令查询分离](http://en.wikipedia.org/wiki/Command-query*separation)（Command and Query Separation，CQS）是继承自命令式编程的一个概念。那些改变对象的状态（内部的值）的函数称为_命令_，而那些检索值的函数称为_查询_。原则上，查询函数返回数据，命令函数返回状态，各司其职。这个概念是今天我们所见的大部分库中普遍的getter和setter方法的依据之一。由于_连贯接口_返回一个自引用以实现链式方法调用，我们已经打破了为_命令*设定的规则，因为它们本来不应返回值。除了这一点（很容易被忽略）以外，我们还（有意）打破这个概念从而使API尽可能保持简单。jQuery中的`css()`方法就是这种实践的一个很好的例子：
+[命令查询分离](http://en.wikipedia.org/wiki/Command-query*separation)（Command and Query Separation，CQS）是继承自命令式编程的一个概念。那些改变对象的状态（内部的值）的函数称为*命令*，而那些检索值的函数称为*查询*。原则上，查询函数返回数据，命令函数返回状态，各司其职。这个概念是今天我们所见的大部分库中普遍的getter和setter方法的依据之一。由于*连贯接口*返回一个自引用以实现链式方法调用，我们已经打破了为*命令*设定的规则，因为它们本来不应返回值。除了这一点（很容易被忽略）以外，我们还（有意）打破这个概念从而使API尽可能保持简单。jQuery中的`css()`方法就是这种实践的一个很好的例子：
 
 	var $elem = jQuery("#foobar");
 	
@@ -139,7 +139,7 @@ Perter Drucker曾经说过：“计算机是个白痴”。不要为白痴写代
 通过这种方式，你自定义的函数仍然在你的命名空间下，但是可以通过其他对象访问到它。确保你的代码中的`.foo()`方法是非通用的，避免与其他的API冲突，并确保你的代码中提供了恰当的`.valueOf()`和`.toString()`方法以重置回原先的基本类型。
 
 ## 一致性
-[Jake Archibald](https://twitter.com/jaffathecake)曾经在一张幻灯片上定义了*一致性*。它可以简单读作*[拒绝PHP](http://www.slideshare.net/slideshow/embed_code/5426258?startSlide=59)*。永远不要在你的代码中出现类似_str\_repeat()_、_str\_pos()_、_substr()_这样的函数命名，并且不要交换参数的位置。如果你在某处声明了`find_in*array(haystack, needle)`函数，再定义`findInString(needle, haystack)`函数将会使你的代码变得像噩梦一般。
+[Jake Archibald](https://twitter.com/jaffathecake)曾经在一张幻灯片上定义了*一致性*。它可以简单读作*[拒绝PHP](http://www.slideshare.net/slideshow/embed_code/5426258?startSlide=59)*。永远不要在你的代码中出现类似*str\_repeat()*、*str\_pos()*、*substr()*这样的函数命名，并且不要交换参数的位置。如果你在某处声明了`find_in*array(haystack, needle)`函数，再定义`findInString(needle, haystack)`函数将会使你的代码变得像噩梦一般。
 
 ### 命名
 >“There are only two hard problems in computer science: cache-invalidation and naming things.”
@@ -439,7 +439,7 @@ JavaScript不是Python（而且ES.next还很遥远），要克服“参数森林
 	$hello.toggle(foo);
 	$world.toggle(bar);
 
-我们的*预期_是在两种情况下都使用`showOrHide`签名。然而事实上，`$hello`会以一秒的`duration`执行一次切换。这不是jQuery中的一个缺陷，这只是一个_与期望不符*的案例。即使你是一个有经验的jQuery开发者，你也会不时被这种问题绊倒。
+我们的*预期*是在两种情况下都使用`showOrHide`签名。然而事实上，`$hello`会以一秒的`duration`执行一次切换。这不是jQuery中的一个缺陷，这只是一个*与期望不符*的案例。即使你是一个有经验的jQuery开发者，你也会不时被这种问题绊倒。
 
 你尽可以如你所愿添加尽可能多的便利——但是同时不要牺牲API的简洁性和健壮性（多半会）。如果你的代码中也提供了类似的API，考虑一下提供一个单独的方法，例如`.toggleIf(bool)`。不论采用什么办法，记得保持你的API的一致性！
 
@@ -701,9 +701,9 @@ JavaScript不是Python（而且ES.next还很遥远），要克服“参数森林
 深入讲述编写符合DRY原则的代码不在本文讨论范围内。如果你对这个主题还比较生疏，[Rebecca Murphey](https://twitter.com/rmurphey)的[《Patterns for DRY-er JavaScript》](http://rmurphey.com/blog/2010/07/12/patterns-for-dry-er-javascript/)一文和[Mathias Bynens](https://twitter.com/mathias)的幻灯片[《how DRY impacts JavaScript performance》](http://slideshare.net/mathiasbynens/how-dry-impacts-javascript-performance-faster-javascript-execution-for-the-lazy-developer)都是很好的起步教程。
 
 ## 引用之怖
-不同于其他语言，JavaScript中不存在*按引用传递_和_按值传递*的概念。按值传递是比较安全的做法，可以确保你的API中输入和输出的数据在外部被修改时，不需要告知其状态的变化。按引用传值往往是为了保持较低的内存开销，按引用传递的值可能会在你的API之外的任何地方被修改并影响其状态。
+不同于其他语言，JavaScript中不存在*按引用传递*和*按值传递*的概念。按值传递是比较安全的做法，可以确保你的API中输入和输出的数据在外部被修改时，不需要告知其状态的变化。按引用传值往往是为了保持较低的内存开销，按引用传递的值可能会在你的API之外的任何地方被修改并影响其状态。
 
-在JavaScript中判断参数应该按应用传递还是按值传递。基本类型（字符串、数字、布尔值）都被处理为*按引用传值_，但是对象（任何对象，包括Array、Date）都以类似于按_引用*的方式进行处理。如果你初次接触这个话题，下面这个例子可以让你明白：
+在JavaScript中判断参数应该按应用传递还是按值传递。基本类型（字符串、数字、布尔值）都被处理为*按引用传值*，但是对象（任何对象，包括Array、Date）都以类似于按*引用*的方式进行处理。如果你初次接触这个话题，下面这个例子可以让你明白：
 
 	// by value
 	function addOne(num) {
@@ -735,7 +735,7 @@ JavaScript不是Python（而且ES.next还很遥远），要克服“参数森林
 	endDate.setMonth(0); // set to january
 	var days = interval.days(); // got 31 but expected 365 - ouch!
 
-除非DateInterval的构造器为它接受的值*创建拷贝_（`clone`是创建拷贝的术语），否则任何在原始对象上的改变都会直接反映到DateInterval的内部。这_往往*不是我们所想要或是所期望的。
+除非DateInterval的构造器为它接受的值*创建拷贝*（`clone`是创建拷贝的术语），否则任何在原始对象上的改变都会直接反映到DateInterval的内部。这*往往*不是我们所想要或是所期望的。
 
 注意，你的API中的返回值同样存在这样的隐患。如果你只是返回一个内部对象，你的API外部的任何变化都会反映到内部数据中。毫无疑问这并非你想要的。[jQuery.extend()](http://api.jquery.com/jQuery.extend/)、[_.extend()](http://underscorejs.org/#extend) 以及Protoype的[Object.extend](http://api.prototypejs.org/language/Object/extend/) 让你可以轻松摆脱引用之怖。
 
@@ -861,7 +861,7 @@ JavaScript既不弱也不低等，我们只是需要更努力一点工作以使�
 ## 调试连贯接口
 虽然*连贯接口*更便于开发中使用，但就可调试性而言，会带来一些限制。
 
-对于任何代码，*测试驱动开发_(TDD)是减少调试需求的一种简单方法。在使用TDD完成URI.js中，就调试代码而言，我没有遇到什么严重的痛苦。然而，TDD仅仅_减少*了调试的需要——并不会完全替代之。
+对于任何代码，*测试驱动开发*(TDD)是减少调试需求的一种简单方法。在使用TDD完成URI.js中，就调试代码而言，我没有遇到什么严重的痛苦。然而，TDD仅仅*减少*了调试的需要——并不会完全替代之。
 
 网上有些言论声称，在单独的行中书写链中的每个部件，从而在堆栈跟踪时获得正确的行号。
 
@@ -929,11 +929,11 @@ JavaScript既不弱也不低等，我们只是需要更努力一点工作以使�
 ### 自解释的代码
 提供优秀的文档并不会使开发者不用阅读你的代码——你的代码本身就是文档的一部分。当文档不够用时（每个文档都是有限的），开发者会回到阅读源代码获取答案。事实上，你也是他们中的一员。很可能你会一边又一遍地阅读你自己的代码，几周、几个月甚至几年之间。
 
-你应该编写可以解释自身的代码。大部分时候这并不是个问题，只有当你为命名事物（函数、变量等等）殚精竭虑、坚持核心概念时才会涉及到。如果你发现你在写代码注释以文档化你的代码如何工作，你很可能在浪费时间——你的时间，还有读者的时间。在你的代码中的注释应该解释*为何_你以这种特殊的方式解决问题，而不是解释你_如何_解决问题。_如何*解决问题应该在你的代码中很明显，所以不要自我重复。注意，使用注释以标示你的代码中的区块，或是解释普通概念，这些都是完全可接受的。
+你应该编写可以解释自身的代码。大部分时候这并不是个问题，只有当你为命名事物（函数、变量等等）殚精竭虑、坚持核心概念时才会涉及到。如果你发现你在写代码注释以文档化你的代码如何工作，你很可能在浪费时间——你的时间，还有读者的时间。在你的代码中的注释应该解释*为何*你以这种特殊的方式解决问题，而不是解释你*如何*解决问题。*如何*解决问题应该在你的代码中很明显，所以不要自我重复。注意，使用注释以标示你的代码中的区块，或是解释普通概念，这些都是完全可接受的。
 
 ### 总结
 - API是你（提供者）和用户（消费者）之间的契约。不要在版本之间发生变化。
-- 你应该投入和解决*我的软件内部如何工作？_的问题同样多的时间，来解决_用户会如何使用我的软件？*这个问题。
+- 你应该投入和解决*我的软件内部如何工作？*的问题同样多的时间，来解决*用户会如何使用我的软件？*这个问题。
 - 只要一些简单的技巧你就可以很显著地减少开发者的辛苦（就代码行数而言）
 - 尽可能早地处理非法输入——抛出错误
 - 好的API都是弹性的，更好的API不会让你犯错
