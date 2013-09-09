@@ -1,13 +1,9 @@
 ---
 layout: post
-title: "设计更好的JavaScript API"
+title: "[译]设计更好的JavaScript API"
 category: translation
 tags: ['JavaScript API']
 ---
-
-# {{ page.title }}
-
-# [译]设计更好的JavaScript API
 
 By Rodney Rehm
 

@@ -11,6 +11,7 @@
     <file path="/_config.yml" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1378740505584" ignored="false" />
     <file path="/index.html" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1378739990636" ignored="false" />
     <file path="/2013-04-21-DesigningBetterJavaScriptAPIs.md" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1378741156226" ignored="false" />
+    <file path="/post.html" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1378741992867" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,10 +40,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2013-04-21-DesigningBetterJavaScriptAPIs.md" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="2013-04-21-DesigningBetterJavaScriptAPIs.md" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_posts/2013-04-21-DesigningBetterJavaScriptAPIs.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="339" selection-start="1531" selection-end="1531" vertical-scroll-proportion="0.36605316">
+            <state line="5" column="3" selection-start="99" selection-end="99" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -84,10 +85,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="post.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="post.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/_includes/themes/twitter/post.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="17" selection-start="120" selection-end="120" vertical-scroll-proportion="0.32">
+            <state line="25" column="8" selection-start="797" selection-end="797" vertical-scroll-proportion="0.6708595">
               <folding />
             </state>
           </provider>
@@ -134,6 +135,7 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/_posts/2013-04-21-DesigningBetterJavaScriptAPIs.md" />
+        <option value="$PROJECT_DIR$/_includes/themes/twitter/post.html" />
       </list>
     </option>
   </component>
@@ -386,13 +388,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_includes/themes/twitter/post.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="17" selection-start="120" selection-end="120" vertical-scroll-proportion="0.32">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_includes/themes/twitter/default.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="40" column="10" selection-start="1504" selection-end="1504" vertical-scroll-proportion="0.32">
@@ -444,7 +439,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/_posts/2013-04-21-DesigningBetterJavaScriptAPIs.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="339" selection-start="1531" selection-end="1531" vertical-scroll-proportion="0.36605316">
+        <state line="5" column="3" selection-start="99" selection-end="99" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_includes/themes/twitter/post.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="8" selection-start="797" selection-end="797" vertical-scroll-proportion="0.6708595">
           <folding />
         </state>
       </provider>
