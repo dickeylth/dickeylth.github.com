@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bee8ce4c-9a01-4400-9d30-fec0da01f40e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_includes/themes/twitter/post.html" afterPath="$PROJECT_DIR$/_includes/themes/twitter/post.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_config.yml" afterPath="$PROJECT_DIR$/_config.yml" />
     </list>
     <ignored path="dickeylth.github.com.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1378919537098" ignored="false" />
     <file path="/index.md" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1378739482101" ignored="false" />
-    <file path="/_config.yml" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1378740505584" ignored="false" />
+    <file path="/_config.yml" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1378919967898" ignored="false" />
     <file path="/index.html" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1378739990636" ignored="false" />
     <file path="/2013-04-21-DesigningBetterJavaScriptAPIs.md" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1378741156226" ignored="false" />
     <file path="/post.html" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1378741992867" ignored="false" />
@@ -40,10 +40,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="post.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="post.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_includes/themes/twitter/post.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="28" selection-start="1637" selection-end="1637" vertical-scroll-proportion="0.936">
+            <state line="53" column="28" selection-start="1637" selection-end="1637" vertical-scroll-proportion="-18.72">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_config.yml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/_config.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="84" column="20" selection-start="2929" selection-end="2929" vertical-scroll-proportion="0.34666666">
               <folding />
             </state>
           </provider>
@@ -79,10 +88,10 @@
         <option value="$PROJECT_DIR$/index.md" />
         <option value="$PROJECT_DIR$/_site/sitemap.txt" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/_posts/2013-04-21-DesigningBetterJavaScriptAPIs.md" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/_includes/themes/twitter/post.html" />
+        <option value="$PROJECT_DIR$/_config.yml" />
       </list>
     </option>
   </component>
@@ -417,11 +426,6 @@
         <state line="6" column="13" selection-start="99" selection-end="99" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="19" selection-start="272" selection-end="272" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="7" selection-start="33" selection-end="33" vertical-scroll-proportion="0.0" />
@@ -453,7 +457,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/_includes/themes/twitter/post.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="28" selection-start="1637" selection-end="1637" vertical-scroll-proportion="0.936">
+        <state line="53" column="28" selection-start="1637" selection-end="1637" vertical-scroll-proportion="-18.72">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="84" column="20" selection-start="2929" selection-end="2929" vertical-scroll-proportion="0.34666666">
           <folding />
         </state>
       </provider>
