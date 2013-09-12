@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bee8ce4c-9a01-4400-9d30-fec0da01f40e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2012-11-05-CSSTwoColumns.md" afterPath="$PROJECT_DIR$/_posts/2012-11-05-CSSTwoColumns.md" />
-    </list>
+    <list default="true" id="bee8ce4c-9a01-4400-9d30-fec0da01f40e" name="Default" comment="" />
     <ignored path="dickeylth.github.com.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1378995948243" ignored="false" />
@@ -16,9 +14,9 @@
     <file path="/dummy.xml" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1378998313946" ignored="false" />
     <file path="/posts_collate" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1378999688920" ignored="false" />
     <file path="/2012-11-05-CSSTwoColumns.md" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1379000246046" ignored="false" />
-    <file path="$PROJECT_DIR$/_site/rss.xml" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1379000857979" ignored="false" />
-    <file path="$PROJECT_DIR$/_site/atom.xml" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1379000857979" ignored="false" />
-    <file path="$PROJECT_DIR$/_site/pages.html" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1379000857979" ignored="false" />
+    <file path="$PROJECT_DIR$/_site/rss.xml" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1379001118436" ignored="false" />
+    <file path="$PROJECT_DIR$/_site/atom.xml" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1379001118436" ignored="false" />
+    <file path="$PROJECT_DIR$/_site/pages.html" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1379001118436" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
