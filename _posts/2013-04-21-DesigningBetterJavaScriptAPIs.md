@@ -3,6 +3,7 @@ layout: post
 title: "[译]设计更好的JavaScript API"
 category: translation
 tags: ['JavaScript API']
+desc: 本文讨论了在你编写你自己的应用和库之前和期间需要考虑的一些重要的事情。我们将关注于如何使你的代码对其他开发者易于理解。
 ---
 
 By Rodney Rehm
@@ -80,17 +81,21 @@ Perter Drucker曾经说过：“计算机是个白痴”。不要为白痴写代
 ### 变得流畅
 虽然方法链已经为实现流畅的代码完成了大量的工作，但不仅仅于此。为了说明实现*流畅*的下一步，我们假定要写一个处理日期间隔的简短的库。一个日期间隔以一个日期开始，并且以另一个日期结束。一个日期并不必要与一个日期间隔相关联。于是我们得出这个简单的构造器：
 
-	// create new date interval
-	var interval = new DateInterval(startDate, endDate);
-	// get the calculated number of days the interval spans
-	var days = interval.days();
+{% highlight javascript %}
+// create new date interval
+var interval = new DateInterval(startDate, endDate);
+// get the calculated number of days the interval spans
+var days = interval.days();
+{% endhighlight %}
 
 虽然初看上去是对的，下面这个例子可以看出问题所在：
 
-	var startDate = new Date(2012, 0, 1);
-	var endDate = new Date(2012, 11, 31)
-	var interval = new DateInterval(startDate, endDate);
-	var days = interval.days(); // 365
+{% highlight javascript %}
+var startDate = new Date(2012, 0, 1);
+var endDate = new Date(2012, 11, 31)
+var interval = new DateInterval(startDate, endDate);
+var days = interval.days(); // 365
+{% endhighlight %}
 
 我们写了一大堆可能并不需要的变量和其他东西。更好的解决方案是在Date对象上添加一个函数来返回一个时间间隔。
 
