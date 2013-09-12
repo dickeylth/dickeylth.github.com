@@ -12,7 +12,7 @@ By Rodney Rehm
 
 **某些时候，你会发现你自己写的JavaScript代码比一个jQuery插件代码行数更多。你的代码需要做一大堆的工作，（理想情况下）它会被许多以不同方式访问你的代码的人所使用。他们拥有不同的需求、学识和期望。**
 
-![Time Spend with The Library](http://media.smashingmagazine.com/wp-content/uploads/2012/10/Pie-chart.jpg "Time Spend on Creating/Using The Library")
+![Time Spend with The Library](/assets/images/jsapis/Pie-chart.jpg "Time Spend on Creating/Using The Library")
 
 本文讨论了在你编写你自己的应用和库之前和期间需要考虑的一些重要的事情。我们将关注于如何使你的代码对其他开发者*易于理解*。虽然在示例中会有很多话题论及jQuery，然而这篇文章既不是关于jQuery也不是关于为jQuery编写插件。
 
@@ -154,7 +154,7 @@ var days = interval.days(); // 365
 上面的`DateInterval`的例子引入了一个名为`until()`的方法。我们本可以将其命名为`interval()`。后者会与返回值更为接近，然而前者*可读性*更好。找出一行你喜欢的用词并且坚持下去。一致性占据90%的重要性。选择一种风格并且保持下去——即使在将来某个时候你发现你开始反感这种风格了。
 
 ## 处理参数
-![Good Intentions](http://media.smashingmagazine.com/wp-content/uploads/2012/10/good-intention.jpg)
+![Good Intentions](/assets/images/jsapis/good-intention.jpg)
 
 你的方法如何接收数据比让它们具有可链性更为重要。虽然方法链是非常普遍的，你可以很容易在你的代码中实现，但是处理参数却不是这样。你需要考虑你提供的方法最有可能被如何使用。调用你的API的代码会不会重复调用某个函数？为什么会重复调用？如何使你的API帮助开发者减少这种重复调用函数的干扰？
 
@@ -445,7 +445,7 @@ JavaScript不是Python（而且ES.next还很遥远），要克服“参数森林
 你尽可以如你所愿添加尽可能多的便利——但是同时不要牺牲API的简洁性和健壮性（多半会）。如果你的代码中也提供了类似的API，考虑一下提供一个单独的方法，例如`.toggleIf(bool)`。不论采用什么办法，记得保持你的API的一致性！
 
 ## 可扩展性
-![Developing Possibilities](http://media.smashingmagazine.com/wp-content/uploads/2012/10/developing-possibilities.jpg)
+![Developing Possibilities](/assets/images/jsapis/developing-possibilities.jpg)
 
 在选项对象部分，我们谈到了可扩展的配置的话题。让我们来讨论下允许API使用者扩展核心和API本身。这是一个重要的话题，因为它可以使你的代码关注重要的事情，同时可以使API使用者自己处理边界情况。好的API设计都很简约。提供丰富的配置项当然很好，但是过多的配置项会导致你的API变得臃肿晦涩。关注主要的应用场景，只提供大部分你的API使用者需要的功能，其他的东西应该留给他们决定。为了允许API使用者们扩展你的代码以适应他们的需要，你可以有很多选择：
 
@@ -603,7 +603,7 @@ JavaScript不是Python（而且ES.next还很遥远），要克服“参数森林
 从某种程度上讲，钩子是被设计为以你自己的代码来处理自定义值的一系列回调函数。有了钩子，你可以将差不多任何东西保持在可控范围内，同时提供API使用者进行自定义的选择。
 
 ## 生成访问器
-![duplication](http://media.smashingmagazine.com/wp-content/uploads/2012/10/duplication.jpg)
+![duplication](/assets/images/jsapis/duplication.jpg)
 
 任何一个API多半都会有完成类似工作的多种访问方法（getters，setters，executors）。回到`DateInterval`的例子，我们应该会提供`start()`和`end()`方法以允许对时间间隔的操作。可以像这样简单解决：
 
@@ -777,7 +777,7 @@ JavaScript不是Python（而且ES.next还很遥远），要克服“参数森林
 	};
 
 ## 处理错误
-![Fail faster](http://media.smashingmagazine.com/wp-content/uploads/2012/10/fail-faster.jpg)
+![Fail faster](/assets/images/jsapis/fail-faster.jpg)
 
 我说我们无法从链中逃出来，这其实是谎言——对于这条规则有一个`Exception`（请不要介意这个双关语☺）
 
