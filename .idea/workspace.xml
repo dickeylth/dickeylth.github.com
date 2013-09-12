@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bee8ce4c-9a01-4400-9d30-fec0da01f40e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/_posts/2012-11-05-CSSTwoColumns.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2013-04-21-DesigningBetterJavaScriptAPIs.md" afterPath="$PROJECT_DIR$/_posts/2013-04-21-DesigningBetterJavaScriptAPIs.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2013-07-31-iframe.md" afterPath="$PROJECT_DIR$/_posts/2013-07-31-iframe.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_includes/themes/twitter/post.html" afterPath="$PROJECT_DIR$/_includes/themes/twitter/post.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_includes/JB/posts_collate" afterPath="$PROJECT_DIR$/_includes/JB/posts_collate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2012-11-05-CSSTwoColumns.md" afterPath="$PROJECT_DIR$/_posts/2012-11-05-CSSTwoColumns.md" />
     </list>
     <ignored path="dickeylth.github.com.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -22,6 +16,9 @@
     <file path="/dummy.xml" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1378998313946" ignored="false" />
     <file path="/posts_collate" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1378999688920" ignored="false" />
     <file path="/2012-11-05-CSSTwoColumns.md" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1379000246046" ignored="false" />
+    <file path="$PROJECT_DIR$/_site/rss.xml" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1379000857979" ignored="false" />
+    <file path="$PROJECT_DIR$/_site/atom.xml" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1379000857979" ignored="false" />
+    <file path="$PROJECT_DIR$/_site/pages.html" changelist="bee8ce4c-9a01-4400-9d30-fec0da01f40e" time="1379000857979" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,10 +38,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="post.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="post.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_includes/themes/twitter/post.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="43" selection-start="883" selection-end="883" vertical-scroll-proportion="0.056016598">
+            <state line="37" column="19" selection-start="1092" selection-end="1092" vertical-scroll-proportion="-6.2">
               <folding />
             </state>
           </provider>
@@ -77,10 +74,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2012-11-05-CSSTwoColumns.md" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="2012-11-05-CSSTwoColumns.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/_posts/2012-11-05-CSSTwoColumns.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="0" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0">
+            <state line="11" column="0" selection-start="191" selection-end="191" vertical-scroll-proportion="0.34714004">
               <folding />
             </state>
           </provider>
@@ -156,9 +153,9 @@
         <option value="$PROJECT_DIR$/_posts/2013-07-31-iframe.md" />
         <option value="$PROJECT_DIR$/_posts/2013-04-21-DesigningBetterJavaScriptAPIs.md" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/_posts/2012-11-05-CSSTwoColumns.md" />
         <option value="$PROJECT_DIR$/_includes/JB/posts_collate" />
         <option value="$PROJECT_DIR$/_includes/themes/twitter/post.html" />
+        <option value="$PROJECT_DIR$/_posts/2012-11-05-CSSTwoColumns.md" />
       </list>
     </option>
   </component>
@@ -461,23 +458,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2013-04-21-DesigningBetterJavaScriptAPIs.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="18" selection-start="3617" selection-end="3617" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_posts/2013-07-31-iframe.md">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="2" selection-start="366" selection-end="384" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2012-11-05-CSSTwoColumns.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -512,7 +495,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/_includes/themes/twitter/post.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="43" selection-start="883" selection-end="883" vertical-scroll-proportion="0.056016598">
+        <state line="37" column="19" selection-start="1092" selection-end="1092" vertical-scroll-proportion="-6.2">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2013-04-21-DesigningBetterJavaScriptAPIs.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="18" selection-start="3617" selection-end="3617" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2012-11-05-CSSTwoColumns.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="191" selection-end="191" vertical-scroll-proportion="0.34714004">
           <folding />
         </state>
       </provider>
