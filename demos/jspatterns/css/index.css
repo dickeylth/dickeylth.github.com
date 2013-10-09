@@ -1,0 +1,35 @@
+body {
+  font-family: 'microsoft yahei', '微软雅黑', 'Helvetica', '黑体';
+  padding: 10px;
+}
+#target {
+  position: relative;
+}
+.ace-code {
+  border: 1px solid #DDD;
+  border-radius: 4px;
+  border-bottom-right-radius: 0px;
+  margin-top: 5px;
+  overflow: hidden;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+}
+.method-container {
+  display: flex;
+  flex-flow: row;
+}
+.method-container .ace-code {
+  flex: 2;
+  -webkit-flex: 2;
+}
+.method-container .result {
+  flex: 1;
+  -webkit-flex: 1;
+  margin-left: 20px;
+}
+.method-container output {
+  display: block;
+  margin-top: 10px;
+  padding: 20px;
+  background-color: #345;
+  color: #fff;
+}
