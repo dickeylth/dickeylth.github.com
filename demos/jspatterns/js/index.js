@@ -17,7 +17,7 @@
 
         editor.setOptions({
             fontSize: 14,
-            maxLines: 15,
+            maxLines: 20,
             tabSize: 4,
             useSoftTabs: true,
             showPrintMargin: false,
