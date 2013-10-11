@@ -19,7 +19,7 @@ body {
 }
 .method-container .ace-code {
   flex: 2;
-  -webkit-flex: 2;
+  -webkit-flex: 3;
 }
 .method-container .result {
   flex: 1;

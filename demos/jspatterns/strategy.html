@@ -18,10 +18,10 @@ var data = {
     name: '王x',
     gender: 1,
     identity: '011110198806061234',
-    birthday: '1988-06-01',
+    birthday: '1988-13-01',
     mobile: '15800000000',
     spareMobile: '13911111111',
-    email: 'abc@def.cn'
+    email: 'abcdef.cn'
 };
 
 validator.config = {
@@ -43,10 +43,10 @@ validator.config = {
     },
     spareMobile: {
         text: '备用手机号码',
-        validators: ['isValidMobile', ['isSameAs', 'mobile']]
+        validators: ['isValidMobile', ['isNotEqualTo', 'mobile']]
     },
     email: {
-        text: '手机号',
+        text: 'Email',
         validators: ['isValidEmail']
     }
 };
@@ -57,7 +57,13 @@ if(validator.hasErrors()){
     validator.messages.join('<br/>');
 }
 //期望结果：
-
+/*
+姓名只能为2-4个字的汉字
+生日与身份证号不一致，请修改
+生日格式不合法，请按"2008-01-01"格式输入日期
+备用手机号码不得与手机号码相同，请重新输入
+Email格式不合法，请输入正确的Email地址
+*/
 </script>
 
     </div>
@@ -70,8 +76,9 @@ if(validator.hasErrors()){
 
 <script class="ace-code-script" type="template">
 var validator = {
+
     // 所有可用的检查
-    types: {};
+    types: {},
 
     // 错误信息
     messages: [],
@@ -81,7 +88,7 @@ var validator = {
 
     // 接口方法
     validate: function(data){
-        var i, msg, validators, validatorItem, checker, result;
+        var i, msg, item, validators, validatorItem, checker, result;
 
         // 重置错误消息
         this.messages = [];
@@ -104,22 +111,30 @@ var validator = {
 
                     // 获取对应的校验模块
                     validatorItem = validators[v];
-                    checker = this.types[validatorName];
-                    if(!checker){
-                        throw {
-                            name: "ValidationError",
-                            message: "No handler to validate type " + validators[v]
-                        };
-                    }
 
                     // 校验项为字符串，直接校验
                     if(typeof validatorItem == 'string'){
 
+                        checker = this.types[validatorItem];
+                        if(!checker){
+                            throw {
+                                name: "ValidationError",
+                                message: "No handler to validate type " + validators[v]
+                            };
+                        }
                         result = checker.validate(data[i]);
 
                     }else if(Array.isArray(validatorItem)){
 
-                        result = checker.validate.apply(this, validatorItem.splice(0, 1, data[i]));
+                        checker = this.types[validatorItem[0]];
+                        if(!checker){
+                            throw {
+                                name: "ValidationError",
+                                message: "No handler to validate type " + validators[v]
+                            };
+                        }
+                        // 替换validatorItem第一个元素（validatorName）为data[i]（当前校验项值）
+                        result = checker.validate.apply(this, [data, i].concat(validatorItem.slice(1)));
 
                     }else{
 
@@ -132,7 +147,18 @@ var validator = {
                     // 校验不通过
                     if(!result){
 
-                        msg = item.text + checker.message;
+                        // 校验器message类型可为string/function
+                        var msgType = typeof checker.message;
+                        if(msgType == 'string'){
+
+                            msg = item.text + checker.message;
+
+                        }else if(msgType == 'function'){
+
+                            msg = item.text + checker.message.call(null, this.config[validatorItem[1]].text);
+
+                        }
+
                         this.messages.push(msg);
 
                     }
@@ -160,6 +186,15 @@ validator.types = {
         message: "不得为空"
     },
 
+    isNotEqualTo: {
+        validate: function(data, curField, compareField){
+            return data[curField] === data[compareField];
+        },
+        message: function(fieldText){
+            return "不得与" + fieldText + "相同，请重新输入";
+        }
+    },
+
     isValidName: {
         validate: function(value){
             return /^[\u4e00-\u9fa5]{2,4}$/.test(value);
@@ -175,28 +210,39 @@ validator.types = {
     },
 
     isBirthEqualTo: {
-        validate: function(value, compareField){
-            return value.replace('-', '') === this[compareField].substr(6, 6);
+        validate: function(data, curField, compareField){
+            return data[curField].replace(/-/g, '') === data[compareField].substr(6, 8);
         },
-        message: "与证件中生日不一致，请确认"
+        message: function(fieldText){
+            return "与" + fieldText + "中生日不一致，请修改";
+        }
     },
 
     isValidDate: {
         validate: function(value){
             var t = new Date(value),
-                transStr = t.getFullYear() + '-' + t.getMonth() + '-' + t.getDate();
+                paddingZero = function(value){
+                    return value < 10 ? ('0' + value) : value;
+                },
+                transStr = [t.getFullYear(), paddingZero(t.getMonth() + 1), paddingZero(t.getDate())].join('-');
             return transStr === value;
         },
-        message: "格式不合法，请按2008-01-01格式输入日期"
+        message: '格式不合法，请按"2008-01-01"格式输入日期'
     },
 
     isValidMobile: {
         validate: function(value){
             return /^0?(13[0-9]|15[012356789]|18[02356789]|14[57])[0-9]{8}$/.test(value);
         },
-        message: "格式不合法，请确认后重新输入"
+        message: "格式不合法，请输入正确的手机号码"
     },
 
+    isValidEmail: {
+        validate: function(value){
+            return /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(value);
+        },
+        message: "格式不合法，请输入正确的Email地址"
+    }
 
 };
 
@@ -206,10 +252,10 @@ var data = {
     name: '王x',
     gender: 1,
     identity: '011110198806061234',
-    birthday: '1988-06-01',
+    birthday: '1988-13-01',
     mobile: '15800000000',
     spareMobile: '13911111111',
-    email: 'abc@def.cn'
+    email: 'abcdef.cn'
 };
 
 validator.config = {
@@ -234,7 +280,7 @@ validator.config = {
         validators: ['isValidMobile', ['isNotEqualTo', 'mobile']]
     },
     email: {
-        text: '手机号',
+        text: 'Email',
         validators: ['isValidEmail']
     }
 };
