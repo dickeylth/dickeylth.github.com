@@ -48,9 +48,9 @@ b.constructor === Boolean;	// true
 var http = require("http");
 
 http.createServer(function(request, response) {
-  response.writeHead(200, {"Content-Type": "text/plain"});
-  response.write("Hello World");
-  response.end();
+	response.writeHead(200, {"Content-Type": "text/plain"});
+	response.write("Hello World");
+	response.end();
 }).listen(8888);
 {% endhighlight %}
 
@@ -59,16 +59,16 @@ nodejs中的http模块输出了createServer这个接口，这里就是一个典�
 
 {% highlight javascript %}
 function Server(requestListener) {
-  if (!(this instanceof Server)) return new Server(requestListener);
-  net.Server.call(this, { allowHalfOpen: true });
-  ......
+	if (!(this instanceof Server)) return new Server(requestListener);
+	net.Server.call(this, { allowHalfOpen: true });
+	......
 }
 util.inherits(Server, net.Server);
 
 exports.Server = Server;
 
 exports.createServer = function(requestListener) {
-  return new Server(requestListener);
+	return new Server(requestListener);
 };
 {% endhighlight %}
 
@@ -76,6 +76,16 @@ exports.createServer = function(requestListener) {
 
 + [[nodejs] Why net.createServer() and not new net.Server()?](https://groups.google.com/forum/#!msg/nodejs/GTaCdFPlweI/M0q38C3SJpkJ)
 + [Why export both http.Server() and http.createServer()?](https://groups.google.com/forum/#!msg/nodejs/yoXogs7vNYU/uUKT59t_w-sJ)
+
+
+可变参数的Date对象构造工厂：
+{% highlight javascript %}
+function createDate(){
+    var paramStr = ([].slice.call(arguments)).join(',');
+    return eval("new Date(" + paramStr +")");
+}
+var x = createDate(2012,12,12,1);console.log(x);
+{% endhighlight %}
 
 ## 测试一下markdown 语法
 
