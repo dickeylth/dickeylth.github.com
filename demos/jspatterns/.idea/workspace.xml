@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb5882dc-598a-45bd-969a-30ffddd6ad6e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/index.css" afterPath="$PROJECT_DIR$/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/index.less" afterPath="$PROJECT_DIR$/css/index.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/strategy.html" afterPath="$PROJECT_DIR$/strategy.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="jspatterns.iws" />
@@ -40,7 +37,7 @@
       <file leaf-file-name="factory.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/factory.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="99" column="0" selection-start="2506" selection-end="2733" vertical-scroll-proportion="0.662531" vertical-offset="1149" max-vertical-offset="2210">
+            <state line="98" column="48" selection-start="2505" selection-end="2505" vertical-scroll-proportion="0.6414392" vertical-offset="1149" max-vertical-offset="2210">
               <folding />
             </state>
           </provider>
@@ -49,7 +46,7 @@
       <file leaf-file-name="strategy.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/strategy.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="303" column="0" selection-start="7478" selection-end="7478" vertical-scroll-proportion="-11.036364" vertical-offset="4544" max-vertical-offset="5797">
+            <state line="303" column="0" selection-start="7478" selection-end="7478" vertical-scroll-proportion="0.0" vertical-offset="5151" max-vertical-offset="5797">
               <folding />
             </state>
           </provider>
@@ -58,7 +55,7 @@
       <file leaf-file-name="index.less" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/index.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="16" selection-start="454" selection-end="454" vertical-scroll-proportion="19.615385" vertical-offset="850" max-vertical-offset="2278">
+            <state line="20" column="16" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0" vertical-offset="850" max-vertical-offset="2278">
               <folding />
             </state>
           </provider>
@@ -154,6 +151,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -202,7 +200,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -212,8 +209,8 @@
     <property name="last_opened_file_path" value="E:/gitlab/activity-builder" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PublishConfig">
     <servers>
@@ -234,14 +231,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -250,6 +239,14 @@
       <option name="saveOutputToFile" value="false" />
       <option name="showConsoleOnStdErr" value="false" />
       <option name="showConsoleOnStdOut" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
       <method />
     </configuration>
     <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
@@ -293,7 +290,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -406,21 +403,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/index.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="16" selection-start="454" selection-end="454" vertical-scroll-proportion="19.615385" vertical-offset="850" max-vertical-offset="2278">
+        <state line="20" column="16" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0" vertical-offset="850" max-vertical-offset="2278">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/strategy.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="303" column="0" selection-start="7478" selection-end="7478" vertical-scroll-proportion="-11.036364" vertical-offset="4544" max-vertical-offset="5797">
+        <state line="303" column="0" selection-start="7478" selection-end="7478" vertical-scroll-proportion="0.0" vertical-offset="5151" max-vertical-offset="5797">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/factory.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="0" selection-start="2506" selection-end="2733" vertical-scroll-proportion="0.662531" vertical-offset="1149" max-vertical-offset="2210">
+        <state line="98" column="48" selection-start="2505" selection-end="2505" vertical-scroll-proportion="0.6414392" vertical-offset="1149" max-vertical-offset="2210">
           <folding />
         </state>
       </provider>
