@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "JavaScript中的设计模式(2)——工厂模式"
-desc: "工厂模式通常用于重复创建相似对象，提供动态创建对象的接口，在实际中的应用很多。在本文中我们来看看身边的工厂模式，以及它与构造函数的区别"
+desc: "工厂模式通常用于重复创建相似对象，提供动态创建对象的接口。我们来看看身边的工厂模式，以及它与构造函数的区别。"
 category: '笔记' 
 tags: ['JavaScript设计模式']
 cover: "/assets/images/jspatterns/factory-cover.jpg"
@@ -139,7 +139,7 @@ function parseDate(str){
 function parseDate(str){
 	// native parse, with help from native Date constructor
     var result = new Date(str);
-    if(!S.isDate(result) || isNaN(result.getTime())){
+    if(!(result instanceof Date) || isNaN(result.getTime())){
 
 		// split numbers from string
         var timeArr = str.match(/\d+/g);
