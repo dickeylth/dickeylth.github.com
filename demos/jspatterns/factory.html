@@ -90,9 +90,9 @@ var fe = EngineerFactory.build('FE');
 var rd = EngineerFactory.build('RD');
 var op = EngineerFactory.build('OP');
 
-fe.work();  //结果为："生产中：HTML, CSS, JavaScript, ..."
-rd.work();  //结果为："生产中：Java, Velocity, Spring, Hibernate, ..."
-op.work();  //结果为："生产中：perl, python, php, shell, sql, ..."
+fe.work();  // 结果为：" 生产中：HTML, CSS, JavaScript, ..."
+rd.work();  // 结果为：" 生产中：Java, Velocity, Spring, Hibernate, ..."
+op.work();  // 结果为：" 生产中：perl, python, php, shell, sql, ..."
 </script>
 
     </div>
@@ -109,7 +109,7 @@ function EngineerFactory(){}
 
 // 原型方法
 EngineerFactory.prototype.work = function(){
-    return "生产中：" + this.languages + ", ...";
+    return " 生产中：" + this.languages + ", ...";
 };
 
 // 静态工厂方法
@@ -120,7 +120,7 @@ EngineerFactory.build = function(type){
 
     // 如果构造函数不存在，抛出错误
     if(typeof EngineerFactory[type] !== 'function'){
-        throw(type + " 不存在");
+        throw(type + " 不存在 ");
     }
 
     // 原型继承父类
@@ -150,9 +150,9 @@ EngineerFactory.OP = function(){
 var fe = EngineerFactory.build('FE');
 var rd = EngineerFactory.build('RD');
 var op = EngineerFactory.build('OP');
-[fe.work(),  //结果为："生产中：HTML, CSS, JavaScript, ..."
-rd.work(),  //结果为："生产中：Java, Velocity, Spring, Hibernate, ..."
-op.work()].join('<br/>');  //结果为："生产中：perl, python, php, shell, sql, ..."
+[fe.work(),  // 结果为：" 生产中：HTML, CSS, JavaScript, ..."
+rd.work(),  // 结果为：" 生产中：Java, Velocity, Spring, Hibernate, ..."
+op.work()].join('<br/>');  // 结果为：" 生产中：perl, python, php, shell, sql, ..."
 </script>
 
             <div class="result">
@@ -164,7 +164,7 @@ op.work()].join('<br/>');  //结果为："生产中：perl, python, php, shell, 
     </div>
 
     <div class="methods">
-        <h5>相关话题：JavaScript中的内置对象工厂</h5>
+        <h5>相关话题：JavaScript 中的内置对象工厂</h5>
         <div class="method-container">
             <div class="ace-code"></div>
 
@@ -225,12 +225,26 @@ var o = new Object(),
   </div>
 </article>
 
-</div></div>
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"dickeyblog"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- Duoshuo Comment END --></div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
     <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:yoursite.com">
+    <input type="hidden" name="q" value="site:dickeylth.github.io">
   </form>
 </div>
 

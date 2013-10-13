@@ -20,9 +20,9 @@
 
 
 var data = {
-    name: '王x',
+    name: '王 x',
     gender: 1,
-    identity: '01111">
+    identity: '0111">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -89,7 +89,7 @@ var data = {
 
 <script class="ace-code-script" type="template">
 var data = {
-    name: '王x',
+    name: '王 x',
     gender: 1,
     identity: '011110198806061234',
     birthday: '1988-13-01',
@@ -100,23 +100,23 @@ var data = {
 
 validator.config = {
     name: {
-        text: '姓名',
+        text: '姓名 ',
         validators: ['isNotEmpty', 'isValidName']
     },
     identity: {
-        text: '身份证号',
+        text: '身份证号 ',
         validators: ['isNotEmpty','isValidIdentity']
     },
     birthday: {
-        text: '生日',
+        text: '生日 ',
         validators: [['isBirthEqualTo','identity'],'isValidDate']
     },
     mobile: {
-        text: '手机号码',
+        text: '手机号码 ',
         validators: ['isValidMobile']
     },
     spareMobile: {
-        text: '备用手机号码',
+        text: '备用手机号码 ',
         validators: ['isValidMobile', ['isNotEqualTo', 'mobile']]
     },
     email: {
@@ -130,13 +130,13 @@ validator.validate(data);
 if(validator.hasErrors()){
     validator.messages.join('<br/>');
 }
-//期望结果：
+// 期望结果：
 /*
-姓名只能为2-4个字的汉字
+姓名只能为 2-4 个字的汉字
 生日与身份证号不一致，请修改
-生日格式不合法，请按"2008-01-01"格式输入日期
+生日格式不合法，请按 "2008-01-01" 格式输入日期
 备用手机号码不得与手机号码相同，请重新输入
-Email格式不合法，请输入正确的Email地址
+Email 格式不合法，请输入正确的 Email 地址
 */
 </script>
 
@@ -207,7 +207,7 @@ var validator = {
                                 message: "No handler to validate type " + validators[v]
                             };
                         }
-                        // 替换validatorItem第一个元素（validatorName）为data[i]（当前校验项值）
+                        // 替换 validatorItem 第一个元素（validatorName）为 data[i]（当前校验项值）
                         result = checker.validate.apply(this, [data, i].concat(validatorItem.slice(1)));
 
                     }else{
@@ -221,7 +221,7 @@ var validator = {
                     // 校验不通过
                     if(!result){
 
-                        // 校验器message类型可为string/function
+                        // 校验器 message 类型可为 string/function
                         var msgType = typeof checker.message;
                         if(msgType == 'string'){
 
@@ -257,7 +257,7 @@ validator.types = {
         validate: function(value){
             return value !== "";
         },
-        message: "不得为空"
+        message: " 不得为空 "
     },
 
     isNotEqualTo: {
@@ -265,7 +265,7 @@ validator.types = {
             return data[curField] === data[compareField];
         },
         message: function(fieldText){
-            return "不得与" + fieldText + "相同，请重新输入";
+            return " 不得与 " + fieldText + " 相同，请重新输入 ";
         }
     },
 
@@ -273,14 +273,14 @@ validator.types = {
         validate: function(value){
             return /^[\u4e00-\u9fa5]{2,4}$/.test(value);
         },
-        message: "只能为2-4个字的汉字"
+        message: " 只能为 2-4 个字的汉字 "
     },
 
     isValidIdentity: {
         validate: function(value){
             return /^\d{6}(18|19|20)?\d{2}(0[1-9]|1[12])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i.test(value);
         },
-        message: "不合法，请输入身份证上的18位身份证号"
+        message: " 不合法，请输入身份证上的 18 位身份证号 "
     },
 
     isBirthEqualTo: {
@@ -288,7 +288,7 @@ validator.types = {
             return data[curField].replace(/-/g, '') === data[compareField].substr(6, 8);
         },
         message: function(fieldText){
-            return "与" + fieldText + "中生日不一致，请修改";
+            return " 与 " + fieldText + " 中生日不一致，请修改 ";
         }
     },
 
@@ -301,21 +301,21 @@ validator.types = {
                 transStr = [t.getFullYear(), paddingZero(t.getMonth() + 1), paddingZero(t.getDate())].join('-');
             return transStr === value;
         },
-        message: '格式不合法，请按"2008-01-01"格式输入日期'
+        message: '格式不合法，请按 "2008-01-01" 格式输入日期'
     },
 
     isValidMobile: {
         validate: function(value){
             return /^0?(13[0-9]|15[012356789]|18[02356789]|14[57])[0-9]{8}$/.test(value);
         },
-        message: "格式不合法，请输入正确的手机号码"
+        message: " 格式不合法，请输入正确的手机号码 "
     },
 
     isValidEmail: {
         validate: function(value){
             return /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(value);
         },
-        message: "格式不合法，请输入正确的Email地址"
+        message: " 格式不合法，请输入正确的 Email 地址 "
     }
 
 };
@@ -323,7 +323,7 @@ validator.types = {
 
 
 var data = {
-    name: '王x',
+    name: '王 x',
     gender: 1,
     identity: '011110198806061234',
     birthday: '1988-13-01',
@@ -334,23 +334,23 @@ var data = {
 
 validator.config = {
     name: {
-        text: '姓名',
+        text: '姓名 ',
         validators: ['isNotEmpty', 'isValidName']
     },
     identity: {
-        text: '身份证号',
+        text: '身份证号 ',
         validators: ['isNotEmpty','isValidIdentity']
     },
     birthday: {
-        text: '生日',
+        text: '生日 ',
         validators: [['isBirthEqualTo','identity'],'isValidDate']
     },
     mobile: {
-        text: '手机号码',
+        text: '手机号码 ',
         validators: ['isValidMobile']
     },
     spareMobile: {
-        text: '备用手机号码',
+        text: '备用手机号码 ',
         validators: ['isValidMobile', ['isNotEqualTo', 'mobile']]
     },
     email: {
@@ -364,7 +364,7 @@ validator.validate(data);
 if(validator.hasErrors()){
     validator.messages.join('<br/>');
 }
-//期望结果：
+// 期望结果：
 
 </script>
 
@@ -377,7 +377,7 @@ if(validator.hasErrors()){
     </div>
 
     <div class="methods">
-        <h5>相关话题：JavaScript中的内置对象工厂</h5>
+        <h5>相关话题：JavaScript 中的内置对象工厂</h5>
         <div class="method-container">
             <div class="ace-code"></div>
 
@@ -438,12 +438,26 @@ var o = new Object(),
   </div>
 </article>
 
-</div></div>
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"dickeyblog"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- Duoshuo Comment END --></div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
     <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:yoursite.com">
+    <input type="hidden" name="q" value="site:dickeylth.github.io">
   </form>
 </div>
 
