@@ -1,0 +1,283 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>前端探幽</title>
+  <meta name="author" content="Dickey Leo">
+  
+  <meta name="description" content="工厂模式
+    
+    
+    
+    
+
+
+    工厂模式：提供重复创建相似对象的接口
+    
+        预期：
+        
+
+
+var fe = EngineerFactory.build('FE');
+var rd = EngineerFactory.build('RD">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="前端探幽"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="前端探幽" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">前端探幽</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="page">
+  
+  <div class="post-content">
+    <header>
+      
+      
+  
+    <h1 class="title"></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <!DOCTYPE html>
+<html>
+<head>
+    <title>工厂模式</title>
+    <meta charset="UTF-8">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <h3>工厂模式：提供重复创建相似对象的接口</h3>
+    <div id="target">
+        <h4>预期：</h4>
+        <div class="ace-code"></div>
+
+<script class="ace-code-script" type="template">
+var fe = EngineerFactory.build('FE');
+var rd = EngineerFactory.build('RD');
+var op = EngineerFactory.build('OP');
+
+fe.work();  //结果为："生产中：HTML, CSS, JavaScript, ..."
+rd.work();  //结果为："生产中：Java, Velocity, Spring, Hibernate, ..."
+op.work();  //结果为："生产中：perl, python, php, shell, sql, ..."
+</script>
+
+    </div>
+
+    <div class="methods">
+        <h4>实现：</h4>
+
+        <div class="method-container">
+            <div class="ace-code"></div>
+
+<script class="ace-code-script" type="template">
+// 父构造函数
+function EngineerFactory(){}
+
+// 原型方法
+EngineerFactory.prototype.work = function(){
+    return "生产中：" + this.languages + ", ...";
+};
+
+// 静态工厂方法
+EngineerFactory.build = function(type){
+
+    var newEngineer,
+        id = 0;
+
+    // 如果构造函数不存在，抛出错误
+    if(typeof EngineerFactory[type] !== 'function'){
+        throw(type + " 不存在");
+    }
+
+    // 原型继承父类
+    if(typeof EngineerFactory[type].prototype.work !== 'function'){
+        EngineerFactory[type].prototype = new EngineerFactory();
+    }
+
+    // 创建新实例
+    newEngineer = new EngineerFactory[type]();
+    newEngineer.id = id++;
+
+    return newEngineer;
+};
+
+EngineerFactory.FE = function(){
+    this.languages = "HTML, CSS, JavaScript";
+};
+
+EngineerFactory.RD = function(){
+    this.languages = "Java, Velocity, Spring, Hibernate";
+};
+
+EngineerFactory.OP = function(){
+    this.languages = "perl, python, php, shell, sql";
+};
+
+var fe = EngineerFactory.build('FE');
+var rd = EngineerFactory.build('RD');
+var op = EngineerFactory.build('OP');
+[fe.work(),  //结果为："生产中：HTML, CSS, JavaScript, ..."
+rd.work(),  //结果为："生产中：Java, Velocity, Spring, Hibernate, ..."
+op.work()].join('<br/>');  //结果为："生产中：perl, python, php, shell, sql, ..."
+</script>
+
+            <div class="result">
+                <button class="J_RunBtn btn btn-primary">运行</button>
+                <output class="J_Output"></output>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="methods">
+        <h5>相关话题：JavaScript中的内置对象工厂</h5>
+        <div class="method-container">
+            <div class="ace-code"></div>
+
+<script class="ace-code-script" type="template">
+var o = new Object(),
+    n = new Object(1),
+    s = Object('1'),
+    b = Object(true);
+
+[
+    o.constructor === Object,
+    n.constructor === Number,
+    s.constructor === String,
+    b.constructor === Boolean
+].join('<br/>');
+</script>
+
+            <div class="result">
+                <button class="J_RunBtn btn btn-primary">运行</button>
+                <output class="J_Output"></output>
+            </div>
+        </div>
+    </div>
+
+    <script src="http://g.tbcdn.cn/kissy/k/1.3.2/kissy-min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
+      
+    </div>
+    <footer>
+      
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/笔记/">笔记</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/JavaScript设计模式/">JavaScript设计模式</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 Dickey Leo
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
