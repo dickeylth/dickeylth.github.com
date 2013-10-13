@@ -120,7 +120,9 @@ nodejs中的http模块输出了createServer这个接口，这里就是一个典�
 当然第一行有点小意外，`new Date()`只传入一个参数时自动解析为时间戳（毫秒）了。这个之后我们可以单独处理。
 
 很遗憾`new Date()`支持的传入参数格式有限，而且会有兼容性问题。现在如果我们需要写这样一个函数：
-	{% codeblock lang:javascript %}
+
+{% codeblock lang:javascript %}
+
 	/** 
 	 * 解析日期字符串，自动创建对应Date对象
 	 * @param str 日期字符串
@@ -129,7 +131,9 @@ nodejs中的http模块输出了createServer这个接口，这里就是一个典�
 	function parseDate(str){
 		
 	}
-	{% endcodeblock %}
+	
+{% endcodeblock %}
+	
 约定输入的字符串是按照"年-月-日-时-分-秒"的字段顺序指定时间，但是未必包含所有的字段。
 
 很容易想到利用正则过滤出各个字段：
