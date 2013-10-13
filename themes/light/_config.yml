@@ -1,11 +1,11 @@
 menu:
-  Home: /
-  Archives: /archives
+  首页: /
+  所有文章: /archives
 
 widgets: 
 - search
 - category
-- tag
+- tagcloud
 
 excerpt_link: 继续阅读
 
@@ -17,7 +17,7 @@ addthis:
   google: true
   pinterest: true
 
-fancybox: false
+fancybox: true
 
 google_analytics: UA-44813171-1
 rss:
