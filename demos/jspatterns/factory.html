@@ -60,9 +60,9 @@ var rd = EngineerFactory.build('RD">
 <nav id="main-nav" class="alignright">
   <ul>
     
-      <li><a href="/">Home</a></li>
+      <li><a href="/">首页</a></li>
     
-      <li><a href="/archives">Archives</a></li>
+      <li><a href="/archives">所有文章</a></li>
     
   </ul>
   <div class="clearfix"></div>
@@ -257,13 +257,11 @@ var o = new Object(),
 
 
   
-<div class="widget tag">
-  <h3 class="title">标签</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/JavaScript设计模式/">JavaScript设计模式</a><small>1</small></li>
-  
-  </ul>
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/JavaScript设计模式/" style="font-size: NaNpx;">JavaScript设计模式</a>
+  </div>
 </div>
 
 </aside>
@@ -281,6 +279,14 @@ var o = new Object(),
 
 
 
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
 
 </body>
 </html>
