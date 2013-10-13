@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bee8ce4c-9a01-4400-9d30-fec0da01f40e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/favicon.png" afterPath="$PROJECT_DIR$/favicon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/demos/RegDate.html" afterPath="$PROJECT_DIR$/public/demos/RegDate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_config.yml" afterPath="$PROJECT_DIR$/_config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/light/_config.yml" afterPath="$PROJECT_DIR$/themes/light/_config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/demos/jspatterns/decorator.html" afterPath="$PROJECT_DIR$/public/demos/jspatterns/decorator.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/demos/jspatterns/factory.html" afterPath="$PROJECT_DIR$/public/demos/jspatterns/factory.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2013/10/11/JavaScriptDesignPatterns-FactoryPattern/index.html" afterPath="$PROJECT_DIR$/public/2013/10/11/JavaScriptDesignPatterns-FactoryPattern/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/index.html" afterPath="$PROJECT_DIR$/public/archives/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2013/index.html" afterPath="$PROJECT_DIR$/public/archives/2013/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2013/10/index.html" afterPath="$PROJECT_DIR$/public/archives/2013/10/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/categories/笔记/index.html" afterPath="$PROJECT_DIR$/public/categories/笔记/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/tags/JavaScript设计模式/index.html" afterPath="$PROJECT_DIR$/public/tags/JavaScript设计模式/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/demos/jspatterns/iterator.html" afterPath="$PROJECT_DIR$/public/demos/jspatterns/iterator.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/demos/jspatterns/singleton.html" afterPath="$PROJECT_DIR$/public/demos/jspatterns/singleton.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/demos/jspatterns/strategy.html" afterPath="$PROJECT_DIR$/public/demos/jspatterns/strategy.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/demos/jspatterns/test.html" afterPath="$PROJECT_DIR$/public/demos/jspatterns/test.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="dickeylth.github.com.iws" />
@@ -79,10 +62,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_config.yml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="_config.yml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="72" column="12" selection-start="1617" selection-end="1617" vertical-scroll-proportion="0.81043476" vertical-offset="830" max-vertical-offset="1602">
+            <state line="72" column="12" selection-start="1617" selection-end="1617" vertical-scroll-proportion="0.0" vertical-offset="830" max-vertical-offset="1602">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="14" selection-start="14" selection-end="14" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="575">
               <folding />
             </state>
           </provider>
@@ -117,6 +109,7 @@
         <option value="$PROJECT_DIR$/_posts/2013-04-21-DesigningBetterJavaScriptAPIs.md" />
         <option value="$PROJECT_DIR$/themes/light/_config.yml" />
         <option value="$PROJECT_DIR$/_config.yml" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -404,7 +397,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -545,7 +538,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/_config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="12" selection-start="1617" selection-end="1617" vertical-scroll-proportion="0.81043476" vertical-offset="830" max-vertical-offset="1602">
+        <state line="72" column="12" selection-start="1617" selection-end="1617" vertical-scroll-proportion="0.0" vertical-offset="830" max-vertical-offset="1602">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="14" selection-start="14" selection-end="14" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="575">
           <folding />
         </state>
       </provider>
