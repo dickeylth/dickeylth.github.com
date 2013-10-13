@@ -92,7 +92,8 @@
 <p>尽管个人感觉这个理由不够充分，不过这让我想起了之前写的<code>RichDate</code>模块中碰到过的一个问题：如何根据可变参数列表自动构建Date对象？众所周知，JavaScript中的<code>Date</code>构造函数本身支持可变参数：</p>
 <pre><code><span class="tag">&lt;<span class="title">notextile</span>&gt;</span>4<span class="tag">&lt;/<span class="title">notextile</span>&gt;</span></code></pre>
 <p>当然第一行有点小意外，<code>new Date()</code>只传入一个参数时自动解析为时间戳（毫秒）了。这个之后我们可以单独处理。</p>
-<p>很遗憾<code>new Date()</code>支持的传入参数格式有限，而且会有兼容性问题。现在如果我们需要写这样一个函数：<br>    <figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+<p>很遗憾<code>new Date()</code>支持的传入参数格式有限，而且会有兼容性问题。现在如果我们需要写这样一个函数：</p>
+<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -100,15 +101,21 @@
 6
 7
 8
-</pre></td><td class="code"><pre><span class="comment">/** 
- * 解析日期字符串，自动创建对应Date对象
- * @param str 日期字符串
- * @return Date object
- */</span>
-<span class="function"><span class="keyword">function</span> <span class="title">parseDate</span><span class="params">(str)</span>{</span>
+9
+10
+</pre></td><td class="code"><pre>
+	<span class="comment">/** 
+	 * 解析日期字符串，自动创建对应Date对象
+	 * @param str 日期字符串
+	 * @return Date object
+	 */</span>
+	<span class="function"><span class="keyword">function</span> <span class="title">parseDate</span><span class="params">(str)</span>{</span>
+		
+	}
 	
-}
-</pre></td></tr></table></figure></p>
+</pre></td></tr></table></figure>
+
+
 <p>约定输入的字符串是按照“年-月-日-时-分-秒”的字段顺序指定时间，但是未必包含所有的字段。</p>
 <p>很容易想到利用正则过滤出各个字段：<br>    <figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
 2
