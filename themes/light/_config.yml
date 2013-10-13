@@ -9,20 +9,15 @@ widgets:
 
 excerpt_link: 继续阅读
 
-twitter:
-  username:
-  show_replies: false
-  tweet_count: 5
-
 addthis:
-  enable: true
+  enable: false
   pubid:
   facebook: true
   twitter: true
   google: true
   pinterest: true
 
-fancybox: true
+fancybox: false
 
-google_analytics:
+google_analytics: UA-44813171-1
 rss:
