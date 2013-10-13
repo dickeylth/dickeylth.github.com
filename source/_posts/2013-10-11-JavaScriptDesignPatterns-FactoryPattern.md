@@ -6,8 +6,11 @@ category: '笔记'
 tags: ['JavaScript设计模式']
 cover: "/assets/images/jspatterns/factory-cover.jpg"
 ---
-{% include JB/setup %}
 
+
+工厂模式通常用于重复创建相似对象，提供动态创建对象的接口。我们来看看身边的工厂模式，以及它与构造函数的区别。
+
+<!--more-->
 工厂模式作为设计模式中构造模式之一，通常在类或类的静态方法中应用，主要为了实现：
 
 + 重复创建相似对象
@@ -27,7 +30,7 @@ cover: "/assets/images/jspatterns/factory-cover.jpg"
 
 回到代码的世界，其实JavaScript中的工厂模式也很常见，比如JavaScript中内置的对象工厂：
 
-{% highlight javascript %}
+{% codeblock lang:javascript %}
 var o = new Object(),
     n = new Object(1),
     s = Object('1'),
@@ -38,13 +41,13 @@ o.constructor === Object;	// true
 n.constructor === Number;	// true
 s.constructor === String;	// true
 b.constructor === Boolean;	// true
-{% endhighlight %}
+{% endcodeblock %}
 
 当然，除了工厂模式，很多时候我们也会直接采用`new`关键字调用构造函数来创建对象。那么这两种实现方式有什么区别呢？什么时候采用工厂模式，什么时候采用构造函数呢？
 
 我们先来看看各种nodejs教程中的开篇经典demo：
 
-{% highlight javascript %}
+{% codeblock lang:javascript %}
 var http = require("http");
 
 http.createServer(function(request, response) {
@@ -52,12 +55,12 @@ http.createServer(function(request, response) {
 	response.write("Hello World");
 	response.end();
 }).listen(8888);
-{% endhighlight %}
+{% endcodeblock %}
 
 nodejs中的http模块输出了createServer这个接口，这里就是一个典型的工厂模式。
 但看看http模块的源码，可以发现其实http同样提供了Server这个构造器接口：
 
-{% highlight javascript %}
+{% codeblock lang:javascript %}
 function Server(requestListener) {
 	if (!(this instanceof Server)) return new Server(requestListener);
 	net.Server.call(this, { allowHalfOpen: true });
@@ -70,7 +73,7 @@ exports.Server = Server;
 exports.createServer = function(requestListener) {
 	return new Server(requestListener);
 };
-{% endhighlight %}
+{% endcodeblock %}
 
 为啥要同时输出构造器和工厂模式两种接口呢？同样好奇的不止你我，Google一下你会发现Google group上同样有人提出了这样的问题：
 
@@ -83,10 +86,10 @@ exports.createServer = function(requestListener) {
 
 此外，让我们对比下下面两行代码：
 
-{% highlight javascript %}
+{% codeblock lang:javascript %}
 s = require("http").createServer([listener]);
 s = new (require("http").Server)([listener]);
-{% endhighlight %}
+{% endcodeblock %}
 
 很显然，上面一行代码采用链式调用的方式，可读性更强。
 
@@ -94,7 +97,7 @@ s = new (require("http").Server)([listener]);
 
 尽管个人感觉这个理由不够充分，不过这让我想起了之前写的`RichDate`模块中碰到过的一个问题：如何根据可变参数列表自动构建Date对象？众所周知，JavaScript中的`Date`构造函数本身支持可变参数：
 
-{% highlight javascript %}
+{% codeblock lang:javascript %}
 new Date(2012).toLocaleString(); 				
 // "1970年1月1日 上午8:00:02"
 
@@ -112,12 +115,12 @@ new Date(2012, 1, 1, 1, 1).toLocaleString();
 
 new Date(2012, 1, 1, 1, 1, 1).toLocaleString();
 // "2012年2月1日 上午1:01:01"
-{% endhighlight %}
+{% endcodeblock %}
 
 当然第一行有点小意外，`new Date()`只传入一个参数时自动解析为时间戳（毫秒）了。这个之后我们可以单独处理。
 
 很遗憾`new Date()`支持的传入参数格式有限，而且会有兼容性问题。现在如果我们需要写这样一个函数：
-{% highlight javascript %}
+{% codeblock lang:javascript %}
 /** 
  * 解析日期字符串，自动创建对应Date对象
  * @param str 日期字符串
@@ -126,11 +129,11 @@ new Date(2012, 1, 1, 1, 1, 1).toLocaleString();
 function parseDate(str){
 	
 }
-{% endhighlight %}
+{% endcodeblock %}
 约定输入的字符串是按照"年-月-日-时-分-秒"的字段顺序指定时间，但是未必包含所有的字段。
 
 很容易想到利用正则过滤出各个字段：
-{% highlight javascript %}
+{% codeblock lang:javascript %}
 /* 
  * 解析日期字符串，自动创建对应Date对象
  * @param String str 日期字符串
@@ -148,7 +151,7 @@ function parseDate(str){
 		var toDate = createDate.apply(null, timeArr);
 	}
 }
-{% endhighlight %}
+{% endcodeblock %}
 
 这时我们就碰到一个问题了，Date的构造函数虽然支持可变参数，但是**构造函数并不能直接通过call或者apply的方式传入参数数组来调用**。这时我们就可以看到构造器和工厂的最大区别了。
 
@@ -157,7 +160,7 @@ function parseDate(str){
 那么这个包装`Date`构造函数的工厂`createDate`怎么写呢？直接根据参数数量执行对应的`Date`构造函数显然比较丑陋，借助eval，可以得到比较简单的写法：
 
 
-{% highlight javascript %}
+{% codeblock lang:javascript %}
 /* 
  * 根据日期数组
  * @param number 可变参数，多个数字
@@ -169,7 +172,7 @@ function createDate(){
 }
 var x = createDate(2012, 12, 12, 1);console.log(x);
 var y = createDate.apply(null, [2012, 12, 12, 1]);console.log(y);
-{% endhighlight %}
+{% endcodeblock %}
 
 可见，这个工厂既可以按普通方式传参调用，也可以通过apply传入参数数组来调用。通过上面这些探讨，我们可以更深入地理解构造函数与工厂模式的差异。
 
