@@ -66,33 +66,12 @@
 <li>根据类型名在运行时动态创建对象</li>
 </ul>
 <p>拿生活中的例子来看吧，会容易理解得多。</p>
-<p><img src="../img/jspatterns/factory1.jpeg" alt="麦当劳汉堡"></p>
+<p><img src="/img/jspatterns/factory1.jpeg" alt="麦当劳汉堡"></p>
 <p>麦当劳的汉堡就是个最常见而贴切的例子，虽然各种汉堡名字不一，但是大体上都是相似的，都离不开上下两层的面包，区别在于中间的馅料，流水线上生产汉堡的过程不就对应重复创建相似对象？顾客到店点餐，根据点的汉堡名，后台按需生产对应的汉堡，这不就是根据类型名动态创建对象？</p>
 <p>同样类似的还有酒店订房：</p>
-<p><img src="../img/jspatterns/factory2.jpeg" alt="酒店订房间"></p>
+<p><img src="/img/jspatterns/factory2.jpeg" alt="酒店订房间"></p>
 <p>是不是感觉到工厂模式其实无处不在？</p>
 <p>回到代码的世界，其实JavaScript中的工厂模式也很常见，比如JavaScript中内置的对象工厂：</p>
-<pre><code><span class="tag">&lt;<span class="title">notextile</span>&gt;</span>0<span class="tag">&lt;/<span class="title">notextile</span>&gt;</span></code></pre>
-<p>当然，除了工厂模式，很多时候我们也会直接采用<code>new</code>关键字调用构造函数来创建对象。那么这两种实现方式有什么区别呢？什么时候采用工厂模式，什么时候采用构造函数呢？</p>
-<p>我们先来看看各种nodejs教程中的开篇经典demo：</p>
-<pre><code><span class="tag">&lt;<span class="title">notextile</span>&gt;</span>1<span class="tag">&lt;/<span class="title">notextile</span>&gt;</span></code></pre>
-<p>nodejs中的http模块输出了createServer这个接口，这里就是一个典型的工厂模式。<br>但看看http模块的源码，可以发现其实http同样提供了Server这个构造器接口：</p>
-<pre><code><span class="tag">&lt;<span class="title">notextile</span>&gt;</span>2<span class="tag">&lt;/<span class="title">notextile</span>&gt;</span></code></pre>
-<p>为啥要同时输出构造器和工厂模式两种接口呢？同样好奇的不止你我，Google一下你会发现Google group上同样有人提出了这样的问题：</p>
-<ul>
-<li><a href="https://groups.google.com/forum/#!msg/nodejs/GTaCdFPlweI/M0q38C3SJpkJ" target="_blank">[nodejs] Why net.createServer() and not new net.Server()?</a></li>
-<li><a href="https://groups.google.com/forum/#!msg/nodejs/yoXogs7vNYU/uUKT59t_w-sJ" target="_blank">Why export both http.Server() and http.createServer()?</a></li>
-</ul>
-<p>得到的答案大意是当年受限于C++代码中的限制只好采用了这些工厂方法(“Due to the way I structured the C++ stuff constructors couldn&#39;t take arguments.”这句比较含糊，没说明具体原因)。</p>
-<p>而同时提供构造器方法，Bryce猜测是为了方便以后做类型检测。</p>
-<p>此外，让我们对比下下面两行代码：</p>
-<pre><code><span class="tag">&lt;<span class="title">notextile</span>&gt;</span>3<span class="tag">&lt;/<span class="title">notextile</span>&gt;</span></code></pre>
-<p>很显然，上面一行代码采用链式调用的方式，可读性更强。</p>
-<p>此外回复中还提到了Isaac解释了他为什么更倾向于不要使用<code>new</code>关键字：调用时容易漏掉这个关键字，导致直接调用构造器会污染全局变量。</p>
-<p>尽管个人感觉这个理由不够充分，不过这让我想起了之前写的<code>RichDate</code>模块中碰到过的一个问题：如何根据可变参数列表自动构建Date对象？众所周知，JavaScript中的<code>Date</code>构造函数本身支持可变参数：</p>
-<pre><code><span class="tag">&lt;<span class="title">notextile</span>&gt;</span>4<span class="tag">&lt;/<span class="title">notextile</span>&gt;</span></code></pre>
-<p>当然第一行有点小意外，<code>new Date()</code>只传入一个参数时自动解析为时间戳（毫秒）了。这个之后我们可以单独处理。</p>
-<p>很遗憾<code>new Date()</code>支持的传入参数格式有限，而且会有兼容性问题。现在如果我们需要写这样一个函数：</p>
 <figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -103,21 +82,144 @@
 8
 9
 10
-</pre></td><td class="code"><pre>
-	<span class="comment">/** 
-	 * 解析日期字符串，自动创建对应Date对象
-	 * @param str 日期字符串
-	 * @return Date object
-	 */</span>
-	<span class="function"><span class="keyword">function</span> <span class="title">parseDate</span><span class="params">(str)</span>{</span>
-		
-	}
-	
+</pre></td><td class="code"><pre><span class="keyword">var</span> o = <span class="keyword">new</span> Object(),
+    n = <span class="keyword">new</span> Object(<span class="number">1</span>),
+    s = Object(<span class="string">'1'</span>),
+    b = Object(<span class="literal">true</span>);
+
+<span class="comment">// test</span>
+o.constructor === Object;	<span class="comment">// true</span>
+n.constructor === Number;	<span class="comment">// true</span>
+s.constructor === String;	<span class="comment">// true</span>
+b.constructor === Boolean;	<span class="comment">// true</span>
 </pre></td></tr></table></figure>
 
 
+<p>当然，除了工厂模式，很多时候我们也会直接采用<code>new</code>关键字调用构造函数来创建对象。那么这两种实现方式有什么区别呢？什么时候采用工厂模式，什么时候采用构造函数呢？</p>
+<p>我们先来看看各种nodejs教程中的开篇经典demo：</p>
+<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="keyword">var</span> http = require(<span class="string">"http"</span>);
+
+http.createServer(<span class="keyword">function</span>(request, response) {
+	response.writeHead(<span class="number">200</span>, {<span class="string">"Content-Type"</span>: <span class="string">"text/plain"</span>});
+	response.write(<span class="string">"Hello World"</span>);
+	response.end();
+}).listen(<span class="number">8888</span>);
+</pre></td></tr></table></figure>
+
+
+<p>nodejs中的http模块输出了createServer这个接口，这里就是一个典型的工厂模式。<br>但看看http模块的源码，可以发现其实http同样提供了Server这个构造器接口：</p>
+<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">Server</span><span class="params">(requestListener)</span> {</span>
+	<span class="keyword">if</span> (!(<span class="keyword">this</span> <span class="keyword">instanceof</span> Server)) <span class="keyword">return</span> <span class="keyword">new</span> Server(requestListener);
+	net.Server.call(<span class="keyword">this</span>, { allowHalfOpen: <span class="literal">true</span> });
+	......
+}
+util.inherits(Server, net.Server);
+
+exports.Server = Server;
+
+exports.createServer = <span class="keyword">function</span>(requestListener) {
+	<span class="keyword">return</span> <span class="keyword">new</span> Server(requestListener);
+};
+</pre></td></tr></table></figure>
+
+
+<p>为啥要同时输出构造器和工厂模式两种接口呢？同样好奇的不止你我，Google一下你会发现Google group上同样有人提出了这样的问题：</p>
+<ul>
+<li><a href="https://groups.google.com/forum/#!msg/nodejs/GTaCdFPlweI/M0q38C3SJpkJ" target="_blank">[nodejs] Why net.createServer() and not new net.Server()?</a></li>
+<li><a href="https://groups.google.com/forum/#!msg/nodejs/yoXogs7vNYU/uUKT59t_w-sJ" target="_blank">Why export both http.Server() and http.createServer()?</a></li>
+</ul>
+<p>得到的答案大意是当年受限于C++代码中的限制只好采用了这些工厂方法(“Due to the way I structured the C++ stuff constructors couldn&#39;t take arguments.”这句比较含糊，没说明具体原因)。</p>
+<p>而同时提供构造器方法，Bryce猜测是为了方便以后做类型检测。</p>
+<p>此外，让我们对比下下面两行代码：</p>
+<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>s = require(<span class="string">"http"</span>).createServer([listener]);
+s = <span class="keyword">new</span> (require(<span class="string">"http"</span>).Server)([listener]);
+</pre></td></tr></table></figure>
+
+
+<p>很显然，上面一行代码采用链式调用的方式，可读性更强。</p>
+<p>此外回复中还提到了Isaac解释了他为什么更倾向于不要使用<code>new</code>关键字：调用时容易漏掉这个关键字，导致直接调用构造器会污染全局变量。</p>
+<p>尽管个人感觉这个理由不够充分，不过这让我想起了之前写的<code>RichDate</code>模块中碰到过的一个问题：如何根据可变参数列表自动构建Date对象？众所周知，JavaScript中的<code>Date</code>构造函数本身支持可变参数：</p>
+<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="code"><pre><span class="keyword">new</span> Date(<span class="number">2012</span>).toLocaleString(); 				
+<span class="comment">// "1970年1月1日 上午8:00:02"</span>
+
+<span class="keyword">new</span> Date(<span class="number">2012</span>, <span class="number">1</span>).toLocaleString();
+<span class="comment">// "2012年2月1日 上午12:00:00"</span>
+
+<span class="keyword">new</span> Date(<span class="number">2012</span>, <span class="number">1</span>, <span class="number">1</span>).toLocaleString();
+<span class="comment">// "2012年2月1日 上午12:00:00"</span>
+
+<span class="keyword">new</span> Date(<span class="number">2012</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).toLocaleString();
+<span class="comment">// "2012年2月1日 上午1:00:00"</span>
+
+<span class="keyword">new</span> Date(<span class="number">2012</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).toLocaleString();
+<span class="comment">// "2012年2月1日 上午1:01:00"</span>
+
+<span class="keyword">new</span> Date(<span class="number">2012</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).toLocaleString();
+<span class="comment">// "2012年2月1日 上午1:01:01"</span>
+</pre></td></tr></table></figure>
+
+
+<p>当然第一行有点小意外，<code>new Date()</code>只传入一个参数时自动解析为时间戳（毫秒）了。这个之后我们可以单独处理。</p>
+<p>很遗憾<code>new Date()</code>支持的传入参数格式有限，而且会有兼容性问题。现在如果我们需要写这样一个函数：</p>
+<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="comment">/** 
+ * 解析日期字符串，自动创建对应Date对象
+ * @param str 日期字符串
+ * @return Date object
+ */</span>
+<span class="function"><span class="keyword">function</span> <span class="title">parseDate</span><span class="params">(str)</span>{</span>
+	
+}
+</pre></td></tr></table></figure>
+
 <p>约定输入的字符串是按照“年-月-日-时-分-秒”的字段顺序指定时间，但是未必包含所有的字段。</p>
-<p>很容易想到利用正则过滤出各个字段：<br>    <figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+<p>很容易想到利用正则过滤出各个字段：</p>
+<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -141,21 +243,47 @@
  */</span>
 <span class="function"><span class="keyword">function</span> <span class="title">parseDate</span><span class="params">(str)</span>{</span>
 	<span class="comment">// native parse, with help from native Date constructor</span>
-	<span class="keyword">var</span> result = <span class="keyword">new</span> Date(str);
-	<span class="keyword">if</span>(!(result <span class="keyword">instanceof</span> Date) || isNaN(result.getTime())){
+    <span class="keyword">var</span> result = <span class="keyword">new</span> Date(str);
+    <span class="keyword">if</span>(!(result <span class="keyword">instanceof</span> Date) || isNaN(result.getTime())){
 
 		<span class="comment">// split numbers from string</span>
-		<span class="keyword">var</span> timeArr = str.match(<span class="regexp">/\d+/g</span>);
+        <span class="keyword">var</span> timeArr = str.match(<span class="regexp">/\d+/g</span>);
 
 		<span class="comment">// TODO</span>
 		<span class="keyword">var</span> toDate = createDate.apply(<span class="literal">null</span>, timeArr);
 	}
 }
-</pre></td></tr></table></figure></p>
+</pre></td></tr></table></figure>
+
+
 <p>这时我们就碰到一个问题了，Date的构造函数虽然支持可变参数，但是<strong>构造函数并不能直接通过call或者apply的方式传入参数数组来调用</strong>。这时我们就可以看到构造器和工厂的最大区别了。</p>
 <p>当然在Java等静态语言中调用其他对象或类的方法，提供了一种反射机制。这时工厂模式的优势可以体现得更好：动态根据指定的类名创建对应的对象。虽然这在JavaScript这样的动态语言中是不值一提的事。</p>
 <p>那么这个包装<code>Date</code>构造函数的工厂<code>createDate</code>怎么写呢？直接根据参数数量执行对应的<code>Date</code>构造函数显然比较丑陋，借助eval，可以得到比较简单的写法：</p>
-<pre><code><span class="tag">&lt;<span class="title">notextile</span>&gt;</span>7<span class="tag">&lt;/<span class="title">notextile</span>&gt;</span></code></pre>
+<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre><span class="comment">/* 
+ * 根据日期数组
+ * @param number 可变参数，多个数字
+ * @return Date object
+ */</span>
+<span class="function"><span class="keyword">function</span> <span class="title">createDate</span><span class="params">()</span>{</span>
+    <span class="keyword">var</span> paramStr = ([].slice.call(arguments)).join(<span class="string">','</span>);
+    <span class="keyword">return</span> eval(<span class="string">"new Date("</span> + paramStr +<span class="string">")"</span>);
+}
+<span class="keyword">var</span> x = createDate(<span class="number">2012</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">1</span>);console.log(x);
+<span class="keyword">var</span> y = createDate.apply(<span class="literal">null</span>, [<span class="number">2012</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">1</span>]);console.log(y);
+</pre></td></tr></table></figure>
+
+
 <p>可见，这个工厂既可以按普通方式传参调用，也可以通过apply传入参数数组来调用。通过上面这些探讨，我们可以更深入地理解构造函数与工厂模式的差异。</p>
 
       
