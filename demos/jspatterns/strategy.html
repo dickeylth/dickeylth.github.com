@@ -1,0 +1,496 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>前端探幽</title>
+  <meta name="author" content="Dickey Leo">
+  
+  <meta name="description" content="策略模式
+    
+    
+    
+    
+
+
+    策略模式：运行时按需选择算法处理特定任务
+    
+        典型案例：表单校验
+        
+
+
+var data = {
+    name: '王x',
+    gender: 1,
+    identity: '01111">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="前端探幽"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="前端探幽" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">前端探幽</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="page">
+  
+  <div class="post-content">
+    <header>
+      
+      
+  
+    <h1 class="title"></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <!DOCTYPE html>
+<html>
+<head>
+    <title>策略模式</title>
+    <meta charset="UTF-8">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <h3>策略模式：运行时按需选择算法处理特定任务</h3>
+    <div id="target">
+        <h4>典型案例：表单校验</h4>
+        <div class="ace-code"></div>
+
+<script class="ace-code-script" type="template">
+var data = {
+    name: '王x',
+    gender: 1,
+    identity: '011110198806061234',
+    birthday: '1988-13-01',
+    mobile: '15800000000',
+    spareMobile: '13911111111',
+    email: 'abcdef.cn'
+};
+
+validator.config = {
+    name: {
+        text: '姓名',
+        validators: ['isNotEmpty', 'isValidName']
+    },
+    identity: {
+        text: '身份证号',
+        validators: ['isNotEmpty','isValidIdentity']
+    },
+    birthday: {
+        text: '生日',
+        validators: [['isBirthEqualTo','identity'],'isValidDate']
+    },
+    mobile: {
+        text: '手机号码',
+        validators: ['isValidMobile']
+    },
+    spareMobile: {
+        text: '备用手机号码',
+        validators: ['isValidMobile', ['isNotEqualTo', 'mobile']]
+    },
+    email: {
+        text: 'Email',
+        validators: ['isValidEmail']
+    }
+};
+
+// 调用
+validator.validate(data);
+if(validator.hasErrors()){
+    validator.messages.join('<br/>');
+}
+//期望结果：
+/*
+姓名只能为2-4个字的汉字
+生日与身份证号不一致，请修改
+生日格式不合法，请按"2008-01-01"格式输入日期
+备用手机号码不得与手机号码相同，请重新输入
+Email格式不合法，请输入正确的Email地址
+*/
+</script>
+
+    </div>
+
+    <div class="methods">
+        <h4>实现：</h4>
+
+        <div class="method-container">
+            <div class="ace-code"></div>
+
+<script class="ace-code-script" type="template">
+var validator = {
+
+    // 所有可用的检查
+    types: {},
+
+    // 错误信息
+    messages: [],
+
+    // 当前校验配置
+    config: {},
+
+    // 接口方法
+    validate: function(data){
+        var i, msg, item, validators, validatorItem, checker, result;
+
+        // 重置错误消息
+        this.messages = [];
+
+        // 遍历要校验的键值对数据
+        for(i in data){
+            if(data.hasOwnProperty(i)){
+
+                // 获取校验项
+                item = this.config[i];
+
+                // 不存在校验项，不需要校验
+                if(!item){
+                    continue;
+                }
+
+                // 遍历校验项
+                validators = item.validators;
+                for(var v = 0, len = validators.length; v < len; v++){
+
+                    // 获取对应的校验模块
+                    validatorItem = validators[v];
+
+                    // 校验项为字符串，直接校验
+                    if(typeof validatorItem == 'string'){
+
+                        checker = this.types[validatorItem];
+                        if(!checker){
+                            throw {
+                                name: "ValidationError",
+                                message: "No handler to validate type " + validators[v]
+                            };
+                        }
+                        result = checker.validate(data[i]);
+
+                    }else if(Array.isArray(validatorItem)){
+
+                        checker = this.types[validatorItem[0]];
+                        if(!checker){
+                            throw {
+                                name: "ValidationError",
+                                message: "No handler to validate type " + validators[v]
+                            };
+                        }
+                        // 替换validatorItem第一个元素（validatorName）为data[i]（当前校验项值）
+                        result = checker.validate.apply(this, [data, i].concat(validatorItem.slice(1)));
+
+                    }else{
+
+                        throw {
+                            name: "ValidationError",
+                            message: "No such validator *" + validatorItem + "* found."
+                        }
+                    }
+
+                    // 校验不通过
+                    if(!result){
+
+                        // 校验器message类型可为string/function
+                        var msgType = typeof checker.message;
+                        if(msgType == 'string'){
+
+                            msg = item.text + checker.message;
+
+                        }else if(msgType == 'function'){
+
+                            msg = item.text + checker.message.call(null, this.config[validatorItem[1]].text);
+
+                        }
+
+                        this.messages.push(msg);
+
+                    }
+
+                }
+
+            }
+        }
+
+        return this.hasErrors();
+    },
+
+    hasErrors: function(){
+        return this.messages.length !== 0;
+    }
+};
+
+// 所有可用的检查
+validator.types = {
+
+    isNotEmpty: {
+        validate: function(value){
+            return value !== "";
+        },
+        message: "不得为空"
+    },
+
+    isNotEqualTo: {
+        validate: function(data, curField, compareField){
+            return data[curField] === data[compareField];
+        },
+        message: function(fieldText){
+            return "不得与" + fieldText + "相同，请重新输入";
+        }
+    },
+
+    isValidName: {
+        validate: function(value){
+            return /^[\u4e00-\u9fa5]{2,4}$/.test(value);
+        },
+        message: "只能为2-4个字的汉字"
+    },
+
+    isValidIdentity: {
+        validate: function(value){
+            return /^\d{6}(18|19|20)?\d{2}(0[1-9]|1[12])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i.test(value);
+        },
+        message: "不合法，请输入身份证上的18位身份证号"
+    },
+
+    isBirthEqualTo: {
+        validate: function(data, curField, compareField){
+            return data[curField].replace(/-/g, '') === data[compareField].substr(6, 8);
+        },
+        message: function(fieldText){
+            return "与" + fieldText + "中生日不一致，请修改";
+        }
+    },
+
+    isValidDate: {
+        validate: function(value){
+            var t = new Date(value),
+                paddingZero = function(value){
+                    return value < 10 ? ('0' + value) : value;
+                },
+                transStr = [t.getFullYear(), paddingZero(t.getMonth() + 1), paddingZero(t.getDate())].join('-');
+            return transStr === value;
+        },
+        message: '格式不合法，请按"2008-01-01"格式输入日期'
+    },
+
+    isValidMobile: {
+        validate: function(value){
+            return /^0?(13[0-9]|15[012356789]|18[02356789]|14[57])[0-9]{8}$/.test(value);
+        },
+        message: "格式不合法，请输入正确的手机号码"
+    },
+
+    isValidEmail: {
+        validate: function(value){
+            return /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(value);
+        },
+        message: "格式不合法，请输入正确的Email地址"
+    }
+
+};
+
+
+
+var data = {
+    name: '王x',
+    gender: 1,
+    identity: '011110198806061234',
+    birthday: '1988-13-01',
+    mobile: '15800000000',
+    spareMobile: '13911111111',
+    email: 'abcdef.cn'
+};
+
+validator.config = {
+    name: {
+        text: '姓名',
+        validators: ['isNotEmpty', 'isValidName']
+    },
+    identity: {
+        text: '身份证号',
+        validators: ['isNotEmpty','isValidIdentity']
+    },
+    birthday: {
+        text: '生日',
+        validators: [['isBirthEqualTo','identity'],'isValidDate']
+    },
+    mobile: {
+        text: '手机号码',
+        validators: ['isValidMobile']
+    },
+    spareMobile: {
+        text: '备用手机号码',
+        validators: ['isValidMobile', ['isNotEqualTo', 'mobile']]
+    },
+    email: {
+        text: 'Email',
+        validators: ['isValidEmail']
+    }
+};
+
+// 调用
+validator.validate(data);
+if(validator.hasErrors()){
+    validator.messages.join('<br/>');
+}
+//期望结果：
+
+</script>
+
+            <div class="result">
+                <button class="J_RunBtn btn btn-primary">运行</button>
+                <output class="J_Output"></output>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="methods">
+        <h5>相关话题：JavaScript中的内置对象工厂</h5>
+        <div class="method-container">
+            <div class="ace-code"></div>
+
+<script class="ace-code-script" type="template">
+var o = new Object(),
+    n = new Object(1),
+    s = Object('1'),
+    b = Object(true);
+
+[
+    o.constructor === Object,
+    n.constructor === Number,
+    s.constructor === String,
+    b.constructor === Boolean
+].join('<br/>');
+</script>
+
+            <div class="result">
+                <button class="J_RunBtn btn btn-primary">运行</button>
+                <output class="J_Output"></output>
+            </div>
+        </div>
+    </div>
+
+    <script src="http://g.tbcdn.cn/kissy/k/1.3.2/kissy-min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
+      
+    </div>
+    <footer>
+      
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/笔记/">笔记</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/JavaScript设计模式/">JavaScript设计模式</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 Dickey Leo
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
