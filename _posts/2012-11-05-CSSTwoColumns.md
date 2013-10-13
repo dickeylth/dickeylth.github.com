@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "CSS两栏布局"
-category: 前端技术
-tags: ['CSS']
-desc: css中的两栏布局是面试中比较常见的问题了，一般来说要求是这样：左边定宽如300px，右边自适应。
+category: "前端技术"
+tags: ["CSS"]
+desc: "css中的两栏布局是面试中比较常见的问题了，一般来说要求是这样：左边定宽如300px，右边自适应。"
 ---
 
 
