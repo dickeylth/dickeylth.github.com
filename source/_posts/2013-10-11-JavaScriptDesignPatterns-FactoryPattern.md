@@ -18,13 +18,13 @@ cover: "/img/jspatterns/factory-cover.jpg"
 
 拿生活中的例子来看吧，会容易理解得多。
 
-![麦当劳汉堡](/img/jspatterns/factory1.jpeg)
+![麦当劳汉堡](../img/jspatterns/factory1.jpeg)
 
 麦当劳的汉堡就是个最常见而贴切的例子，虽然各种汉堡名字不一，但是大体上都是相似的，都离不开上下两层的面包，区别在于中间的馅料，流水线上生产汉堡的过程不就对应重复创建相似对象？顾客到店点餐，根据点的汉堡名，后台按需生产对应的汉堡，这不就是根据类型名动态创建对象？
 
 同样类似的还有酒店订房：
 
-![酒店订房间](/img/jspatterns/factory2.jpeg)
+![酒店订房间](../img/jspatterns/factory2.jpeg)
 
 是不是感觉到工厂模式其实无处不在？
 
