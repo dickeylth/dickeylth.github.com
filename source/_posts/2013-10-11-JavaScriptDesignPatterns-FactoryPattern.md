@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "JavaScript中的设计模式(2)——工厂模式"
-desc: "工厂模式通常用于重复创建相似对象，提供动态创建对象的接口。我们来看看身边的工厂模式，以及它与构造函数的区别。"
 category: '笔记' 
 tags: ['JavaScript设计模式']
 cover: "/img/jspatterns/factory-cover.jpg"
