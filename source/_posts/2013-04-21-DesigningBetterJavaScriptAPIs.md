@@ -152,7 +152,7 @@ String.prototype.foo = function() {
 通过这种方式，你的自定义函数仍然在你的命名空间下，但是可以通过其他对象访问到它。确保你的代码中的`.foo()`对应的方法名是非统称（non-generic）关键字，以避免与其他的API冲突，并确保你的代码中提供了恰当的`.valueOf()`和`.toString()`方法以转换回原始的基本类型。
 
 ## 一致性
-[Jake Archibald](https://twitter.com/jaffathecake)曾经在一张幻灯片上定义了*一致性*。它可以简单读作*[拒绝PHP](http://www.slideshare.net/slideshow/embed_code/5426258?startSlide=59)*。永远不要在你的代码中出现类似*str\_repeat()*、*str\_pos()*、*substr()*这样的函数命名，也不要交换参数的位置。如果你在某处声明了`find_in*array(haystack, needle)`函数，再定义`findInString(needle, haystack)`函数将会使你的代码变得像噩梦一般。
+[Jake Archibald](https://twitter.com/jaffathecake)曾经在一张幻灯片上定义了*一致性*。它可以简单称为*[拒绝PHP](http://www.slideshare.net/slideshow/embed_code/5426258?startSlide=59)*。永远不要在你的代码中出现类似*str\_repeat()*、*str\_pos()*、*substr()*这样的函数命名，也不要交换参数的位置。如果你在某处声明了`find_in*array(haystack, needle)`函数，再定义`findInString(needle, haystack)`函数将会使你的代码变得像噩梦一般。
 
 ### 命名
 >“There are only two hard problems in computer science: cache-invalidation and naming things.”
@@ -163,7 +163,7 @@ String.prototype.foo = function() {
 
 我参加过不计其数的讲授如何更好地命名的讨论和会议，每次在离开前都会听到上面这句引述，但还是没有真正地学会如何命名。我的建议归纳为*保持简短但具有描述性并且跟随你的直觉*。但是最重要的是，保持一致性。
 
-上面的`DateInterval`的例子引入了一个名为`until()`的方法。我们本可以将其命名为`interval()`。后者会与返回值更为接近，然而前者*可读性*更好。找出一行你喜欢的用词并且坚持下去。一致性占据90%的重要性。选择一种风格并且保持下去——即使在将来某个时候你开始反感这种风格了。
+上面的`DateInterval`的例子引入了一个名为`until()`的方法。我们本可以将其命名为`interval()`，这样会与返回值更为接近，然而前者*可读性*更好。找出一行你喜欢的用词并且坚持下去。一致性占据90%的重要性。选择一种风格并且保持下去——即使在将来某个时候你开始反感这种风格了。
 
 ## 处理参数
 ![Good Intentions](/img/jsapis/good-intention.jpg)
@@ -180,7 +180,7 @@ jQuery("#some-selector")
   .css("padding", 10);
 {% endcodeblock %}
 
-这里有一个范例！每个方法调用都为一种样式指定一个值。这就要求这种方法能接收一个映射作为参数传入：
+这是一种模式！每个方法调用都为一种样式指定一个值。这就要求这种方法能接收一个映射作为参数传入：
 
 {% codeblock lang:javascript %}
 jQuery("#some-selector").css({
@@ -191,7 +191,7 @@ jQuery("#some-selector").css({
 });
 {% endcodeblock %}
 
-jQuery的`on()`方法可以注册事件处理器。和`css()`一样它也可以接收映射格式的一组事件，但更进一步地，它允许单一处理器可以被多个事件注册：
+jQuery的`on()`方法可以注册事件处理器。和`css()`一样它也可以接收一组映射格式的事件，但更进一步地，它允许单一处理器可以被多个事件注册：
 
 {% codeblock lang:javascript %}
 // binding events by passing a map
@@ -254,7 +254,7 @@ jQuery("input").each(function() {
 });
 {% endcodeblock %}
 
-如果我们可以绕过这个方法，采用一个简单的回调函数应用到集合中每个`<input>`元素上呢？jQuery开发者已经想到这一点并且允许我们写更少的代码：
+如果我们可以绕过这种方式，采用一个简单的回调函数应用到集合中每个`<input>`元素上呢？jQuery开发者已经想到这一点并且允许我们写更少的代码：
 
 {% codeblock lang:javascript %}
 jQuery("input").val(function() {
@@ -262,10 +262,10 @@ jQuery("input").val(function() {
 });
 {% endcodeblock %}
 
-正是像这些接收映射参数、回调函数或序列化的属性名的细节，让你的API使用起来不仅更清晰，而且更舒服和高效。显然并非你的所有的API方法都会从这种方法模式中受益——何时这样做有意义，何时这样做是浪费时间，这完全由你来决定。尽可能人性化地在这方面保持一致。*采用上面的技巧减少样版代码的需要，API使用者会感激你的。*
+正是像这些接收映射参数、回调函数或序列化的属性名的细节，让你的API使用起来不仅更清晰，而且更舒服和高效。显然并非你的所有的API方法都会从这种方法模式中受益——何时这样做有意义，何时这样做是浪费时间，都完全取决于你。尽可能人性化地在这方面保持一致。*采用上面的技巧减少样版代码的需要，API使用者会感激你的。*
 
 ### 处理类型
-每当你定义一个含参函数时，你会决定这个函数应该接受怎样的数据。一个计算两个日期之间间隔的天数的函数会是像这样：
+通常定义一个含参函数，你需要决定这个函数接受的参数类型。一个计算两个日期之间间隔的天数的函数会是像这样：
 
 {% codeblock lang:javascript %}
 DateInterval.prototype.days = function(start, end) {
@@ -273,7 +273,7 @@ DateInterval.prototype.days = function(start, end) {
 };
 {% endcodeblock %}
 
-可见，这个函数期望的输入是数字类型——准确来说，一个微秒级的时间戳。尽管这个函数完成了我们所预期的效果，但它还不够通用。如果我们要处理`Date`对象或是代表日期的字符串这样的参数呢？难道使用者每次调用这个函数前都必须转换数据格式吗？不！只需要在集中的位置对输入进行验证并且转换为我们需要的格式，而不是凌乱地分散在调用API的代码中：
+可见，这个函数参数类型是数字——准确来说，一个微秒级的时间戳。尽管这个函数完成了我们所预期的效果，但它还不够通用。如果我们得处理`Date`对象或是代表日期的字符串这样的参数呢？难道使用者每次调用这个函数前都必须转换数据格式吗？不！只需要集中地对输入进行验证并且转换为我们需要的格式，而不是将参数处理凌乱地分散在调用API的代码中：
 
 {% codeblock lang:javascript %}
 DateInterval.prototype.days = function(start, end) {
@@ -288,9 +288,9 @@ DateInterval.prototype.days = function(start, end) {
 };
 {% endcodeblock %}
 
-在添加了这6行之后，我们为这个函数添加了接受Date对象、数字型的时间戳、甚至像`Sat Sep 08 2012 15:34:35 GMT+0200 (CEST)`这样的日期字符串等类型的参数的处理能力。我们并不知道他人会如何和因何使用我们的代码，但是多一点远见，就可以确保整合我们的代码会很轻松。
+在添加了这6行之后，我们使这个函数可以接受Date对象、数字型的时间戳、甚至像`Sat Sep 08 2012 15:34:35 GMT+0200 (CEST)`这样的日期字符串等类型的参数。我们并不知道他人会如何和为何使用我们的代码，但是多一点远见，就可以确保整合我们的代码会很轻松。
 
-有经验的开发者会在上面的示例代码中注意到另一个问题。我们假定了`start`日期在`end`日期之前。如果API使用者偶然交换了这两个日期传入函数中，就会得到一个负的日期间隔。停下来好好考虑下这些场景吧。如果你得出的结论是负值不合理，那么就修复它吧：
+有经验的开发者会在上面的示例代码中注意到另一个问题。我们假定了`start`日期在`end`日期之前。如果API使用者偶然交换了这两个日期传入函数中，就会得到一个负的日期间隔。停下来好好考虑下这些场景吧。如果你得出的结论是负值不合理，那么就修复它：
 
 {% codeblock lang:javascript %}
 DateInterval.prototype.days = function(start, end) {
@@ -318,7 +318,7 @@ function castaway(some*string, some_integer, some*boolean) {
 我并不提倡随时随地都这么做。但是当整合你的代码时，这些看上去无害的代码也许会节省时间和减少麻烦。
 
 ### 把`UNDEFINED`看作预期值
-有时候你的API事实上期望获得一个`undefined`值来设置一个属性值，可能是为了将一个属性值设为“未置值”状态，也可能只是优雅地处理错误输入使你的API更加健壮。为了确定`undefined`是不是确实被传入到你的方法中，你可以检查`arguments`对象：
+有时候你的API事实上期望获得一个`undefined`值来设置一个属性值，可能是为了将一个属性值设为“未置值(unset)”状态，也可能只是优雅地处理错误输入使你的API更加健壮。为了确定`undefined`是不是确实被传入到你的方法中，你可以检查`arguments`对象：
 
 {% codeblock lang:javascript %}
 function testUndefined(expecting, someArgument) {
@@ -346,10 +346,10 @@ event.initMouseEvent(
   1, null);
 {% endcodeblock %}
 
-`Event.initMouseEvent`的函数签名像是噩梦成真。开发者绝无可能不用查看文档就能想起来 `1`（倒数第二个参数）的意思。不管你的文档写的有多么好，尽你所能让人们不必去查阅它！
+`Event.initMouseEvent`的函数签名像是噩梦成真。开发者绝无可能不用查看文档就能想起来 `1`（倒数第二个参数）表示什么。不管你的文档写的有多么好，尽你所能让人们不必去查阅它！
 
 ### 其他语言是如何做的
-越过我们热爱的语言之外，我们发现Python中有个名为[命名参数](http://www.diveintopython.net/power*of_introspection/optional*arguments.html)的概念。它允许你在声明一个函数时为参数提供默认值，允许你在调用上下文中声明属性名：
+眺望我们热爱的语言之外，我们发现Python中有个名为[命名参数](http://www.diveintopython.net/power*of_introspection/optional*arguments.html)的概念。它允许你在声明一个函数时为参数提供默认值，允许你在调用上下文中声明属性名：
 
 {% codeblock lang:javascript %}
 function namesAreAwesome(foo=1, bar=2) {
@@ -393,7 +393,7 @@ event.initMouseEvent(
 目前JavaScript中还不可能这样书写。虽然“JavaScript的下一版本”（通常被称为ES.next，ES6，或者Harmony）会有[默认参数值](http://wiki.ecmascript.org/doku.php?id=harmony:parameter*default_values)和[可变参数](http://wiki.ecmascript.org/doku.php?id=harmony:rest*parameters)，但是命名参数仍然遥遥无期。
 
 ### 参数映射
-JavaScript不是Python（而且ES.next还很遥远），要克服“参数森林”的障碍，留给我们的可选方案非常少。jQuery（以及差不多它提供的每一个恰当的API）采用了“选项对象”的概念。`jQuery.ajax()`方法签名提供了一个很好的例子。我们只需要传入一个对象，而不是一堆参数：
+JavaScript不是Python（而且ES.next还很遥远），要克服“参数森林”的障碍，留给我们的可选方案非常少。jQuery（以及差不多它提供的每一个恰当的API）采用了“option对象(option objects)”的概念。`jQuery.ajax()`方法签名提供了一个很好的例子。我们只需要传入一个对象，而不是一堆参数：
 
 {% codeblock lang:javascript %}
 function nightmare(accepts, async, beforeSend, cache, complete, /* and 28 more */) {
@@ -410,7 +410,7 @@ function dream(options) {
 }
 {% endcodeblock %}
 
-这样不仅避免了疯狂冗长的函数签名，也使得函数调用起来更加有描述性：
+这样不仅避免了疯狂而冗长的函数签名，也使得函数调用更具备描述性：
 
 {% codeblock lang:javascript %}
 nightmare("text", true, undefined, false, undefined, /* and 28 more */);
@@ -425,7 +425,7 @@ dream({
 此外，在更新的版本中如果我们会引入新的特性，也不必影响到函数签名（添加一个新的参数）。
 
 ### 默认参数值
-[jQuery.extend()](http://api.jquery.com/jQuery.extend/)、[_.extend()](http://underscorejs.org/#extend)和Prototype的[Object.extend](http://api.prototypejs.org/language/Object/extend/)都可以帮你合并对象，允许你将预置的选项对象输入合并：
+[jQuery.extend()](http://api.jquery.com/jQuery.extend/)、[_.extend()](http://underscorejs.org/#extend)和Prototype的[Object.extend](http://api.prototypejs.org/language/Object/extend/)都可以帮你合并对象，允许你输入预置的option对象进行合并：
 
 {% codeblock lang:javascript %}
 var default_options = {
@@ -449,10 +449,10 @@ dream({ async: false });
 // prints: "text"
 {% endcodeblock %}
 
-默认值可以公开访问了，恭喜你获得了附加分。这样一来，任何人都可以在集中的位置修改`accepts`的值为"json"，因而可以避免一再地指定这个选项。注意这个例子中总是会在初次读取选项对象时附加一个`|| {}`操作，从而可以使得无参传入时也能调用这个函数。
+默认值可以公开访问了，恭喜你拿到了附加分。这样一来，任何人都可以在集中地修改`accepts`的值为"json"，因而可以避免一再地指定这个选项。注意这个例子中总是会在初次读取选项对象时附加一个`|| {}`操作，从而可以保证无参传入时也能调用这个函数。
 
 ### 好意 —— 也可能是“陷阱”
-既然你已经知道了如何更加弹性地接收参数，我们需要回到一条古谚：
+既然你已经知道了如何更加弹性地接收参数，让我们回到一条古谚：
 
 >“With great power comes great responsibility!”
 >
@@ -475,7 +475,7 @@ if (bar) {
 }
 {% endcodeblock %}
 
-我们相当习惯了这种自动转换。正是因为太习惯，以至于我们忘记了，即使有些值是真实存在的，从布尔值的角度它可能并不会被判为“真”。有些API设计得如此的弹性以至于有些*过于聪明*了。看看[jQuery.toggle()](http://api.jquery.com/toggle/)方法的签名吧：
+我们相当习惯了这种自动转换。正是因为太习惯，以至于我们忘记了，即使有些值是真实存在的，从布尔值的角度它可能并不会被判为true。有些API设计得如此的弹性以至于有些*过于聪明*了。看看[jQuery.toggle()](http://api.jquery.com/toggle/)方法的签名吧：
 
 {% codeblock lang:javascript %}
 .toggle( /* int */ [duration] [, /* function */  callback] )
@@ -495,17 +495,17 @@ $hello.toggle(foo);
 $world.toggle(bar);
 {% endcodeblock %}
 
-我们的*预期*是在两种情况下都使用`showOrHide`签名。然而事实上，`$hello`会以一秒的`duration`执行一次切换。这不是jQuery中的一个缺陷，这只是一个*与期望不符*的案例。即使你是一个有经验的jQuery开发者，你也会不时被这种问题绊倒。
+我们的*预期*是在两种情况下都使用`showOrHide`签名。然而事实上，`$hello`会以一秒的`duration`执行一次切换。这不是jQuery中的bug，这只是一个*与期望不符*的案例。即使你是一个有经验的jQuery开发者，你也会不时被这种问题绊倒。
 
-你尽可以如你所愿添加尽可能多的便利——但是同时不要牺牲API的简洁性和健壮性（多半会）。如果你的代码中也提供了类似的API，考虑一下提供一个单独的方法，例如`.toggleIf(bool)`。不论采用什么办法，记得保持你的API的一致性！
+你尽可以如你所愿添加尽可能多的便利——但同时不要牺牲API的简洁性和健壮性（多半会）。如果你的代码中也提供了类似的API，考虑一下提供一个单独的方法，例如`.toggleIf(bool)`来替代。不论采用什么办法，记得保持你的API的一致性！
 
 ## 可扩展性
 ![Developing Possibilities](/img/jsapis/developing-possibilities.jpg)
 
-在选项对象部分，我们谈到了可扩展的配置的话题。让我们来讨论下允许API使用者扩展核心和API本身。这是一个重要的话题，因为它可以使你的代码关注重要的事情，同时可以使API使用者自己处理边界情况。好的API设计都很简约。提供丰富的配置项当然很好，但是过多的配置项会导致你的API变得臃肿晦涩。关注主要的应用场景，只提供大部分你的API使用者需要的功能，其他的东西应该留给他们决定。为了允许API使用者们扩展你的代码以适应他们的需要，你可以有很多选择：
+在option对象部分，我们谈到了可扩展的配置。让我们来讨论下允许API使用者扩展核心和API本身。这一点很重要，因为它可以使你的代码关注重要的事情，同时可以使API使用者自己处理边界情况。好的API设计都很简约。提供丰富的配置项当然很好，但是过多的配置项会导致你的API变得臃肿晦涩。关注主要的应用场景，只提供你的API使用者需要的大部分功能，剩下的应该留给他们决定。为了允许API使用者们扩展你的代码以适应他们的需要，你有很多选择：
 
 ### 回调函数
-回调函数可以用了根据配置实现可扩展性。你可以使用回调函数允许API用户覆盖你的代码中的某些部分。当你感觉某些任务可能不会像你提供的默认的代码那样处理，将这部分代码重构为一个可配置的回调函数，来允许API使用者易于重载：
+回调函数可以用来根据配置实现可扩展性。你可以使用回调函数允许API用户覆盖你的代码中的某些部分。当你感觉某些任务可能不会像你提供的默认的代码那样处理，将这部分代码重构为一个可配置的回调函数，来允许API使用者易于重载：
 
 {% codeblock lang:javascript %}
 var default_options = {
@@ -531,8 +531,9 @@ Widget.protoype.show = function() {
   this.$thingie.show();
   return this;
 };
+{% endcodeblock %}
 
-
+{% codeblock lang:javascript %}
 var widget = new Widget({
   position: function($elem, $parent) {
     var position = $parent.position();
@@ -545,7 +546,7 @@ var widget = new Widget({
 widget.show();
 {% endcodeblock %}
 
-回调函数也是一种常见的允许API使用者自定义你的代码创建的元素的方式：
+回调函数也是一种常见的允许API使用者定制你的代码创建的元素的方式：
 
 {% codeblock lang:javascript %}
 // default create callback doesn't do anything
@@ -558,8 +559,9 @@ Widget.prototype.create = function() {
   this.options.create(this.$thingie);
   return this;
 };
+{% endcodeblock %}
 
-
+{% codeblock lang:javascript %}
 var widget = new Widget({
   create: function($elem) {
     $elem.addClass('my-style-stuff');
@@ -568,12 +570,12 @@ var widget = new Widget({
 widget.show();
 {% endcodeblock %}
 
-每当你的API接受回调函数时，确保文档化其签名，并提供示例帮助API使用者自定义你的代码。确保回调函数所执行的上下文（`this`的指向），以及接收的参数保持一致性。
+每当你的API接受回调函数时，确保文档化其签名，并提供示例帮助API使用者定制代码。确保回调函数所执行的上下文（`this`的指向），以及接收的参数都保持一致性。
 
 ### 事件
 当需要处理DOM时，事件自然而然出现。在大型的应用中我们以各种机制（例如PubSub）使用事件使模块间通讯变得可能。当处理UI控件时，事件尤为有用并且很自然。像jQuery这样的库提供了简单的接口，允许你很容易实现这方面的需求。
 
-当有什么事情发生的时候事件配合工作最佳——这正是得名由来。显示或是隐藏一个控件可能取决于你的范围之外的环境。当控件显示时更新它也是很常见的工作。借助于jQuery的事件接口，这些都很容易实现，甚至允许使用事件委托：
+当有事情发生时事件介入最佳——这正是事件的得名由来。根据外部环境显示或是隐藏一个控件，当控件显示时更新它——这些都是很常见的交互。借助于jQuery的事件接口，这些都很容易实现，甚至允许使用事件委托：
 	
 {% codeblock lang:javascript %}
 Widget.prototype.show = function() {
@@ -605,10 +607,10 @@ var widget = new Widget();
 widget.show();
 {% endcodeblock %}
 
-你可以任意选择事件名。避免在处理专有的事件使用原生事件，并且考虑将你的事件放入命名空间下。jQuery UI的事件名都是由空间名和事件名组合而成的，例如`dialogshow`。我觉得这样难以阅读所以常将其改为`dialog:show`的默认写法，主要是因为这样一看便知是一个自定义事件，而不是什么个别浏览器的私有实现。
+你可以任意选择事件名。避免在处理专有的事件使用[原生事件](https://developer.mozilla.org/en-US/docs/DOM/DOM_event_reference)，并且考虑将你的事件放入命名空间下。jQuery UI的事件名都是由部件名和事件名组合而成的，例如`dialogshow`。我觉得这样难以阅读所以常将其改为`dialog:show`的默认写法，主要是因为这样一看便知是一个自定义事件，而不是某些特定浏览器的私有实现。
 
 ## 钩子机制
-传统的getter/setter方法尤为可以从钩子机制中受益。钩子机制通常在数量和如何注册方面有别于回调函数。回调函数通常应用于特定任务的实例级，而钩子则往往应用于全局级别自定义值或是调度自定义行为。为了演示钩子如何使用，让我们看看[jQuery’s cssHooks](http://api.jquery.com/jQuery.cssHooks/)中的例子：
+传统的getter/setter方法特别能受益于钩子机制。钩子机制通常在数量和如何注册方面有别于回调函数。回调函数通常应用于特定任务的实例级，而钩子则往往应用于全局级别自定义值或是调度自定义行为。为了演示钩子如何使用，让我们看看[jQuery’s cssHooks](http://api.jquery.com/jQuery.cssHooks/)中的例子：
 
 {% codeblock lang:javascript %}
 // define a custom css hook
@@ -665,7 +667,7 @@ var di = new DateInterval();
 di.start("yesterday");
 {% endcodeblock %}
 
-从某种程度上讲，钩子是被设计为以你自己的代码来处理自定义值的一系列回调函数。有了钩子，你可以将差不多任何东西保持在可控范围内，同时提供API使用者进行自定义的选择。
+从某种程度上讲，钩子是一系列被设计为以你自己的代码来处理自定义值的回调函数。有了钩子，你可以将差不多任何东西保持在可控范围内，同时提供API使用者定制的选择。
 
 ## 生成访问器
 ![duplication](/img/jsapis/duplication.jpg)
@@ -692,7 +694,7 @@ DateInterval.prototype.end = function(date) {
 };
 {% endcodeblock %}
 
-如你所见，这里有很多重复性代码。采用生成器模式可以提供一种DRY（Don’t Repeat Yourself）解决方案：
+如你所见，这里有很多重复性代码。采用生成器模式可以提供一种DRY(Don't Repeat Yourself)解决方案：
 
 {% codeblock lang:javascript %}
 var accessors = ["start", "end"];
@@ -731,7 +733,7 @@ function generateAccessor(key, accessor) {
 }
 {% endcodeblock %}
 
-在*处理参数*那一节我们讨论到一种方法模式，允许你的getters/setters方法接受多种有用的类型，例如映射和数组。这种方法模式本身就是非常通用的，并且可以很容易转为一个生成器：
+在*处理参数*那一节我们讨论到一种方法模式，允许你的getters/setters方法接受多种实用的类型，例如映射和数组。这种方法模式本身就是非常通用的，并且可以很容易转为一个生成器：
 
 {% codeblock lang:javascript %}
 function wrapFlexibleAccessor(get, set) {
@@ -775,9 +777,9 @@ DateInterval.prototype.values = wrapFlexibleAccessor(
 本文并不打算深入讲述编写符合DRY原则的代码。如果你对这个主题还比较生疏，[Rebecca Murphey](https://twitter.com/rmurphey)的[《Patterns for DRY-er JavaScript》](http://rmurphey.com/blog/2010/07/12/patterns-for-dry-er-javascript/)一文和[Mathias Bynens](https://twitter.com/mathias)的幻灯片[《how DRY impacts JavaScript performance》](http://slideshare.net/mathiasbynens/how-dry-impacts-javascript-performance-faster-javascript-execution-for-the-lazy-developer)都是很好的起步教程。
 
 ## 引用之怖
-不同于其他语言，JavaScript中不存在*按引用传递*和*按值传递*的概念。按值传递是比较安全的做法，可以确保你的API中输入和输出的数据在外部被修改时，不需要告知其状态的变化。按引用传值往往是为了保持较低的内存开销，按引用传递的值可能会在你的API之外的任何地方被修改并影响其状态。
+不同于其他语言，JavaScript中不存在*按引用传递*和*按值传递*的概念。按值传递是比较安全的做法，可以确保你的API中输入和输出的数据在外部被修改时，不会更改内部的状态。按引用传值往往是为了保持较低的内存开销，按引用传递的值可能会在你的API之外的任何地方被修改并影响其内部状态。
 
-在JavaScript中判断参数应该按应用传递还是按值传递。基本类型（字符串、数字、布尔值）都被处理为*按引用传值*，但是对象（任何对象，包括Array、Date）都以类似于按*引用*的方式进行处理。如果你初次接触这个话题，下面这个例子可以让你明白：
+在JavaScript中无法判断参数应该按应用传递还是按值传递。基本类型（字符串、数字、布尔值）都被处理为*按值传递*，但是对象（任何对象，包括Array、Date）都以类似于按*引用*的方式进行处理。如果你初次接触这个话题，下面这个例子可以启发你：
 
 {% codeblock lang:javascript %}
 // by value
@@ -803,7 +805,7 @@ var oy = addOne(ox);
 // oy.num === 1
 {% endcodeblock %}
 
-如果你不注意，对对象的按引用处理有可能会反过来给你带来麻烦。回到`DateInterval`的例子，看看下面这个棘手的问题：
+如果你不注意，对对象的*按引用*处理有可能会反过来给你带来麻烦。回到`DateInterval`的例子，看看下面这个棘手的问题：
 
 {% codeblock lang:javascript %}
 var startDate = new Date(2012, 0, 1);
@@ -837,7 +839,7 @@ if ($elem.length) {
 }
 {% endcodeblock %}
 
-只要我们将方法链接起来，我们就无法避免这样的事情发生——我们无法从链中逃出来。只要API开发者能意识到对象可能遇到这种情形：方法实际上不做任何事而`return this;`，一切就都还好。根据你的方法本质上的功能，在前面加一个简单的`is-empty`检测可以会有帮助：
+只要我们将方法链接起来，我们就无法避免这样的事情发生——我们无法逃离这条链。对象可能遇到这种情形，即方法实际上不做任何事仅仅`return this;`，只要API开发者能意识到这一点就没事。依据你的方法的内部实现，在前面加一个简单的`is-empty`检测可以会有帮助：
 
 {% codeblock lang:javascript %}
 jQuery.fn.somePlugin = function() {
@@ -862,7 +864,7 @@ jQuery.fn.somePlugin = function() {
 ## 处理错误
 ![Fail faster](/img/jsapis/fail-faster.jpg)
 
-我说我们无法从链中逃出来，这其实是谎言——对于这条规则有一个`Exception`（请不要介意这个双关语☺）
+我之前说我们无法从链中逃出来，其实是骗你的——对于这条规则有一个`Exception`（请不要介意这个双关语☺）
 
 通过抛出错误（异常）我们就可以强制退出。抛出错误往往被认为是当前执行流的蓄意中止，往往可能是因为你陷入无法恢复的状态。但是当心——并不是所有的错误都会帮助开发者调试：
 
@@ -875,7 +877,7 @@ $(document.body).on('click', {});
 //   in jQuery.min.js on Line 3
 {% endcodeblock %}
 
-遇到这样的错误信息是调试时最痛苦的事。不要浪费他人的时间。如果API使用者做错了什么，请告知他：
+遇到这样的错误信息是调试时最痛苦的事。不要浪费他人的时间。如果API使用者用得不对，请告知他：
 
 {% codeblock lang:javascript %}
 if (Object.prototype.toString.call(callback) !== '[object Function]') { // see note
@@ -883,9 +885,9 @@ if (Object.prototype.toString.call(callback) !== '[object Function]') { // see n
 }
 {% endcodeblock %}
 
-注意：`typeof callback === "function"`不应被使用，因为老式浏览器会认为对象是`function`，事实上它们不是。Chrome（直到版本12）中的`RegExp`就是如此。为了方便，使用[jQuery.isFunction()](http://api.jquery.com/jQuery.isfunction/)或是[_.isFunction()](http://underscorejs.org/#isFunction)。
+注意：`typeof callback === "function"`不应被使用，因为老式浏览器会认为对象是`function`，事实上它们不是。Chrome（直到版本12）中的`RegExp`就是如此。方便起见，使用[jQuery.isFunction()](http://api.jquery.com/jQuery.isfunction/)或是[_.isFunction()](http://underscorejs.org/#isFunction)。
 
-对于语言（内置弱类型域）不在意严格的输入验证这一点，我接触过的大部分库采取了无视的态度。老实说，我也只在预感开发者会出错的时候在代码中进行校验。没有人真的做了，但是我们都应该去做。程序员是一个懒惰的群体——我们不会只是为了写代码或者什么我们并不真正相信的理由而写代码。Perl6的开发者已经意识到这是个问题，并且决定引入叫做*参数约束*的东西。在JavaScript中，它可能会是这样实现：
+对于语言（内置弱类型域(weak-typing domain)）不在意严格的输入验证这一点，我接触过的大部分库采取了无视的态度。老实说，我也只在预感开发者会出错的时候在代码中进行校验。没有人真的做了，但是我们都应该去做。程序员是一个懒惰的群体——我们不会只是为了写代码或者某些我们并不真正相信的理由而写代码。Perl 6的开发者们已经意识到这是个问题，并且决定引入叫做*参数约束*的东西。在JavaScript中，它可能会是这样实现：
 
 {% codeblock lang:javascript %}
 function validateAllTheThings(a, b {where typeof b === "numeric" and b < 10}) {
@@ -894,14 +896,14 @@ function validateAllTheThings(a, b {where typeof b === "numeric" and b < 10}) {
 }
 {% endcodeblock %}
 
-尽管语法上看上去很丑陋，这种想法是要使输入验证称为这门语言的一个顶级公民。JavaScript与这样的东西差之千里。这样挺好——不管怎样，我不愿在函数签名中塞满这样一些约束。承认这个（弱类型语言中的）问题是这个故事中有意思的部分。
+尽管语法上看上去很丑陋，主要思想是要使输入验证称为这门语言的一个顶级公民。JavaScript与这样的东西差之千里。这样也不错——不管怎样，我也不愿看到函数签名中塞满这样一些约束。承认这个（弱类型语言中的）问题是这个故事中有意思的部分。
 
 JavaScript既不弱也不低等，我们只是需要更努力一点工作以使我们的代码变得真正健壮。使代码具有健壮性并不意味着不论接受什么数据，只要挥挥魔杖就能得到结果。健壮性是指不接受垃圾*并且告之开发者*。
 
-换个角度考虑输入验证：在你的API后面加几行代码，就可以确保开发者不必花费几个小时来跟踪诡异的错误，结果发现原来他们意外地给你的代码中传入了字符串而不是数字。这种时候你应该告诉用户*他们输入有误*，他们实际上会喜欢你这么做的。
+换个角度考虑输入验证：在你的API后面加几行代码，就可以确保开发者不必花费几个小时来跟踪诡异的错误，结果发现原来他们意外地给你的代码中传入了字符串而不是数字。这种时候你应该告诉用户*输入有误*，他们实际上会喜欢你这么做的。
 
 ## 向异步出发
-目前我们只讨论了同步的API。异步方法通常接受一个回调函数，从而在某个任务完成时通知外部世界。虽然在连贯接口中这样并不是非常合适：
+目前我们只讨论了同步的API。异步方法通常接受一个回调函数，从而在某个任务完成时通知外部环境。虽然在连贯接口中这样并不是非常合适：
 
 {% codeblock lang:javascript %}
 Api.protoype.async = function(callback) {
@@ -914,7 +916,9 @@ Api.protoype.method = function() {
   console.log("method()");
   return this;
 };
+{% endcodeblock %}
 
+{% codeblock lang:javascript %}
 // running things
 api.async(function() {
   console.log('callback()');
@@ -925,8 +929,8 @@ api.async(function() {
 
 这个例子演示了什么情况下异步方法`async()`虽然开始执行但立即返回，却会导致`method()`在`async()`真正完成前就被调用了。某些时候我们需要这么做，但通常我们都期望`method()`在`async()`完成任务*之后*才会被执行。
 
-### 延迟机制（允诺）
-某种程度上，我们可以借助[允诺](http://wiki.commonjs.org/wiki/Promises/A)来解决同步和异步API调用混搭导致的混乱。jQuery称之为[延迟机制](http://api.jquery.com/category/deferred-object/)。用延迟替代常见的`this`，从而迫使你从方法链中强行退出。这起初看上去有点怪，但是可以有效地避免在调用一个异步方法之后继续同步执行：
+### 延迟机制（允诺(Promise)）
+某种程度上，我们可以借助[允诺(Promise)](http://wiki.commonjs.org/wiki/Promises/A)来解决同步和异步API调用混搭导致的混乱。jQuery称之为[延迟机制](http://api.jquery.com/category/deferred-object/)。用延迟替代常见的`this`，从而迫使你从方法链中强行退出。这起初看上去有点怪，但是可以有效地避免在调用一个异步方法之后继续同步执行：
 
 {% codeblock lang:javascript %}
 Api.prototype.async = function() {
@@ -940,8 +944,9 @@ Api.prototype.async = function() {
 
   return deferred.promise();
 };
+{% endcodeblock %}
 
-
+{% codeblock lang:javascript %}
 api.async().done(function(data) {
   console.log("callback()");
   api.method();
@@ -957,7 +962,7 @@ api.async().done(function(data) {
 
 对于任何代码，*测试驱动开发*(TDD)是减少调试需求的一种简单方法。在使用TDD完成URI.js中，就调试代码而言，我没有遇到什么严重的痛苦。然而，TDD仅仅*减少*了调试的需要——并不会完全替代之。
 
-网上有些言论声称，可以在单独的行中书写链中的每个部件，从而在堆栈跟踪时获得正确的行号。
+有网民声称，可以在单独的行中书写链中的每个部件，从而在堆栈跟踪时获得正确的行号。
 
 {% codeblock lang:javascript %}
 foobar.bar()
@@ -968,7 +973,7 @@ foobar.bar()
 
 这种技巧确实有它的好处（尽管不包括更好的调试技术）。像上面例子中这样书写代码更易于阅读。基于行的差异（在例如SVN、GIT这样的版本控制系统中有用到）也会带来细微的优势。关于智能调试，（目前）只有Chrome会将`someError()`展示在第四行，而其他浏览器则仍将其看作第一行。
 
-添加一个简单的方法记录你的对象会很有用——尽管这样会被视为“手工调试”，并且会被那些习惯了“真实”的调试器的人看不惯：
+添加一个简单的方法log你的对象会很有用——尽管这样会被视为“手工调试”，并且会被那些习惯了“真实”的调试器的人看不惯：
 
 {% codeblock lang:javascript %}
 DateInterval.prototype.explain = function() {
@@ -1003,7 +1008,7 @@ Foo.prototype.something.displayName = "Foo.something";
 关于这个话题的更多细节参见[kangax](https://twitter.com/kangax)的[《Named function expressions demystified》](http://kangax.github.com/nfe/)。
 
 ## 文档化API
-软件开发中最困难的任务之一就是文档化。几乎所有人都讨厌做这件事，然而所有人都感叹他们需要使用的工具的文档纰漏或是缺失。目前有各种各样应该会提供帮助和自动文档化你的代码的工具：
+软件开发中最困难的任务之一就是文档化。几乎所有人都讨厌做这件事，然而所有人都感叹他们需要使用的工具的文档纰漏或是缺失。目前有各种各样据说能提供帮助和自动文档化你的代码的工具：
 
 - [YUIDoc](http://yui.github.com/yuidoc/) (requires Node.js, npm)
 - [JsDoc Toolkit](https://github.com/p120ph37/node-jsdoc-toolkit) (requires Node.js, npm)
@@ -1013,13 +1018,13 @@ Foo.prototype.something.displayName = "Foo.something";
 - [JSDuck](https://github.com/senchalabs/jsduck) (reqires Ruby, gem)
 - [JSDoc 3](https://github.com/jsdoc3/jsdoc) (requires Java)
 
-所有这些工具都会在某些方面不尽如人意。JavaScript是一种非常动态的语言，尤其在表达方式上特别多样化。这使得很多东西对这些工具而言比较困难。下面重点列出了一些我决定采用普通的HTML、markdown或是[DocBoock](http://en.wikipedia.org/wiki/DocBook)（如果这个项目足够大）制定文档的原因。譬如，jQuery同样遇到了这些问题，并且根本不在代码中文档化API。
+所有这些工具都会在某些方面不尽如人意。JavaScript是一种非常动态的语言，尤其在表达方式上特别多样化。这使得很多东西对这些工具而言比较困难。下面重点列出了一些我决定采用普通的HTML、markdown或是[DocBoock](http://en.wikipedia.org/wiki/DocBook)（如果这个项目足够大）制定文档的原因。譬如，jQuery同样遇到了这些问题，但根本不在代码中文档化API。
 
-1. 函数签名并不是你需要的唯一的文档化产出，但是大多数工具都只关注于此；
+1. 你需要文档化的并不仅仅是函数签名，但是大多数工具都只关注于此；
 2. 示例代码可以为解释工作原理带来极大的帮助，但普通的API文档通常无法以合理的折衷来阐释；
 3. API文档解释*幕后*的东西（流、事件等等）时会遭遇滑铁卢；
-4. 文档化多签名方法往往实在痛苦；
-5. 文档化使用选项对象的方法通常并不简单；
+4. 文档化多签名方法往往实在很痛苦；
+5. 文档化使用option对象的方法通常并不简单；
 6. 生成方法不容易被文档化，默认回调也是。
 
 如果你不能（或不想）调整你的代码以适应列出的文档化工具之一，类似[Document-Bootstrap](http://gregfranko.com/Document-Bootstrap/)这样的项目可能会节省你一些时间来建立你自己酝酿的文档。
@@ -1029,14 +1034,14 @@ Foo.prototype.something.displayName = "Foo.something";
 ### 自解释的代码
 提供优秀的文档并不会使开发者不用阅读你的代码——你的代码本身就是文档的一部分。当文档不够用时（每个文档都是有限的），开发者会回到阅读源代码获取答案。事实上，你也是他们中的一员。很可能你会一边又一遍地阅读你自己的代码，几周、几个月甚至几年之间。
 
-你应该编写可以解释自身的代码。大部分时候这并不是个问题，只有当你为命名事物（函数、变量等等）殚精竭虑、坚持核心概念时才会涉及到。如果你发现你在写代码注释以文档化你的代码如何工作，你很可能在浪费时间——你的时间，还有读者的时间。在你的代码中的注释应该解释*为何*你以这种特殊的方式解决问题，而不是解释你*如何*解决问题。*如何*解决问题应该在你的代码中很明显，所以不要自我重复。注意，使用注释以标示你的代码中的区块，或是解释普通概念，这些都是完全可接受的。
+你应该编写可以自解释的代码。大部分时候这并不是个问题，只有当你为（函数、变量等等）命名殚精竭虑、保持核心概念时才会涉及到。如果你发现你在写代码注释以文档化你的代码如何工作，你很可能在浪费时间——你的时间，还有读者的时间。在你的代码中的注释应该解释*为何*你以这种特殊的方式解决问题，而不是解释你*如何*解决问题。*如何*解决问题应该在你的代码中很明显，所以不要自我重复。注意，使用注释以标示你的代码中的区块，或是解释普通概念，这些都是完全可接受的。
 
 ### 结语
 - API是你（提供者）和用户（消费者）之间的契约。不要在版本之间发生变化。
-- 你应该投入和解决*我的软件内部如何工作？*的问题同样多的时间，来解决*用户会如何使用我的软件？*这个问题。
+- 你应该投入跟解决*我的软件内部如何工作？*的问题同样多的时间，来解决*用户会如何使用我的软件？*这个问题。
 - 只要一些简单的技巧你就可以很显著地减少开发者的辛苦（就代码行数而言）
 - 尽可能早地处理非法输入——抛出错误
-- 好的API都是弹性的，更好的API不会让你犯错
+- 好的API都是弹性的，更好的API让你避免犯错
 
 继续阅读[《Reusable Code for good or for awesome》](http://vimeo.com/35689836)（[幻灯片](http://www.slideshare.net/jaffathecake/reusable-code-for-good-or-for-awesome)），这是[Jake Archibald](https://twitter.com/jaffathecake)关于设计API的一番讨论。早在2007年Joshua Bloch在Google技术讲座上做了题为[《How to Design A Good API and Why it Matters》](http://www.youtube.com/watch?v=heh4OeB9A-c)演讲。虽然他的讨论并不集中于JavaScript，他解释的基本原理仍然适用。
 
