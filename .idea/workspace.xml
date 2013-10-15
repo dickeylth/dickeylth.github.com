@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bee8ce4c-9a01-4400-9d30-fec0da01f40e" name="Default" comment="" />
+    <list default="true" id="bee8ce4c-9a01-4400-9d30-fec0da01f40e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="dickeylth.github.com.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,19 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="2013-10-11-JavaScriptDesignPatterns-FactoryPattern.md" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/2013-10-11-JavaScriptDesignPatterns-FactoryPattern.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="15" selection-start="130" selection-end="130" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3330">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="article.ejs" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/themes/light/layout/_partial/article.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="9" selection-start="107" selection-end="107" vertical-scroll-proportion="-2.0" vertical-offset="0" max-vertical-offset="846">
+            <state line="3" column="9" selection-start="107" selection-end="107" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="846">
               <folding>
                 <marker date="1381640262487" expanded="true" signature="58:104" placeholder="{...}" />
                 <marker date="1381640262487" expanded="true" signature="185:398" placeholder="{...}" />
@@ -53,7 +46,7 @@
       <file leaf-file-name="_config.yml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/themes/light/_config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="10" selection-start="62" selection-end="62" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="522">
+            <state line="6" column="10" selection-start="62" selection-end="62" vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="522">
               <folding />
             </state>
           </provider>
@@ -62,16 +55,52 @@
       <file leaf-file-name="_config.yml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="72" column="12" selection-start="1617" selection-end="1617" vertical-scroll-proportion="0.0" vertical-offset="830" max-vertical-offset="1602">
+            <state line="53" column="10" selection-start="1237" selection-end="1237" vertical-scroll-proportion="0.0" vertical-offset="830" max-vertical-offset="1602">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
+      <file leaf-file-name="jquery.fancybox.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/themes/light/source/fancybox/jquery.fancybox.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="14" selection-start="14" selection-end="14" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="575">
+            <state line="220" column="4" selection-start="3554" selection-end="3554" vertical-scroll-proportion="0.0" vertical-offset="3848" max-vertical-offset="5022">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="syntax.styl" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/themes/light/source/css/_partial/syntax.styl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="67" column="4" selection-start="1255" selection-end="1255" vertical-scroll-proportion="0.0" vertical-offset="1094" max-vertical-offset="2682">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="276" column="2" selection-start="4911" selection-end="4911" vertical-scroll-proportion="0.0" vertical-offset="4952" max-vertical-offset="14436">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="article.styl" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/themes/light/source/css/_partial/article.styl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="226" column="14" selection-start="4137" selection-end="4137" vertical-scroll-proportion="0.0" vertical-offset="4069" max-vertical-offset="5256">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.deploy/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="278" column="1" selection-start="4953" selection-end="4953" vertical-scroll-proportion="0.56122446" vertical-offset="4784" max-vertical-offset="14436">
               <folding />
             </state>
           </provider>
@@ -114,7 +143,7 @@
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="height" value="784" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -142,6 +171,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -314,9 +344,40 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dickeylth.github.com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dickeylth.github.com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value=".deploy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dickeylth.github.com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dickeylth.github.com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value=".deploy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -324,8 +385,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="FullScreen" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -336,6 +397,14 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -344,14 +413,6 @@
       <option name="saveOutputToFile" value="false" />
       <option name="showConsoleOnStdErr" value="false" />
       <option name="showConsoleOnStdOut" value="false" />
-      <method />
-    </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
       <method />
     </configuration>
     <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
@@ -394,14 +455,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28018576" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24524158" sideWeight="0.8227848" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24524158" sideWeight="0.71981424" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -410,7 +472,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17721519" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -428,72 +489,29 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="32" selection-start="773" selection-end="773" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="2669">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2669">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="2" selection-start="57" selection-end="57" vertical-scroll-proportion="-2.02243" vertical-offset="1154" max-vertical-offset="2826">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/archives/2013/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-4.450467" vertical-offset="2381" max-vertical-offset="2916">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/archives/2013/10/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-4.35514" vertical-offset="2330" max-vertical-offset="2916">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/themes/light/layout/post.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="575">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="575" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/2013-10-11-JavaScriptDesignPatterns-FactoryPattern.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="15" selection-start="130" selection-end="130" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3330">
-          <folding />
-        </state>
+        <state line="4" column="15" selection-start="130" selection-end="130" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3330" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/themes/light/layout/_partial/post/gallery.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="15" selection-start="179" selection-end="179" vertical-scroll-proportion="0.16423358" vertical-offset="0" max-vertical-offset="548">
-          <folding />
-        </state>
+        <state line="5" column="15" selection-start="179" selection-end="179" vertical-scroll-proportion="0.16423358" vertical-offset="0" max-vertical-offset="548" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/themes/light/layout/_widget/recent_posts.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="575">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="575" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/themes/light/layout/_partial/article.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="9" selection-start="107" selection-end="107" vertical-scroll-proportion="-2.0" vertical-offset="0" max-vertical-offset="846">
+        <state line="3" column="9" selection-start="107" selection-end="107" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="846">
           <folding>
             <marker date="1381640262487" expanded="true" signature="58:104" placeholder="{...}" />
             <marker date="1381640262487" expanded="true" signature="185:398" placeholder="{...}" />
@@ -509,16 +527,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-11.465328" vertical-offset="6283" max-vertical-offset="13482">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-11.465328" vertical-offset="6283" max-vertical-offset="13482" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/debug.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.17615658" vertical-offset="99" max-vertical-offset="720">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.17615658" vertical-offset="99" max-vertical-offset="720" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/favicon.png">
@@ -535,14 +549,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/_config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="12" selection-start="1617" selection-end="1617" vertical-scroll-proportion="0.0" vertical-offset="830" max-vertical-offset="1602">
+        <state line="53" column="10" selection-start="1237" selection-end="1237" vertical-scroll-proportion="0.0" vertical-offset="830" max-vertical-offset="1602">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="14" selection-start="14" selection-end="14" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="575">
+        <state line="0" column="14" selection-start="14" selection-end="14" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="575" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/light/source/fancybox/jquery.fancybox.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="220" column="4" selection-start="3554" selection-end="3554" vertical-scroll-proportion="0.0" vertical-offset="3848" max-vertical-offset="5022">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/light/source/css/_partial/syntax.styl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="4" selection-start="1255" selection-end="1255" vertical-scroll-proportion="0.0" vertical-offset="1094" max-vertical-offset="2682">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="276" column="2" selection-start="4911" selection-end="4911" vertical-scroll-proportion="0.0" vertical-offset="4952" max-vertical-offset="14436">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/light/source/css/_partial/article.styl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="226" column="14" selection-start="4137" selection-end="4137" vertical-scroll-proportion="0.0" vertical-offset="4069" max-vertical-offset="5256">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.deploy/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="278" column="1" selection-start="4953" selection-end="4953" vertical-scroll-proportion="0.56122446" vertical-offset="4784" max-vertical-offset="14436">
           <folding />
         </state>
       </provider>
