@@ -3,17 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>归档：2013/10 | 前端探幽</title>
+  <title>JavaScript中的设计模式(1)——单例模式 | 前端探幽</title>
   <meta name="author" content="Dickey Leo">
+  
+  <meta name="description" content="最近开始系统学习设计模式，虽然以前偶尔有接触，但总感觉不够系统，正好需要做这方面的分享，遂决定来系统学习和记录一下。">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="JavaScript中的设计模式(1)——单例模式"/>
   <meta property="og:site_name" content="前端探幽"/>
 
   
-    <meta property="og:image" content="undefined"/>
+    <meta property="og:image" content="/img/jspatterns/factory-cover.jpg" />
   
 
   <link href="/favicon.png" rel="icon">
@@ -53,49 +55,7 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2013/10</h2>
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-10-15T15:00:00.000Z"><a href="/2013/10/16/JavaScriptDesignPatterns-FactoryPattern/">10月 16, 2013</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2013/10/16/JavaScriptDesignPatterns-FactoryPattern/">JavaScript中的设计模式(2)——工厂模式</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>工厂模式通常用于重复创建相似对象，提供动态创建对象的接口。我们来看看身边的工厂模式，以及它与构造函数的区别。</p>
-<p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2013/10/16/JavaScriptDesignPatterns-FactoryPattern/#more" class="more-link">继续阅读</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  
-    <article class="post">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
   
   <div class="post-content">
     <header>
@@ -105,23 +65,62 @@
       
       
   
-    <h1 class="title"><a href="/2013/10/11/JavaScriptDesignPatterns-SingletonPattern/">JavaScript中的设计模式(1)——单例模式</a></h1>
+    <h1 class="title">JavaScript中的设计模式(1)——单例模式</h1>
   
 
     </header>
     <div class="entry">
       
         <p>最近开始系统学习设计模式，虽然以前偶尔有接触，但总感觉不够系统，正好需要做这方面的分享，遂决定来系统学习和记录一下。</p>
+<a id="more"></a>
+
+<p>设计模式是程序设计中老生常谈的话题了，简单说就是针对某些可抽象为类似问题的通用的解决方案。虽然方案的思路是死的，但在不同语言中的实现由于语言间的特性会有些差异，尤其对于像 JavaScript 这样的动态语言而言，可能某些设计模式实现起来相比静态语言更为灵活。</p>
+<p>其实，设计模式并不是很遥远的东西，很可能很多时候自己已经在用了而没有感觉出来，比如 JavaScript 中的全局唯一变量就可以看作是一种单例模式。更宏观一点来看，其实设计模式在社会中早已存在，在计算机被创造出来，人类已经在应用它了，比如“烽火戏诸侯”不就是一种观察者模式（也叫 pub-sub 注册发布模式）？所以在这个系列中，我会尽可能从贴近生活的角度来阐释每种模式在身边的例子，从而更易于理解模式的思想。</p>
+<p>因此，基于 JavaScript 的设计模式，更多地应该考虑从语言特性、场景和环境出发，不求形似但求神似，重要是模式中传达出的解决思路，领悟了这一点比死记硬背要有用得多，当然还离不开最重要的熟练应用。在这个系列中让我们一起来看一下设计模式与 JavaScript 会碰撞出什么样的火花。</p>
+<p><em>重点参考以下两本书：</em></p>
+<ul>
+<li><a href="http://book.douban.com/subject/10750116/" target="_blank">JavaScript 设计模式</a></li>
+</ul>
+<p><img src="http://img3.douban.com/lpic/s11268614.jpg" alt="Learning JavaScript Design Patterns"></p>
+<ul>
+<li><a href="http://book.douban.com/subject/5252901/" target="_blank">JavaScript 模式</a></li>
+</ul>
+<p><img src="http://img3.douban.com/lpic/s4460994.jpg" alt="JavaScript Patterns"></p>
+<p>在这个系列的开篇，让我们以公认的头号模式——单例模式开始吧。</p>
+<h2>目录</h2>
+<ul>
+<li>要解决的问题</li>
+<li>如何实现</li>
+<li>优缺点</li>
+<li>改进的实现</li>
+<li>总结</li>
+</ul>
+<h3>要解决的问题</h3>
+<h3>如何实现</h3>
+<h3>优缺点</h3>
+<h3>改进的实现</h3>
+<h3>总结</h3>
+<p>To be continued…</p>
+<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>
+</pre></td></tr></table></figure>
 
       
     </div>
     <footer>
       
         
-          <div class="alignleft">
-            <a href="/2013/10/11/JavaScriptDesignPatterns-SingletonPattern/#more" class="more-link">继续阅读</a>
-          </div>
+  
+  <div class="categories">
+    <a href="/categories/笔记/">笔记</a>
+  </div>
+
         
+  
+  <div class="tags">
+    <a href="/tags/JavaScript设计模式/">JavaScript设计模式</a>
+  </div>
+
         
       
       <div class="clearfix"></div>
@@ -131,13 +130,20 @@
 
 
 
-  
-
-  <nav id="pagination">
-  
-  
-  <div class="clearfix"></div>
-</nav>
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"dickeyblog"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- Duoshuo Comment END -->
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
