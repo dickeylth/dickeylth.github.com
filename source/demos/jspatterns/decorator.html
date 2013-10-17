@@ -11,121 +11,195 @@
     <h3>装饰者模式：运行时动态添加附加功能到对象中</h3>
     <div id="target">
         <h4>预期：</h4>
-        <div class="ace-code"></div>
+        <div class="method-container">
+            <div class="ace-code"></div>
 
 <script class="ace-code-script" type="template">
-function Fe(){
-    this.slice = function(){
-        console.log("我会切图");
-    }
-    this.buildPage = function(){
-        console.log("我会搭页面");
-    }
+function SuperMario(){
+    this.name = '超级玛丽';
+    this.height = 10;
+    this.blood = 0;
+    this.color = 'green';
+    this.decoratorList = [];
 }
 
-var fe = new Fe();
-KISSY.mix(fe, {
+SuperMario.prototype.setBlood = function(v){
+    this.blood = parseInt(v);
+}
 
-    this.designAlgorithm = function(){
-        console.log("我会算法设计");
+SuperMario.prototype.getHeight = function(){
+    return this.height;
+}
+SuperMario.prototype.getBlood = function(){
+    return this.blood;
+}
+SuperMario.prototype.getColor = function(){
+    return this.color;
+}
+
+SuperMario.prototype.run = function(){
+    console.log('超级玛丽在奔跑');
+};
+SuperMario.prototype.jump = function(){
+    console.log('超级玛丽在跳跃');
+};
+
+// 装饰器
+SuperMario.decorators = {
+    'mushroom': {
+        getHeight: function(){
+            return this.parent.getHeight() + 10;
+        },
+        getBlood: function(){
+            return this.parent.getBlood() + 1;
+        }
+    },
+    'flower': {
+        getColor: function(){
+            return 'white';
+        },
+        attack: function(){
+            return '超级玛丽吐火力弹！';
+        }
+    }
+};
+
+// 装饰方法
+SuperMario.prototype.decorate = function(decorator){
+    var Decorator = function(){},
+        overrides = this.constructor.decorators[decorator],
+        list = this.decoratorList,
+        i, newobj;
+
+    if(list.indexOf(decorator) == -1){
+
+        this.decoratorList.push(decorator);
+
+        Decorator.prototype = this;
+        newobj = new Decorator();
+        newobj.parent = Decorator.prototype;
+        for(i in overrides){
+            if(overrides.hasOwnProperty(i)){
+                newobj[i] = overrides[i];
+            }
+        }
+        return newobj;
     }
 
-    this.sqlTuning = function(){
-        console.log("我会SQL调优");
-    }
-});
+};
 
-fe.designAlgorithm();
-fe.sqlTuning();
+// 移除装饰方法
+SuperMario.prototype.undecorate = function(decorator){
+    var list = this.decoratorList,
+        decoratorObj = SuperMario.decorators[decorator],
+        decoratedMethods = [],
+        iterator = this,
+        len = list.length,
+        i, methodLength;
+
+    for(i in decoratorObj){
+        decoratedMethods.push(i);
+    }
+
+    while(len-- >= 0){
+        if(list[len] == decorator){
+            this.decoratorList.splice(len, 1);
+            for(i = 0, methodLength = decoratedMethods.length; i < methodLength; i++){
+                delete iterator[decoratedMethods[i]];
+                delete iterator.__proto__[decoratedMethods[i]];
+            }
+            this.parent = iterator;
+            break;
+        }
+        iterator = iterator.parent;
+    }
+    return this;
+};
+
+// 移除装饰方法2
+SuperMario.prototype.undecorate2 = function(decorator){
+    var list = this.decoratorList,
+        decoratorObj = SuperMario.decorators[decorator],
+        Decorator = function(){},
+        afterCursor = this, prevCursor = this.parent,
+        len = list.length,
+        i, newObj;
+
+    while(len-- >= 0){
+        if(list[len] == decorator){
+            this.decoratorList.splice(len, 1);
+
+            if(afterCursor){
+                for(i in afterCursor){
+                    if(afterCursor.hasOwnProperty(i) && !(i in decoratorObj) && (i != 'parent')){
+                        prevCursor[i] = afterCursor[i];
+                    }
+                }
+            }
+
+            Decorator.prototype = prevCursor;
+            break;
+        }
+        afterCursor = prevCursor;
+        prevCursor = prevCursor.parent;
+
+    }
+
+    if((list.length == 0) || (len == list.length)){
+        // 如果所有的decorator都被清掉了或者清掉的是末尾的decorator，直接返回留下的merge过的prevCursor
+        newObj = prevCursor;
+    }else{
+        // 如果还有decorator，再mix上当前对象的对象属性
+        newObj = new Decorator();
+        for(i in this){
+            if(this.hasOwnProperty(i) && (i != 'parent')){
+                newObj[i] = this[i];
+            }
+        }
+        // parent指向merge后的prevCursor
+        newObj.parent = prevCursor;
+    }
+
+    return newObj;
+};
+
+// 调用
+var superMario = new SuperMario();
+superMario = superMario.decorate('mushroom');
+console.log("吃了红蘑菇，超级玛丽变身了，长到" + superMario.getHeight() + "了， 血变成" + superMario.getBlood() + "滴了");
+
+superMario.age = 12;
+
+superMario = superMario.decorate('flower');
+console.log("吃了火力花，再次华丽变身，变成" + superMario.getColor() + "了，能战斗了：" + superMario.attack());
+
+console.log(superMario);
+
+/*superMario.blood = 10;
+console.log(superMario);
+console.log(superMario.blood);
+console.log(superMario.name);
+
+superMario.setBlood(20);
+console.log(superMario.getBlood());
+console.log(superMario.blood);*/
+
+superMario = superMario.undecorate2('mushroom');
+console.log("超级玛丽中枪了。。。红蘑菇失效了，身高：" + superMario.getHeight() + ", 还剩" + superMario.getBlood() + "滴血，颜色：" + superMario.getColor());
+console.log("还能战斗吗：" + (typeof superMario.attack == 'function'));
+
+superMario = superMario.undecorate2('flower');
+console.log("超级玛丽中枪了。。。火力花也失效了，身高：" + superMario.getHeight() + ", 还剩" + superMario.getBlood() + "滴血，颜色：" + superMario.getColor());
+console.log("还能战斗吗：" + (typeof superMario.attack == 'function'));
+
+console.log(superMario);
+
+var superMario2 = new SuperMario();
+superMario2 = superMario2.decorate('mushroom');
+superMario2 = superMario2.decorate('flower');
+superMario2 = superMario2.undecorate2('flower');
+console.log(superMario2);
 </script>
-
-    </div>
-
-    <div class="methods">
-        <h4>实现：</h4>
-
-        <div class="method-container">
-            <div class="ace-code"></div>
-
-<script class="ace-code-script" type="template">
-// 父构造函数
-function EngineerFactory(){}
-
-// 原型方法
-EngineerFactory.prototype.work = function(){
-    return "生产中：" + this.languages + ", ...";
-};
-
-// 静态工厂方法
-EngineerFactory.build = function(type){
-
-    var newEngineer,
-        id = 0;
-
-    // 如果构造函数不存在，抛出错误
-    if(typeof EngineerFactory[type] !== 'function'){
-        throw(type + " 不存在");
-    }
-
-    // 原型继承父类
-    if(typeof EngineerFactory[type].prototype.work !== 'function'){
-        EngineerFactory[type].prototype = new EngineerFactory();
-    }
-
-    // 创建新实例
-    newEngineer = new EngineerFactory[type]();
-    newEngineer.id = id++;
-
-    return newEngineer;
-};
-
-EngineerFactory.FE = function(){
-    this.languages = "HTML, CSS, JavaScript";
-};
-
-EngineerFactory.RD = function(){
-    this.languages = "Java, Velocity, Spring, Hibernate";
-};
-
-EngineerFactory.OP = function(){
-    this.languages = "perl, python, php, shell, sql";
-};
-
-var fe = EngineerFactory.build('FE');
-var rd = EngineerFactory.build('RD');
-var op = EngineerFactory.build('OP');
-[fe.work(),  //结果为："生产中：HTML, CSS, JavaScript, ..."
-rd.work(),  //结果为："生产中：Java, Velocity, Spring, Hibernate, ..."
-op.work()].join('<br/>');  //结果为："生产中：perl, python, php, shell, sql, ..."
-</script>
-
-            <div class="result">
-                <button class="J_RunBtn btn btn-primary">运行</button>
-                <output class="J_Output"></output>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="methods">
-        <h5>相关话题：JavaScript中的内置对象工厂</h5>
-        <div class="method-container">
-            <div class="ace-code"></div>
-
-<script class="ace-code-script" type="template">
-var o = new Object(),
-    n = new Object(1),
-    s = Object('1'),
-    b = Object(true);
-
-[
-    o.constructor === Object,
-    n.constructor === Number,
-    s.constructor === String,
-    b.constructor === Boolean
-].join('<br/>');
-</script>
-
             <div class="result">
                 <button class="J_RunBtn btn btn-primary">运行</button>
                 <output class="J_Output"></output>
