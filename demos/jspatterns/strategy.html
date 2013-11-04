@@ -388,32 +388,6 @@ if(validator.hasErrors()){
 
     </div>
 
-    <div class="methods">
-        <h5>相关话题：JavaScript 中的内置对象工厂</h5>
-        <div class="method-container">
-            <div class="ace-code"></div>
-
-<script class="ace-code-script" type="template">
-var o = new Object(),
-    n = new Object(1),
-    s = Object('1'),
-    b = Object(true);
-
-[
-    o.constructor === Object,
-    n.constructor === Number,
-    s.constructor === String,
-    b.constructor === Boolean
-].join('<br/>');
-</script>
-
-            <div class="result">
-                <button class="J_RunBtn btn btn-primary">运行</button>
-                <output class="J_Output"></output>
-            </div>
-        </div>
-    </div>
-
     <script src="http://g.tbcdn.cn/kissy/k/1.3.2/kissy-min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="js/ace.js" type="text/javascript" charset="utf-8"></script>
