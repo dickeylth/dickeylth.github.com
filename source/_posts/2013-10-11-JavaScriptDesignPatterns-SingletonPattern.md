@@ -163,7 +163,7 @@ x == y;     // true
 
 ### 总结
 
-To be continued...
+未完待续...
 
 {% codeblock lang:javascript %}
 {% endcodeblock %}
