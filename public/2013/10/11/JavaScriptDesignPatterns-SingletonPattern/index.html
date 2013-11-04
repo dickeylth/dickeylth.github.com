@@ -75,6 +75,7 @@
 <a id="more"></a>
 
 <p>设计模式是程序设计中老生常谈的话题了，简单说就是针对某些可抽象为类似问题的通用的解决方案。虽然方案的思路是死的，但在不同语言中的实现由于语言间的特性会有些差异，尤其对于像 JavaScript 这样的动态语言而言，可能某些设计模式实现起来相比静态语言更为灵活。</p>
+<p>当然，除了提供通用的解决方案，个人感觉更重要的是设计模式的出现提供了各种模块解耦的思路，为什么需要模块解耦？因为大多数时候我们不太可能总是推倒从来，而往往是在现有的系统基础之上做进一步的优化完善，系统中模块之间的耦合度越低，可扩展性就会越强，从而可以支撑更为复杂的业务场景和需求。另外，设计模式也是为了应对驾驭复杂系统的代码组织架构，熟练掌握之后会对于系统的架构有更进一步的认识，从而提升自己在业务上独当一面的能力。</p>
 <p>其实，设计模式并不是很遥远的东西，很可能很多时候自己已经在用了而没有感觉出来，比如 JavaScript 中的全局唯一变量就可以看作是一种单例模式。更宏观一点来看，其实设计模式在社会中早已存在，在计算机被创造出来，人类已经在应用它了，比如“烽火戏诸侯”不就是一种观察者模式（也叫 pub-sub 注册发布模式）？所以在这个系列中，我会尽可能从贴近生活的角度来阐释每种模式在身边的例子，从而更易于理解模式的思想。</p>
 <p>因此，基于 JavaScript 的设计模式，更多地应该考虑从语言特性、场景和环境出发，不求形似但求神似，重要是模式中传达出的解决思路，领悟了这一点比死记硬背要有用得多，当然还离不开最重要的熟练应用。在这个系列中让我们一起来看一下设计模式与 JavaScript 会碰撞出什么样的火花。</p>
 <p><em>重点参考以下两本书：</em></p>
@@ -113,7 +114,7 @@
 <p>生活中有单例模式存在吗？有，比如大家都知道的 12306，<a href="http://news.cnr.cn/native/gd/201310/t20131025_513937251.shtml" title=" 唯一购票网站 " target="_blank"><a href="http://news.cnr.cn/native/gd/201310/t20131025_513937251.shtml">http://news.cnr.cn/native/gd/201310/t20131025_513937251.shtml</a></a>，所有人要网上订票都得访问这个单例。再比如，法律规定，每个中国男人都只能有一个合法妻子，当然现实之中还有离婚再婚，单例模式更像是理想状况下的白头偕老了。</p>
 <p>单例模式带来的好处？除了减少不必要的重复的实例创建、减少内存占用外，更重要的是避免多个实例的存在造成逻辑上的错误。比如超级马里奥的游戏中，虽然各种小怪的实例会不断创建多个，但当前的玩家肯定只有一个，如果游戏运行过程中创建出新的马里奥的实例了，显然就出 bug 了。</p>
 <h3>如何实现</h3>
-<h4>对象字面量</h4>
+<h4>1. 对象字面量</h4>
 <p>对于 Java 之类的静态语言而言，实现单例模式常见的方法就是将构造函数私有化，对外提供一个比如名为<code>getInstance</code>方法的静态接口来访问初始化好的私有静态的类自身实例。但对于 JavaScript 这样的动态语言而言，单例模式的实现其实可以很灵活，因为 JavaScript 语言中并不存在严格意义上的类的概念，只有对象。每次创建出的新对象都和其他的对象在逻辑上不相等，即使它们是具有完全相同的成员属性的同构造器创造出的对象。所以，在 JavaScript 中，最常见的单例模式莫过于对象字面量（object literal）了：</p>
 <figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
 2
@@ -140,7 +141,106 @@ x === y;    <span class="comment">// false</span>
 
 <p>可见，对象字面量就是一种最简单最常见的单例模式了。在全局的其他地方要获得这个单例的对象，其实就是获得这个唯一的全局变量就可以保证访问的是同一实例了。</p>
 <h5>改进的实现</h5>
-<h4>使用<code>new</code>创建对象</h4>
+<p>上面的对象字面量仅仅是一个简单的键值对，但很多时候对象可能还涉及到初始化的工作，可能需要实现按需加载（懒加载），对象中还会存在内部私有成员，对外需以门面模式（Facade）提供可访问的接口。所以我们还可以把这个简单的对象字面量再扩充一下：</p>
+<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+</pre></td><td class="code"><pre><span class="keyword">var</span> SuperMario = (<span class="keyword">function</span>(){
+
+    <span class="keyword">var</span> instance = <span class="literal">null</span>;
+
+    <span class="comment">// 初始化函数</span>
+    <span class="function"><span class="keyword">function</span> <span class="title">init</span><span class="params">()</span>{</span>
+        
+        <span class="keyword">var</span> gener = <span class="string">'male'</span>,
+            age = <span class="number">12</span>,
+            height = <span class="number">120</span>;
+        
+        <span class="comment">// 门面模式返回成员属性</span>
+        <span class="keyword">return</span> {
+            
+            name: <span class="string">'Mario'</span>,
+
+            getAge: <span class="keyword">function</span>(){
+                <span class="keyword">return</span> age;
+            },
+            getHeight: <span class="keyword">function</span>(){
+                <span class="keyword">return</span> height;
+            },
+            
+            jump: <span class="keyword">function</span>(){
+                console.log(<span class="string">"I'm jumping!"</span>);
+            },
+            run: <span class="keyword">function</span>(){
+                console.log(<span class="string">"I'm running!"</span>);
+            }
+        };
+    }
+
+    <span class="keyword">return</span> {
+        
+        getInstance: <span class="keyword">function</span>(){
+            <span class="keyword">if</span>(!instance){
+                instance = init();
+            }
+            <span class="keyword">return</span> instance;
+        }    
+        
+    };
+    
+})();
+console.log(SuperMario.getInstance());
+</pre></td></tr></table></figure>
+
+
+<p>在 Chrome 控制台下运行可以得到如下结果：</p>
+<p><img src="/img/jspatterns/singleton-literalobject.png" alt=" 单例模式运行 "></p>
+<p>让我们来简单分析一下这段代码。首先依然是给对象赋值，但是采用的是即时函数的方式，从而创建出一个闭包，里面存放着 SuperMario 的真身——<code>instance</code>，在结尾时暴露一个<code>getInstance</code>方法向外提供该实例的引用，有点像静态语言中的单例模式了吧？</p>
+<p>在这个闭包之内，创建了一个内部私有的<code>init</code>初始化函数，完成 SuperMario 对象的初始化工作。注意到这里再一次使用了闭包，将<code>age</code>、<code>height</code>这些私有成员的值保护起来，对外只提供<code>getter</code>访问器，不允许外部代码对其修改。除此之外，还向外提供了可公开的<code>run</code>、<code>jump</code>方法。</p>
+<p>为了实现懒加载，<code>init</code>初始函数并不是自动执行的，而是调用<code>getInstance</code>方法时检查到当前<code>instance</code>还没有被初始化过时才会去执行<code>init</code>，而在下次再次<code>getInstance</code>时就直接返回之前已初始化好的实例了，这样就不至于给页面的初始化工作带来太大的负担，而是需要使用的时候按需完成初始化。</p>
+<h4>2. 使用<code>new</code>创建对象</h4>
 <p>虽然 JavaScript 中没有类，但是却也具有<code>new</code>这个关键字来利用构造函数创建对象。对于这种形式创建的对象，要实现单例模式的思想，就需要保证每次<code>new</code>出来的对象都是对同一对象的指针。也就是说预期应该像下面的代码这样：</p>
 <figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
 2
