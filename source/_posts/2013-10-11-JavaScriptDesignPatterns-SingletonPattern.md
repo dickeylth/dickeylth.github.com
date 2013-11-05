@@ -38,6 +38,7 @@ cover: "/img/jspatterns/factory-cover.jpg"
         + 改进的实现
     + 使用`new`创建对象
         + 改进的实现
++ 在开源框架和类库中的应用
 + 总结
 
 
@@ -49,7 +50,7 @@ cover: "/img/jspatterns/factory-cover.jpg"
 2. 该类需要负责实例的初始化工作；
 3. 对外需提供这个唯一实例的访问接口。
 
-生活中有单例模式存在吗？有，比如大家都知道的12306，[http://news.cnr.cn/native/gd/201310/t20131025_513937251.shtml](http://news.cnr.cn/native/gd/201310/t20131025_513937251.shtml "唯一购票网站")，所有人要网上订票都得访问这个单例。再比如，法律规定，每个中国男人都只能有一个合法妻子，当然现实之中还有离婚再婚，单例模式更像是理想状况下的白头偕老了。
+生活中有单例模式存在吗？有，比如大家都知道的[12306是唯一购票网站](http://news.cnr.cn/native/gd/201310/t20131025_513937251.shtml "唯一购票网站")，所有人要网上订票都得访问这个单例。再比如，法律规定，每个中国男人都只能有一个合法妻子，当然现实之中还有离婚再婚，单例模式更像是理想状况下的白头偕老了。
 
 单例模式带来的好处？除了减少不必要的重复的实例创建、减少内存占用外，更重要的是避免多个实例的存在造成逻辑上的错误。比如超级马里奥的游戏中，虽然各种小怪的实例会不断创建多个，但当前的玩家肯定只有一个，如果游戏运行过程中创建出新的马里奥的实例了，显然就出bug了。
 
@@ -156,10 +157,112 @@ x == y;     // true
 
 下面分别看看后两种方案的具体实现。
 
-1. 静态属性中的实例
-2. 闭包中的实例
+##### 2.1 静态属性中的实例
+
+采用静态属性的方式代码比较简单易懂，基本的结构类似这样：
+
+{% codeblock lang:javascript %}
+// 定义
+function SuperMario(){
+	
+	// 判断当前静态属性是否已存在
+	if(typeof SuperMario.instance === "object"){
+		return SuperMario.instance;
+	}
+
+	// 定义属性值
+	this.name = "Mario";
+	this.age = 12;
+	this.gener = "male";
+
+	// 缓存到静态属性中
+	SuperMario.instance = this;
+
+	// 可要可不要，默认隐式返回this
+	return this;
+	
+}
+
+// 执行
+var x = new SuperMario();
+var y = new SuperMario();
+x == y;	// true
+{% endcodeblock %}
+
+看上去很简单对吧？不过问题来了：
+
+如果在执行部分添加一行代码：
+
+{% codeblock lang:javascript %}
+// 执行
+var x = new SuperMario();
+SuperMario.instance = null;
+var y = new SuperMario();
+x == y;			// ?
+console.log(y);	// ?
+{% endcodeblock %}
+
+你肯定已经猜到了此时`x == y`结果是`false`，而对于下一行呢？`console.log(y)`将输出什么呢？
+
+更进一步地，如果我们在`SuperMario`的构造函数中再加一行：
+
+{% codeblock lang:javascript %}
+// 定义
+function SuperMario(){
+
+	this.attr = 'value';
+	
+	// 判断当前静态属性是否已存在
+	if(typeof SuperMario.instance === "object"){
+		return SuperMario.instance;
+	}
+
+	...
+	
+}
+{% endcodeblock %}
+
+此时`console.log(y)`又会返回什么呢？
+
+其实这里涉及到的是一个构造函数返回值的问题，大多数情况下我们都不会在构造函数中显式返回值，因为默认的this会自动隐式返回。说到这里，你可能需要先深入了解下当以`new`操作符调用构造函数时到底发生了什么？
+
+{% blockquote JavaScript Patterns, Stoyan Stefanov(中文版P45) %}
+当以`new`操作符调用构造函数时，函数内部将会发生以下情况：
+1. 创建一个空对象并且`this`变量引用了该对象，同时还继承了该函数的原型；
+2. 属性和方法被加入到`this`引用的对象中；
+3. 新创建的对象由`this`所引用，并且最后隐式地返回`this`（如果没有显式地返回其他对象）
+{% endblockquote %}
+
+那么在构造函数中定义了`return`时，以`new`调用的结果是怎样的呢？
+
+在stackoverflow上也有类似的问题：[What values can a constructor return to avoid returning this?](http://stackoverflow.com/questions/1978049/what-values-can-a-constructor-return-to-avoid-returning-this)，第一个回答的引用，也就是[ECMA-262中定义了返回策略](http://bclary.com/2004/11/07/#a-13.2.2)。
+
+我们也可以把结论简单记为两条：
+
+1. 当`return`一个引用对象（数组、函数、对象等）时，直接覆盖内部的隐式`this`对象，返回值就是该引用对象；
+2. 当`return`5种基本类型（`undefined`、`null`、`Boolean`、`Number`、`String`）之一时（无`return`时其实就是返回`undefined`），返回内部隐式`this`对象。
+
+还需要注意一点，基本类型可以以包装器包装成对象，所以：
+
+{% codeblock lang:javascript %}
+function SuperMario(){
+	...
+	return new String('mario');
+	return 'mario';
+}
+{% endcodeblock %}
+
+两者的返回值就不一样了。
+
+现在你应该可以得出上面的问题的答案了吧？
+
+##### 2.2 闭包中的实例
 
 ##### 改进的实现
+
+### 在开源框架和类库中的应用
+
+单例模式在开源框架中应用其实很广泛，细数一下我们熟悉的前端开源框架和类库：jQuery、YUI、underscore、KISSY。
 
 ### 总结
 
