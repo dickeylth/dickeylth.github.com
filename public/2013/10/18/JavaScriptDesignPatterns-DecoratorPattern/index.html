@@ -90,10 +90,12 @@
 <p><img src="/img/jspatterns/decorator-examples.png" alt=" 生活中的装饰者模式 "></p>
 <p>想一想，是不是 RPG 游戏大多都是这种模式？捡装备就是给人物装饰了新的能力或是属性，在线配置电脑就是在低配之上按需装饰更高级的软硬件和服务。简单来说，一个事物从诞生到成熟的过程，其实不也可以看作是一步步应用装饰者的过程吗？比如当年的浏览器还只能处理纯文本，而今天的高级浏览器已经支持各种富媒体和硬件传感器了。</p>
 <h3>如何实现</h3>
-<p>在 JavaScript 中实现装饰者模式有两种常见的方法：一是采用继承，二是采用装饰列表。</p>
+<p>在 JavaScript 中实现装饰者模式有两种常见的方法：一是采用继承，二是采用装饰列表。虽然这两种方法都可以实现装饰者模式，但是实现上和调用上都存在差异，所以下面分别就两种实现方式分别展开演示预期效果。</p>
+<h4>使用继承</h4>
 <p>超级玛丽的实现：</p>
 <p><a class="jsbin-embed" href="http://jsbin.com/IgivUnu/1/embed?js,console" target="_blank">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
-<p>Sale 中的列表实现<br><a class="jsbin-embed" href="http://jsbin.com/IbUbohU/6/embed?js,console" target="_blank">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
+<p>超级玛丽的列表实现</p>
+<p><a class="jsbin-embed" href="http://jsbin.com/oGexaci/9/embed?js,console" target="_blank">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
 <figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
 2
 3
