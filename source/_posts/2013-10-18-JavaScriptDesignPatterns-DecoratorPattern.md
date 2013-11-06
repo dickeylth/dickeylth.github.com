@@ -29,16 +29,20 @@ cover: "/img/jspatterns/decorator-cover.jpg"
 
 ### 如何实现
 
-在JavaScript中实现装饰者模式有两种常见的方法：一是采用继承，二是采用装饰列表。
+在JavaScript中实现装饰者模式有两种常见的方法：一是采用继承，二是采用装饰列表。虽然这两种方法都可以实现装饰者模式，但是实现上和调用上都存在差异，所以下面分别就两种实现方式分别展开演示预期效果。
+
+#### 使用继承
+
+
 
 
 超级玛丽的实现：
 
 <a class="jsbin-embed" href="http://jsbin.com/IgivUnu/1/embed?js,console">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
-Sale中的列表实现
-<a class="jsbin-embed" href="http://jsbin.com/IbUbohU/6/embed?js,console">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+超级玛丽的列表实现
 
+<a class="jsbin-embed" href="http://jsbin.com/oGexaci/9/embed?js,console">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 {% codeblock lang:javascript %}
 function createDate(){
