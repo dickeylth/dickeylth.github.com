@@ -3,7 +3,7 @@ layout: post
 title: "JavaScript中的设计模式(1)——单例模式"
 category: '笔记'
 tags: ['JavaScript设计模式']
-cover: "/img/jspatterns/factory-cover.jpg"
+cover: "/img/jspatterns/singleton-cover.jpg"
 ---
 
 最近开始系统学习设计模式，虽然以前偶尔有接触，但总感觉不够系统，正好需要做这方面的分享，遂决定来系统学习和记录一下。
@@ -262,11 +262,218 @@ function SuperMario(){
 
 ### 在开源框架和类库中的应用
 
-单例模式在开源框架中应用其实很广泛，细数一下我们熟悉的前端开源框架和类库：jQuery、YUI、underscore、KISSY。
+单例模式在开源框架中应用其实很广泛，细数一下我们熟悉的前端开源框架和类库：jQuery、YUI、underscore、KISSY等，大多都有一个全局变量，比如jQuery中的`jQuery`（或`$`）、YUI中的`YUI`、underscore中的`_`、KISSY中的`KISSY`，这就是一种单例。让我们来看看jQuery：
+
+{% codeblock lang:javascript %}
+(function( window, undefined ) {
+   
+    var jQuery = (function() {
+       // 构建jQuery对象
+       var jQuery = function( selector, context ) {
+           return new jQuery.fn.init( selector, context, rootjQuery );
+       }
+   
+       // jQuery对象原型
+       jQuery.fn = jQuery.prototype = {
+           constructor: jQuery,
+           init: function( selector, context, rootjQuery ) {
+              // selector有以下7种分支情况：
+              // DOM元素
+              // body（优化）
+              // 字符串：HTML标签、HTML字符串、#id、选择器表达式
+              // 函数（作为ready回调函数）
+              // 最后返回伪数组
+           }
+       };
+   
+       // 猜猜这句是干什么呢？
+       jQuery.fn.init.prototype = jQuery.fn;
+   
+       // 合并内容到第一个参数中，后续大部分功能都通过该函数扩展
+       // 通过jQuery.fn.extend扩展的函数，大部分都会调用通过jQuery.extend扩展的同名函数
+       jQuery.extend = jQuery.fn.extend = function() {};
+      
+       // 在jQuery上扩展静态方法
+       jQuery.extend({
+           // ready bindReady
+           // isPlainObject isEmptyObject
+           // parseJSON parseXML
+           // globalEval
+           // each makeArray inArray merge grep map
+           // proxy
+           // access
+           // uaMatch
+           // sub
+           // browser
+       });
+ 
+        // 到这里，jQuery对象构造完成，后边的代码都是对jQuery或jQuery对象的扩展
+       return jQuery;
+   
+    })();
+   
+    window.jQuery = window.$ = jQuery;
+})(window);
+{% endcodeblock %}
+
+通过上面的jQuery代码的总体结构，可见它同样是采用的是类似上面对象字面量形式创建全局的jQuery对象，在其中又重定义了构造函数，完成初始化工作，最后返回新的jQuery对象。
+
+KISSY中呢？让我们来看看seed中的kissy.js:
+
+{% codeblock lang:javascript %}
+/**
+ * A seed where KISSY grows up from, KISS Yeah !
+ */
+var KISSY = (function (undefined) {
+    var host = this,
+        S,
+        guid = 0,
+        EMPTY = '';
+
+    var loggerLevel = {
+        'debug': 10,
+        'info': 20,
+        'warn': 30,
+        'error': 40
+    };
+
+    S = {
+        /**
+         * The build time of the library.
+        __BUILD_TIME: '@TIMESTAMP@',
+
+        /**
+         * KISSY Environment.
+         */
+        Env: {
+            host: host
+        },
+
+        /**
+         * KISSY Config.
+         */
+        Config: {
+            debug: '@DEBUG@',
+            fns: {}
+        },
+
+        /**
+         * The version of the library.
+         */
+        version: '@VERSION@',
+
+        /**
+         * set KISSY configuration
+         */
+        config: function (configName, configValue) {
+            ...
+        },
+
+        /**
+         * Prints debug info.
+         * 
+         */
+        log: function (msg, cat, logger) {
+            ...
+        },
+
+        /**
+         * get log instance for specified logger
+         */
+        'getLogger': function (logger) {
+            return getLogger(logger);
+        },
+
+        /**
+         * Throws error message.
+         */
+        error: function (msg) {
+            ...
+        },
+
+        /*
+         * Generate a global unique id.
+         */
+        guid: function (pre) {
+            return (pre || EMPTY) + guid++;
+        }
+    };
+
+    if ('@DEBUG@') {
+        S.Config.logger = {
+            excludes: [
+                {
+                    logger: /^s\/.*/,
+                    maxLevel: 'info',
+                    minLevel: 'debug'
+                }
+            ]
+        };
+
+        /**
+         * Log class for specified logger
+         */
+        function Logger() {
+
+        }
+
+        /**
+         * print debug log
+         */
+        Logger.prototype.debug = function (str) {
+        };
+        /**
+         * print info log
+         */
+        Logger.prototype.info = function (str) {
+        };
+        /**
+         * print warn log
+         */
+        Logger.prototype.warn = function (str) {
+        };
+        /**
+         * print error log
+         */
+        Logger.prototype.error = function (str) {
+        };
+    }
+
+    function getLogger(logger) {
+        ...
+    }
+
+
+    /**
+     * Logger level enum
+     */
+    S.Logger = /**@type Function
+     @ignore */{};
+    S.Logger.Level = {
+        /**
+         * debug level
+         */
+        'DEBUG': 'debug',
+        /**
+         * info level
+         */
+        INFO: 'info',
+        /**
+         * warn level
+         */
+        WARN: 'warn',
+        /**
+         * error level
+         */
+        ERROR: 'error'
+    };
+
+    return S;
+})();
+{% endcodeblock %}
+
+可见，KISSY中同样采用的是即时函数完成初始化，返回内部实例`S`的方式。
 
 ### 总结
 
-未完待续...
-
-{% codeblock lang:javascript %}
-{% endcodeblock %}
+通过上面的源码简析，个人觉得，在JavaScript中应用单例模式采用对象字面量的方式更易读易懂，应用也更为广泛，而从理论角度采用闭包模拟类似静态语言的单例的概念的方式，虽然也可以实现，但失掉了JavaScript作为一门动态语言的优势，而且代码相比之下可维护性差了些。当然采用对象字面量方式需要与使用者达成约定，即直接调用该实例而非通过构造函数来获得实例，这种调用方式也很自然。
