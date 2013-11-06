@@ -14,7 +14,7 @@
         <div class="method-container">
             <div class="ace-code"></div>
 
-<script class="ace-code-script" type="template">
+<script class="ace-code-script">
 function SuperMario(){
     this.name = '超级玛丽';
     this.height = 10;
@@ -25,21 +25,24 @@ function SuperMario(){
 
 SuperMario.prototype.setBlood = function(v){
     this.blood = parseInt(v);
-}
+};
 
 SuperMario.prototype.getHeight = function(){
     return this.height;
-}
+};
+
 SuperMario.prototype.getBlood = function(){
     return this.blood;
-}
+};
+
 SuperMario.prototype.getColor = function(){
     return this.color;
-}
+};
 
 SuperMario.prototype.run = function(){
     console.log('超级玛丽在奔跑');
 };
+
 SuperMario.prototype.jump = function(){
     console.log('超级玛丽在跳跃');
 };
@@ -71,6 +74,7 @@ SuperMario.prototype.decorate = function(decorator){
         list = this.decoratorList,
         i, newobj;
 
+    // 避免重复decorate
     if(list.indexOf(decorator) == -1){
 
         this.decoratorList.push(decorator);
