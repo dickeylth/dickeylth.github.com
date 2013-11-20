@@ -61,7 +61,7 @@ cover: "/img/jspatterns/observer-cover.jpg"
 
 ![Glbevt运行时结构](/img/jspatterns/observer-glbevt-inner.png)
 
-可以看到，`Glbevt`内部在`__~ks_custom_events`对象中管理了各种自定义事件，对每个自定义事件，以`observers`数组管理了注册的一些配置信息，具体里头放着什么呢？进一步展开：
+可以看到，`Glbevt`内部在`__~ks_custom_events`属性中管理了各种自定义事件，对每个自定义事件，以`observers`数组管理了注册的一些配置信息，具体里头放着什么呢？进一步展开：
 
 ![observers数组](/img/jspatterns/observer-glbevt-inner2.png)
 
@@ -92,10 +92,7 @@ Glbevt.on('confirm:getdata',
 // jQuery: $(obj).trigger("channel", data);
 $( el ).trigger( "/login", data );
 
-// YUI: el.fire("channel", data);
-el.fire( "/login", data );
-
-// KISSY: el.fire("eventType", data )
+// YUI/KISSY: el.fire("channel", data);
 el.fire( "/login", data );
 
 
@@ -104,10 +101,7 @@ el.fire( "/login", data );
 // jQuery: $(obj).on( "channel", [data], fn );
 $( el ).on( "/login", function( event ){...} );
 
-// YUI: el.on("channel", handler);
-el.on( "/login", function( data ){...} );
-
-// KISSY: el.on("channel" , fn [ , scope ] );
+// YUI/KISSY: el.on("channel", handler);
 el.on( "/login", function( data ){...} );
 
 
@@ -116,12 +110,8 @@ el.on( "/login", function( data ){...} );
 // jQuery: $(obj).off( "channel" );
 $( el ).off( "/login" );
 
-// YUI: el.detach("channel");
+// YUI/KISSY: el.detach("channel");
 el.detach( "/login" );
-
-// KISSY: el.detach("channel" [ , fn , scope ] );
-el.detach( "/login" );
-
 {% endcodeblock %}
 
 与YUI类似，KISSY中的自定义事件也是通过[`EventTarget`](http://docs.kissyui.com/1.3/docs/html/api/core/event/event-target.html)接口实现事件触发和管理的方法，包括：
@@ -132,9 +122,223 @@ el.detach( "/login" );
 + `publish`: 定义可冒泡和拥有默认函数`defaultFn`的自定义事件
 + `addTarget`/`removeTarget`： 控制事件冒泡到哪些对象
 
+当我们需要使一个对象具有触发和监听自定义事件的能力时，就可以借助于之前的装饰者模式将`EventTarget`接口装饰到该对象上，如：
+
+{% codeblock lang:javascript %}
+// 采用mix
+var globalEvent = S.mix({},S.EventTarget);
+globalEvent.on('xxx', function(data){
+  ...
+});
+globalEvent.fire('xxx', data);
+
+// 采用augment
+function Object(){
+}
+
+// 让 Object 成为事件目标
+S.augment(Object, S.EventTarget);
+
+var obj = new Object();
+obj.on('xxx', function(data){
+    ...
+});
+obj.fire('xxx', data);
+{% endcodeblock %}
+
+当然，我们最关心的自然是`EventTarget`中`fire`和`on`的实现了，截取一下源代码：
+{% codeblock lang:javascript %}
+// event/sub-modules/custom/src/api-impl.js
+/**
+ * @ignore
+ *  custom event target for publish and subscribe
+ * @author yiminghe@gmail.com
+ */
+KISSY.add('event/custom/api-impl', function (S, api, Event, ObservableCustomEvent) {
+    var trim = S.trim,
+        _Utils = Event._Utils,
+        splitAndRun = _Utils.splitAndRun,
+        KS_BUBBLE_TARGETS = '__~ks_bubble_targets';
 
 
+    return S.mix(api,
+        /**
+         * @class KISSY.Event.Target
+         * @singleton
+         * EventTarget provides the implementation for any object to publish, subscribe and fire to custom events,
+         * and also allows other EventTargets to target the object with events sourced from the other object.
+         *
+         * EventTarget is designed to be used with S.augment to allow events to be listened to and fired by name.
+         *
+         * This makes it possible for implementing code to subscribe to an event that either has not been created yet,
+         * or will not be created at all.
+         */
+        {
+
+            /**
+             * Fire a custom event by name.
+             * The callback functions will be executed from the context specified when the event was created,
+             * and the {@link KISSY.Event.CustomEventObject} created will be mixed with eventData
+             * @param {String} type The type of the event
+             * @param {Object} [eventData] The data will be mixed with {@link KISSY.Event.CustomEventObject} created
+             * @return {*} If any listen returns false, then the returned value is false. else return the last listener's returned value
+             */
+            fire: function (target, type, eventData) {
+                var self = target, ret = undefined;
+
+                eventData = eventData || {};
+
+                splitAndRun(type, function (type) {
+                    var r2, customEvent,
+                        typedGroups = _Utils.getTypedGroups(type),
+                        _ks_groups = typedGroups[1];
+
+                    type = typedGroups[0];
+
+                    if (_ks_groups) {
+                        _ks_groups = _Utils.getGroupsRe(_ks_groups);
+                        eventData._ks_groups = _ks_groups;
+                    }
+
+                    customEvent = ObservableCustomEvent.getCustomEvent(self, type) ||
+                        // in case no publish custom event but we need bubble
+                        // because bubbles defaults to true!
+                        new ObservableCustomEvent({
+                            currentTarget: target,
+                            type: type
+                        });
+
+
+                    r2 = customEvent.fire(eventData);
+
+                    if (ret !== false && r2!==undefined) {
+                        ret = r2;
+                    }
+                });
+
+                return ret;
+            },
+
+            /**
+             * Creates a new custom event of the specified type
+             * @param {String} type The type of the event
+             * @param {Object} cfg Config params
+             * @param {Boolean} [cfg.bubbles=true] whether or not this event bubbles
+             * @param {Function} [cfg.defaultFn] this event's default action
+             * @chainable
+             */
+            publish: function (target, type, cfg) {
+                var customEvent;
+
+                splitAndRun(type, function (t) {
+                    customEvent = ObservableCustomEvent.getCustomEvent(target, t, 1);
+                    S.mix(customEvent, cfg)
+                });
+
+                return target;
+            },
+
+            /**
+             * Registers another EventTarget as a bubble target.
+             * @param {KISSY.Event.Target} anotherTarget Another EventTarget instance to add
+             * @chainable
+             */
+            addTarget: function (target, anotherTarget) {
+                var targets = api.getTargets(target);
+                if (!S.inArray(anotherTarget, targets)) {
+                    targets.push(anotherTarget);
+                }
+                return target;
+            },
+
+            /**
+             * Removes a bubble target
+             * @param {KISSY.Event.Target} anotherTarget Another EventTarget instance to remove
+             * @chainable
+             */
+            removeTarget: function (target, anotherTarget) {
+                var targets = api.getTargets(target),
+                    index = S.indexOf(anotherTarget, targets);
+                if (index != -1) {
+                    targets.splice(index, 1);
+                }
+                return target;
+            },
+
+            /**
+             * all targets where current target's events bubble to
+             * @private
+             * @return {Array}
+             */
+            getTargets: function (target) {
+                target[KS_BUBBLE_TARGETS] = target[KS_BUBBLE_TARGETS] || [];
+                return target[KS_BUBBLE_TARGETS];
+            },
+
+            /**
+             * Subscribe a callback function to a custom event fired by this object or from an object that bubbles its events to this object.
+             * @method
+             * @param {String} type The name of the event
+             * @param {Function} fn The callback to execute in response to the event
+             * @param {Object} [context] this object in callback
+             * @chainable
+             */
+            on: function (target, type, fn, context) {
+                type = trim(type);
+                _Utils.batchForType(function (type, fn, context) {
+                    var cfg = _Utils.normalizeParam(type, fn, context),
+                        customEvent;
+                    type = cfg.type;
+                    customEvent = ObservableCustomEvent.getCustomEvent(target, type, 1);
+                    if (customEvent) {
+                        customEvent.on(cfg);
+                    }
+                }, 0, type, fn, context);
+
+                return target; // chain
+            },
+
+            /**
+             * Detach one or more listeners from the specified event
+             * @method
+             * @param {String} type The name of the event
+             * @param {Function} [fn] The subscribed function to un-subscribe. if not supplied, all observers will be removed.
+             * @param {Object} [context] The custom object passed to subscribe.
+             * @chainable
+             */
+            detach: function (target, type, fn, context) {
+                type = trim(type);
+                _Utils.batchForType(function (type, fn, context) {
+                    var cfg = _Utils.normalizeParam(type, fn, context),
+                        customEvents,
+                        customEvent;
+                    type = cfg.type;
+                    if (type) {
+                        customEvent = ObservableCustomEvent.getCustomEvent(target, type, 1);
+                        if (customEvent) {
+                            customEvent.detach(cfg);
+                        }
+                    } else {
+                        customEvents = ObservableCustomEvent.getCustomEvents(target);
+                        S.each(customEvents, function (customEvent) {
+                            customEvent.detach(cfg);
+                        });
+                    }
+                }, 0, type, fn, context);
+
+                return target; // chain
+            }
+        });
+}, {
+    requires: ['./api', 'event/base', './observable']
+});
+{% endcodeblock %}
+
+可以看到，`fire`方法执行的过程是，将多个以空白符分隔的事件类型`type`拆分并依次执行（具体参加`splitAndRun`的[工具方法定义](https://github.com/kissyteam/kissy/blob/1.3.x/src/event/sub-modules/base/src/utils.js)）；而后获取事件分组信息，注意在这里事件分组是以'.'分隔的，具体参加前面的工具方法定义中的`getTypedGroups`；之后再获取到`ObservableCustomEvent`对象执行定义在[event/sub-modules/custom/src/observable.js](https://github.com/kissyteam/kissy/blob/1.3.x/src/event/sub-modules/custom/src/observable.js)中的`fire`方法，该方法首先遍历当前对象被注册的观察者（即之前分析中的`observers`数组），逐个`notify`并获取返回，出现返回`false`时优先结束`fire`执行。之后，再检查当前`ObservableCustomEvent`对象是否冒泡，如果冒泡再继续在父对象中递归调用event/sub-modules/custom/src/api-impl.js中的`fire`函数的执行。
+
+而对于`on`方法，其实就是将调用`on`时的事件名、上下文和回调函数进行保存的过程，最终存储的结果
+就像【图-observers 数组】中展示的那样，这里就不再赘述了。
 
 ### 总结
 
-策略模式对于有多种可提炼出较为通用的算法，并在不同的使用场景中可能会按需选择某一种或某几种策略完成对应的业务逻辑时比较有用。所以如果当你的程序中涉及到类似的一些场景，如业务逻辑涉及到分类和按需应用时，就可以考虑一下策略模式来实现算法和调用的解耦。
+观察者模式算是设计模式中应用很广泛的模式之一了，而各种框架和库中对于自定义事件的支持也使得我们应用观察者模式解耦模块变得更为容易。如果你的应用中涉及的模块之间通信较为复杂，利用自定义事件可以很好地帮助你使代码组织更有条理。

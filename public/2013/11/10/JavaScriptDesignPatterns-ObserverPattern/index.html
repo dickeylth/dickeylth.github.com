@@ -103,7 +103,7 @@
 <p>可以看到，各模块之间通过<code>Glbevt</code>联系起来，左边的模块使用了 KISSY 中的<code>addTarget</code>添加<code>Glbevt</code>到模块的冒泡事件源列表中，因而除了可以调用<code>Glbevt</code>的<code>on</code>方法监听响应全局的自定义事件外，也可以作为事件源主动<code>fire</code>出自定义事件，由<code>Glbevt</code>冒泡捕捉到然后查找<code>Glbevt</code>已注册的事件句柄响应之。</p>
 <p>那么这个<code>Glbevt</code>内部长什么样子呢？是以什么样的结构来管理各种注册的事件的呢？我们看看下面的运行时截图：</p>
 <p><img src="/img/jspatterns/observer-glbevt-inner.png" alt="Glbevt 运行时结构 "></p>
-<p>可以看到，<code>Glbevt</code>内部在<code>__~ks_custom_events</code>对象中管理了各种自定义事件，对每个自定义事件，以<code>observers</code>数组管理了注册的一些配置信息，具体里头放着什么呢？进一步展开：</p>
+<p>可以看到，<code>Glbevt</code>内部在<code>__~ks_custom_events</code>属性中管理了各种自定义事件，对每个自定义事件，以<code>observers</code>数组管理了注册的一些配置信息，具体里头放着什么呢？进一步展开：</p>
 <p><img src="/img/jspatterns/observer-glbevt-inner2.png" alt="observers 数组 "></p>
 <p>可以看到对每个<code>observer</code>，指定了上下文对象<code>context</code>、触发后的回调函数<code>fn</code>、分组信息<code>groups</code>和事件类型<code>type</code>，这样在触发了该自定义事件时，就可以通过回调函数<code>fn</code>的闭包机制实现模块间的数据通信，如：</p>
 <figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
@@ -160,25 +160,12 @@ Glbevt.on(<span class="string">'confirm:getdata'</span>,
 23
 24
 25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
 </pre></td><td class="code"><pre><span class="comment">// Publish</span>
 
 <span class="comment">// jQuery: $(obj).trigger("channel", data);</span>
 $( el ).trigger( <span class="string">"/login"</span>, data );
 
-<span class="comment">// YUI: el.fire("channel", data);</span>
-el.fire( <span class="string">"/login"</span>, data );
-
-<span class="comment">// KISSY: el.fire("eventType", data )</span>
+<span class="comment">// YUI/KISSY: el.fire("channel", data);</span>
 el.fire( <span class="string">"/login"</span>, data );
 
 
@@ -187,10 +174,7 @@ el.fire( <span class="string">"/login"</span>, data );
 <span class="comment">// jQuery: $(obj).on( "channel", [data], fn );</span>
 $( el ).on( <span class="string">"/login"</span>, <span class="keyword">function</span>( event ){...} );
 
-<span class="comment">// YUI: el.on("channel", handler);</span>
-el.on( <span class="string">"/login"</span>, <span class="keyword">function</span>( data ){...} );
-
-<span class="comment">// KISSY: el.on("channel" , fn [ , scope ] );</span>
+<span class="comment">// YUI/KISSY: el.on("channel", handler);</span>
 el.on( <span class="string">"/login"</span>, <span class="keyword">function</span>( data ){...} );
 
 
@@ -199,12 +183,8 @@ el.on( <span class="string">"/login"</span>, <span class="keyword">function</spa
 <span class="comment">// jQuery: $(obj).off( "channel" );</span>
 $( el ).off( <span class="string">"/login"</span> );
 
-<span class="comment">// YUI: el.detach("channel");</span>
+<span class="comment">// YUI/KISSY: el.detach("channel");</span>
 el.detach( <span class="string">"/login"</span> );
-
-<span class="comment">// KISSY: el.detach("channel" [ , fn , scope ] );</span>
-el.detach( <span class="string">"/login"</span> );
-
 </pre></td></tr></table></figure>
 
 
@@ -216,8 +196,424 @@ el.detach( <span class="string">"/login"</span> );
 <li><code>publish</code>: 定义可冒泡和拥有默认函数<code>defaultFn</code>的自定义事件</li>
 <li><code>addTarget</code>/<code>removeTarget</code>： 控制事件冒泡到哪些对象</li>
 </ul>
+<p>当我们需要使一个对象具有触发和监听自定义事件的能力时，就可以借助于之前的装饰者模式将<code>EventTarget</code>接口装饰到该对象上，如：</p>
+<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="code"><pre><span class="comment">// 采用 mix</span>
+<span class="keyword">var</span> globalEvent = S.mix({},S.EventTarget);
+globalEvent.on(<span class="string">'xxx'</span>, <span class="keyword">function</span>(data){
+  ...
+});
+globalEvent.fire(<span class="string">'xxx'</span>, data);
+
+<span class="comment">// 采用 augment</span>
+<span class="function"><span class="keyword">function</span> <span class="title">Object</span><span class="params">()</span>{</span>
+}
+
+<span class="comment">// 让 Object 成为事件目标</span>
+S.augment(Object, S.EventTarget);
+
+<span class="keyword">var</span> obj = <span class="keyword">new</span> Object();
+obj.on(<span class="string">'xxx'</span>, <span class="keyword">function</span>(data){
+    ...
+});
+obj.fire(<span class="string">'xxx'</span>, data);
+</pre></td></tr></table></figure>
+
+
+<p>当然，我们最关心的自然是<code>EventTarget</code>中<code>fire</code>和<code>on</code>的实现了，截取一下源代码：</p>
+<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+</pre></td><td class="code"><pre><span class="comment">// event/sub-modules/custom/src/api-impl.js</span>
+<span class="comment">/**
+ * @ignore
+ *  custom event target for publish and subscribe
+ * @author yiminghe@gmail.com
+ */</span>
+KISSY.add(<span class="string">'event/custom/api-impl'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(S, api, Event, ObservableCustomEvent)</span> {</span>
+    <span class="keyword">var</span> trim = S.trim,
+        _Utils = Event._Utils,
+        splitAndRun = _Utils.splitAndRun,
+        KS_BUBBLE_TARGETS = <span class="string">'__~ks_bubble_targets'</span>;
+
+
+    <span class="keyword">return</span> S.mix(api,
+        <span class="comment">/**
+         * @class KISSY.Event.Target
+         * @singleton
+         * EventTarget provides the implementation for any object to publish, subscribe and fire to custom events,
+         * and also allows other EventTargets to target the object with events sourced from the other object.
+         *
+         * EventTarget is designed to be used with S.augment to allow events to be listened to and fired by name.
+         *
+         * This makes it possible for implementing code to subscribe to an event that either has not been created yet,
+         * or will not be created at all.
+         */</span>
+        {
+
+            <span class="comment">/**
+             * Fire a custom event by name.
+             * The callback functions will be executed from the context specified when the event was created,
+             * and the {@link KISSY.Event.CustomEventObject} created will be mixed with eventData
+             * @param {String} type The type of the event
+             * @param {Object} [eventData] The data will be mixed with {@link KISSY.Event.CustomEventObject} created
+             * @return {*} If any listen returns false, then the returned value is false. else return the last listener's returned value
+             */</span>
+            fire: <span class="function"><span class="keyword">function</span> <span class="params">(target, type, eventData)</span> {</span>
+                <span class="keyword">var</span> self = target, ret = <span class="literal">undefined</span>;
+
+                eventData = eventData || {};
+
+                splitAndRun(type, <span class="function"><span class="keyword">function</span> <span class="params">(type)</span> {</span>
+                    <span class="keyword">var</span> r2, customEvent,
+                        typedGroups = _Utils.getTypedGroups(type),
+                        _ks_groups = typedGroups[<span class="number">1</span>];
+
+                    type = typedGroups[<span class="number">0</span>];
+
+                    <span class="keyword">if</span> (_ks_groups) {
+                        _ks_groups = _Utils.getGroupsRe(_ks_groups);
+                        eventData._ks_groups = _ks_groups;
+                    }
+
+                    customEvent = ObservableCustomEvent.getCustomEvent(self, type) ||
+                        <span class="comment">// in case no publish custom event but we need bubble</span>
+                        <span class="comment">// because bubbles defaults to true!</span>
+                        <span class="keyword">new</span> ObservableCustomEvent({
+                            currentTarget: target,
+                            type: type
+                        });
+
+
+                    r2 = customEvent.fire(eventData);
+
+                    <span class="keyword">if</span> (ret !== <span class="literal">false</span> &amp;&amp; r2!==<span class="literal">undefined</span>) {
+                        ret = r2;
+                    }
+                });
+
+                <span class="keyword">return</span> ret;
+            },
+
+            <span class="comment">/**
+             * Creates a new custom event of the specified type
+             * @param {String} type The type of the event
+             * @param {Object} cfg Config params
+             * @param {Boolean} [cfg.bubbles=true] whether or not this event bubbles
+             * @param {Function} [cfg.defaultFn] this event's default action
+             * @chainable
+             */</span>
+            publish: <span class="function"><span class="keyword">function</span> <span class="params">(target, type, cfg)</span> {</span>
+                <span class="keyword">var</span> customEvent;
+
+                splitAndRun(type, <span class="function"><span class="keyword">function</span> <span class="params">(t)</span> {</span>
+                    customEvent = ObservableCustomEvent.getCustomEvent(target, t, <span class="number">1</span>);
+                    S.mix(customEvent, cfg)
+                });
+
+                <span class="keyword">return</span> target;
+            },
+
+            <span class="comment">/**
+             * Registers another EventTarget as a bubble target.
+             * @param {KISSY.Event.Target} anotherTarget Another EventTarget instance to add
+             * @chainable
+             */</span>
+            addTarget: <span class="function"><span class="keyword">function</span> <span class="params">(target, anotherTarget)</span> {</span>
+                <span class="keyword">var</span> targets = api.getTargets(target);
+                <span class="keyword">if</span> (!S.inArray(anotherTarget, targets)) {
+                    targets.push(anotherTarget);
+                }
+                <span class="keyword">return</span> target;
+            },
+
+            <span class="comment">/**
+             * Removes a bubble target
+             * @param {KISSY.Event.Target} anotherTarget Another EventTarget instance to remove
+             * @chainable
+             */</span>
+            removeTarget: <span class="function"><span class="keyword">function</span> <span class="params">(target, anotherTarget)</span> {</span>
+                <span class="keyword">var</span> targets = api.getTargets(target),
+                    index = S.indexOf(anotherTarget, targets);
+                <span class="keyword">if</span> (index != -<span class="number">1</span>) {
+                    targets.splice(index, <span class="number">1</span>);
+                }
+                <span class="keyword">return</span> target;
+            },
+
+            <span class="comment">/**
+             * all targets where current target's events bubble to
+             * @private
+             * @return {Array}
+             */</span>
+            getTargets: <span class="function"><span class="keyword">function</span> <span class="params">(target)</span> {</span>
+                target[KS_BUBBLE_TARGETS] = target[KS_BUBBLE_TARGETS] || [];
+                <span class="keyword">return</span> target[KS_BUBBLE_TARGETS];
+            },
+
+            <span class="comment">/**
+             * Subscribe a callback function to a custom event fired by this object or from an object that bubbles its events to this object.
+             * @method
+             * @param {String} type The name of the event
+             * @param {Function} fn The callback to execute in response to the event
+             * @param {Object} [context] this object in callback
+             * @chainable
+             */</span>
+            on: <span class="function"><span class="keyword">function</span> <span class="params">(target, type, fn, context)</span> {</span>
+                type = trim(type);
+                _Utils.batchForType(<span class="function"><span class="keyword">function</span> <span class="params">(type, fn, context)</span> {</span>
+                    <span class="keyword">var</span> cfg = _Utils.normalizeParam(type, fn, context),
+                        customEvent;
+                    type = cfg.type;
+                    customEvent = ObservableCustomEvent.getCustomEvent(target, type, <span class="number">1</span>);
+                    <span class="keyword">if</span> (customEvent) {
+                        customEvent.on(cfg);
+                    }
+                }, <span class="number">0</span>, type, fn, context);
+
+                <span class="keyword">return</span> target; <span class="comment">// chain</span>
+            },
+
+            <span class="comment">/**
+             * Detach one or more listeners from the specified event
+             * @method
+             * @param {String} type The name of the event
+             * @param {Function} [fn] The subscribed function to un-subscribe. if not supplied, all observers will be removed.
+             * @param {Object} [context] The custom object passed to subscribe.
+             * @chainable
+             */</span>
+            detach: <span class="function"><span class="keyword">function</span> <span class="params">(target, type, fn, context)</span> {</span>
+                type = trim(type);
+                _Utils.batchForType(<span class="function"><span class="keyword">function</span> <span class="params">(type, fn, context)</span> {</span>
+                    <span class="keyword">var</span> cfg = _Utils.normalizeParam(type, fn, context),
+                        customEvents,
+                        customEvent;
+                    type = cfg.type;
+                    <span class="keyword">if</span> (type) {
+                        customEvent = ObservableCustomEvent.getCustomEvent(target, type, <span class="number">1</span>);
+                        <span class="keyword">if</span> (customEvent) {
+                            customEvent.detach(cfg);
+                        }
+                    } <span class="keyword">else</span> {
+                        customEvents = ObservableCustomEvent.getCustomEvents(target);
+                        S.each(customEvents, <span class="function"><span class="keyword">function</span> <span class="params">(customEvent)</span> {</span>
+                            customEvent.detach(cfg);
+                        });
+                    }
+                }, <span class="number">0</span>, type, fn, context);
+
+                <span class="keyword">return</span> target; <span class="comment">// chain</span>
+            }
+        });
+}, {
+    requires: [<span class="string">'./api'</span>, <span class="string">'event/base'</span>, <span class="string">'./observable'</span>]
+});
+</pre></td></tr></table></figure>
+
+
+<p>可以看到，<code>fire</code>方法执行的过程是，将多个以空白符分隔的事件类型<code>type</code>拆分并依次执行（具体参加<code>splitAndRun</code>的<a href="https://github.com/kissyteam/kissy/blob/1.3.x/src/event/sub-modules/base/src/utils.js" target="_blank">工具方法定义</a>）；而后获取事件分组信息，注意在这里事件分组是以‘.’分隔的，具体参加前面的工具方法定义中的<code>getTypedGroups</code>；之后再获取到<code>ObservableCustomEvent</code>对象执行定义在<a href="https://github.com/kissyteam/kissy/blob/1.3.x/src/event/sub-modules/custom/src/observable.js" target="_blank">event/sub-modules/custom/src/observable.js</a>中的<code>fire</code>方法，该方法首先遍历当前对象被注册的观察者（即之前分析中的<code>observers</code>数组），逐个<code>notify</code>并获取返回，出现返回<code>false</code>时优先结束<code>fire</code>执行。之后，再检查当前<code>ObservableCustomEvent</code>对象是否冒泡，如果冒泡再继续在父对象中递归调用 event/sub-modules/custom/src/api-impl.js 中的<code>fire</code>函数的执行。</p>
+<p>而对于<code>on</code>方法，其实就是将调用<code>on</code>时的事件名、上下文和回调函数进行保存的过程，最终存储的结果<br>就像【图 -observers 数组】中展示的那样，这里就不再赘述了。</p>
 <h3>总结</h3>
-<p>策略模式对于有多种可提炼出较为通用的算法，并在不同的使用场景中可能会按需选择某一种或某几种策略完成对应的业务逻辑时比较有用。所以如果当你的程序中涉及到类似的一些场景，如业务逻辑涉及到分类和按需应用时，就可以考虑一下策略模式来实现算法和调用的解耦。</p>
+<p>观察者模式算是设计模式中应用很广泛的模式之一了，而各种框架和库中对于自定义事件的支持也使得我们应用观察者模式解耦模块变得更为容易。如果你的应用中涉及的模块之间通信较为复杂，利用自定义事件可以很好地帮助你使代码组织更有条理。</p>
 
       
     </div>
