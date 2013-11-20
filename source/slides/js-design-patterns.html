@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript设计模式</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="css/reveal.min.css"/>
+    <link rel="stylesheet" href="css/theme-default.css"/>
+    <link rel="stylesheet" href="css/zenburn.css"/>
+</head>
+<body>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <h2>JavaScript设计模式</h2>
+                <div>
+                    <p>弘树</p>
+                    <time>2013年11月21日</time>
+                </div>
+            </section>
+
+            <section>
+                <h3>目录</h3>
+                <ul>
+                    <li>设计模式认识</li>
+                    <li>单例模式</li>
+                    <li>工厂模式</li>
+                    <li>装饰者模式</li>
+                    <li>策略模式</li>
+                    <li>观察者模式</li>
+                    <li>回顾</li>
+                </ul>
+            </section>
+
+            <section>
+
+                <section>
+                    <h3>设计模式</h3>
+                    <blockquote>源于生活，高于生活。</blockquote>
+                </section>
+
+                <section>
+                    <a href="#" class="image navigate-down">
+                        <img src="img/slide1.jpg"/>
+                    </a>
+                </section>
+
+                <section>
+                    <a href="#" class="image">
+                        <img src="img/slide2.jpg"/>
+                    </a>
+                </section>
+
+                <section>
+                    <h3>关键词：</h3>
+                    <ul>
+                        <li>模块化</li>
+                        <li>解耦</li>
+                        <li>可扩展性</li>
+                        <li>支撑业务复杂性的增长</li>
+                    </ul>
+                </section>
+
+            </section>
+
+            <section id="fragments">
+
+                <h3>单例模式</h3>
+                <p class="fragment">
+                    <ul>
+                        <li class="fragment">单个实例</li>
+                        <li class="fragment">初始化</li>
+                        <li class="fragment">对外提供访问接口</li>
+                    </ul>
+                </p>
+            </section>
+
+        </div>
+    </div>
+
+
+    <script src="js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+    <script>
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: 'js/plugin/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: 'js/plugin/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: 'js/plugin/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: 'js/plugin/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                { src: 'js/plugin/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
