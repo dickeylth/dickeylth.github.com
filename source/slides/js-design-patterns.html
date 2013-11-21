@@ -4,7 +4,7 @@
     <title>JavaScript设计模式</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="css/reveal.min.css"/>
-    <link rel="stylesheet" href="css/theme-default.css"/>
+    <link rel="stylesheet" href="css/theme-sky.css"/>
     <link rel="stylesheet" href="css/zenburn.css"/>
 </head>
 <body>
@@ -33,7 +33,7 @@
                 </ul>
             </section>
 
-            <section>
+            <section class="overall">
 
                 <section>
                     <h3>设计模式</h3>
@@ -53,27 +53,134 @@
                 </section>
 
                 <section>
-                    <h3>关键词：</h3>
-                    <ul>
-                        <li>模块化</li>
-                        <li>解耦</li>
-                        <li>可扩展性</li>
-                        <li>支撑业务复杂性的增长</li>
-                    </ul>
+                    <p class="fragment">
+                        <h3>关键词：</h3>
+                        <ul>
+                            <li class="fragment">模块化</li>
+                            <li class="fragment">解耦</li>
+                            <li class="fragment">可扩展性</li>
+                            <li class="fragment">支撑业务复杂性的增长</li>
+                        </ul>
+                    </p>
                 </section>
 
             </section>
 
-            <section id="fragments">
+            <section class="singleton">
 
-                <h3>单例模式</h3>
-                <p class="fragment">
-                    <ul>
-                        <li class="fragment">单个实例</li>
-                        <li class="fragment">初始化</li>
-                        <li class="fragment">对外提供访问接口</li>
-                    </ul>
-                </p>
+                <section>
+                    <h3>单例模式</h3>
+                </section>
+
+                <section>
+                    <p class="fragment">
+                        <h4>生活中的单例模式</h4>
+                        <a href="" class="image">
+                            <img src="img/singleton0.png"/>
+                        </a>
+                    </p>
+                </section>
+
+                <section>
+                    <p class="fragment">
+                        <h4>主要特点</h4>
+                        <ul>
+                            <li class="fragment">单个实例</li>
+                            <li class="fragment">初始化</li>
+                            <li class="fragment">对外提供访问接口</li>
+                        </ul>
+                    </p>
+                </section>
+
+                <section>
+                    <p class="fragment">
+                        <h4>实现方式</h4>
+                        <ul>
+                            <li class="fragment">对象字面量</li>
+                            <li class="fragment">使用<code>new</code>创建对象</li>
+                        </ul>
+                    </p>
+                </section>
+
+                <section>
+                    <h4>对象字面量</h4>
+                    <pre class="fragment">
+                        <code data-trim contenteditable>
+var x = {
+    attr: 'value'
+};
+
+var y = {
+    attr: 'value'
+};
+
+x == y;     // false
+x === y;    // false
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h4>加强版</h4>
+                    <pre class="fragment">
+                        <code data-trim contenteditable>
+var SuperMario = (function(){
+
+    var instance = null;
+
+    // 初始化函数
+    function init(){
+
+        var age = 12,
+            height = 120;
+
+        // 门面模式返回成员属性
+        return {
+
+            name: 'Mario',
+
+            getAge: function(){
+                return age;
+            },
+            getHeight: function(){
+                return height;
+            },
+
+            jump: function(){
+                console.log("I'm jumping!");
+            },
+            run: function(){
+                console.log("I'm running!");
+            }
+        };
+    }
+
+    return {
+
+        // 获取实例，懒加载
+        getInstance: function(){
+            if(!instance){
+                instance = init();
+            }
+            return instance;
+        }
+
+    };
+
+})();
+console.log(SuperMario.getInstance());
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <img src="img/singleton1.png"/>
+                </section>
+
+            </section>
+
+            <section>
+
             </section>
 
         </div>
