@@ -128,7 +128,7 @@ console.log(<span class="string">" 还能战斗吗："</span> + (<span class="ke
 <p>以下是简单的模拟超级马里奥的实现：</p>
 <p><a class="jsbin-embed" href="http://jsbin.com/IgivUnu/10/embed?js,console" target="_blank">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
 <p>当然我们还可以把装饰方法抽离出来，这样对于其他的“类”，也可以很容易实现装饰：</p>
-<p><a class="jsbin-embed" href="http://jsbin.com/ArIQali/9/embed?js,console" target="_blank">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
+<p><a class="jsbin-embed" href="http://jsbin.com/ArIQali/10/embed?js,console" target="_blank">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
 <p>这里<code>decorate</code>的逻辑还比较好理解，无非就是构造内部对象，添加继承链指针。但如果需要支持<code>undecorate</code>，就会稍微复杂一些了，我们先看看<code>decorate</code>所有的装饰者后的 SuperMario 长什么样子：</p>
 <p><img src="/img/jspatterns/decorator-inherit.png" alt=" 装饰后的 SuperMario"></p>
 <p>要实现<code>undecorate</code>，就需要在<code>decorate</code>时维护装饰者列表了，因为<code>decorate</code>时只保留了对前面的装饰者的指针，并没有反向的指针，就像一个单向的单链表一样。当然，它又不完全像单链表，因为各装饰者包装的对象之间又有继承链的关系，如果要插入或删除装饰者，并不是说简单地将自定义的指针<code>parent</code>按照单链表中的处理方法改变一下指向就算完了，还必须考虑到构造函数和<code>prototype</code>，这一点就比较复杂了。</p>
@@ -158,7 +158,7 @@ console.log(superMario.getDecorated({<span class="string">'method'</span>:<span 
 
 <p>当然这里的<code>decorate</code>方法传入的是一个 option 对象，为的是可以支持指定需要装饰的装饰者的某些方法而非所有，当不指定 methods 就默认为需要装饰所有方法。</p>
 <p>下面是基于列表的超级马里奥的实现：</p>
-<p><a class="jsbin-embed" href="http://jsbin.com/oGexaci/9/embed?js,console" target="_blank">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
+<p><a class="jsbin-embed" href="http://jsbin.com/oGexaci/10/embed?js,console" target="_blank">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
 <p>之所以提供的是 getDecorated 方法，是为了满足多种装饰者方法的调用。当然如果像《JavaScript 模式》当中的例子那样比较简单化，只有一个<code>getPrice()</code>方法需要装饰，就比如 Apple 或 Dell 的网上配置电脑的页面上，所有的装饰者最终只是影响价格一个因素的话，那么代码就可以如书中那样简洁了。</p>
 <p>当然也可以实现如继承中的自然的调用方式，这就需要在<code>decorate</code>方法中多做一些工作了，而不是像现在这样仅仅是简单地将需要装饰的新装饰者添加到映射对象中。当然，同时也意味着<code>undecorate</code>方法不会像现在这样简单地删除掉需要删除的装饰者的 key 就完了。具体实现大家可以自己试试看。最后也许你会发现就会跟使用继承比较类似了。</p>
 <h3>在开源框架和类库中的应用</h3>

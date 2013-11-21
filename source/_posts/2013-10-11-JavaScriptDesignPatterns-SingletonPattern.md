@@ -258,7 +258,35 @@ function SuperMario(){
 
 ##### 2.2 闭包中的实例
 
+采用闭包的方式一般将初始化后的实例用闭包保护起来，而后重写构造函数直接返回该实例，于是我们可以简单得到以下代码：
+
+<a class="jsbin-embed" href="http://jsbin.com/OjiFucu/8/embed?js,console">JS Bin</a>
+
+但这样会有什么潜在的问题呢？我们来稍作一点变化：
+
+<a class="jsbin-embed" href="http://jsbin.com/OjiFucu/9/edit?js,console">JS Bin</a>
+
+出现什么问题了？之后给`Person`类添加的`prototype`属性被丢失了，这却是为何？因为我们重写了构造函数，结果月亮还是那个月亮，`Person`却不再是那个`Person`了。在第二次`new Person()`时我们可以打印出此时的`this`，可以看到它是继承了后面挂载的`city`原型属性的，但因为原来的`Person`已经被覆盖了，所以原来的`job`属性就找不到了。而后我们`return instance`的执行，根据上文中的结论，就会直接覆盖构造函数中的隐式`this`，结果就丢掉了后面增加的原型属性`city`了。
+
 ##### 改进的实现
+
+有没有改进的方法呢？经过了上面的分析，我们就可以知道，要解决这个问题，关键是除了重写构造函数之外，还需要修复继承链和构造函数，于是可以得到下面的代码：
+
+<a class="jsbin-embed" href="http://jsbin.com/EBozomU/1/embed?js,console">JS Bin</a>
+
+其实这个时候重写后的`Person`类实质上变成了之前老的`Person`类的子类了，它们之间就是通过这句`Person.prototype = this;`联系起来的。我们也可以在控制台看看`Person`展开后的样子来认识一下这个新的`Person`。
+
+最后，留一个小问题：
+
+{% codeblock lang:javascript %}
+    ...
+    // 重写该构造函数
+    Person = function Person(){
+        return instance;
+    };
+
+{% endcodeblock %}
+这里的`function Person`中的`Person`是干嘛用的呢？
 
 ### 在开源框架和类库中的应用
 
@@ -477,3 +505,5 @@ var KISSY = (function (undefined) {
 ### 总结
 
 通过上面的源码简析，个人觉得，在JavaScript中应用单例模式采用对象字面量的方式更易读易懂，应用也更为广泛，而从理论角度采用闭包模拟类似静态语言的单例的概念的方式，虽然也可以实现，但失掉了JavaScript作为一门动态语言的优势，而且代码相比之下可维护性差了些。当然采用对象字面量方式需要与使用者达成约定，即直接调用该实例而非通过构造函数来获得实例，这种调用方式也很自然。
+
+<script src="http://static.jsbin.com/js/embed.js"></script>

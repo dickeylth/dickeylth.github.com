@@ -60,7 +60,7 @@ console.log("还能战斗吗：" + (typeof superMario.attack == 'function'));   
 
 当然我们还可以把装饰方法抽离出来，这样对于其他的“类”，也可以很容易实现装饰：
 
-<a class="jsbin-embed" href="http://jsbin.com/ArIQali/9/embed?js,console">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/ArIQali/10/embed?js,console">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 这里`decorate`的逻辑还比较好理解，无非就是构造内部对象，添加继承链指针。但如果需要支持`undecorate`，就会稍微复杂一些了，我们先看看`decorate`所有的装饰者后的SuperMario长什么样子：
 
@@ -90,7 +90,7 @@ console.log(superMario.getDecorated({'method':'attack'}));
 
 下面是基于列表的超级马里奥的实现：
 
-<a class="jsbin-embed" href="http://jsbin.com/oGexaci/9/embed?js,console">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/oGexaci/10/embed?js,console">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 之所以提供的是getDecorated方法，是为了满足多种装饰者方法的调用。当然如果像《JavaScript模式》当中的例子那样比较简单化，只有一个`getPrice()`方法需要装饰，就比如Apple或Dell的网上配置电脑的页面上，所有的装饰者最终只是影响价格一个因素的话，那么代码就可以如书中那样简洁了。
 

@@ -392,7 +392,31 @@ console.log(y);	<span class="comment">// ?</span>
 <p>两者的返回值就不一样了。</p>
 <p>现在你应该可以得出上面的问题的答案了吧？</p>
 <h5>2.2 闭包中的实例</h5>
+<p>采用闭包的方式一般将初始化后的实例用闭包保护起来，而后重写构造函数直接返回该实例，于是我们可以简单得到以下代码：</p>
+<p><a class="jsbin-embed" href="http://jsbin.com/OjiFucu/8/embed?js,console" target="_blank">JS Bin</a></p>
+<p>但这样会有什么潜在的问题呢？我们来稍作一点变化：</p>
+<p><a class="jsbin-embed" href="http://jsbin.com/OjiFucu/9/edit?js,console" target="_blank">JS Bin</a></p>
+<p>出现什么问题了？之后给<code>Person</code>类添加的<code>prototype</code>属性被丢失了，这却是为何？因为我们重写了构造函数，结果月亮还是那个月亮，<code>Person</code>却不再是那个<code>Person</code>了。在第二次<code>new Person()</code>时我们可以打印出此时的<code>this</code>，可以看到它是继承了后面挂载的<code>city</code>原型属性的，但因为原来的<code>Person</code>已经被覆盖了，所以原来的<code>job</code>属性就找不到了。而后我们<code>return instance</code>的执行，根据上文中的结论，就会直接覆盖构造函数中的隐式<code>this</code>，结果就丢掉了后面增加的原型属性<code>city</code>了。</p>
 <h5>改进的实现</h5>
+<p>有没有改进的方法呢？经过了上面的分析，我们就可以知道，要解决这个问题，关键是除了重写构造函数之外，还需要修复继承链和构造函数，于是可以得到下面的代码：</p>
+<p><a class="jsbin-embed" href="http://jsbin.com/EBozomU/1/embed?js,console" target="_blank">JS Bin</a></p>
+<p>其实这个时候重写后的<code>Person</code>类实质上变成了之前老的<code>Person</code>类的子类了，它们之间就是通过这句<code>Person.prototype = this;</code>联系起来的。我们也可以在控制台看看<code>Person</code>展开后的样子来认识一下这个新的<code>Person</code>。</p>
+<p>最后，留一个小问题：</p>
+<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>    ...
+    <span class="comment">// 重写该构造函数</span>
+    Person = <span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">()</span>{</span>
+        <span class="keyword">return</span> instance;
+    };
+
+</pre></td></tr></table></figure>
+
+<p>这里的<code>function Person</code>中的<code>Person</code>是干嘛用的呢？</p>
 <h3>在开源框架和类库中的应用</h3>
 <p>单例模式在开源框架中应用其实很广泛，细数一下我们熟悉的前端开源框架和类库：jQuery、YUI、underscore、KISSY 等，大多都有一个全局变量，比如 jQuery 中的<code>jQuery</code>（或<code>$</code>）、YUI 中的<code>YUI</code>、underscore 中的<code>_</code>、KISSY 中的<code>KISSY</code>，这就是一种单例。让我们来看看 jQuery：</p>
 <figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
@@ -802,7 +826,7 @@ console.log(y);	<span class="comment">// ?</span>
 <p>可见，KISSY 中同样采用的是即时函数完成初始化，返回内部实例<code>S</code>的方式。</p>
 <h3>总结</h3>
 <p>通过上面的源码简析，个人觉得，在 JavaScript 中应用单例模式采用对象字面量的方式更易读易懂，应用也更为广泛，而从理论角度采用闭包模拟类似静态语言的单例的概念的方式，虽然也可以实现，但失掉了 JavaScript 作为一门动态语言的优势，而且代码相比之下可维护性差了些。当然采用对象字面量方式需要与使用者达成约定，即直接调用该实例而非通过构造函数来获得实例，这种调用方式也很自然。</p>
-
+<script src="http://static.jsbin.com/js/embed.js"></script>
       
     </div>
     <footer>

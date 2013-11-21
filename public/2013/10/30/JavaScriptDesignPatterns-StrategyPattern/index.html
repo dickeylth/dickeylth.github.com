@@ -259,7 +259,7 @@ validator.types = {
 
 <p>这里<code>isNotEqualTo</code>方法略微复杂一些，因为为了校验数据中 2 个字段是否相同，除了需要当前字段的值，还需要获得待比较字段的值，因而配置起来会稍微麻烦一点。</p>
 <p>完整的<code>validator</code>对象就可以实现为以下形式：</p>
-<p><a class="jsbin-embed" href="http://jsbin.com/uzEtEDu/1/embed?js,console" target="_blank">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
+<p><a class="jsbin-embed" href="http://jsbin.com/uzEtEDu/2/embed?js,console" target="_blank">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
 <p>当以后表单中字段有新增，如果出现了需要验证的新的策略，只需要将其加入到<code>validator.types</code>下，然后在<code>validator.config</code>中添加校验规则，代码其他部分就不需要再进行调整了，依然执行<code>validator.validate</code>方法，一切仍会按预期给出校验结果。</p>
 <h3>在开源框架和类库中的应用</h3>
 <p>策略模式似乎看上去应用场景往往和具体的业务逻辑结合比较紧，在开源框架和类库中并不太容易找到算得上的应用。不过我们可以看看 KISSY 中的<a href="http://gallery.kissyui.com/uploader/1.5/guide/index.html" target="_blank">uploader</a>这个插件，其特性之一是“支持 ajax、flash、iframe 三种方案，兼容所有浏览器”，并且在设置中指定上传的<code>type</code>，这可以看作是一种策略模式的实现了。我们看看<a href="https://github.com/kissygalleryteam/uploader/blob/master/1.5/index.js" target="_blank">源代码部分</a>：</p>

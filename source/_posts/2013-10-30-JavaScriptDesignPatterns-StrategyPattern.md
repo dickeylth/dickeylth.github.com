@@ -124,7 +124,7 @@ validator.types = {
 
 完整的`validator`对象就可以实现为以下形式：
 
-<a class="jsbin-embed" href="http://jsbin.com/uzEtEDu/1/embed?js,console">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/uzEtEDu/2/embed?js,console">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 当以后表单中字段有新增，如果出现了需要验证的新的策略，只需要将其加入到`validator.types`下，然后在`validator.config`中添加校验规则，代码其他部分就不需要再进行调整了，依然执行`validator.validate`方法，一切仍会按预期给出校验结果。
 
