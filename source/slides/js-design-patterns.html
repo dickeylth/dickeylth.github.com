@@ -33,7 +33,7 @@ layout: false
                     <li>装饰者模式</li>
                     <li>策略模式</li>
                     <li>观察者模式</li>
-                    <li>回顾</li>
+                    <li>总结</li>
                 </ul>
             </section>
 
@@ -62,8 +62,8 @@ layout: false
                         <ul>
                             <li class="fragment">模块内聚性</li>
                             <li class="fragment">模块间解耦</li>
-                            <li class="fragment">可扩展性</li>
-                            <li class="fragment">支撑业务复杂性的增长</li>
+                            <li class="fragment">抽象</li>
+                            <li class="fragment">目的——支撑业务复杂性的增长</li>
                         </ul>
                     </p>
                 </section>
@@ -521,7 +521,444 @@ function parseDate(str){
 
                 <section>
                     <h3>装饰者模式</h3>
+                    <p class="fragment">
+                        <a href="" class="image">
+                            <img src="img/decorator0.png"/>
+                        </a>
+                    </p>
                 </section>
+
+                <section>
+                    <h4>实现方式</h4>
+                    <ul>
+                        <li>继承</li>
+                        <li>列表</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>使用继承</h4>
+                    <pre class="fragment">
+                        <code data-trim contenteditable>
+var superMario = new SuperMario();
+superMario = superMario.decorate('mushroom');
+console.log(" 吃了红蘑菇，超级玛丽变身了，长到 " + superMario.getHeight() + " 了， 血变成 " + superMario.getBlood() + " 滴了 "); // " 吃了红蘑菇，超级玛丽变身了，长到 20 了， 血变成 1 滴了 "
+
+superMario = superMario.decorate('flower');
+console.log(" 吃了火力花，再次华丽变身，变成 " + superMario.getColor() + " 了，能战斗了：" + superMario.attack());   // " 吃了火力花，再次华丽变身，变成 white 了，能战斗了：超级玛丽吐火力弹！"
+
+superMario = superMario.undecorate2('mushroom');
+console.log(" 超级玛丽中枪了。。。红蘑菇失效了，身高：" + superMario.getHeight() + ", 还剩 " + superMario.getBlood() + " 滴血，颜色：" + superMario.getColor());   // " 超级玛丽中枪了。。。红蘑菇失效了，身高：10, 还剩 0 滴血，颜色：white"
+console.log(" 还能战斗吗：" + (typeof superMario.attack == 'function'));   // " 还能战斗吗：true"
+
+superMario = superMario.undecorate2('flower');
+console.log(" 超级玛丽中枪了。。。火力花也失效了，身高：" + superMario.getHeight() + ", 还剩 " + superMario.getBlood() + " 滴血，颜色：" + superMario.getColor());  // " 超级玛丽中枪了。。。火力花也失效了，身高：10, 还剩 0 滴血，颜色：green"
+console.log(" 还能战斗吗：" + (typeof superMario.attack == 'function'));   // " 还能战斗吗：false"
+                        </code>
+                    </pre>
+
+                </section>
+
+                <section>
+                    <h4>基于继承的实现</h4>
+                    <a class="jsbin-embed" href="http://jsbin.com/IgivUnu/11/embed?js,console">JS Bin</a>
+                </section>
+
+                <section>
+                    <h4>抽离装饰方法</h4>
+                    <a class="jsbin-embed" href="http://jsbin.com/ArIQali/11/embed?js,console">JS Bin</a>
+
+                    <p class="fragment">
+                        <h5>undecorate的实现</h5>
+                        <ul>
+                            <li>
+                                <a href="https://developer.mozilla.org/zh-CN/docs/JavaScript/Reference/Global_Objects/Object/getPrototypeOf" target="_blank"><code>Object.getPrototypeof</code></a>
+                                <a href="https://developer.mozilla.org/zh-CN/docs/JavaScript/Reference/Global_Objects/Object/setPrototypeOf" target="_blank"><code>Object.setPrototypeof</code></a>
+                            </li>
+                        </ul>
+                    </p>
+                </section>
+
+                <section>
+                    <h4>使用列表</h4>
+                    <pre class="fragment">
+                        <code data-trim contenteditable>
+var superMario = new SuperMario();
+superMario.decorate({name: 'mushroom'});
+superMario.decorate({name: 'flower'});
+console.log(superMario.getDecorated({'field':'color'}));
+console.log(superMario.getDecorated({'method':'attack'}));
+
+superMario.undecorate({name: 'flower'});
+console.log(superMario.getDecorated({'field':'color'}));
+console.log(superMario.getDecorated({'method':'attack'}));
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h4>基于列表的实现</h4>
+                    <a class="jsbin-embed" href="http://jsbin.com/oGexaci/10/embed?js,console">JS Bin</a>
+                </section>
+
+                <section>
+                    <h3>开源框架中的应用</h3>
+                    <pre class="fragment">
+                        <code data-trim contenteditable>
+(function($) {
+$.fn.pluginName = function() {
+    // Our plugin implementation code goes here.
+};
+})(jQuery);
+                        </code>
+                    </pre>
+
+                    <pre class="fragemtn">
+                        <code>
+/**
+* @ignore
+* node
+* @author yiminghe@gmail.com
+*/
+KISSY.add('node', function (S, Node) {
+    S.mix(S, {
+            Node: Node,
+            NodeList: Node,
+            one: Node.one,
+            all: Node.all
+        });
+        return Node;
+    }, {
+    requires: [
+        'node/base',
+        'node/attach',
+        'node/override',
+        'node/anim'
+    ]
+});
+                        </code>
+                    </pre>
+                </section>
+            </section>
+
+            <section class="strategy">
+
+                <section>
+                    <h3>装饰者模式</h3>
+                    <p class="fragment">
+                        <a href="" class="image">
+                            <img src="img/strategy0.png"/>
+                        </a>
+                    </p>
+                </section>
+
+                <section>
+                    <h4>预期目标</h4>
+                    <pre>
+                        <code>
+// 待校验的数据
+var data = {
+    name: ' 王 x',
+    gender: 1,
+    identity: '011110198806061234',
+    birthday: '1988-13-01',
+    mobile: '15800000000',
+    spareMobile: '13911111111',
+    email: 'abcdef.cn'
+};
+
+// 校验规则配置
+validator.config = {
+    name: {
+        text: ' 姓名 ',
+        validators: ['isNotEmpty', 'isValidName']
+    },
+    identity: {
+        text: ' 身份证号 ',
+        validators: ['isNotEmpty','isValidIdentity']
+    },
+    birthday: {
+        text: ' 生日 ',
+        validators: [['isBirthEqualTo','identity'],'isValidDate']
+    },
+    mobile: {
+        text: ' 手机号码 ',
+        validators: ['isValidMobile']
+    },
+    spareMobile: {
+        text: ' 备用手机号码 ',
+        validators: ['isValidMobile', ['isNotEqualTo', 'mobile']]
+    },
+    email: {
+        text: 'Email',
+        validators: ['isValidEmail']
+    }
+};
+
+// 调用获得校验结果
+validator.validate(data);
+if(validator.hasErrors()){
+    validator.messages.join('<br/>');
+}
+// 期望结果：
+/*
+姓名只能为 2-4 个字的汉字
+生日与身份证号不一致，请修改
+生日格式不合法，请按 "2008-01-01" 格式输入日期
+备用手机号码不得与手机号码相同，请重新输入
+Email 格式不合法，请输入正确的 Email 地址
+*/
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h4>实现方法</h4>
+                    <a class="jsbin-embed" href="http://jsbin.com/uzEtEDu/2/embed?js,console">JS Bin</a>
+                </section>
+
+                <section>
+                    <h4>现实应用</h4>
+                    <h5><a href="http://gallery.kissyui.com/uploader/1.5/guide/index.html">KISSY Uploader</a></h5>
+                </section>
+
+                <section>
+                    <h5>代码片段</h5>
+                    <pre>
+                        <code>
+/**
+* 获取上传方式
+* @param {String} type 上传方式（根据 type 返回对应的上传类，比如 iframe 返回 IframeType）
+*/
+_getType:function (type) {
+    var self = this, types = Uploader.type, UploadType,
+        isSupportAjax = self.isSupportAjax(),
+        isSupportFlash = self.isSupportFlash();
+    switch (type) {
+        case types.IFRAME :
+            UploadType = IframeType;
+            break;
+        case types.AJAX :
+            UploadType = isSupportAjax && AjaxType || false;
+            break;
+        case types.FLASH :
+            UploadType = isSupportFlash && FlashType || false;
+            break;
+        default :
+            S.log(LOG_PREFIX + 'type 参数不合法 ');
+            return false;
+    }
+    if (UploadType) S.log(LOG_PREFIX + ' 使用 ' + type + ' 上传方式 ');
+    self.set('type', type);
+    return UploadType;
+},
+                        </code>
+                    </pre>
+                    <pre class="fragment">
+                        <code>
+/**
+* @fileoverview 异步文件上传组件
+* @author 剑平（明河）<minghe36@126.com>, 紫英 <daxingplay@gmail.com>
+**/
+KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, HtmlButton, SwfButton, Queue) {
+    ...
+}, {requires:['node', 'rich-base','json', 'ua','./type/iframe', './type/ajax', './type/flash', ...]
+});
+                        </code>
+                    </pre>
+                </section>
+            </section>
+
+            <section class="observer">
+
+                <section>
+                    <h3>观察者模式</h3>
+                    <p class="fragment">
+                        <a href="" class="image">
+                            <img src="img/observer0.png"/>
+                        </a>
+                    </p>
+                </section>
+
+                <section>
+                    <h4>案例分析</h4>
+                    <p class="fragment">
+                        <a href="" class="image">
+                            <img src="img/observer1.png"/>
+                        </a>
+                    </p>
+                </section>
+
+                <section>
+                    <h4>原生简单模拟</h4>
+                    <a class="jsbin-embed" href="http://jsbin.com/AmilUmUh/1/embed?js,console">JS Bin</a>
+                </section>
+
+                <section>
+                    <h4>发布者-事件-监听者</h4>
+                    <p class="fragment">
+                        <a href="" class="image">
+                            <img src="img/observer2.png"/>
+                        </a>
+                    </p>
+                </section>
+
+                <section>
+                    <h4>彪悍的Glbevt</h4>
+                    <p class="fragment">
+                        <a href="" class="image">
+                            <img src="img/observer3.png"/>
+                        </a>
+                    </p>
+                </section>
+
+                <section>
+                    <hgroup>
+                        <h4>仔细观察下Glbevt</h4>
+                        <h5>Glbevt源码</h5>
+                    </hgroup>
+
+                    <pre>
+                        <code>
+/**
+* @fileoverview FlightOrder - Glbevt.
+* @author
+*/
+/**
+* KISSY.use('flight-order/glbevt/index',function(S,Glbevt){
+*		new Glbevt();
+* });
+*/
+KISSY.add(function (S) {
+    var Glbevt = S.mix({}, S.EventTarget);
+    Glbevt.simulateCheckBoxClick = function (node) {
+        if (!node) {
+            return;
+        }
+        node.prop('checked', !node.prop('checked'));
+        node.fire('click');
+        node.prop('checked', !node.prop('checked'));
+    }
+    var html = S.one('html');
+    var reflowCount = 0;
+    var __reflow = S.buffer(function () {
+        html.css('zoom', 1.001);
+        html.css('zoom', 1);
+    }, 100);
+    Glbevt.publish('reflow', {
+        defaultFn: function () {
+        __reflow();
+        }
+    });
+    return Glbevt;
+}, {requires: [ 'node', 'event']});
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <hgroup>
+                        <h4>仔细观察下Glbevt</h4>
+                        <h5>运行时的Glbevt</h5>
+                    </hgroup>
+
+                    <a href="" class="image">
+                        <img src="img/observer4.png"/>
+                    </a>
+
+                    <a href="" class="fragment image">
+                        <img src="img/observer5.png"/>
+                    </a>
+                </section>
+
+                <section>
+                    <hgroup>
+                        <h4>仔细观察下Glbevt</h4>
+                        <h5>Glbevt调用</h5>
+                    </hgroup>
+                    <pre>
+                        <code>
+// 提交数据
+Glbevt.on('confirm:getdata',
+    function (evt) {
+        that._savePassengers();
+        evt.fn({
+            name: PassengerList.NAME,
+            data: {
+                model: that.simpleModels(),
+                adultAmount: that.countAdult()
+            }
+        });
+    });
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h4>开源框架中的Pub/Sub</h4>
+                    <pre>
+                        <code>
+// Publish
+
+// jQuery: $(obj).trigger("channel", data);
+$( el ).trigger( "/login", data );
+
+// YUI/KISSY: el.fire("channel", data);
+el.fire( "/login", data );
+
+
+// Subscribe
+
+// jQuery: $(obj).on( "channel", [data], fn );
+$( el ).on( "/login", function( event ){...} );
+
+// YUI/KISSY: el.on("channel", handler);
+el.on( "/login", function( data ){...} );
+
+
+// Unsubscribe
+
+// jQuery: $(obj).off( "channel" );
+$( el ).off( "/login" );
+
+// YUI/KISSY: el.detach("channel");
+el.detach( "/login" );
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h4>EventTarget</h4>
+                    <ul>
+                        <li>on：定义监听句柄<li>
+                        <li>detach: 移除监听句柄<li>
+                        <li>fire: 触发自定义事件<li>
+                        <li>publish: 定义可冒泡和拥有默认函数defaultFn的自定义事件<li>
+                        <li>addTarget/removeTarget： 控制事件冒泡到哪些对象</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>再来一个案例分析</h4>
+                    <a href="" class="image">
+                        <img src="img/list0.png"/>
+                    </a>
+                </section>
+
+                <section>
+                    <a href="" class="fragment image">
+                        <img src="img/observer5.png"/>
+                    </a>
+                </section>
+
+            </section>
+                <section>
+                    <h3>回顾</h3>
+                    <h4 class="fragment">
+                        谢谢！
+                    </h4>
+                </section>
+            <section>
 
             </section>
 
