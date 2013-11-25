@@ -8,8 +8,9 @@ layout: false
     <title>JavaScript设计模式</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="css/reveal.min.css"/>
-    <link rel="stylesheet" href="css/theme-sky.css"/>
+    <link rel="stylesheet" href="css/theme-sky-min.css"/>
     <link rel="stylesheet" href="css/zenburn.css"/>
+    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
 </head>
 <body>
 
@@ -45,13 +46,13 @@ layout: false
                 </section>
 
                 <section>
-                    <a href="#" class="image navigate-down">
+                    <a href="javascript:;" class="image navigate-down">
                         <img src="img/slide1.jpg"/>
                     </a>
                 </section>
 
                 <section>
-                    <a href="#" class="image">
+                    <a href="javascript:;" class="image">
                         <img src="img/slide2.png"/>
                     </a>
                 </section>
@@ -75,7 +76,7 @@ layout: false
                 <section>
                     <h3>单例模式</h3>
                     <p class="fragment">
-                        <a href="" class="image">
+                        <a href="javascript:;" class="image">
                             <img src="img/singleton0.jpg"/>
                         </a>
                     </p>
@@ -397,7 +398,7 @@ return S;
                 <section>
                     <h3>工厂模式</h3>
                     <p class="fragment">
-                        <a href="" class="image">
+                        <a href="javascript:;" class="image">
                             <img src="img/factory0.jpg" alt="工厂模式"/>
                         </a>
                     </p>
@@ -522,7 +523,7 @@ function parseDate(str){
                 <section>
                     <h3>装饰者模式</h3>
                     <p class="fragment">
-                        <a href="" class="image">
+                        <a href="javascript:;" class="image">
                             <img src="img/decorator0.png"/>
                         </a>
                     </p>
@@ -646,7 +647,7 @@ KISSY.add('node', function (S, Node) {
                 <section>
                     <h3>策略模式</h3>
                     <p class="fragment">
-                        <a href="" class="image">
+                        <a href="javascript:;" class="image">
                             <img src="img/strategy0.png"/>
                         </a>
                     </p>
@@ -774,7 +775,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
                 <section>
                     <h3>观察者模式</h3>
                     <p class="fragment">
-                        <a href="" class="image">
+                        <a href="javascript:;" class="image">
                             <img src="img/observer0.jpg"/>
                         </a>
                     </p>
@@ -783,7 +784,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
                 <section>
                     <h4>案例分析</h4>
                     <p class="fragment">
-                        <a href="" class="image">
+                        <a href="javascript:;" class="image">
                             <img src="img/observer1.png"/>
                         </a>
                     </p>
@@ -797,7 +798,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
                 <section>
                     <h4>发布者-事件-监听者</h4>
                     <p class="fragment">
-                        <a href="" class="image">
+                        <a href="javascript:;" class="image">
                             <img src="img/observer2.png"/>
                         </a>
                     </p>
@@ -806,7 +807,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
                 <section>
                     <h4>彪悍的Glbevt</h4>
                     <p class="fragment">
-                        <a href="" class="image">
+                        <a href="javascript:;" class="image">
                             <img src="img/observer3.png"/>
                         </a>
                     </p>
@@ -862,11 +863,17 @@ KISSY.add(function (S) {
                         <h5>运行时的Glbevt</h5>
                     </hgroup>
 
-                    <a href="" class="image">
+                    <a href="javascript:;" class="fragment image">
                         <img src="img/observer4.png"/>
                     </a>
+                </section>
 
-                    <a href="" class="fragment image">
+                <section>
+                    <hgroup>
+                        <h4>仔细观察下Glbevt</h4>
+                        <h5>运行时的Glbevt</h5>
+                    </hgroup>
+                    <a href="javascript:;" class="fragment image">
                         <img src="img/observer5.png"/>
                     </a>
                 </section>
@@ -940,14 +947,14 @@ el.detach( "/login" );
 
                 <section>
                     <h4>再来一个案例分析</h4>
-                    <a href="" class="image">
+                    <a href="javascript:;" class="fragment image">
                         <img src="img/list0.png"/>
                     </a>
                 </section>
 
                 <section>
-                    <a href="" class="fragment image">
-                        <img src="img/observer5.png"/>
+                    <a href="javascript:;" class="image">
+                        <img src="img/list1.png"/>
                     </a>
                 </section>
 
@@ -965,39 +972,41 @@ el.detach( "/login" );
         </div>
     </div>
 
+    <!--<script src="js/embed.js"></script>-->
 
     <script src="js/head.min.js"></script>
     <script src="js/reveal.min.js"></script>
 
     <script>
 
-        // Full list of configuration options available here:
-        // https://github.com/hakimel/reveal.js#configuration
-        Reveal.initialize({
-            controls: true,
-            progress: true,
-            history: true,
-            center: true,
+        $(document).ready(function(){
 
-            theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-            transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
 
-            // Parallax scrolling
-            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
-            // parallaxBackgroundSize: '2100px 900px',
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
-            // Optional libraries used to extend on reveal.js
-            dependencies: [
-                { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-                { src: 'js/plugin/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                { src: 'js/plugin/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                { src: 'js/plugin/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-                { src: 'js/plugin/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-                { src: 'js/plugin/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-            ]
+                // Parallax scrolling
+                // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+                // parallaxBackgroundSize: '2100px 900px',
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'js/plugin/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'js/plugin/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'js/plugin/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'js/plugin/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'js/plugin/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
         });
     </script>
-
-    <script src="js/embed.js"></script>
 </body>
 </html>
