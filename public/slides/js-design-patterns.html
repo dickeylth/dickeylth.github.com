@@ -3,9 +3,9 @@
 <head>
     <title>JavaScript 设计模式</title>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="css/reveal.min.css"/>
-    <link rel="stylesheet" href="css/theme-sky-min.css"/>
-    <link rel="stylesheet" href="css/zenburn.css"/>
+    <link rel="stylesheet" href="http://dickeylth.github.io/slides/css/reveal.min.css"/>
+    <link rel="stylesheet" href="http://dickeylth.github.io/slides/css/theme-sky-min.css"/>
+    <link rel="stylesheet" href="http://dickeylth.github.io/slides/css/zenburn.css"/>
     <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
 </head>
 <body>
@@ -119,7 +119,7 @@ x === y;    // false
 
                 <section>
                     <h4>加强版</h4>
-                    <a class="jsbin-embed" href="http://jsbin.com/eFOHuWuP/1/embed?js,console" target="_blank">JS Bin</a>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/eFOHuWuP/1/embed?js,console"></div>
                 </section>
 
                 <section>
@@ -142,7 +142,7 @@ x == y;     // true
 
                 <section>
                     <h4>类的静态属性</h4>
-                    <a class="jsbin-embed" href="http://jsbin.com/adaVOmes/1/embed?js,console" target="_blank">JS Bin</a>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/adaVOmes/1/embed?js,console"></div>
                 </section>
 
                 <section>
@@ -157,17 +157,17 @@ x == y;     // true
 
                 <section>
                     <h4>闭包</h4>
-                    <a class="jsbin-embed" href="http://jsbin.com/OjiFucu/8/embed?js,console" target="_blank">JS Bin</a>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/OjiFucu/8/embed?js,console"></div>
                 </section>
 
                 <section>
                     <h4>闭包带来的问题</h4>
-                    <a class="jsbin-embed" href="http://jsbin.com/OjiFucu/9/edit?js,console" target="_blank">JS Bin</a>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/OjiFucu/9/edit?js,console"></div>
                 </section>
 
                 <section>
                     <h4>修复办法</h4>
-                    <a class="jsbin-embed" href="http://jsbin.com/EBozomU/2/embed?js,console" target="_blank">JS Bin</a>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/EBozomU/2/embed?js,console"></div>
                 </section>
 
                 <section>
@@ -457,7 +457,7 @@ exports.createServer = function(requestListener) {
                 </section>
 
                 <section>
-                    <pre class="fragment">
+                    <pre>
                         <code data-trim contenteditable>
 new Date(2012).toLocaleString();
 // "1970 年 1 月 1 日 上午 8:00:02"
@@ -481,7 +481,7 @@ new Date(2012, 1, 1, 1, 1, 1).toLocaleString();
                 </section>
 
                 <section>
-                    <pre class="fragment">
+                    <pre>
                         <code data-trim contenteditable>
 /*
 * 解析日期字符串，自动创建对应 Date 对象
@@ -509,7 +509,7 @@ function parseDate(str){
                 </section>
 
                 <section>
-                    <a class="jsbin-embed" href="http://jsbin.com/IyOGuHO/3/embed?js,console" target="_blank">JS Bin</a>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/IyOGuHO/3/embed?js,console"></div>
                 </section>
 
             </section>
@@ -558,12 +558,12 @@ console.log(" 还能战斗吗：" + (typeof superMario.attack == 'function'));  
 
                 <section>
                     <h4>基于继承的实现</h4>
-                    <a class="jsbin-embed" href="http://jsbin.com/IgivUnu/11/embed?js,console" target="_blank">JS Bin</a>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/IgivUnu/11/embed?js,console"></div>
                 </section>
 
                 <section>
                     <h4>抽离装饰方法</h4>
-                    <a class="jsbin-embed" href="http://jsbin.com/ArIQali/11/embed?js,console" target="_blank">JS Bin</a>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/ArIQali/11/embed?js,console"></div>
 
                     <p class="fragment">
                         <h5>undecorate 的实现</h5>
@@ -595,12 +595,12 @@ console.log(superMario.getDecorated({'method':'attack'}));
 
                 <section>
                     <h4>基于列表的实现</h4>
-                    <a class="jsbin-embed" href="http://jsbin.com/oGexaci/10/embed?js,console" target="_blank">JS Bin</a>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/oGexaci/10/embed?js,console"></div>
                 </section>
 
                 <section>
                     <h3>开源框架中的应用</h3>
-                    <pre class="fragment">
+                    <pre>
                         <code data-trim contenteditable>
 (function($) {
 $.fn.pluginName = function() {
@@ -610,8 +610,8 @@ $.fn.pluginName = function() {
                         </code>
                     </pre>
 
-                    <pre class="fragemtn">
-                        <code>
+                    <pre class="fragment">
+                        <code data-trim contenteditable>
 /**
 * @ignore
 * node
@@ -711,7 +711,7 @@ Email 格式不合法，请输入正确的 Email 地址
 
                 <section>
                     <h4>实现方法</h4>
-                    <a class="jsbin-embed" href="http://jsbin.com/uzEtEDu/2/embed?js,console" target="_blank">JS Bin</a>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/uzEtEDu/2/embed?js,console"></div>
                 </section>
 
                 <section>
@@ -722,7 +722,7 @@ Email 格式不合法，请输入正确的 Email 地址
                 <section>
                     <h5>代码片段</h5>
                     <pre>
-                        <code>
+                        <code data-trim contenteditable="true">
 /**
 * 获取上传方式
 * @param {String} type 上传方式（根据 type 返回对应的上传类，比如 iframe 返回 IframeType）
@@ -751,19 +751,24 @@ _getType:function (type) {
 },
                         </code>
                     </pre>
-                    <pre class="fragment">
-                        <code>
+                </section>
+
+                <section>
+                    <h5>代码片段</h5>
+                    <pre>
+                        <code data-trim contenteditable="true">
 /**
 * @fileoverview 异步文件上传组件
-* @author 剑平（明河）<minghe36@126.com>, 紫英 <daxingplay@gmail.com>
+* @author 剑平（明河）&lt;minghe36@126.com>, 紫英 &lt;daxingplay@gmail.com>
 **/
 KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, HtmlButton, SwfButton, Queue) {
-    ...
+...
 }, {requires:['node', 'rich-base','json', 'ua','./type/iframe', './type/ajax', './type/flash', ...]
 });
                         </code>
                     </pre>
                 </section>
+
             </section>
 
             <section class="observer">
@@ -788,7 +793,7 @@ KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, H
 
                 <section>
                     <h4>原生简单模拟</h4>
-                    <a class="jsbin-embed" href="http://jsbin.com/AmilUmUh/1/embed?js,console" target="_blank">JS Bin</a>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/AmilUmUh/1/embed?js,console"></div>
                 </section>
 
                 <section>
@@ -968,14 +973,16 @@ el.detach( "/login" );
         </div>
     </div>
 
-    <!--<script src="js/embed.js"></script>-->
-
-    <script src="js/head.min.js"></script>
-    <script src="js/reveal.min.js"></script>
+    <script src="http://dickeylth.github.io/slides/js/head.min.js"></script>
+    <script src="http://dickeylth.github.io/slides/js/head.min.js"></script>
 
     <script>
 
         $(document).ready(function(){
+
+            $('.jsbin-embed').html('<div class="J_JsbinLoading pi-loading">' +
+                        '<i></i><span class="pi-loading-in">正在加载中，请稍后</span>' +
+                        '</div><iframe class="J_JsbinIframe" style="display:none;"></iframe>');
 
             // Full list of configuration options available here:
             // https://github.com/hakimel/reveal.js#configuration
@@ -1002,6 +1009,21 @@ el.detach( "/login" );
                     { src: 'js/plugin/notes.js', async: true, condition: function() { return !!document.body.classList; } }
                 ]
             });
+
+            Reveal.addEventListener( 'slidechanged', function( event ) {
+                // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+                var currentSlide = $(event.currentSlide);
+                var jsBin = currentSlide.find('.jsbin-embed');
+                if(jsBin[0] != null && (jsBin.attr('loaded') != 'true')){
+                    var iframe = jsBin.find('.J_JsbinIframe');
+                    iframe.attr('src', jsBin.data('href'));
+                    jsBin.find('.J_JsbinLoading').remove();
+                    iframe.fadeIn();
+                    jsBin.attr({
+                        loaded: true
+                    });
+                }
+            } );
         });
     </script>
 </body>
