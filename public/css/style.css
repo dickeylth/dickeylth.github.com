@@ -370,6 +370,8 @@ article .entry h4,
 article .entry h5,
 article .entry h6 {
   font-weight: normal;
+  color: #111;
+  text-shadow: #ddd 1px 1px 0;
 }
 article .entry img,
 article .entry video {

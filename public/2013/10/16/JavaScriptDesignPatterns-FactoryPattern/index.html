@@ -57,6 +57,18 @@
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
   
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
   <div class="post-content">
     <header>
       
@@ -72,7 +84,8 @@
     <div class="entry">
       
         <p>工厂模式通常用于重复创建相似对象，提供动态创建对象的接口。我们来看看身边的工厂模式，以及它与构造函数的区别。</p>
-<p><a id="more"></a><br>工厂模式作为设计模式中构造模式之一，通常在类或类的静态方法中应用，主要为了实现：</p>
+<p><a id="more"></a>
+工厂模式作为设计模式中构造模式之一，通常在类或类的静态方法中应用，主要为了实现：</p>
 <ul>
 <li>重复创建相似对象</li>
 <li>根据类型名在运行时动态创建对象</li>
@@ -84,7 +97,7 @@
 <p><img src="/img/jspatterns/factory2.jpeg" alt=" 酒店订房间 "></p>
 <p>是不是感觉到工厂模式其实无处不在？</p>
 <p>回到代码的世界，其实 JavaScript 中的工厂模式也很常见，比如 JavaScript 中内置的对象工厂：</p>
-<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -94,31 +107,31 @@
 8
 9
 10
-</pre></td><td class="code"><pre><span class="keyword">var</span> o = <span class="keyword">new</span> Object(),
-    n = <span class="keyword">new</span> Object(<span class="number">1</span>),
-    s = Object(<span class="string">'1'</span>),
-    b = Object(<span class="literal">true</span>);
+</pre></td><td class="code"><pre><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>(),
+    n = <span class="keyword">new</span> <span class="built_in">Object</span>(<span class="number">1</span>),
+    s = <span class="built_in">Object</span>(<span class="string">'1'</span>),
+    b = <span class="built_in">Object</span>(<span class="literal">true</span>);
 
 <span class="comment">// test</span>
-o.constructor === Object;	<span class="comment">// true</span>
-n.constructor === Number;	<span class="comment">// true</span>
-s.constructor === String;	<span class="comment">// true</span>
-b.constructor === Boolean;	<span class="comment">// true</span>
+o.constructor === <span class="built_in">Object</span>;	<span class="comment">// true</span>
+n.constructor === <span class="built_in">Number</span>;	<span class="comment">// true</span>
+s.constructor === <span class="built_in">String</span>;	<span class="comment">// true</span>
+b.constructor === <span class="built_in">Boolean</span>;	<span class="comment">// true</span>
 </pre></td></tr></table></figure>
 
 
 <p>当然，除了工厂模式，很多时候我们也会直接采用<code>new</code>关键字调用构造函数来创建对象。那么这两种实现方式有什么区别呢？什么时候采用工厂模式，什么时候采用构造函数呢？</p>
 <p>我们先来看看各种 nodejs 教程中的开篇经典 demo：</p>
-<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
 2
 3
 4
 5
 6
 7
-</pre></td><td class="code"><pre><span class="keyword">var</span> http = require(<span class="string">"http"</span>);
+</pre></td><td class="code"><pre><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);
 
-http.createServer(<span class="keyword">function</span>(request, response) {
+http.createServer(<span class="function"><span class="keyword">function</span><span class="params">(request, response)</span> {</span>
 	response.writeHead(<span class="number">200</span>, {<span class="string">"Content-Type"</span>: <span class="string">"text/plain"</span>});
 	response.write(<span class="string">"Hello World"</span>);
 	response.end();
@@ -126,8 +139,9 @@ http.createServer(<span class="keyword">function</span>(request, response) {
 </pre></td></tr></table></figure>
 
 
-<p>nodejs 中的 http 模块输出了 createServer 这个接口，这里就是一个典型的工厂模式。<br>但看看 http 模块的源码，可以发现其实 http 同样提供了 Server 这个构造器接口：</p>
-<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+<p>nodejs 中的 http 模块输出了 createServer 这个接口，这里就是一个典型的工厂模式。
+但看看 http 模块的源码，可以发现其实 http 同样提供了 Server 这个构造器接口：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -148,7 +162,7 @@ util.inherits(Server, net.Server);
 
 exports.Server = Server;
 
-exports.createServer = <span class="keyword">function</span>(requestListener) {
+exports.createServer = <span class="function"><span class="keyword">function</span><span class="params">(requestListener)</span> {</span>
 	<span class="keyword">return</span> <span class="keyword">new</span> Server(requestListener);
 };
 </pre></td></tr></table></figure>
@@ -159,20 +173,20 @@ exports.createServer = <span class="keyword">function</span>(requestListener) {
 <li><a href="https://groups.google.com/forum/#!msg/nodejs/GTaCdFPlweI/M0q38C3SJpkJ" target="_blank">[nodejs] Why net.createServer() and not new net.Server()?</a></li>
 <li><a href="https://groups.google.com/forum/#!msg/nodejs/yoXogs7vNYU/uUKT59t_w-sJ" target="_blank">Why export both http.Server() and http.createServer()?</a></li>
 </ul>
-<p>得到的答案大意是当年受限于 C++ 代码中的限制只好采用了这些工厂方法 (“Due to the way I structured the C++ stuff constructors couldn&#39;t take arguments.”这句比较含糊，没说明具体原因)。</p>
+<p>得到的答案大意是当年受限于 C++ 代码中的限制只好采用了这些工厂方法 (&quot;Due to the way I structured the C++ stuff constructors couldn&#39;t take arguments.&quot; 这句比较含糊，没说明具体原因)。</p>
 <p>而同时提供构造器方法，Bryce 猜测是为了方便以后做类型检测。</p>
 <p>此外，让我们对比下下面两行代码：</p>
-<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
 2
-</pre></td><td class="code"><pre>s = require(<span class="string">"http"</span>).createServer([listener]);
-s = <span class="keyword">new</span> (require(<span class="string">"http"</span>).Server)([listener]);
+</pre></td><td class="code"><pre>s = <span class="built_in">require</span>(<span class="string">"http"</span>).createServer([listener]);
+s = <span class="keyword">new</span> (<span class="built_in">require</span>(<span class="string">"http"</span>).Server)([listener]);
 </pre></td></tr></table></figure>
 
 
 <p>很显然，上面一行代码采用链式调用的方式，可读性更强。</p>
 <p>此外回复中还提到了 Isaac 解释了他为什么更倾向于不要使用<code>new</code>关键字：调用时容易漏掉这个关键字，导致直接调用构造器会污染全局变量。</p>
 <p>尽管个人感觉这个理由不够充分，不过这让我想起了之前写的<code>RichDate</code>模块中碰到过的一个问题：如何根据可变参数列表自动构建 Date 对象？众所周知，JavaScript 中的<code>Date</code>构造函数本身支持可变参数：</p>
-<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -189,29 +203,29 @@ s = <span class="keyword">new</span> (require(<span class="string">"http"</span>
 15
 16
 17
-</pre></td><td class="code"><pre><span class="keyword">new</span> Date(<span class="number">2012</span>).toLocaleString(); 				
+</pre></td><td class="code"><pre><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2012</span>).toLocaleString(); 				
 <span class="comment">// "1970 年 1 月 1 日 上午 8:00:02"</span>
 
-<span class="keyword">new</span> Date(<span class="number">2012</span>, <span class="number">1</span>).toLocaleString();
+<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2012</span>, <span class="number">1</span>).toLocaleString();
 <span class="comment">// "2012 年 2 月 1 日 上午 12:00:00"</span>
 
-<span class="keyword">new</span> Date(<span class="number">2012</span>, <span class="number">1</span>, <span class="number">1</span>).toLocaleString();
+<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2012</span>, <span class="number">1</span>, <span class="number">1</span>).toLocaleString();
 <span class="comment">// "2012 年 2 月 1 日 上午 12:00:00"</span>
 
-<span class="keyword">new</span> Date(<span class="number">2012</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).toLocaleString();
+<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2012</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).toLocaleString();
 <span class="comment">// "2012 年 2 月 1 日 上午 1:00:00"</span>
 
-<span class="keyword">new</span> Date(<span class="number">2012</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).toLocaleString();
+<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2012</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).toLocaleString();
 <span class="comment">// "2012 年 2 月 1 日 上午 1:01:00"</span>
 
-<span class="keyword">new</span> Date(<span class="number">2012</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).toLocaleString();
+<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2012</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).toLocaleString();
 <span class="comment">// "2012 年 2 月 1 日 上午 1:01:01"</span>
 </pre></td></tr></table></figure>
 
 
 <p>当然第一行有点小意外，<code>new Date()</code>只传入一个参数时自动解析为时间戳（毫秒）了。这个之后我们可以单独处理。</p>
 <p>很遗憾<code>new Date()</code>支持的传入参数格式有限，而且会有兼容性问题。现在如果我们需要写这样一个函数：</p>
-<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -229,9 +243,9 @@ s = <span class="keyword">new</span> (require(<span class="string">"http"</span>
 }
 </pre></td></tr></table></figure>
 
-<p>约定输入的字符串是按照“年 - 月 - 日 - 时 - 分 - 秒”的字段顺序指定时间，但是未必包含所有的字段。</p>
+<p>约定输入的字符串是按照 &quot; 年 - 月 - 日 - 时 - 分 - 秒 &quot; 的字段顺序指定时间，但是未必包含所有的字段。</p>
 <p>很容易想到利用正则过滤出各个字段：</p>
-<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -255,8 +269,8 @@ s = <span class="keyword">new</span> (require(<span class="string">"http"</span>
  */</span>
 <span class="function"><span class="keyword">function</span> <span class="title">parseDate</span><span class="params">(str)</span>{</span>
 	<span class="comment">// native parse, with help from native Date constructor</span>
-    <span class="keyword">var</span> result = <span class="keyword">new</span> Date(str);
-    <span class="keyword">if</span>(!(result <span class="keyword">instanceof</span> Date) || isNaN(result.getTime())){
+    <span class="keyword">var</span> result = <span class="keyword">new</span> <span class="built_in">Date</span>(str);
+    <span class="keyword">if</span>(!(result <span class="keyword">instanceof</span> <span class="built_in">Date</span>) || <span class="built_in">isNaN</span>(result.getTime())){
 
 		<span class="comment">// split numbers from string</span>
         <span class="keyword">var</span> timeArr = str.match(<span class="regexp">/\d+/g</span>);
@@ -271,7 +285,7 @@ s = <span class="keyword">new</span> (require(<span class="string">"http"</span>
 <p>这时我们就碰到一个问题了，Date 的构造函数虽然支持可变参数，但是<strong>构造函数并不能直接通过 call 或者 apply 的方式传入参数数组来调用</strong>。这时我们就可以看到构造器和工厂的最大区别了。</p>
 <p>当然在 Java 等静态语言中调用其他对象或类的方法，提供了一种反射机制。这时工厂模式的优势可以体现得更好：动态根据指定的类名创建对应的对象。虽然这在 JavaScript 这样的动态语言中是不值一提的事。</p>
 <p>那么这个包装<code>Date</code>构造函数的工厂<code>createDate</code>怎么写呢？直接根据参数数量执行对应的<code>Date</code>构造函数显然比较丑陋，借助 eval，可以得到比较简单的写法：</p>
-<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -288,8 +302,8 @@ s = <span class="keyword">new</span> (require(<span class="string">"http"</span>
  * @return Date object
  */</span>
 <span class="function"><span class="keyword">function</span> <span class="title">createDate</span><span class="params">()</span>{</span>
-    <span class="keyword">var</span> paramStr = ([].slice.call(arguments)).join(<span class="string">','</span>);
-    <span class="keyword">return</span> eval(<span class="string">"new Date("</span> + paramStr +<span class="string">")"</span>);
+    <span class="keyword">var</span> paramStr = ([].slice.call(<span class="built_in">arguments</span>)).join(<span class="string">','</span>);
+    <span class="keyword">return</span> <span class="built_in">eval</span>(<span class="string">"new Date("</span> + paramStr +<span class="string">")"</span>);
 }
 <span class="keyword">var</span> x = createDate(<span class="number">2012</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">1</span>);console.log(x);
 <span class="keyword">var</span> y = createDate.apply(<span class="literal">null</span>, [<span class="number">2012</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">1</span>]);console.log(y);
@@ -353,7 +367,7 @@ s = <span class="keyword">new</span> (require(<span class="string">"http"</span>
   
     <li><a href="/categories/笔记/">笔记</a><small>5</small></li>
   
-    <li><a href="/categories/翻译/">翻译</a><small>1</small></li>
+    <li><a href="/categories/翻译/">翻译</a><small>2</small></li>
   
   </ul>
 </div>
@@ -363,7 +377,7 @@ s = <span class="keyword">new</span> (require(<span class="string">"http"</span>
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/JavaScript API/" style="font-size: 10.00px;">JavaScript API</a><a href="/tags/JavaScript设计模式/" style="font-size: 20.00px;">JavaScript设计模式</a>
+    <a href="/tags/Gulp/" style="font-size: 10.00px;">Gulp</a><a href="/tags/JavaScript API/" style="font-size: 10.00px;">JavaScript API</a><a href="/tags/JavaScript设计模式/" style="font-size: 20.00px;">JavaScript设计模式</a>
   </div>
 </div>
 
@@ -372,6 +386,10 @@ s = <span class="keyword">new</span> (require(<span class="string">"http"</span>
 <div class="widget tag">
   <h3 class="title">最新文章</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/2014/01/16/GettingStartedWithGulp/">[译]Getting Started With Gulp</a>
+      </li>
     
       <li>
         <a href="/2013/11/10/JavaScriptDesignPatterns-ObserverPattern/">JavaScript中的设计模式(5)——观察者模式</a>
@@ -389,10 +407,6 @@ s = <span class="keyword">new</span> (require(<span class="string">"http"</span>
         <a href="/2013/10/16/JavaScriptDesignPatterns-FactoryPattern/">JavaScript中的设计模式(2)——工厂模式</a>
       </li>
     
-      <li>
-        <a href="/2013/10/11/JavaScriptDesignPatterns-SingletonPattern/">JavaScript中的设计模式(1)——单例模式</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -401,7 +415,7 @@ s = <span class="keyword">new</span> (require(<span class="string">"http"</span>
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2013 Dickey Leo
+  &copy; 2014 Dickey Leo
   
 </div>
 <div class="clearfix"></div></footer>
