@@ -1,20 +1,78 @@
 ---
 layout: post
-title: "[译]A Deeper Dive Into JavaScript Promises"
+title: "[译]An Overview of JavaScript Promises"
 category: '翻译' 
 tags: ['Promise']
 cover: "/img/jspatterns/observer-cover.jpg"
 ---
 
-原文：[A Deeper Dive Into JavaScript Promises](http://www.sitepoint.com/deeper-dive-javascript-promises/)
+原文：[An Overview of JavaScript Promises](http://www.sitepoint.com/overview-javascript-promises)
 
-*[上一篇An Overview of JavaScript Promises](http://dickeylth.github.io/2014/01/18/AnOverviewOfJavaScriptPromises/)中对Promise中的API做了简单介绍，本文让我们一起来深入认识下上文中的一些概念。*
+*JavaScript 中的 Promise 让人总感觉有种神秘感，通过这个系列 2 篇译文，让我们一起来走近 Promise，感受一下高级功能。*
 
 <!--more-->
 
-我的[上一篇关于JavaScript中新引入的Promise的API的文章](http://www.sitepoint.com/overview-javascript-promises/)中讨论了Promise中的基础知识、错误处理和链式概念。将多个Promise链起来往往很有必要，从而将异步操作序列化起来。但是，很多时候我们需要跟踪每个任务的完成状态，从而相应地执行接下来的操作。由于异步任务可能会以任意次序完成，当执行多个异步操作时想要维护一个队列会很有挑战性。本文试图详细分解这些概念。
+唔，这看起来像是给所有的 JavaScript 开发者们的圣诞节礼物。得知 Promise 现在成为 JavaScript 标准的一部分，你一定会很开心。Chrome 32 beta 已经实现了基本的 Promise API。Promise 的概念对于 web 开发并不陌生。我们之中很多人已经通过某些 JS 库使用过 Promise 了，诸如 Q、when、RSVP.js 等。甚至 jQuery 中也有叫做 Deferred 的玩意儿，跟 Promise 很相似。但是在 JavaScript 中拥有对 Promise 的原生支持真的很神奇。这篇教程将会涉及 Promise 的基础，并向你展示如何在 JS 开发中充分应用。
 
-### 仔细看看Promise链
+友情提示：这仍然是个实验性特性。只有 Chrome 32 beta 和最新的 Firefox nightly 版本目前支持。
+
+### 概述
+
+一个`Promise`对象代表一个尚不可用但未来某个时刻会确定的值。它允许你以更加同步化的风格来编写异步的代码。例如，如果你使用 Promise API 来执行一个到远程 web 服务的异步调用，你需要创建一个`Promise`对象，表示稍后由 web 服务返回的数据。需要说明的是，实际上当前数据还不可用。当请求结束并且收到 web 服务返回的响应时数据才能变为可用。在此期间，`Promise`对象就像真实数据的代理。进一步地，你可以绑定回调函数到`Promise`对象上，当真实数据一旦可用时就会调用回调函数。
+
+### API
+
+让我们以研究下面的创建新的Promise对象的代码作为开始。
+
+``` javascript
+if (window.Promise) { // Check if the browser supports Promises
+  var promise = new Promise(function(resolve, reject) {
+    //asynchronous code goes here
+  });
+}
+```
+
+我们首先初始化一个新的`Promise`对象并传入一个回调函数。回调函数接收2个函数类型的参数，`resolve()`和`reject()`。你的所有的异步代码都写在回调函数中。如果一切正常，`Promise`就会通过调用`resolve()`转入成功解决状态。如果发生错误，`reject()`函数就会被调用，同时传入一个`Error`对象。这意味着`Promise`被否决了。
+
+现在让我们来通过简单的例子来演示下 Promise 是如何使用的。下面的代码创建一个异步请求到 web 服务，以 JSON 格式返回一个随机的笑话。让我们看看这里是如何使用 Promise 的。
+
+``` javascript
+if (window.Promise) {
+  console.log('Promise found');
+ 
+  var promise = new Promise(function(resolve, reject) {
+    var request = new XMLHttpRequest();
+ 
+    request.open('GET', 'http://api.icndb.com/jokes/random');
+    request.onload = function() {
+      if (request.status == 200) {
+        resolve(request.response); // we got data here, so resolve the Promise
+      } else {
+        reject(Error(request.statusText)); // status is not 200 OK, so reject
+      }
+    };
+ 
+    request.onerror = function() {
+      reject(Error('Error fetching data.')); // error occurred, reject the  Promise
+    };
+ 
+    request.send(); //send the request
+  });
+ 
+  console.log('Asynchronous request made.');
+ 
+  promise.then(function(data) {
+    console.log('Got data! Promise fulfilled.');
+    document.getElementsByTagName('body')[0].textContent = JSON.parse(data).value.joke;
+  }, function(error) {
+    console.log('Promise rejected.');
+    console.log(error.message);
+  });
+} else {
+  console.log('Promise not available');
+}
+```
+
 
 我们已经知道了如何使用`then()`将多个Promise链起来。现在，让我们来理解下当我们调用`then()`时事实上发生了什么。看看下面的代码：
 
@@ -26,150 +84,69 @@ var newPromise = getPromise(someData).then(function(data) {  // Line 1
 });
 ```
 
-这里假定`getPromise()`函数构造一个新的`Promise`对象并返回。你应该会注意到，`then()`的返回类型是一个新的`Promise`对象。在之前的例子中，第1行返回一个新的`Promise`。我们还给`then()`传入了一个回调函数。回调函数的返回值用于兑现或否决该promise。但是，如果回调函数返回的是另一个`Promise`，那么新的`Promise`（由`then()`返回的那个）只有在当前的`Promise`兑现时才会被兑现。
+在前面的代码中，`Promise()`构造函数中的回调函数包含了用来从远程服务获取数据的异步代码。这里，我们只是创建了Ajax请求到`http://api.icndb.com/jokes/random`，它将会返回一个随机的笑话。当从远程服务器接收到JSON格式响应时，就会将其传入`resolve()`函数。一旦有任何错误出现，就会调用`reject()`方法并传入一个`Error`对象。
 
-在第3行中我们还将另一个`then()`链接起来，它将等待第2行中的`Promise`的返回。传递给这个`then()`的回调函数将会接收到第2行中返回的`Promise`的兑现值并调用。你可以像这样将多个`Promise`一直链下去。如果你需要处理任何异常，你可以添加一个`catch()`，正如我之前的文章中所讨论的。
+当我们初始化一个`Promise`对象，就得到了一个稍后可用的数据的代理。在本例中，我们期望稍后某个时刻会从远程服务获得返回的一些数据。那么，我们怎么知道数据什么时候可用了呢？这就是`Promise.then()`函数的用处。`then()`函数接收2个参数：一个处理成功状态的回调函数和一个处理失败状态的回调函数。当`Promise`处理之后（也就是要么成功要么失败），这些回调函数就会被调用。如果`Promise`处理成功，对应的处理成功状态的回调函数就会被触发，并接收到你传入`resolve()`函数中的真实数据。如果Promise失败，相应的处理失败状态的回调就会被调用。 任何你传入`reject()`函数中的东西就会作为参数传入该回调函数中。
 
-既然你已经知道了Promise链是如何工作的，我们可以进一步看看异步操作是如何按顺序执行的。但首先，你需要了解一点额外的知识。
+试试这个[Plunkr](http://plnkr.co/edit/ilf9xtDqrimWxZd77yLI?p=preview)上的例子。只需要刷新下页面就可以看到一个新的随机的笑话。而且，打开浏览器控制台，你就会看到代码的不同部分是以什么顺序来执行的。此外，注意一个Promise可以处于 3 种状态：
 
-### `resolve()`和`reject()`方法
+- pending(未决的，尚未成功或失败)
+- fulfilled（成功）
+- rejected（失败）
 
-Promise API中暴露了几个有用的方法降低使用难度。其中之一就是`resolve()`，它会创建一个新的`Promise`对象，该promise始终是解决成功了的。这意味着如果你以这种方式创建了一个`Promise`并附加上一个`then()`，处理成功状态的回调函数始终会被调用。你也可以给`resolve()`传入一个参数，它将成为该promise的兑现值。如果什么都没有传入，兑现值就是`undefined`。类似的，`reject()`方法创建一个始终为否决状态的`Promise`对象。下面的例子展示了`resolve()`和`reject()`是如何使用的。
+`Promise.status`属性提供了状态信息，但它是不能通过代码访问到并且是私有的。一旦Promise成功或失败，状态就会保持不变。这意味着 Promise 只能成功或失败一次。如果Promise已经成功了，之后你给它附加上一个`then()`，传入2个回调函数，那么处理成功状态的回调函数就会正确地被调用。所以在Promise的世界里，我们并不关心Promise何时处理完成。我们只关心Promise最终的处理结果。
+
+### 链式 Promise
+
+有时候可能需要将多个Promise链起来。比如，你需要执行多个异步的操作。当一个操作返回了数据，你就要开始对这些数据执行其他的某个操作等。Promise可以被链接起来，就像下面的代码中所演示的。
 
 ``` javascript
-Promise.resolve('this always resolves').then(function(data) {
-  alert(data); //this is called
+function getPromise(url) {
+  // return a Promise here
+  // send an async request to the url as a part of promise
+  // after getting the result, resolve the promise with it
+}
+ 
+var promise = getPromise('some url here');
+ 
+promise.then(function(result) {
+  //we have our result here
+  return getPromise(result); //return a promise here again
+}).then(function(result) {
+  //handle the final result
 });
- 
-Promise.reject('this always rejects').then(function(data) {
-  alert(data); // this is never called
-}).catch(function(err) {
-  alert(err); //this is called
+```
+
+这段代码中比较难以捉摸的地方是当你在`then()`中返回了一个简单的值后，下一个`then()`就会被调用，并传入前面的返回值。但如果你在`then()`中返回一个`Promise`，下一个`then()`就会等待直到那个Promise处理完成。
+
+
+### 错误处理
+
+你已经知道了`then()`函数接收 2 个回调函数作为参数。当Promise转为失败状态时第二个函数就会被调用。不过，我们还可以用`catch()`函数来处理 Promise 失败。看看下面的代码：
+
+``` javascript
+promise.then(function(result) {
+  console.log('Got data!', result);
+}).catch(function(error) {
+  console.log('Error occurred!', error);
 });
 ```
 
-
-### 强制序列化任务执行
-
-让我们来创建一个简单的应用，它将接收一串电影名，然后获取每个电影名对应的海报。下面是HTML标记，呈现一个输入域用以输入逗号分隔的电影名：
-
-``` html
-<!DOCTYPE html>
-<html>
-  <head>
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <input type="text" name="titles" id="titles" placeholder="comma separated movie titles" size="30"/>
-    <input type="button" value="fetch" onclick="fetchMovies()" />
-    <input type="button" value="clear" onclick="clearMovies()" />
-    <div id="movies">
-    </div>
-  </body>
-</html>
-
-```
-
-现在让我们使用Promise来异步地为每部电影下载一张海报。下面的函数创建了一个`Promise`并传入一个回调函数，用来从远程API加载影片信息。
+这等价于：
 
 ``` javascript
-function getMovie(title) {
-  return new Promise(function(resolve, reject) {
-    var request = new XMLHttpRequest();
- 
-    request.open('GET', 'http://mymovieapi.com/?q=' + title);
-    request.onload = function() {
-      if (request.status == 200) {
-        resolve(request.response); // we get the data here, so resolve the Promise
-      } else {
-        reject(Error(request.statusText)); // if status is not 200 OK, reject.
-      }
-    };
- 
-    request.onerror = function() {
-      reject(Error("Error fetching data.")); // error occurred, so reject the Promise
-    };
- 
-    request.send(); // send the request
-  });
-}
+promise.then(function(result) {
+  console.log('Got data!', result);
+}).then(undefined, function(error) {
+  console.log('Error occurred!', error);
+});
 ```
 
-下面的代码片段用来处理加载的数据并以影片海报更新HTML页面。
-
-``` javascript
-function fetchMovies() {
-  var titles = document.getElementById('titles').value.split(',');
- 
-  for (var i in titles) {
-    getMovie(titles[i]).then(function(data) {
-      var img = JSON.parse(data)[0].poster.imdb;
- 
-      document.getElementById('movies').innerHTML = document.getElementById('movies').innerHTML + '<img src="' + img + '"/>';
-    }).catch(function(error) {
-      console.log(error);
-    });
-  }
-}
-```
-
-上面的代码基本上是自解释的。它只是简单地遍历了影片名列表，并为每个影片抓去对应的IMDB海报。你可以在这个[Plunkr 示例](http://plnkr.co/edit/7KmEh2rCcSszKpFUOFOg?p=preview)上看到实际演示效果。
-
-但是，还有个问题！在Plunkr的示例中输入以逗号分隔的一些影片名然后点击获取按钮。如果你按了好几次获取按钮，就会发现图片下载并不存在一定的顺序！Promise可能会以任何顺序成功解决，因此，图片每次都会以不同的顺序完成加载。所以，如果我们需要以特定的顺序获取影片海报，这段代码并不能满足要求。
-
-我们可以以两种方式强制加载顺序。首先，我们可以在只有前一个片名的`Promise`成功解决后，才为当前影片名创建一个`Promise`。另一种方式需要创建一个单独的`Promise`，只有当每部影片名对应的`Promise`都成功解决了该promise才会解决，并按顺序传入所有的兑现值（成功解决的返回值）。
-
-### 选择一
-
-看看下面的代码片段。我们首先创建一个始终为成功解决状态的`Promise`。这是用来跟踪之前的`Promise`。在循环内，我们调用`prevPromise.then()`，它将返回一个新的`Promise`，然后我们将其赋值给`prevPromise`。当由`getMovie(title)`返回的`Promise`成功解决时，该`Promise`才会成功解决。因此，只有当前一个`Promise`（`prevPromise`表示的）成功解决了，新的加载影片海报的`Promise`才会被创建。通过这种方式，我们可以按顺序加载图片，但仍然保持异步的方式。试试这个更新的[Plunkr](http://plnkr.co/edit/FbVOEBI7lL6uiedFZEzD?p=preview)。每次你点击获取按钮，海报将会按顺序加载。
-
-``` javascript
-function fetchMovies() {
-  var titles = document.getElementById('titles').value.split(',');
-  var prevPromise = Promise.resolve(); // initial Promise always resolves
- 
-  titles.forEach(function(title) {  // loop through each title
-    prevPromise = prevPromise.then(function() { // prevPromise changes in each iteration
-      return getMovie(title); // return a new Promise
-    }).then(function(data) {
-      var img = JSON.parse(data)[0].poster.imdb;
- 
-      document.getElementById('movies').innerHTML = document.getElementById('movies').innerHTML + '<img src="' + img + '"/>';
-    }).catch(function(error) {
-      console.log(error);
-    });
-  });
-}
-```
-
-### 选择二
-
-下面的代码中`Promise.all()`接收一组`Promise`，只有当这组`Promise`全部成功解决时，该`Promise.all()`返回的`Promise`才会成功解决。这个返回的`Promise`的兑现值是包含组中每个`Promise`的兑现值并按顺序维护的数组。因此，一旦这个`Promise`成功解决了，我们只需要遍历这个数据数组并从中抽取影片海报。这里是一个[Plunkr 示例](http://plnkr.co/edit/MBZfY3B6FQqd07U0vRZK?p=preview)。另外需要注意的是，如果这组`Promise`中有任何一个否决了，`Promise.all()`返回的新的`Promise`就是以该否决值转入否决状态了。
-
-``` javascript
-function fetchMovies() {
-  var titles = document.getElementById('titles').value.split(',');
-  var promises = [];
- 
-  for (var i in titles) {
-    promises.push(getMovie(titles[i])); // push the Promises to our array
-  }
- 
-  Promise.all(promises).then(function(dataArr) {
-    dataArr.forEach(function(data) {
-      var img = JSON.parse(data)[0].poster.imdb;
- 
-      document.getElementById('movies').innerHTML = document.getElementById('movies').innerHTML + '<img src="' + img + '"/>';
-    });
-  }).catch(function(err) {
-    console.log(err);
-  });
-}
-```
+需要注意的是，如果Promise失败并且`then()`中没有处理失败状态的回调函数，控制流就会转入下一个带有处理失败状态的回调函数的`then()`或是下一个`catch()`函数。除了显式的Promise失败，当`Promise()`构造函数中的回调函数抛出任何异常时，`catch()`也会被调用。所以，你也可以使用`catch()`来记录日志。注意，我们可以使用`try..catch`来处理错误，但对于Promise而言并非必要，因为任何异步或同步的错误始终会被`catch()`所捕获。
 
 ### 总结
 
-本文讨论了JavaScript Promise中的一些更高级的概念。为了保证这些代码顺利执行，你需要确保升级浏览器到Chrome 32 beta或是最新的Firefox nightly。浏览器完全实现这些特性还需要一些时间。除此之外，毫无疑问Promise将会成为JavaScript中下一个大突破。
+这只是一篇对JavaScript的新的Promise API的简要介绍。显然它会使异步代码写起来非常容易。我们可以像往常一样写代码，而不必知道稍后异步代码中会返回什么值。API中还有很多东西这里没有提到。浏览下面的资源并保持关注SitePoint来了解关于Promise的更多东西吧。
 
 
 ![Sandeep Panda](http://1.gravatar.com/avatar/ba63b07b15dfc9d3b718118e82544309?s=96&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D96&r=G)
