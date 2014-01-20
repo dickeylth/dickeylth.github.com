@@ -8,7 +8,7 @@ cover: "/img/jspatterns/observer-cover.jpg"
 
 原文：[A Deeper Dive Into JavaScript Promises](http://www.sitepoint.com/deeper-dive-javascript-promises/)
 
-*[上一篇An Overview of JavaScript Promises](http://dickeylth.github.io/2014/01/18/AnOverviewofJavaScriptPromises/)中对Promise中的API做了简单介绍，本文让我们一起来深入认识下上文中的一些概念。*
+*[上一篇An Overview of JavaScript Promises](http://dickeylth.github.io/2014/01/18/AnOverviewOfJavaScriptPromises/)中对Promise中的API做了简单介绍，本文让我们一起来深入认识下上文中的一些概念。*
 
 <!--more-->
 
