@@ -54,6 +54,8 @@ alert(div.classList.contains("foo"));
 
 `classList`在大多数浏览器中已经早就被实现了，但是IE直到IE 10才提供该API。
 
+*参考资料：[Exploring the classList API](http://www.sitepoint.com/exploring-classlist-api/)*
+
 ### 直接给样式表添加和删除规则
 
 我们都会很熟练地通过`element.style.propertyName`方法来修改样式，也使用过JavaScript工具箱来完成，但你是否知道事实上你可以[直接读写新的和已存在的样式表规则](http://davidwalsh.name/add-rules-stylesheets)？事实上这个API也非常简单！
