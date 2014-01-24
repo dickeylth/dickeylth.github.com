@@ -252,3 +252,260 @@ var obj = {
 
 这个例子告诉我们，`valueOf`事实上只是设计为供类似`Number`对象这样的表示数值的对象所使用。对于这些对象，`toString`和`valueOf`方法应返回一致的结果——同一数字的字符串或是数值展示，因此重载的`+`始终保持一致的行为，不论这个对象是用于连接符或是加法。通常来说，相比强制转换为数字，强制转换为字符串常见得多也更为有用。最好避开`valueOf`，除非对象确实是数值抽象并且`obj.toString()`得到的是`obj.valueOf()`调用结果的字符串表示。
 
+最后一种强制转换常被称为*真实性(truthiness)*。像`if`、`||`和`&&`这样的操作符逻辑上用来处理布尔值，但事实上可以接收任意的值。JavaScript值都可以根据简单的隐式转换转为布尔值。大部分的JavaScript值都会被隐式转为`true`，包括所有的对象——与字符串和数字强制转换，转换中并不需要隐式调用任何转换函数。一共有7种会转为`false`的值：`false`、`0`、`-0`、`""`、`NaN`、`null`和`undefined`。所有其他的值都会转为`true`。由于数字和字符串有可能会被判定为`false`，依靠真实性来检查函数参数或对象属性是否已定义往往不太安全。考虑一下能接收带默认值的可选参数的函数：
+
+``` javascript
+function point(x, y) {
+    if (!x) {
+        x = 320;
+    }
+    if (!y) {
+        y = 240;
+    }
+    return { x: x, y: y };
+}
+```
+
+这个函数无视任何会被判定为`false`的参数，包括0：
+
+``` javascript
+point(0, 0); // { x: 320, y: 240 }
+```
+
+更严谨的方式是使用`typeof`来检查值是否`undefined`：
+
+``` javascript
+function point(x, y) {
+    if (typeof x === "undefined") {
+        x = 320;
+    }
+    if (typeof y === "undefined") {
+        y = 240;
+    }
+    return { x: x, y: y };
+}
+```
+
+这样一来`point`函数就能正确分辨出0和`undefined`了：
+
+``` javascript
+point();     // { x: 320, y: 240 }
+point(0, 0); // { x: 0, y: 0 }
+```
+
+另一种方式是将其与`undefined`比较：
+
+``` javascript
+if (x === undefined) { ... }
+```
+
+第54条记录讨论了真值检测对于库和API设计可能造成的影响。
+
+#### 需要记住的事
+
+- 类型错误可能会被隐式转换静默掩藏
+- `+`操作符会根据参数类型自动重载为加法或字符串拼接
+- 对象会通过`valueOf`转换为数字，通过`toString`转换为字符串
+- 拥有`valueOf`方法的对象应该实现一个`toString`方法提供`valueOf`返回的数值的字符串表示。
+- 对于未定义的值的测试，使用`typeof`或是与`undefined`比较，而不是直接的真值检测。
+
+#### 4.优先使用基本类型而不是对象包装器
+
+除了对象，JavaScript中还有5种基本类型：布尔值、数字、字符串、`null`和`undefined`。（令人困惑的是，`typeof`操作符会将`null`类型判定为"`object`"，但是EMCA-Script标准中将其描述为不同的类型。）同时，标准库也提供了构造函数用来将布尔值、数值和字符串包装为对象。你可以创建一个`String`对象来包装字符串值：
+
+``` javascript
+var s = new String("hello");
+```
+
+某种程度上，`String`对象和它所包装的字符串值在行为上都比较相似。你可以将其与其他的值连接起来创建新的字符串：
+
+``` javascript
+s + " world";	//"hello world"
+```
+
+你也可以按索引提取子字符串：
+
+``` javascript
+s[4];	//"o"
+```
+
+但是不同意基本类型中的字符串，`String`对象是一个"真"对象：
+
+``` javascript
+typeof "hello";		//"string"
+typeof s;			//"object"
+```
+
+这是一个重要的区别，因为这意味着你无法使用内置的操作符来比较两个不同的`String`对象的内容：
+
+``` javascript
+var s1 = new String("hello");
+var s2 = new String("hello");
+s1 === s2;	//false
+```
+
+由于每个`String`对象都是一个单独的对象，它只会与其自身相等。即使在非严格相等运算符下也是如此：
+
+``` javascript
+s1 == s2;	//false
+```
+
+由于这些包装器并不能保证正确的行为，它们并不能满足多种要求。它们存在的核心理由是它们的实用方法。JavaScript通过另一个隐式转换为这些方法的使用提供了便利：你可以对基本类型执行属性抽取和方法调用，结果就像是你将它包装为对应的对象类型来执行。例如，`String`原型对象有一个`toUpperCase`方法，可以将字符串转为大写字母。你可以直接在基本类型的字符串值上使用这个方法：
+
+``` javascript
+"hello".toUpperCase();	//"HELLO"
+```
+
+这种隐式包装的会带来的奇怪的后果之一就是，你可以在基本类型值上设置属性，但事实上却不会生效：
+
+``` javascript
+"hello".someProperty = 17;
+"hello".someProperty; // undefined
+```
+
+由于每次隐式包装发生时都会生成一个新的`String`对象，对第一个包装对象的修改并不会有持续的效果。给基本类型值上设置属性确实没有什么意义，但是这种表现值得留意。结果上来看，这是另一个JavaScript可能会隐藏类型错误的例子：如果你本来预期在一个对象上设置属性，但错误地使用了基本类型值，你的程序会只是静默地忽略这个设置并继续执行下去。这很容易导致未经察觉的错误，诊断起来也会很困难。
+
+#### 需要记住的事：
+
+- 基本类型的对象包装器在做相等比较时与它们对应的基本类型值表现不一致
+- 在基本类型上获取和设置属性会隐式创建对象包装器
+
+### 5.避免对混合类型使用==
+
+你觉得这个表达式的值会是什么？
+
+``` javascript
+"1.0e0" == { valueOf: function() { return true; } };
+```
+
+这2个看上去毫不相关的值事实上在`==`操作符看来是相等的，因为正如第3项记录中所描述的隐式转换，它们都会在比较前被转换为数值。字符串`"1.0e0"`会被解析为数字1，而右边的对象会通过调用自身的`valueOf`方法并将结果（`true`）`转为数字，同样是1。
+
+很容易使用这些转换来处理某些任务，比如从web表单读取字段值并与数字做比较。
+
+``` javascript
+var today = new Date();
+
+if (form.month.value == (today.getMonth() + 1) &&
+    form.day.value == today.getDate()) {
+    // happy birthday!
+    // ...
+}
+```
+
+但是实际上使用`Number`函数或者一元运算符`+`可以很容易显式将值转换为数值：
+
+``` javascript
+var today = new Date();
+
+if (+form.month.value == (today.getMonth() + 1) &&
+    +form.day.value == today.getDate()) {
+    // happy birthday!
+    // ...
+}
+```
+
+这样看上去更明晰了，因为很明确地向读者传达了这里应用了什么转换，而不用去熟记那些转换规则。更好的选择是使用*严格相等*操作符：
+
+``` javascript
+var today = new Date();
+
+if (+form.month.value === (today.getMonth() + 1) && // strict
+    +form.day.value === today.getDate()) {          // strict
+    // happy birthday!
+    // ...
+}
+```
+
+当两个参数是同一类型时，`==`和`===`表现上没有什么差别。因此，如果你知道参数都是同一类型，这两个操作符是可互换的。但是使用严格相等是更好的方式，可以明确地告知读者比较中不存在转换。否则，你需要读者回忆准确的转换规则来弄清楚你的代码的表现。
+
+事实证明，这些转换规则一点也不显而易见。表1.1中展示了不同类型的参数下`==`操作符的转换规则。这些规则都是对称的：例如，第一条规则适用于`null == undefined`，也同样适用于`undefined == null`。大多数时候，转换会尝试转为数值。但当处理对象时，这些规则就会很微妙。操作会尝试调用对象的`valueOf`和`toString`方法来转换对象到基本类型值，谁先返回基本类型值就用谁。甚至更微妙的是，`Date`对象会以相反的顺序尝试这两个方法。
+
+**表1.1 `==`操作符的转换规则**
+<table>
+	<thead>
+		<tr>
+			<th>参数类型1</th>
+			<th>参数类型2</th>
+			<th>转换规则</th>
+		</tr>
+	<thead>
+	<tbody>
+		<tr>
+			<td><code>null</code></td>
+			<td><code>undefined</code></td>
+			<td>无；始终返回true</td>
+		</tr>
+		<tr>
+			<td><code>null</code>或<code>undefined</code></td>
+			<td>任意非<code>null</code>或<code>undefined</code>值</td>
+			<td>无；始终返回false</td>
+		</tr>
+		<tr>
+			<td>基本类型字符串、数值或布尔类型</td>
+			<td><code>Date</code>对象</td>
+			<td>基本类型=>数值，<code>Date</code>对象=>基本类型（尝试用<code>toString</code>然后<code>valueOf</code>）</td>
+		</tr>
+		<tr>
+			<td>基本类型字符串、数值或布尔类型</td>
+			<td>非<code>Date</code>对象</td>
+			<td>基本类型=>数值，非<code>Date</code>对象=>基本类型（尝试用<code>valueOf</code>然后<code>toString</code>）</td>
+		</tr>
+		<tr>
+			<td>基本类型字符串、数值或布尔类型</td>
+			<td>基本类型字符串、数值或布尔类型</td>
+			<td>基本类型=>数值</td>
+		</tr>
+	</tbody>
+</table>
+
+`==`操作符看似掩盖了数据的表示上的区别。这种纠错有时被称为*“如我所愿”（DWIM, do what I mean）语义*。但计算机并不能真的读懂你的心思。世界上存在太多的数据呈现形式，JavaScript无法知道你用的是哪一种。例如，也许你期望的是将一个包含日期的字符串与一个`Date`对象做比较：
+
+``` javascript
+var date = new Date("1999/12/31");
+date == "1999/12/31"; // false
+```
+
+这个特殊的例子与预期结果不符，因为将一个`Date`对象转换为字符串会得到一个跟例子中不一样的格式：
+
+``` javascript
+date.toString(); // "Fri Dec 31 1999 00:00:00 GMT-0800 (PST)
+```
+
+但这个错误对于更常见的对转换的误解是很有代表性的。`==`操作符并不会推断和统一任意的数据格式，需要你和读者理解那些微妙的转换规则。更好的策略是根据特定的应用逻辑显式转换，并使用严格相等操作符：
+
+``` javascript
+function toYMD(date) {
+    var y = date.getYear() + 1900, // year is 1900-indexed
+        m = date.getMonth() + 1,   // month is 0-indexed
+        d = date.getDate();
+    return y
+         + "/" + (m < 10 ? "0" + m : m)
+         + "/" + (d < 10 ? "0" + d : d);
+}
+toYMD(date) === "1999/12/31"; // true
+```
+
+显式转换可以确保你不会把`==`的转换规则弄混淆了，并且——更妙的是——读者不需要再去查阅或是记忆那些转换规则了。
+
+#### 需要记住的事：
+
+- 当参数类型不同时，`==`操作符会应用一组令人迷惑的隐式转换规则
+- 使用`===`明确告知你的读者，比较中不会引入任何的隐式转换。
+- 当需要对不同类型的值进行比较时，使用你自己的显示转换，确保你的程序的表现更明确。
+
+### 6.了解分号插入的限制
+
+JavaScript的便利之一就是可以抛开语句结束的分号。移去分号代码看上去拥有了令人愉悦的轻量的美感。
+
+``` javascript
+function Point(x, y) {
+    this.x = x || 0
+    this.y = y || 0
+}
+
+Point.prototype.isOrigin = function() {
+    return this.x === 0 && this.y === 0
+}
+```
+
+多亏有了*自动分号插入*，代码可以正常工作。自动分号插入是一种程序解析技术，可以推断出某个上下文中省略的分号，并为你在程序中自动地高效“插入”分号。
