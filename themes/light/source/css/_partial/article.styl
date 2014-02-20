@@ -13,6 +13,40 @@ article
     .icon
       &:before
         content '\f016'
+	.post-content
+	  &:before
+        content ""
+        position absolute
+        z-index -1
+        bottom 15px
+        left 10px
+        width 50%
+        height 9%
+        -webkit-box-shadow 0 15px 10px rgba(0,0,0,0.7)
+        -moz-box-shadow 0 15px 10px rgba(0,0,0,0.7)
+        box-shadow 0 15px 15px rgba(0,0,0,0.7)
+        -o-transform rotate(-2deg)
+        -webkit-transform rotate(-2deg)
+        -moz-transform rotate(-2deg)
+        -ms-transform rotate(-2deg)
+        transform rotate(-2deg)
+	  &:after
+  		content ""
+  		position absolute
+  		z-index -1
+  		bottom 15px
+  		width 50%
+  		height 9%
+  		-webkit-box-shadow 0 15px 10px rgba(0,0,0,0.7)
+  		-moz-box-shadow 0 15px 10px rgba(0,0,0,0.7)
+  		box-shadow 0 15px 15px rgba(0,0,0,0.7)
+  		right 10px
+  		left auto
+  		-webkit-transform rotate(2deg)
+		-moz-transform rotate(2deg)
+  		-o-transform rotate(2deg)
+  		-ms-transform rotate(2deg)
+  		transform rotate(2deg)
 
   &.photo
     .icon
@@ -37,8 +71,10 @@ article
     padding 20px 20px 15px (icon-size + icon-gap + 20)
     margin-bottom 50px
     position relative
+  			
     @media screen and (max-width: 600px)
       padding-left 20px
+    	
 
   .gallery
     overflow hidden

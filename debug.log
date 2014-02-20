@@ -1,34 +1,124 @@
-date: 2013-10-13 13:10:54.650
-argv: d:\Studio\Program\nodejs\node.exe c:\Users\Dickey\AppData\Roaming\npm\node_modules\hexo\bin\hexo generate
-os: Windows_NT 6.2.9200 win32 x64
+date: 2014-02-07 16:08:27.988
+argv: node /usr/local/bin/hexo deploy --generate
+os: Darwin 13.0.0 darwin x64
 version:
-  hexo: 2.2.1
+  hexo: 2.4.5
   http_parser: 1.0
-  node: 0.10.20
+  node: 0.10.23
   v8: 3.14.5.9
   ares: 1.9.0-DEV
-  uv: 0.10.17
+  uv: 0.10.20
   zlib: 1.2.3
   modules: 11
   openssl: 1.0.1e
 ---
 
-[debug] 13:10:54.089 Configuration file load successfully
-[debug] 13:10:54.092 Version info checked successfully
-[debug] 13:10:54.093 Loading the database...
-[debug] 13:10:54.467 Theme layout loaded
-[debug] 13:10:54.476 Theme configuration loaded
-[debug] 13:10:54.509 Theme source loaded
-[debug] 13:10:54.510 Theme i18n loaded
-[error] 13:10:54.546 TypeError: Cannot call method 'replace' of undefined
-TypeError: Cannot call method 'replace' of undefined
-    at c:\Users\Dickey\AppData\Roaming\npm\node_modules\hexo\lib\post\render.js:66:35
-    at c:\Users\Dickey\AppData\Roaming\npm\node_modules\hexo\node_modules\async\lib\async.js:548:21
-    at c:\Users\Dickey\AppData\Roaming\npm\node_modules\hexo\node_modules\async\lib\async.js:224:13
-    at iterate (c:\Users\Dickey\AppData\Roaming\npm\node_modules\hexo\node_modules\async\lib\async.js:131:13)
-    at async.eachSeries (c:\Users\Dickey\AppData\Roaming\npm\node_modules\hexo\node_modules\async\lib\async.js:147:9)
-    at _asyncMap (c:\Users\Dickey\AppData\Roaming\npm\node_modules\hexo\node_modules\async\lib\async.js:223:9)
-    at Object.mapSeries (c:\Users\Dickey\AppData\Roaming\npm\node_modules\hexo\node_modules\async\lib\async.js:213:23)
-    at Object.async.series (c:\Users\Dickey\AppData\Roaming\npm\node_modules\hexo\node_modules\async\lib\async.js:546:19)
-    at Object.module.exports [as render] (c:\Users\Dickey\AppData\Roaming\npm\node_modules\hexo\lib\post\render.js:56:9)
-    at c:\Users\Dickey\AppData\Roaming\npm\node_modules\hexo\lib\plugins\processor\post.js:142:15
+[debug] 16:08:27.337 Configuration file load successfully
+[debug] 16:08:27.340 Version info checked successfully
+[debug] 16:08:27.383 Loading database.
+[debug] 16:08:27.479 Theme layout loaded
+[debug] 16:08:27.506 Theme configuration loaded
+[debug] 16:08:27.561 Theme source loaded
+[debug] 16:08:27.576 Processed: _drafts/2013-12-04-EffectiveJavaScript-AccustomJavaScript.md
+[debug] 16:08:27.746 Processed: favicon.png
+[debug] 16:08:27.747 Processed: img/jsapis/Pie-chart.jpg
+[debug] 16:08:27.748 Processed: img/jsapis/developing-possibilities.jpg
+[debug] 16:08:27.749 Processed: img/jsapis/duplication.jpg
+[debug] 16:08:27.750 Processed: img/jsapis/fail-faster.jpg
+[debug] 16:08:27.751 Processed: img/jsapis/good-intention.jpg
+[debug] 16:08:27.755 Processed: img/jspatterns/decorator-examples.png
+[debug] 16:08:27.757 Processed: img/jspatterns/decorator-inherit.png
+[debug] 16:08:27.758 Processed: img/jspatterns/factory-cover.jpg
+[debug] 16:08:27.759 Processed: img/jspatterns/factory1.jpeg
+[debug] 16:08:27.760 Processed: img/jspatterns/factory2.jpeg
+[debug] 16:08:27.761 Processed: img/jspatterns/observer-examples.png
+[debug] 16:08:27.762 Processed: img/jspatterns/observer-flight.png
+[debug] 16:08:27.762 Processed: img/jspatterns/observer-glbevt-inner.png
+[debug] 16:08:27.763 Processed: img/jspatterns/observer-glbevt-inner2.png
+[debug] 16:08:27.763 Processed: img/jspatterns/observer-glbevt.png
+[debug] 16:08:27.764 Processed: img/jspatterns/observer-subject.png
+[debug] 16:08:27.765 Processed: img/jspatterns/singleton-closure-base.png
+[debug] 16:08:27.765 Processed: img/jspatterns/singleton-cover.jpg
+[debug] 16:08:27.766 Processed: img/jspatterns/singleton-literalobject.png
+[debug] 16:08:27.766 Processed: img/jspatterns/strategy-examples.png
+[debug] 16:08:27.767 Processed: demos/jspatterns/css/bootstrap-responsive.css
+[debug] 16:08:27.767 Processed: demos/jspatterns/css/bootstrap.css
+[debug] 16:08:27.768 Processed: demos/jspatterns/css/index.css
+[debug] 16:08:27.768 Processed: demos/jspatterns/css/index.less
+[debug] 16:08:27.769 Processed: demos/jspatterns/js/ace.js
+[debug] 16:08:27.769 Processed: demos/jspatterns/js/index.js
+[debug] 16:08:27.770 Processed: demos/jspatterns/js/mode-css.js
+[debug] 16:08:27.770 Processed: demos/jspatterns/js/mode-html.js
+[debug] 16:08:27.771 Processed: demos/jspatterns/js/mode-html_completions.js
+[debug] 16:08:27.771 Processed: demos/jspatterns/js/mode-html_ruby.js
+[debug] 16:08:27.772 Processed: demos/jspatterns/js/mode-javascript.js
+[debug] 16:08:27.772 Processed: demos/jspatterns/js/theme-chrome.js
+[debug] 16:08:27.773 Processed: demos/jspatterns/js/theme-clouds.js
+[debug] 16:08:27.773 Processed: demos/jspatterns/js/theme-cobalt.js
+[debug] 16:08:27.774 Processed: demos/jspatterns/js/theme-monokai.js
+[debug] 16:08:27.774 Processed: demos/jspatterns/js/worker-javascript.js
+[debug] 16:08:27.775 Processed: slides/css/reveal.min.css
+[debug] 16:08:27.776 Processed: slides/css/theme-default.css
+[debug] 16:08:27.776 Processed: slides/css/theme-sky-min.css
+[debug] 16:08:27.777 Processed: slides/css/theme-sky.css
+[debug] 16:08:27.778 Processed: slides/css/zenburn.css
+[debug] 16:08:27.778 Processed: slides/img/decorator0.png
+[debug] 16:08:27.779 Processed: slides/img/factory0.jpg
+[debug] 16:08:27.780 Processed: slides/img/jquery.png
+[debug] 16:08:27.780 Processed: slides/img/kissy.png
+[debug] 16:08:27.781 Processed: slides/img/list0.png
+[debug] 16:08:27.782 Processed: slides/img/list1.png
+[debug] 16:08:27.783 Processed: slides/img/observer0.jpg
+[debug] 16:08:27.784 Processed: slides/img/observer1.png
+[debug] 16:08:27.785 Processed: slides/img/observer2.png
+[debug] 16:08:27.786 Processed: slides/img/observer3.png
+[debug] 16:08:27.787 Processed: slides/img/observer4.png
+[debug] 16:08:27.787 Processed: slides/img/observer5.png
+[debug] 16:08:27.788 Processed: slides/img/singleton0.jpg
+[debug] 16:08:27.789 Processed: slides/img/singleton1.png
+[debug] 16:08:27.791 Processed: slides/img/slide1.jpg
+[debug] 16:08:27.792 Processed: slides/img/slide2.png
+[debug] 16:08:27.793 Processed: slides/img/strategy0.png
+[debug] 16:08:27.793 Processed: slides/img/underscore.png
+[debug] 16:08:27.794 Processed: slides/img/yui.png
+[debug] 16:08:27.795 Processed: slides/js/embed.js
+[debug] 16:08:27.796 Processed: slides/js/head.min.js
+[debug] 16:08:27.797 Processed: slides/js/reveal.min.js
+[debug] 16:08:27.798 Processed: slides/js/plugin/highlight.js
+[debug] 16:08:27.798 Processed: slides/js/plugin/markdown.js
+[debug] 16:08:27.799 Processed: slides/js/plugin/marked.js
+[debug] 16:08:27.800 Processed: slides/js/plugin/notes.js
+[debug] 16:08:27.801 Processed: slides/js/plugin/zoom.js
+[debug] 16:08:27.802 Processed: slides/js/prettify/prettify.js
+[debug] 16:08:27.803 Theme language files loaded
+[debug] 16:08:27.977 Processed: demos/RegDate.html
+[debug] 16:08:27.978 Processed: demos/jspatterns/decorator.html
+[debug] 16:08:27.978 Processed: demos/jspatterns/factory.html
+[debug] 16:08:27.979 Processed: demos/jspatterns/iterator.html
+[error] 16:08:27.982 { rawMessage: 'Unexpected characters near "]The Art of Error".',
+  parsedLine: 1,
+  snippet: 'title: [译]The Art of Error',
+  parsedFile: null,
+  message: 'Unexpected characters near "]The Art of Error" at line 1 (near "title: [译]The Art of Error").',
+  domain: 
+   { domain: null,
+     _events: { error: [Function] },
+     _maxListeners: 10,
+     members: [],
+     _disposed: true },
+  domainThrown: true }
+[debug] 16:08:27.986 Processed: demos/jspatterns/singleton.html
+[debug] 16:08:27.987 Processed: demos/jspatterns/strategy.html
+[debug] 16:08:27.987 Processed: demos/jspatterns/test.html
+[debug] 16:08:27.993 Processed: slides/js-design-patterns.html
+[debug] 16:08:27.993 Processed: _posts/2013-04-21-DesigningBetterJavaScriptAPIs.md
+[debug] 16:08:27.993 Processed: _posts/2013-10-11-JavaScriptDesignPatterns-SingletonPattern.md
+[debug] 16:08:27.993 Processed: _posts/2013-10-16-JavaScriptDesignPatterns-FactoryPattern.md
+[debug] 16:08:27.993 Processed: _posts/2013-10-22-JavaScriptDesignPatterns-DecoratorPattern.md
+[debug] 16:08:27.993 Processed: _posts/2013-10-30-JavaScriptDesignPatterns-StrategyPattern.md
+[debug] 16:08:27.993 Processed: _posts/2013-11-10-JavaScriptDesignPatterns-ObserverPattern.md
+[debug] 16:08:27.993 Processed: _posts/2014-01-16-GettingStartedWithGulp.md
+[debug] 16:08:27.993 Processed: _posts/2014-01-18-AnOverviewOfJavaScriptPromises.md
+[debug] 16:08:27.993 Processed: _posts/2014-01-21-5WaysCSSAndJavaScriptInteract.md
+[debug] 16:08:27.993 Processed: _posts/2014-01-21-ADeeperDiveIntoJavaScriptPromises.md
+[debug] 16:08:27.993 Processed: _posts/2014-01-24-F2EWeekly.md

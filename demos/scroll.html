@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scroll Demo</title>
+    <meta charset="UTF-8"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <style>
+        body{
+            text-align: center;
+            margin: 0 20px;
+        }
+        .header{
+            height: 120px;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .page{
+            position: relative;
+        }
+        .page #left{
+            position: absolute;
+            left: 0;
+            width: 198px;
+        }
+        .page #left .box{
+            border: 1px solid #999;
+            height: 400px;
+        }
+        .page .init{
+            top: 0;
+        }
+        .page .middle{
+            position: fixed;
+            top: 0;
+            left: 20px;
+            _position: absolute;
+        }
+        .page .end{
+            bottom: 0;
+        }
+        .page #left ul{
+
+        }
+        .page #left ul li{
+            padding: 10px;
+            font-size: 14px;
+        }
+        .page .right{
+            margin-left: 200px;
+            height: 1000px;
+        }
+        .footer{
+            height: 160px;
+            padding: 20px;
+            color: #ffffff;
+            background-color: #0072db;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    这里是页头
+</div>
+<div class="page">
+    <div id="left">
+        <div class="box">
+            <ul>
+                <li>分类1</li>
+                <li>分类2</li>
+                <li>分类3</li>
+                <li>分类4</li>
+                <li>分类5</li>
+                <li>分类6</li>
+            </ul>
+        </div>
+    </div>
+    <div class="right">
+        这里是right区块
+    </div>
+</div>
+<div class="footer">
+    这里是页尾
+</div>
+<script>
+    $(document).ready(function(){
+        var top = $('.page').offset().top,
+                bottom = $('.footer').offset().top,
+                box = $('#left'),
+                pageTop = $('.page').offset().top,
+                height = box.height(),
+                maxOffsetTop = bottom - height,
+                scrollTimer,
+                isIe6 = $.browser.msie && ($.browser.version == '6.0');
+
+        $(window).scroll(function(){
+            if(scrollTimer){
+                clearTimeout(scrollTimer);
+            }
+            scrollTimer = setTimeout(function(){
+                var scrollTop = $(document).scrollTop(),
+                        newClass,
+                        ie6Top;
+                if(scrollTop <= top){
+                    newClass = 'init';
+                    ie6Top = 0;
+                }else if(scrollTop >= bottom - height){
+                    newClass = 'end';
+                    ie6Top = bottom - height - pageTop;
+                }else{
+                    newClass = 'middle';
+                    ie6Top = scrollTop - pageTop;
+                }
+                if(!box.hasClass(newClass)){
+                    box.attr('class', newClass);
+                }
+                if(isIe6){
+                    box.css('top', ie6Top);
+                }
+            }, 200);
+        });
+
+    });
+</script>
+</body>
+</html>

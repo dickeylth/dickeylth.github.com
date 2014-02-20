@@ -3,33 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>前端探幽</title>
+  <title>F2E Weekly-2014-02-14 | 前端探幽</title>
   <meta name="author" content="Dickey Leo">
   
-  <meta name="description" content="工厂模式
-    
-    
-    
-    
-
-
-    工厂模式：提供重复创建相似对象的接口
-    
-        预期：
-        
-
-
-var fe = EngineerFactory.build(&#39;FE&#39;);
-var rd = EngineerFactory.build(&#39;RD">
+  <meta name="description" content="这里是前端每周播报，本周让我们关注下 Firefox 和 Node.js 的新动向，做做最近火爆的难题，了解下三大 MV* 框架的各自特色，希望能为你带来收获！">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="F2E Weekly-2014-02-14"/>
   <meta property="og:site_name" content="前端探幽"/>
 
   
-    <meta property="og:image" content="undefined"/>
+    <meta property="og:image" content="/img/jspatterns/observer-cover.jpg" />
   
 
   <link href="/favicon.png" rel="icon">
@@ -69,150 +55,73 @@ var rd = EngineerFactory.build(&#39;RD">
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="page">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
       
+        <div class="icon"></div>
+        <time datetime="2014-02-13T16:00:00.000Z"><a href="/2014/02/14/F2EWeekly/">2月 14, 2014</a></time>
+      
       
   
-    <h1 class="title"></h1>
+    <h1 class="title">F2E Weekly-2014-02-14</h1>
   
 
     </header>
     <div class="entry">
       
-        <!DOCTYPE html>
-<html>
-<head>
-    <title>工厂模式</title>
-    <meta charset="UTF-8">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/index.css">
-</head>
-<body>
-    <h3>工厂模式：提供重复创建相似对象的接口</h3>
-    <div id="target">
-        <h4>预期：</h4>
-        <div class="ace-code"></div>
+        <p>这里是前端每周播报，本周让我们关注下 Firefox 和 Node.js 的新动向，做做最近火爆的难题，了解下三大 MV* 框架的各自特色，希望能为你带来收获！</p>
+<a id="more"></a>
 
-<script class="ace-code-script" type="template">
-var fe = EngineerFactory.build('FE');
-var rd = EngineerFactory.build('RD');
-var op = EngineerFactory.build('OP');
+<h3 id="-">前端快讯</h3>
+<ul>
+<li>Node.js 于大年三十<a href="http://blog.nodejs.org/2014/01/28/node-v0-11-11-unstable/" target="_blank">发布了 0.11.11（Unstable）版</a>，大概是为了赶上之前新年假期落后的进度，核心的二进制依赖都有了更新（包括 v8、HTTP Parser、openssl、uv），对核心模块也进行了大量修复，包括 crypto、http、tls 和 util。</li>
+<li>Firefox 版本号更新到 27，包括开发者工具的更新（虽然暂时还无法取代 Firebug，但是对于简单的编辑调试工作还是很实用的）、对新的 CSS 中<code>unset</code>值的支持以及其他杂项，详细介绍可以<a href="http://www.sitepoint.com/whats-new-firefox-27/" target="_blank">看这里</a>。</li>
+</ul>
+<h3 id="-">充电站</h3>
+<ul>
+<li><a href="http://yuiblog.com/" target="_blank">YUI 官方博客</a>上一如既往地更新之前的 YUIConf 2013 上的演讲资源，本周推荐：<ul>
+<li><a href="http://www.yuiblog.com/blog/2014/02/05/yuiconf-2013-ariya-hidayat-on-javascript-api-design-principles/" target="_blank">Ariya Hidayat - 《JavaScript API Design Principles》</a>，其中讲到了 API 设计中的 3 条原则以及一些最佳实践，大家可以参考。</li>
+</ul>
+</li>
+<li>本周一份<a href="http://javascript-puzzlers.herokuapp.com/" target="_blank">JavaScript 难题</a>广为流传，据说能正确答出两位数以上的童鞋都不多，大家可以去试试，有的是 JavaScript 中一些基础的考察，有的可能相对偏冷门，而且附带答案解说。</li>
+<li>如今 MV* 框架越来越多，流行的三大框架 Angular、Ember 和 Backbone 可为各领风骚，如何在三者之间进行选择呢？当然还是要根据项目的实际需求。Lauren Orsini 带来<a href="http://readwrite.com/2014/02/06/angular-backbone-ember-best-javascript-framework-for-you?utm_source=javascriptweekly&amp;utm_medium=email#awesm=~ovqtE1McIc0daB" target="_blank">《Angular, Ember, And Backbone: Which JavaScript Framework Is Right For You?》</a>，向你讲诉这 3 大框架各自的特色和适用场景。</li>
+<li>通常你会如何处理 JavaScript 中的 Error 呢？Alex Young 为我们带来<a href="http://dailyjs.com/2014/01/30/exception-error/" target="_blank">The Art of Error</a>，讨论了他对于错误处理的一点心得和经验分享，也可以<a href="http://dickeylth.github.io/2014/02/07/theartoferror/">看这里的翻译</a>。</li>
+</ul>
+<h3 id="-">百宝箱</h3>
+<ul>
+<li>之前无意间发现 CBU 团队弄的<a href="http://wd.alibaba-inc.com/ju/" target="_blank">方凳聚</a>，是一个前端工具集，目前有打算做一个我们团队的类似 Speed Dial 的 Chrome 扩展，集合这上面的一些常用工具以及其他的一些常用链接，不知大家有没有这个需求？或是有其他建议？期待回复交流！</li>
+</ul>
 
-fe.work();  // 结果为：" 生产中：HTML, CSS, JavaScript, ..."
-rd.work();  // 结果为：" 生产中：Java, Velocity, Spring, Hibernate, ..."
-op.work();  // 结果为：" 生产中：perl, python, php, shell, sql, ..."
-</script>
-
-    </div>
-
-    <div class="methods">
-        <h4>实现：</h4>
-
-        <div class="method-container">
-            <div class="ace-code"></div>
-
-<script class="ace-code-script" type="template">
-// 父构造函数
-function EngineerFactory(){}
-
-// 原型方法
-EngineerFactory.prototype.work = function(){
-    return " 生产中：" + this.languages + ", ...";
-};
-
-// 静态工厂方法
-EngineerFactory.build = function(type){
-
-    var newEngineer,
-        id = 0;
-
-    // 如果构造函数不存在，抛出错误
-    if(typeof EngineerFactory[type] !== 'function'){
-        throw(type + " 不存在 ");
-    }
-
-    // 原型继承父类
-    if(typeof EngineerFactory[type].prototype.work !== 'function'){
-        EngineerFactory[type].prototype = new EngineerFactory();
-    }
-
-    // 创建新实例
-    newEngineer = new EngineerFactory[type]();
-    newEngineer.id = id++;
-
-    return newEngineer;
-};
-
-EngineerFactory.FE = function(){
-    this.languages = "HTML, CSS, JavaScript";
-};
-
-EngineerFactory.RD = function(){
-    this.languages = "Java, Velocity, Spring, Hibernate";
-};
-
-EngineerFactory.OP = function(){
-    this.languages = "perl, python, php, shell, sql";
-};
-
-var fe = EngineerFactory.build('FE');
-var rd = EngineerFactory.build('RD');
-var op = EngineerFactory.build('OP');
-[fe.work(),  // 结果为：" 生产中：HTML, CSS, JavaScript, ..."
-rd.work(),  // 结果为：" 生产中：Java, Velocity, Spring, Hibernate, ..."
-op.work()].join('<br/>');  // 结果为：" 生产中：perl, python, php, shell, sql, ..."
-</script>
-
-            <div class="result">
-                <button class="J_RunBtn btn btn-primary">运行</button>
-                <output class="J_Output"></output>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="methods">
-        <h5>相关话题：JavaScript 中的内置对象工厂</h5>
-        <div class="method-container">
-            <div class="ace-code"></div>
-
-<script class="ace-code-script" type="template">
-var o = new Object(),
-    n = new Object(1),
-    s = Object('1'),
-    b = Object(true);
-
-[
-    o.constructor === Object,
-    n.constructor === Number,
-    s.constructor === String,
-    b.constructor === Boolean
-].join('<br/>');
-</script>
-
-            <div class="result">
-                <button class="J_RunBtn btn btn-primary">运行</button>
-                <output class="J_Output"></output>
-            </div>
-        </div>
-    </div>
-
-    <script src="http://g.tbcdn.cn/kissy/k/1.3.2/kissy-min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="js/ace.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/index.js"></script>
-</body>
-</html>
       
     </div>
     <footer>
       
         
+  
+  <div class="categories">
+    <a href="/categories/每周播报/">每周播报</a>
+  </div>
+
         
+  
+  <div class="tags">
+    <a href="/tags/F2E Weekly/">F2E Weekly</a>
+  </div>
+
         
       
       <div class="clearfix"></div>
