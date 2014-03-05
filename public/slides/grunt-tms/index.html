@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Grunt-Tms 简介</title>
+    <base target="_blank">
+    <link rel="stylesheet" href="styles/styles.css"/>
+  </head>
+  <body>
+    <article>
+      <section>
+        <h1 class="title"><a href="https://github.com/dickeylth/grunt-tms" target="_blank">Grunt-Tms</a><span>简介</span></h1>
+        <hr>
+        <hr>
+        <h3><a href="https://github.com/dickeylth" target="_blank">@弘树</a></h3>
+        <h4>2014-03-05</h4>
+      </section>
+      <section>
+        <pre class="tms"><code class="language-markup bullet">&lt;div class="subbase-bd">
+  &lt;div class="actmod-hotgo-bg clearfix">
+    &lt;cms:custom
+        title=" 经济连锁酒店 "
+        group=" 经济连锁酒店 "
+        fields="href: 链接:url,
+            title: 描述:text,
+            pic: 图片地址:url,
+            dcj: 大促价:string,
+            scj: 市场价:string"
+        defaultRow="4" row="4" name="eccb14c3-8a8b-4a66-8936-616a92cfeb18">
+    #foreach($item in $customList)
+      &lt;div class="actmod-hotgo-hotel-item">
+        &lt;a href="$!item.href">
+          &lt;img src="$!item.pic" width="86" height="85" alt=""/>
+        &lt;/a>
+        &lt;div class="actmod-hotgo-hotel-right">
+          &lt;ul>
+            &lt;li>
+              &lt;span class="tit">$!item.title&lt;/span>
+              &lt;span>大促价：&lt;strong>&yen;$!item.dcj&lt;/strong>&lt;/span>
+              &lt;span class="price">市场价：&yen;$!item.scj&lt;/span>
+            &lt;/li>
+          &lt;/ul>
+        &lt;/div>
+      &lt;/div>
+      #end
+    &lt;/cms:custom>
+  &lt;/div>
+&lt;/div>
+</code></pre>
+      </section>
+      <section>
+        <table class="bullet">
+          <tr>
+            <td class="bullet"><img src="http://gtms01.alicdn.com/tps/i1/T1SZyRFxXeXXbgDAT_-310-149.png" alt="juicer"></td>
+            <td class="arrow bullet">
+              <div>&#43;</div>
+            </td>
+            <td class="civet bullet">
+              <h4><a href="http://gitlab.alibaba-inc.com/x/civet/tree/master" title="Civet" target="_blank">Civet</a></h4>
+            </td>
+            <td class="arrow bullet">
+              <div>&rArr;</div>
+            </td>
+            <td class="tms-logo bullet">
+              <div class="img"></div>
+            </td>
+          </tr>
+        </table>
+        <h3 class="bullet show-time">Have a try!</h3>
+      </section>
+      <section data-bespoke-hash="tempate-simple">
+        <h2>模板写法 —— 简单对象</h2>
+        <table class="juicer-tms-compare bullet">
+          <tr>
+            <td class="bullet">
+              <pre><code class="language-markup">&lt;!--#def
+{
+    "wenan": " 测试文案 ",
+    "desc": " 这是个说明段落这是个说明段落这是个说明段落这是个说明段落这是个说明段落 ",
+    "ruleLink": "http://www.taobao.com",
+    "date": "2014-01-10",
+    "email": "tiehang.lth@taobao.com",
+    "isShowIcon": true
+}
+-->
+&lt;div class="test-container">
+    &lt;span>${wenan}
+    {@if isShowIcon}   &lt;i>I'm an icon!&lt;/i>{@/if}
+    &lt;/span>
+    &lt;p>${desc}&lt;/p>
+    &lt;a href="${ruleLink}">游戏规则 &lt;/a>
+    &lt;p>开始时间：&lt;time>${date}&lt;/time>&lt;/p>
+    &lt;p>邮箱：${email}&lt;/p>
+&lt;/div></code></pre>
+            </td>
+            <td class="bullet">
+              <pre><code class="language-markup">&lt;cms:custom title=" 新默认标题 0" group=" 新默认组 0" fields="wenan:wenan 测试文案:string,desc:desc 这是个说:string,ruleLink:ruleLink 链接:href,date:date 日期:date,email:email 电子邮箱:email,isShowIcon: 是否 ShowIcon:boolean">
+  &lt;div class="test-container">
+    &lt;span>$!&#123;wenan}
+    #if($!isShowIcon)   &lt;i>I'm an icon!&lt;/i>#end
+    &lt;/span>
+    &lt;p>&#36;!&#123;desc}&lt;/p>
+    &lt;a href="$!&#123;ruleLink}">游戏规则 &lt;/a>
+    &lt;p>开始时间：
+        &lt;time>$!&#123;date}&lt;/time>
+    &lt;/p>
+    &lt;p>邮箱：$!&#123;email}&lt;/p>
+  &lt;/div>
+&lt;/cms:custom>
+</code></pre>
+            </td>
+          </tr>
+        </table>
+      </section>
+      <section data-bespoke-hash="tempate-array">
+        <h2>模板写法 —— 数组</h2>
+        <table class="juicer-tms-compare bullet">
+          <tr>
+            <td class="bullet">
+              <pre><code class="language-markup">&lt;!--#def
+{
+    "list": [
+        {
+            "qt": " 机票分会场 ",
+            "dz": "http://trip.taobao.com/jipiao"
+        },
+        {
+            "qt": " 酒店分会场 ",
+            "dz": "http://trip.taobao.com/jiudian"
+        },
+        {
+            "qt": " 度假分会场 ",
+            "dz": "http://trip.taobao.com/dujia"
+        }
+    ],
+    "tmsTitle": " 所有分会场 ",
+    "tmsGroup": " 大促会场 "
+}
+-->
+&lt;ul class="other-link">
+    {@each list as item}
+    &lt;li class="other-link-item">&lt;a href="${item.dz}" target="_blank">${item.qt}&lt;/a>&lt;/li>
+    {@/each}
+&lt;/ul></code></pre>
+            </td>
+            <td class="bullet">
+              <pre><code class="language-markup">&lt;cms:custom title=" 所有分会场列表 " group=" 大促会场列表 " fields="qt:qt 机票分会场:string,dz:dz 链接:href" defaultRow="3" row="7">
+    &lt;ul class="other-link">#foreach($!item in $!customList)
+        &lt;li class="other-link-item">
+            &lt;a href="$!&#123;item.dz}" target="_blank">$!&#123;item.qt}&lt;/a>
+    &lt;/li>#end&lt;/ul>
+&lt;/cms:custom>
+</code></pre>
+            </td>
+          </tr>
+        </table>
+      </section>
+      <section data-bespoke-fx-transition="glue" data-bespoke-fx-direction="horizontal" data-bespoke-fx-reverse="false">
+        <h2>模板写法 —— &lt;cms:repeat></h2><img src="http://gtms03.alicdn.com/tps/i3/T1ClmTFCJXXXalp8LG-792-380.png" class="repeat-img bullet">
+      </section>
+      <section data-bespoke-hash="tempate-repeat">
+        <h2>模板写法 —— &lt;cms:repeat></h2>
+        <table data-bespoke-bullet class="juicer-tms-compare bullet">
+          <tr>
+            <td class="bullet">
+              <pre><code class="language-markup">{@each destinationList in range(1,3)}
+&lt;dl class="dest-row">
+
+    &lt;!--#def
+    {
+        "province": " 省份 "
+    }
+    -->
+    &lt;dt>&lt;a class="J_DestCityItem" href="javascript:;" title="${province}">${province}&lt;/a>&lt;/dt>
+    
+    &lt;!--#def
+    {
+        "itemList": [{
+            "cityName": " 城市名 "
+        }]
+    }
+    -->
+    &lt;dd>
+        {@each itemList as subItem}
+        &lt;a class="J_DestCityItem" href="javascript:;" title="${subItem.cityName}">${subItem.cityName}&lt;/a>
+        {@/each}
+    &lt;/dd>
+    
+&lt;/dl>
+{@/each}
+</code></pre>
+            </td>
+            <td class="bullet">
+              <pre><code class="language-markup">&lt;cms:repeat name="destinationList"
+    title="destinationList 列表 "
+    group="destinationList 列表 "
+    defaultRow="1" row="3">
+    &lt;dl class="dest-row">
+        &lt;cms:custom title=" 新默认标题 3" group=" 新默认组 3" fields="province:province 省份:string">&lt;dt>&lt;a class="J_DestCityItem" href="javascript:;" title="$!&#123;province}">$!&#123;province}&lt;/a>&lt;/dt>
+        &lt;/cms:custom>
+        &lt;cms:custom title=" 新默认标题 4 列表 " group=" 新默认组 4 列表 " fields="cityName:cityName 城市名:string"
+        defaultRow="3" row="7">
+            &lt;dd>#foreach($!subItem in $!customList)
+            &lt;a class="J_DestCityItem" href="javascript:;"
+            title="$!&#123;subItem.cityName}">$!&#123;subItem.cityName}&lt;/a>#end&lt;/dd>
+        &lt;/cms:custom>
+    &lt;/dl>
+&lt;/cms:repeat>
+</code></pre>
+            </td>
+          </tr>
+        </table>
+      </section>
+      <section>
+        <h2>Grunt 配置</h2>
+        <pre class="tms"><code class="language-javascript">grunt.initConfig({
+    ...
+      tms: {
+          options: {
+              DEFAULT_TITLE: '新默认标题 ',
+              DEFAULT_GROUP: '新默认组 ',
+              DEFAULT_ROW: 2,             // 对列表数据，默认行数，对应 "defaultRow" 属性
+              DEFAULT_MAXROW: 6,          // 对列表数据，默认最大行数，对应 "row" 属性
+              THRESHOLD_MULTISTRING: 2    // 判断为多行文本的阈值：字符串中包含 2 个以上的标点符号
+          },
+          main:{
+              files: [
+                  {
+                      expand: true,
+                      cwd:'build',
+                      // 对 '*.tms.html' 文件进行 juicer2tms 转换
+                      src: ['**/*.tms.html'],
+                      dest: 'build/',
+                      ext: '.tms'
+                  }
+              ]
+          }
+      },
+    ...
+});
+
+...
+
+grunt.loadNpmTasks('grunt-tms');
+
+...
+
+// 默认构建任务
+grunt.registerTask('build', '默认构建任务 ', function() {
+    task.run([..., 'tms', ...,'combohtml',..]);// 为了保证生成的.tms 文件格式整洁，建议将 'tms'写在'combohtml' 之前
+});
+...
+</code></pre>
+      </section>
+      <section data-bespoke-hash="one-more-thing"><img src="http://gtms02.alicdn.com/tps/i2/T1FmuRFsXfXXXusLne-700-300.jpg" class="bullet one-more-thing"></section>
+      <section data-bespoke-hash="better-watch">
+        <h2 class="bullet">工具疑难杂症</h2>
+        <hr>
+        <ul>
+          <li>
+            <h3 class="bullet">更好的 watch</h3>
+            <ul>
+              <li><a href="http://livereload.com/" target="_blank">LiveReload</a></li>
+              <li><a href="https://www.npmjs.org/package/grunt-newer" target="_blank">grunt-newer</a></li>
+            </ul>
+          </li>
+          <li>
+            <h3 class="bullet"><a href="https://www.npmjs.org/package/grunt-contrib-less" target="_blank">grunt-contrib-less</a></h3>
+          </li>
+          <li>
+            <h3 class="bullet">grunt-flexcombo  reverse-proxy -> o_o</h3>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>欢迎各种吐槽和 PR！</h2>
+        <hr>
+        <div class="thank-you"></div>
+        <footer class="credit">  Powered By<a href="https://github.com/markdalgleish/bespoke.js" target="_blank">Bespoke.js</a></footer>
+      </section>
+    </article>
+    <script src="scripts/scripts.js"></script>
+  </body>
+</html>
