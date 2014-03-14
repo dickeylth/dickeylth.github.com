@@ -1,0 +1,281 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>F2E Weekly-2014-03-07 | 前端探幽</title>
+  <meta name="author" content="Dickey Leo">
+  
+  <meta name="description" content="这里是前端每周播报，本周让我们关注下 Github 和 Android 的新动向，了解下如何利用数据分析更好地开发，认识下前沿的自定义标签，最后体验下一个神奇的编程语言，希望能给你带来收获！">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="F2E Weekly-2014-03-07"/>
+  <meta property="og:site_name" content="前端探幽"/>
+
+  
+    <meta property="og:image" content="/img/jspatterns/observer-cover.jpg" />
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="前端探幽" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-44813171-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">前端探幽</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">所有文章</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-06T16:00:00.000Z"><a href="/2014/03/07/F2EWeekly/">3月 07, 2014</a></time>
+      
+      
+  
+    <h1 class="title">F2E Weekly-2014-03-07</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>这里是前端每周播报，本周让我们关注下 Github 和 Android 的新动向，了解下如何利用数据分析更好地开发，认识下前沿的自定义标签，最后体验下一个神奇的编程语言，希望能给你带来收获！</p>
+<a id="more"></a>
+
+<h3 id="-">业界快讯</h3>
+<ul>
+<li>上周 Github 历时 6 年打造的文本编辑器<a href="https://atom.io/" target="_blank">Atom</a>正式揭开了它的面纱，号称是“面向 21 世纪的可控文本编辑器”，不过目前还在内测中，想要提前体验的用 mac 的同学可以<a href="https://www.dropbox.com/s/2qs84dmh06n1r6g/atom-mac.zip" target="_blank">点击这里</a>下载 beta 版。主要特点是完全基于 Github 上的开源项目和 Web 技术构建，高度模块化，也许看上去跟 sublime text 有几分相似，但是对于前端童鞋更能体现“可控”两个字了，有兴趣的童鞋可以研究把玩下。</li>
+<li>除此之外，Github 同时带来<a href="http://developer.github.com/program/" target="_blank">GitHub Developer Program</a>，为 Github 开发者带来除 API 之外更全面的协作、继承、部署、API 更新通知的支持。</li>
+<li>Google 最近更新了<a href="http://developer.android.com/about/dashboards/index.html" target="_blank">Android 开发者网站上 Dashboards 页面 Platform Versions</a>，展示了最新的 Anroid 各个版本的占有率情况，最新的 KitKat 已经有了 2.5% 的占有率了，Jelly Bean 继续稳步增长中，仍然有接近 20% 的用户在用 Gingerbread 及以下版本，供做移动端开发的同学参考，<a href="http://thenextweb.com/google/2014/03/04/android-kitkat-hits-2-5-adoption-jelly-bean-grabs-62-third-play-users-still-ics-gingerbread/#!yQMYC" target="_blank">对比分析可以见这里</a>。</li>
+</ul>
+<h3 id="-">充电站</h3>
+<ul>
+<li>做 Node.js 开发的同学应该用过<a href="https://www.npmjs.org/package/node-inspector" target="_blank">node-inspector</a>来调试程序吧，最新的 v0.7 版本为我们带来了哪些更新呢？包括提升启动速度、结果缓存、更好的可视化展示、<code>Error</code>类型值的查看、source map 的加载优化等，<a href="http://strongloop.com/strongblog/whats-new-in-the-node-inspector-v0-7-debugger/" target="_blank">更多细节可以参见这里</a>。</li>
+<li>很多时候我们开发的页面在上线后似乎就意味着生命周期告一段落了，其实还有很多事情可以做。Tim Jensen 带来这篇<a href="http://mobile.smashingmagazine.com/2014/03/03/how-to-use-analytics-to-build-smarter-mobile-websites/" target="_blank">《How To Use Analytics To Build A Smarter Mobile Website》</a>介绍了如何利用数据分析打造更聪明的移动端网站。此外，腾讯的 AlloyTeam 官方博客也分享了一篇<a href="http://www.alloyteam.com/2014/03/front-end-data-monitoring/" target="_blank">《前端数据监控》</a>，介绍了如何收集页面脚本错误、H5 性能统计、资源文件加载时间等。</li>
+<li>目前像 Angular、React.JS 等很多框架都在致力于 Web 组件的设计，以更好地提升组件的可复用性。自定义标签作为重要的亮点之一，在 Angular 中我们已经可以初步看到它的影子了。Peter Gasston 为我们带来这篇<a href="http://coding.smashingmagazine.com/2014/03/04/introduction-to-custom-elements/" target="_blank">《A Detailed Introduction To Custom Elements》</a>，详细介绍了自定义标签的理念和如何实践，强烈推荐。</li>
+<li>YUI 官方博客上周继续更新 YUIConf 2013 上的 Presentation，Evan Goer 带来的<a href="http://youtu.be/mEvvc80ZYU8" target="_blank">《Thinking of Documentation as Code》</a>介绍了他对于文档的一些观点以及如何更好地写文档，供大家参考，<a href="http://www.slideshare.net/evangoer/yuiconf-2013documentationiscode" target="_blank">PPT 见这里</a>。</li>
+</ul>
+<h3 id="-">百宝箱</h3>
+<ul>
+<li><a href="http://tridiv.com/" target="_blank">Tridiv</a>是一个用 CSS 创建 3D 形状的在线编辑器，交互设计挺棒，大家可以玩一玩。</li>
+<li><a href="http://jxcore.com/" target="_blank">JXcore</a>是一个支持多线程的 Node.js 发行版本，基本不需要对你现有的代码做任何改动就可以直接线程安全地以多线程运行，从而从分利用多核，Krzysztof Trzeciak 带来的<a href="http://flippinawesome.org/2014/03/03/jxcore-a-node-js-distribution-with-multi-threading" target="_blank">《JXcore – A Node.JS Distribution with Multi-threading》</a>详细介绍了这个项目的特点、如何支持多线程以及下一步的计划。</li>
+<li>最后我们轻松一下，看看<a href="http://v.youku.com/v_show/id_XNjc4OTYxNzEy.html" target="_blank">Wolfram 这门神奇的语言的介绍视频</a>，如果你还没有听说过 Wolfram 的话，一定要来了解下，看完之后瞬间有种自己弱爆了的感觉，也许会颠覆你目前对于编程的认识。</li>
+</ul>
+<h4 id="-">附所有链接：</h4>
+<ul>
+<li>Github<ul>
+<li>Github releases Atom, a text-editor for coders<ul>
+<li><a href="http://thenextweb.com/apps/2014/02/26/github-releases-text-editor-coders-named-atom/" target="_blank">http://thenextweb.com/apps/2014/02/26/github-releases-text-editor-coders-named-atom/</a></li>
+</ul>
+</li>
+<li>GitHub launches Developer Program with notifications about API changes and early access to select features<ul>
+<li><a href="http://thenextweb.com/dd/2014/03/06/github-launches-developer-program-notifications-api-changes-early-access-select-features/" target="_blank">http://thenextweb.com/dd/2014/03/06/github-launches-developer-program-notifications-api-changes-early-access-select-features/</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Android<ul>
+<li><a href="http://developer.android.com/about/dashboards/index.html" target="_blank">http://developer.android.com/about/dashboards/index.html</a></li>
+</ul>
+</li>
+<li>What’s New in the node-inspector v0.7 Debugger<ul>
+<li><a href="http://strongloop.com/strongblog/whats-new-in-the-node-inspector-v0-7-debugger/" target="_blank">http://strongloop.com/strongblog/whats-new-in-the-node-inspector-v0-7-debugger/</a></li>
+</ul>
+</li>
+<li>《How To Use Analytics To Build A Smarter Mobile Website》<ul>
+<li><a href="http://mobile.smashingmagazine.com/2014/03/03/how-to-use-analytics-to-build-smarter-mobile-websites/" target="_blank">http://mobile.smashingmagazine.com/2014/03/03/how-to-use-analytics-to-build-smarter-mobile-websites/</a></li>
+</ul>
+</li>
+<li>《前端数据监控》<ul>
+<li><a href="http://www.alloyteam.com/2014/03/front-end-data-monitoring/" target="_blank">http://www.alloyteam.com/2014/03/front-end-data-monitoring/</a></li>
+</ul>
+</li>
+<li>《A Detailed Introduction To Custom Elements》<ul>
+<li><a href="http://coding.smashingmagazine.com/2014/03/04/introduction-to-custom-elements/" target="_blank">http://coding.smashingmagazine.com/2014/03/04/introduction-to-custom-elements/</a></li>
+</ul>
+</li>
+<li>《Thinking of Documentation as Code》<ul>
+<li><a href="http://youtu.be/mEvvc80ZYU8" target="_blank">http://youtu.be/mEvvc80ZYU8</a></li>
+<li><a href="http://www.slideshare.net/evangoer/yuiconf-2013documentationiscode" target="_blank">http://www.slideshare.net/evangoer/yuiconf-2013documentationiscode</a></li>
+</ul>
+</li>
+<li>Tridiv<ul>
+<li><a href="http://tridiv.com/" target="_blank">http://tridiv.com/</a></li>
+</ul>
+</li>
+<li>《JXcore – A Node.JS Distribution with Multi-threading<ul>
+<li><a href="http://flippinawesome.org/2014/03/03/jxcore-a-node-js-distribution-with-multi-threading" target="_blank">http://flippinawesome.org/2014/03/03/jxcore-a-node-js-distribution-with-multi-threading</a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/每周播报/">每周播报</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/F2E Weekly/">F2E Weekly</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"dickeyblog"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- Duoshuo Comment END -->
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:dickeylth.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/每周播报/">每周播报</a><small>6</small></li>
+  
+    <li><a href="/categories/笔记/">笔记</a><small>5</small></li>
+  
+    <li><a href="/categories/翻译/">翻译</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/F2E Weekly/" style="font-size: 20.00px;">F2E Weekly</a><a href="/tags/Gulp/" style="font-size: 10.00px;">Gulp</a><a href="/tags/JavaScript/" style="font-size: 10.00px;">JavaScript</a><a href="/tags/JavaScript API/" style="font-size: 10.00px;">JavaScript API</a><a href="/tags/JavaScript设计模式/" style="font-size: 16.67px;">JavaScript设计模式</a><a href="/tags/Promise/" style="font-size: 13.33px;">Promise</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2014/03/14/F2EWeekly/">F2E Weekly-2014-03-14</a>
+      </li>
+    
+      <li>
+        <a href="/2014/03/07/F2EWeekly/">F2E Weekly-2014-03-07</a>
+      </li>
+    
+      <li>
+        <a href="/2014/02/28/F2EWeekly/">F2E Weekly-2014-02-28</a>
+      </li>
+    
+      <li>
+        <a href="/2014/02/21/F2EWeekly/">F2E Weekly-2014-02-21</a>
+      </li>
+    
+      <li>
+        <a href="/2014/02/14/F2EWeekly/">F2E Weekly-2014-02-14</a>
+      </li>
+    
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 Dickey Leo
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
