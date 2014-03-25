@@ -6,7 +6,7 @@ tags: ['Node.js']
 cover: "/img/jspatterns/observer-cover.jpg"
 ---
 
-最近学习了阿里巴巴B2B国际站前端组推出的这篇《七天学会NodeJS》长文，对Node.js里的一些基本概念和实现方式有了进一步了解，尤其其中关于进程和异步的部分值得好好研究，这里记录一下学习笔记。
+最近学习了阿里巴巴B2B国际站前端组推出的这篇[《七天学会NodeJS》](http://nqdeng.github.io/7-days-nodejs)长文，对Node.js里的一些基本概念和实现方式有了进一步了解，尤其其中关于进程和异步的部分值得好好研究，这里记录一下学习笔记。
 
 <!--more-->
 
