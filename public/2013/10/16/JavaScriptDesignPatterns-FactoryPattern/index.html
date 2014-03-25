@@ -84,8 +84,7 @@
     <div class="entry">
       
         <p>工厂模式通常用于重复创建相似对象，提供动态创建对象的接口。我们来看看身边的工厂模式，以及它与构造函数的区别。</p>
-<p><a id="more"></a>
-工厂模式作为设计模式中构造模式之一，通常在类或类的静态方法中应用，主要为了实现：</p>
+<p><a id="more"></a><br>工厂模式作为设计模式中构造模式之一，通常在类或类的静态方法中应用，主要为了实现：</p>
 <ul>
 <li>重复创建相似对象</li>
 <li>根据类型名在运行时动态创建对象</li>
@@ -139,8 +138,7 @@ http.createServer(<span class="function"><span class="keyword">function</span><s
 </pre></td></tr></table></figure>
 
 
-<p>nodejs 中的 http 模块输出了 createServer 这个接口，这里就是一个典型的工厂模式。
-但看看 http 模块的源码，可以发现其实 http 同样提供了 Server 这个构造器接口：</p>
+<p>nodejs 中的 http 模块输出了 createServer 这个接口，这里就是一个典型的工厂模式。<br>但看看 http 模块的源码，可以发现其实 http 同样提供了 Server 这个构造器接口：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -173,7 +171,7 @@ exports.createServer = <span class="function"><span class="keyword">function</sp
 <li><a href="https://groups.google.com/forum/#!msg/nodejs/GTaCdFPlweI/M0q38C3SJpkJ" target="_blank">[nodejs] Why net.createServer() and not new net.Server()?</a></li>
 <li><a href="https://groups.google.com/forum/#!msg/nodejs/yoXogs7vNYU/uUKT59t_w-sJ" target="_blank">Why export both http.Server() and http.createServer()?</a></li>
 </ul>
-<p>得到的答案大意是当年受限于 C++ 代码中的限制只好采用了这些工厂方法 (&quot;Due to the way I structured the C++ stuff constructors couldn&#39;t take arguments.&quot; 这句比较含糊，没说明具体原因)。</p>
+<p>得到的答案大意是当年受限于 C++ 代码中的限制只好采用了这些工厂方法 (“Due to the way I structured the C++ stuff constructors couldn’t take arguments.”这句比较含糊，没说明具体原因)。</p>
 <p>而同时提供构造器方法，Bryce 猜测是为了方便以后做类型检测。</p>
 <p>此外，让我们对比下下面两行代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
@@ -243,7 +241,7 @@ s = <span class="keyword">new</span> (<span class="built_in">require</span>(<spa
 }
 </pre></td></tr></table></figure>
 
-<p>约定输入的字符串是按照 &quot; 年 - 月 - 日 - 时 - 分 - 秒 &quot; 的字段顺序指定时间，但是未必包含所有的字段。</p>
+<p>约定输入的字符串是按照”年 - 月 - 日 - 时 - 分 - 秒”的字段顺序指定时间，但是未必包含所有的字段。</p>
 <p>很容易想到利用正则过滤出各个字段：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
 2
@@ -365,9 +363,9 @@ s = <span class="keyword">new</span> (<span class="built_in">require</span>(<spa
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/每周播报/">每周播报</a><small>6</small></li>
+    <li><a href="/categories/每周播报/">每周播报</a><small>7</small></li>
   
-    <li><a href="/categories/笔记/">笔记</a><small>5</small></li>
+    <li><a href="/categories/笔记/">笔记</a><small>6</small></li>
   
     <li><a href="/categories/翻译/">翻译</a><small>6</small></li>
   
@@ -379,7 +377,7 @@ s = <span class="keyword">new</span> (<span class="built_in">require</span>(<spa
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/F2E Weekly/" style="font-size: 20.00px;">F2E Weekly</a><a href="/tags/Gulp/" style="font-size: 10.00px;">Gulp</a><a href="/tags/JavaScript/" style="font-size: 10.00px;">JavaScript</a><a href="/tags/JavaScript API/" style="font-size: 10.00px;">JavaScript API</a><a href="/tags/JavaScript设计模式/" style="font-size: 16.67px;">JavaScript设计模式</a><a href="/tags/Promise/" style="font-size: 13.33px;">Promise</a>
+    <a href="/tags/F2E Weekly/" style="font-size: 20.00px;">F2E Weekly</a><a href="/tags/Gulp/" style="font-size: 10.00px;">Gulp</a><a href="/tags/JavaScript/" style="font-size: 10.00px;">JavaScript</a><a href="/tags/JavaScript API/" style="font-size: 10.00px;">JavaScript API</a><a href="/tags/JavaScript设计模式/" style="font-size: 16.67px;">JavaScript设计模式</a><a href="/tags/Node.js/" style="font-size: 10.00px;">Node.js</a><a href="/tags/Promise/" style="font-size: 13.33px;">Promise</a>
   </div>
 </div>
 
@@ -388,6 +386,14 @@ s = <span class="keyword">new</span> (<span class="built_in">require</span>(<spa
 <div class="widget tag">
   <h3 class="title">最新文章</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/2014/03/25/7-days-nodejs-note/">《七天学会NodeJS》学习笔记</a>
+      </li>
+    
+      <li>
+        <a href="/2014/03/21/F2EWeekly/">F2E Weekly-2014-03-21</a>
+      </li>
     
       <li>
         <a href="/2014/03/14/F2EWeekly/">F2E Weekly-2014-03-14</a>
@@ -399,14 +405,6 @@ s = <span class="keyword">new</span> (<span class="built_in">require</span>(<spa
     
       <li>
         <a href="/2014/02/28/F2EWeekly/">F2E Weekly-2014-02-28</a>
-      </li>
-    
-      <li>
-        <a href="/2014/02/21/F2EWeekly/">F2E Weekly-2014-02-21</a>
-      </li>
-    
-      <li>
-        <a href="/2014/02/14/F2EWeekly/">F2E Weekly-2014-02-14</a>
       </li>
     
   </ul>

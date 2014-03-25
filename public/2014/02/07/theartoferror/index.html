@@ -95,7 +95,7 @@
 <li>完全避免<code>Error</code>，因为“异常都是不好的”。</li>
 </ol>
 <p>让我们来侃侃如何避免这些问题以及如何正确地使用错误。</p>
-<h3 id="-">将错误子类化</h3>
+<h3 id=" 将错误子类化 ">将错误子类化</h3>
 <p>借助于<code>Object.create</code>或<code>util.inherits</code>（Node 中）很容易将错误子类化。在 Node 中你会这么来做：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
 2
@@ -183,15 +183,15 @@ assert.equal(error <span class="keyword">instanceof</span> <span class="built_in
 </pre></td></tr></table></figure>
 
 <p>在为撰写这篇文章而进行调研时，我注意到对于继承<code>Error</code>和捕获堆栈存在很多困惑。很难在各个浏览器中恰当地处理。如果你想了解更多，在 Stack Overflow 上有个不错的帖子：<a href="http://stackoverflow.com/questions/1382107/whats-a-good-way-to-extend-error-in-javascript" target="_blank">What’s a good way to extend Error in JavaScript?</a>。</p>
-<h3 id="-">抛出和捕获错误</h3>
+<h3 id=" 抛出和捕获错误 ">抛出和捕获错误</h3>
 <p>可能你会注意到我很少提到<code>throw</code>，那是因为我们几乎不再使用它了。更常见的做法是将错误作为第一个参数传递到回调函数中，或是在<code>error</code>事件触发时的传入的第一个参数。</p>
 <p>如果你在使用这样的 API，也许你会在回调函数最前面使用像<code>if (err) return handleError(err)</code>这样的代码。你也可以使用<code>if (err instanceof SpecificError)</code>来添加自己的上下文特定的错误处理代码。</p>
 <p>Node 开发者通常避免抛出异常，但如果你觉得确实有必要，可以使用<code>throw new Error(&#39;I am Error&#39;)</code>，然后在测试中使用<code>assert.throws</code>。我觉得我几乎用不着使用<code>throw</code>。</p>
-<h3 id="-">设计错误对象</h3>
+<h3 id=" 设计错误对象 ">设计错误对象</h3>
 <p>当你开始子类化<code>Error</code>并添加私有属性，由于打破了<a href="http://zh.wikipedia.org/wiki/SOLID_(%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1\" target="_blank">SOLID</a>) 原则，会带来新的问题。为了保持明晰的错误设计，确保每个错误类只具备单一职责——不要创建像瑞士军刀一样的错误对象，或是在它们的构造函数中触发复杂的行为。</p>
 <p>此外，还应该在合理的地方创建错误。如果你已经编写了数据库层，不要在从数据库中加载数据的代码中抛出前面的<code>NotFound</code>错误。在这种情况下，更好的做法是用一个<code>Database.NotFound</code>错误对象，或者也可以返回<code>undefined</code>，然后在视图层抛出<code>NotFound</code>错误。</p>
 <p>遵循<a href="http://zh.wikipedia.org/wiki/%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99" target="_blank">里氏替换原则</a>也有助于编写可维护的错误处理代码。如果你将前面的<code>NotFound</code>错误替换为一个具备更丰富的上下文相关信息的新的类，那么现有的代码应该仍然能正常工作。如果你不知为何改变了<code>notFound.statusCode</code>的职责，就会违反这条规则。</p>
-<h3 id="-">总结</h3>
+<h3 id=" 总结 ">总结</h3>
 <p>在我的项目中我创建了很多<code>Error</code>类，但我几乎很少用到<code>throw</code>和<code>catch</code>。你应该在错误对象上设置有用的属性，但以一致的方式使用这些属性。而且，不要玩穿越：HTTP 错误不应该在处理数据库的代码中出现。对于浏览器开发者，ajax 错误在与服务器交互的代码中可以出现，但不应该在处理 Mustache 模板的代码中出现。</p>
 
       
@@ -247,9 +247,9 @@ assert.equal(error <span class="keyword">instanceof</span> <span class="built_in
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/每周播报/">每周播报</a><small>6</small></li>
+    <li><a href="/categories/每周播报/">每周播报</a><small>7</small></li>
   
-    <li><a href="/categories/笔记/">笔记</a><small>5</small></li>
+    <li><a href="/categories/笔记/">笔记</a><small>6</small></li>
   
     <li><a href="/categories/翻译/">翻译</a><small>6</small></li>
   
@@ -261,7 +261,7 @@ assert.equal(error <span class="keyword">instanceof</span> <span class="built_in
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/F2E Weekly/" style="font-size: 20.00px;">F2E Weekly</a><a href="/tags/Gulp/" style="font-size: 10.00px;">Gulp</a><a href="/tags/JavaScript/" style="font-size: 10.00px;">JavaScript</a><a href="/tags/JavaScript API/" style="font-size: 10.00px;">JavaScript API</a><a href="/tags/JavaScript设计模式/" style="font-size: 16.67px;">JavaScript设计模式</a><a href="/tags/Promise/" style="font-size: 13.33px;">Promise</a>
+    <a href="/tags/F2E Weekly/" style="font-size: 20.00px;">F2E Weekly</a><a href="/tags/Gulp/" style="font-size: 10.00px;">Gulp</a><a href="/tags/JavaScript/" style="font-size: 10.00px;">JavaScript</a><a href="/tags/JavaScript API/" style="font-size: 10.00px;">JavaScript API</a><a href="/tags/JavaScript设计模式/" style="font-size: 16.67px;">JavaScript设计模式</a><a href="/tags/Node.js/" style="font-size: 10.00px;">Node.js</a><a href="/tags/Promise/" style="font-size: 13.33px;">Promise</a>
   </div>
 </div>
 
@@ -270,6 +270,14 @@ assert.equal(error <span class="keyword">instanceof</span> <span class="built_in
 <div class="widget tag">
   <h3 class="title">最新文章</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/2014/03/25/7-days-nodejs-note/">《七天学会NodeJS》学习笔记</a>
+      </li>
+    
+      <li>
+        <a href="/2014/03/21/F2EWeekly/">F2E Weekly-2014-03-21</a>
+      </li>
     
       <li>
         <a href="/2014/03/14/F2EWeekly/">F2E Weekly-2014-03-14</a>
@@ -281,14 +289,6 @@ assert.equal(error <span class="keyword">instanceof</span> <span class="built_in
     
       <li>
         <a href="/2014/02/28/F2EWeekly/">F2E Weekly-2014-02-28</a>
-      </li>
-    
-      <li>
-        <a href="/2014/02/21/F2EWeekly/">F2E Weekly-2014-02-21</a>
-      </li>
-    
-      <li>
-        <a href="/2014/02/14/F2EWeekly/">F2E Weekly-2014-02-14</a>
       </li>
     
   </ul>

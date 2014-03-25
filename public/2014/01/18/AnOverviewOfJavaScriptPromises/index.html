@@ -90,9 +90,9 @@ JavaScript 中的 Promise 让人总感觉有种神秘感，通过这个系列 2 
 
 <p>唔，这看起来像是给所有的 JavaScript 开发者们的圣诞节礼物。得知 Promise 现在成为 JavaScript 标准的一部分，你一定会很开心。Chrome 32 beta 已经实现了基本的 Promise API。Promise 的概念对于 web 开发并不陌生。我们之中很多人已经通过某些 JS 库使用过 Promise 了，诸如 Q、when、RSVP.js 等。甚至 jQuery 中也有叫做 Deferred 的玩意儿，跟 Promise 很相似。但是在 JavaScript 中拥有对 Promise 的原生支持真的很神奇。这篇教程将会涉及 Promise 的基础，并向你展示如何在 JS 开发中充分应用。</p>
 <p>友情提示：这仍然是个实验性特性。只有 Chrome 32 beta 和最新的 Firefox nightly 版本目前支持。</p>
-<h3 id="-">概述</h3>
+<h3 id=" 概述 ">概述</h3>
 <p>一个<code>Promise</code>对象代表一个尚不可用但未来某个时刻会确定的值。它允许你以更加同步化的风格来编写异步的代码。例如，如果你使用 Promise API 来执行一个到远程 web 服务的异步调用，你需要创建一个<code>Promise</code>对象，表示稍后由 web 服务返回的数据。需要说明的是，实际上当前数据还不可用。当请求结束并且收到 web 服务返回的响应时数据才能变为可用。在此期间，<code>Promise</code>对象就像真实数据的代理。进一步地，你可以绑定回调函数到<code>Promise</code>对象上，当真实数据一旦可用时就会调用回调函数。</p>
-<h3 id="api">API</h3>
+<h3 id="API">API</h3>
 <p>让我们以研究下面的创建新的 Promise 对象的代码作为开始。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
 2
@@ -200,7 +200,7 @@ JavaScript 中的 Promise 让人总感觉有种神秘感，通过这个系列 2 
 <li>rejected（失败）</li>
 </ul>
 <p><code>Promise.status</code>属性提供了状态信息，但它是不能通过代码访问到并且是私有的。一旦 Promise 成功或失败，状态就会保持不变。这意味着 Promise 只能成功或失败一次。如果 Promise 已经成功了，之后你给它附加上一个<code>then()</code>，传入 2 个回调函数，那么处理成功状态的回调函数就会正确地被调用。所以在 Promise 的世界里，我们并不关心 Promise 何时处理完成。我们只关心 Promise 最终的处理结果。</p>
-<h3 id="-promise">链式 Promise</h3>
+<h3 id=" 链式 _Promise">链式 Promise</h3>
 <p>有时候可能需要将多个 Promise 链起来。比如，你需要执行多个异步的操作。当一个操作返回了数据，你就要开始对这些数据执行其他的某个操作等。Promise 可以被链接起来，就像下面的代码中所演示的。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
 2
@@ -233,7 +233,7 @@ promise.then(<span class="function"><span class="keyword">function</span><span c
 </pre></td></tr></table></figure>
 
 <p>这段代码中比较难以捉摸的地方是当你在<code>then()</code>中返回了一个简单的值后，下一个<code>then()</code>就会被调用，并传入前面的返回值。但如果你在<code>then()</code>中返回一个<code>Promise</code>，下一个<code>then()</code>就会等待直到那个 Promise 处理完成。</p>
-<h3 id="-">错误处理</h3>
+<h3 id=" 错误处理 ">错误处理</h3>
 <p>你已经知道了<code>then()</code>函数接收 2 个回调函数作为参数。当 Promise 转为失败状态时第二个函数就会被调用。不过，我们还可以用<code>catch()</code>函数来处理 Promise 失败。看看下面的代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
 2
@@ -261,10 +261,10 @@ promise.then(<span class="function"><span class="keyword">function</span><span c
 </pre></td></tr></table></figure>
 
 <p>需要注意的是，如果 Promise 失败并且<code>then()</code>中没有处理失败状态的回调函数，控制流就会转入下一个带有处理失败状态的回调函数的<code>then()</code>或是下一个<code>catch()</code>函数。除了显式的 Promise 失败，当<code>Promise()</code>构造函数中的回调函数抛出任何异常时，<code>catch()</code>也会被调用。所以，你也可以使用<code>catch()</code>来记录日志。注意，我们可以使用<code>try..catch</code>来处理错误，但对于 Promise 而言并非必要，因为任何异步或同步的错误始终会被<code>catch()</code>所捕获。</p>
-<h3 id="-">总结</h3>
+<h3 id=" 总结 ">总结</h3>
 <p>这只是一篇对 JavaScript 的新的 Promise API 的简要介绍。显然它会使异步代码写起来非常容易。我们可以像往常一样写代码，而不必知道稍后异步代码中会返回什么值。API 中还有很多东西这里没有提到。浏览下面的资源并保持关注 SitePoint 来了解关于 Promise 的更多东西吧。</p>
 <p><img src="http://1.gravatar.com/avatar/ba63b07b15dfc9d3b718118e82544309?s=96&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D96&amp;r=G" alt="Sandeep Panda"></p>
-<h4 id="sandeep-panda">Sandeep Panda</h4>
+<h4 id="Sandeep_Panda">Sandeep Panda</h4>
 <p>Sandeep Panda 是一位 web 开发者和作家，对 Java、JavaScript 和 HTML5 充满热情，拥有 4 年以上 web 开发经验，一直热爱尝试各种新生的新技术并持续学习。不开发的时候，Sandeep 喜欢玩游戏和听音乐。</p>
 
       
@@ -320,9 +320,9 @@ promise.then(<span class="function"><span class="keyword">function</span><span c
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/每周播报/">每周播报</a><small>6</small></li>
+    <li><a href="/categories/每周播报/">每周播报</a><small>7</small></li>
   
-    <li><a href="/categories/笔记/">笔记</a><small>5</small></li>
+    <li><a href="/categories/笔记/">笔记</a><small>6</small></li>
   
     <li><a href="/categories/翻译/">翻译</a><small>6</small></li>
   
@@ -334,7 +334,7 @@ promise.then(<span class="function"><span class="keyword">function</span><span c
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/F2E Weekly/" style="font-size: 20.00px;">F2E Weekly</a><a href="/tags/Gulp/" style="font-size: 10.00px;">Gulp</a><a href="/tags/JavaScript/" style="font-size: 10.00px;">JavaScript</a><a href="/tags/JavaScript API/" style="font-size: 10.00px;">JavaScript API</a><a href="/tags/JavaScript设计模式/" style="font-size: 16.67px;">JavaScript设计模式</a><a href="/tags/Promise/" style="font-size: 13.33px;">Promise</a>
+    <a href="/tags/F2E Weekly/" style="font-size: 20.00px;">F2E Weekly</a><a href="/tags/Gulp/" style="font-size: 10.00px;">Gulp</a><a href="/tags/JavaScript/" style="font-size: 10.00px;">JavaScript</a><a href="/tags/JavaScript API/" style="font-size: 10.00px;">JavaScript API</a><a href="/tags/JavaScript设计模式/" style="font-size: 16.67px;">JavaScript设计模式</a><a href="/tags/Node.js/" style="font-size: 10.00px;">Node.js</a><a href="/tags/Promise/" style="font-size: 13.33px;">Promise</a>
   </div>
 </div>
 
@@ -343,6 +343,14 @@ promise.then(<span class="function"><span class="keyword">function</span><span c
 <div class="widget tag">
   <h3 class="title">最新文章</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/2014/03/25/7-days-nodejs-note/">《七天学会NodeJS》学习笔记</a>
+      </li>
+    
+      <li>
+        <a href="/2014/03/21/F2EWeekly/">F2E Weekly-2014-03-21</a>
+      </li>
     
       <li>
         <a href="/2014/03/14/F2EWeekly/">F2E Weekly-2014-03-14</a>
@@ -354,14 +362,6 @@ promise.then(<span class="function"><span class="keyword">function</span><span c
     
       <li>
         <a href="/2014/02/28/F2EWeekly/">F2E Weekly-2014-02-28</a>
-      </li>
-    
-      <li>
-        <a href="/2014/02/21/F2EWeekly/">F2E Weekly-2014-02-21</a>
-      </li>
-    
-      <li>
-        <a href="/2014/02/14/F2EWeekly/">F2E Weekly-2014-02-14</a>
       </li>
     
   </ul>
