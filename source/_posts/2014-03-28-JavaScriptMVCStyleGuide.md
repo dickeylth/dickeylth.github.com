@@ -10,7 +10,7 @@ JavaScript MVC的框架越来越多，但是如何写出真正满足 MVC 约定�
 
 原文链接：[《JavaScript MVC Style Guide》](http://blog.sourcing.io/mvc-style-guide)
 
---- 
+---
 
 过去几年里我总结出一些 MVC web 应用的规则，很管用而且避免了庞大的代码库陷入混乱。尽管在专业术语上可能存在差异，这些规则对于像 Backbone 和 Ember 这样的诸多客户端 MVC 框架应该都适用。
 

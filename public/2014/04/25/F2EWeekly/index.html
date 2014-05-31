@@ -1,0 +1,307 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>F2E Weekly-2014-04-25 | 前端探幽</title>
+  <meta name="author" content="Dickey Leo">
+  
+  <meta name="description" content="这里是前端每周播报，本周让我们关注下 Opera 的新闻，学习下 AngularJS 和 ReactJS 的整合运用和移动端性能优化的技巧，体验下 CSS 3 中的 cubic-bezier() 的强大本领，最后了解下一些较冷门的 CSS 真相，希望能给你带来收获！">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="F2E Weekly-2014-04-25"/>
+  <meta property="og:site_name" content="前端探幽"/>
+
+  
+    <meta property="og:image" content="/img/jspatterns/observer-cover.jpg" />
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="前端探幽" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<meta name="google-translate-customization" content="a9a07b64678ddc7b-87bb7e79e577965f-gd475b0b319f70a25-13"></meta>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-44813171-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">前端探幽</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">所有文章</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-24T16:00:00.000Z"><a href="/2014/04/25/F2EWeekly/">4月 25, 2014</a></time>
+      
+      
+  
+    <h1 class="title">F2E Weekly-2014-04-25</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>这里是前端每周播报，本周让我们关注下 Opera 的新闻，学习下 AngularJS 和 ReactJS 的整合运用和移动端性能优化的技巧，体验下 CSS 3 中的 <code>cubic-bezier()</code> 的强大本领，最后了解下一些较冷门的 CSS 真相，希望能给你带来收获！</p>
+<a id="more"></a>
+
+<h3 id=" 业界快讯 ">业界快讯</h3>
+<ul>
+<li><p><a href="http://thenextweb.com/apps/2014/04/24/opera-brings-gesture-heavy-coast-browser-iphone/" target="_blank">Opera brings its gesture-heavy Coast browser to the iPhone</a></p>
+<ul>
+<li>Opera 将之前面向 iPad 的浏览器 Coast 带到了 iPhone 上，这是一款支持丰富手势操作的浏览器，提供了黑色简约的外观，改进了搜索功能的体验，以及自动的 iCloud 同步。</li>
+</ul>
+</li>
+</ul>
+<h3 id=" 充电站 ">充电站</h3>
+<ul>
+<li><p><a href="http://www.williambrownstreet.net/blog/2014/04/faster-angularjs-rendering-angularjs-and-reactjs/" target="_blank">Faster AngularJS Rendering (AngularJS and ReactJS)</a></p>
+<ul>
+<li>ReactJS 最大的优势是借助 virtual dom 比对加快模板渲染速度，这篇博文中介绍了将 AngularJS 视图部分与 ReactJS 整合，从而在视图更新时获得极大的性能提升（接近 4 倍），不错的想法和实践！</li>
+</ul>
+</li>
+<li><p><a href="http://www.codelord.net/2014/04/15/improving-ng-repeat-performance-with-track-by/" target="_blank">Improving ng-repeat Performance with “track by”</a></p>
+<ul>
+<li>AngularJS 中用得最多的应该就是 <code>ngRepeate</code> 指令了，但你是否纠结过每次重新渲染时的 DOM 操作性能问题？从 AnguarJS 1.2 起新语法 <code>track by</code> 被引入到 <code>ngRepeate</code> 中以按需更新 DOM，快来看看这篇博文中的介绍吧！]</li>
+</ul>
+</li>
+<li><p><a href="http://cubiq.org/performance-tricks-for-mobile-web-development" target="_blank">Performance tricks for (mobile) web development</a></p>
+<ul>
+<li><a href="http://t.cn/8FZkupa" target="_blank">iScroll</a> 的作者带来的这篇分享介绍了针对移动端的 web 开发的一些性能提升的技巧，包括保持简单扁平化的 DOM 结构、避免 DOM 操作、充分利用缓存、使用触发硬件加速的 CSS 属性、使用 transition 等。]</li>
+</ul>
+</li>
+<li><p><a href="http://strongloop.com/strongblog/streaming-chunked-html-node-js-data/" target="_blank">Using Streaming Chunked HTML to Get Node.js to Deliver More Data</a></p>
+<ul>
+<li>这篇博文中介绍了在 Node.js 中如何利用流式数据块加快体验的响应速度，先谈到了 Facebook 的 BigPipe 技术，然后介绍了 <code>express</code> 中使响应变为流式数据块的技巧以及流式传递的方法，最后还提到了异步请求的处理，值得学习一下！</li>
+</ul>
+</li>
+<li><p><a href="http://www.smashingmagazine.com/2014/04/15/understanding-css-timing-functions/" target="_blank">Understanding CSS Timing Functions</a></p>
+<ul>
+<li>CSS 3 的 <code>transition</code> 属性相信大家或多或少都有尝试过，但除了内置的几种渐变效果，你知道如何设计自己的动画吗？这一切都依赖于贝赛尔曲线函数 <code>cubic-bezier()</code>，这篇文章对其进行了深入详尽的介绍，不可错过！</li>
+</ul>
+</li>
+<li><p><a href="http://www.sitepoint.com/12-little-known-css-facts/" target="_blank">12 Little-Known CSS Facts</a></p>
+<ul>
+<li>这篇博文中介绍了一些 CSS 中相对冷门的知识，像是<code>color</code>不局限于影响文本、<code>visibility:collapse</code>、<code>clip</code>使用条件、<code>text-decoration</code>的简写、<code>border-width</code>的关键词属性值、<code>empty-cells</code>属性等，相信你看完之后一定会学到点新东西。</li>
+</ul>
+</li>
+</ul>
+<h3 id=" 百宝箱 ">百宝箱</h3>
+<ul>
+<li><p><a href="https://github.com/cheeriojs/cheerio" target="_blank">cheerio</a></p>
+<ul>
+<li>cheerio 是一个高效、灵活而轻量级的 node.js 服务器端 DOM 操作的工具，在 API 方面与 jQuery 核心的 DOM API 保持一致，如果你需要处理字符串格式的 HTML 片段，对其进行 DOM 操作，相比 <a href="https://github.com/tmpvar/jsdom" target="_blank">jsdom</a> 在大多数场景下使用起来更方便。    </li>
+</ul>
+</li>
+</ul>
+<hr>
+<h5 id=" 附所有链接：">附所有链接：</h5>
+<ul>
+<li>Opera brings its gesture-heavy Coast browser to the iPhone<ul>
+<li><a href="http://thenextweb.com/apps/2014/04/24/opera-brings-gesture-heavy-coast-browser-iphone/" target="_blank">http://thenextweb.com/apps/2014/04/24/opera-brings-gesture-heavy-coast-browser-iphone/</a></li>
+</ul>
+</li>
+<li>Faster AngularJS Rendering (AngularJS and ReactJS)<ul>
+<li><a href="http://www.williambrownstreet.net/blog/2014/04/faster-angularjs-rendering-angularjs-and-reactjs/" target="_blank">http://www.williambrownstreet.net/blog/2014/04/faster-angularjs-rendering-angularjs-and-reactjs/</a></li>
+</ul>
+</li>
+<li>Improving ng-repeat Performance with “track by”<ul>
+<li><a href="http://www.codelord.net/2014/04/15/improving-ng-repeat-performance-with-track-by/" target="_blank">http://www.codelord.net/2014/04/15/improving-ng-repeat-performance-with-track-by/</a></li>
+</ul>
+</li>
+<li>Performance tricks for (mobile) web development<ul>
+<li><a href="http://cubiq.org/performance-tricks-for-mobile-web-development" target="_blank">http://cubiq.org/performance-tricks-for-mobile-web-development</a></li>
+</ul>
+</li>
+<li>Using Streaming Chunked HTML to Get Node.js to Deliver More Data<ul>
+<li><a href="http://strongloop.com/strongblog/streaming-chunked-html-node-js-data/" target="_blank">http://strongloop.com/strongblog/streaming-chunked-html-node-js-data/</a></li>
+</ul>
+</li>
+<li>Understanding CSS Timing Functions<ul>
+<li><a href="http://www.smashingmagazine.com/2014/04/15/understanding-css-timing-functions/" target="_blank">http://www.smashingmagazine.com/2014/04/15/understanding-css-timing-functions/</a>)</li>
+</ul>
+</li>
+<li>12 Little-Known CSS Facts<ul>
+<li><a href="http://www.sitepoint.com/12-little-known-css-facts/" target="_blank">http://www.sitepoint.com/12-little-known-css-facts/</a></li>
+</ul>
+</li>
+<li>cheerio<ul>
+<li><a href="https://github.com/cheeriojs/cheerio" target="_blank">https://github.com/cheeriojs/cheerio</a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/每周播报/">每周播报</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/F2E Weekly/">F2E Weekly</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"dickeyblog"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- Duoshuo Comment END -->
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:dickeylth.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/每周播报/">每周播报</a><small>16</small></li>
+  
+    <li><a href="/categories/笔记/">笔记</a><small>7</small></li>
+  
+    <li><a href="/categories/翻译/">翻译</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/F2E Weekly/" style="font-size: 20.00px;">F2E Weekly</a><a href="/tags/Gulp/" style="font-size: 10.00px;">Gulp</a><a href="/tags/JavaScript/" style="font-size: 13.33px;">JavaScript</a><a href="/tags/JavaScript API/" style="font-size: 10.00px;">JavaScript API</a><a href="/tags/JavaScript设计模式/" style="font-size: 16.67px;">JavaScript设计模式</a><a href="/tags/MVC/" style="font-size: 10.00px;">MVC</a><a href="/tags/Node.js/" style="font-size: 10.00px;">Node.js</a><a href="/tags/Promise/" style="font-size: 13.33px;">Promise</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2014/05/30/F2EWeekly/">F2E Weekly-2014-05-30</a>
+      </li>
+    
+      <li>
+        <a href="/2014/05/28/GetIncrementId/">JavaScript 中返回自增计数的函数</a>
+      </li>
+    
+      <li>
+        <a href="/2014/05/25/F2EWeekly/">F2E Weekly-2014-05-25</a>
+      </li>
+    
+      <li>
+        <a href="/2014/05/17/F2EWeekly/">F2E Weekly-2014-05-17</a>
+      </li>
+    
+      <li>
+        <a href="/2014/05/09/F2EWeekly/">F2E Weekly-2014-05-09</a>
+      </li>
+    
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 Dickey Leo
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+<div id="google_translate_element"></div><script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'zh-CN', layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT, multilanguagePage: true, gaTrack: true, gaId: 'UA-44813171-1'}, 'google_translate_element');
+    }
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

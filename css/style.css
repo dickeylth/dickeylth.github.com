@@ -795,3 +795,7 @@ pre .clojure .title {
 pre .deletion {
   color: #dc322f;
 }
+
+hr{
+  margin: 15px 0;
+}

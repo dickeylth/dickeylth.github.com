@@ -1,0 +1,343 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>F2E Weekly-2014-03-28 | 前端探幽</title>
+  <meta name="author" content="Dickey Leo">
+  
+  <meta name="description" content="这里是前端每周播报，本周让我们关注下 Mozilla、iOS、npm 的新闻，了解下新晋面向 web 组件的框架 Polymer，学习下 JavaScript MVC 风格指南，思考下在 MVC 中如何提高复杂模板渲染的效率，最后体验下面向移动端 H5 的新框架 PhoneJS ，希望能给你带来收获！">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="F2E Weekly-2014-03-28"/>
+  <meta property="og:site_name" content="前端探幽"/>
+
+  
+    <meta property="og:image" content="/img/jspatterns/observer-cover.jpg" />
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="前端探幽" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<meta name="google-translate-customization" content="a9a07b64678ddc7b-87bb7e79e577965f-gd475b0b319f70a25-13"></meta>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-44813171-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">前端探幽</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">所有文章</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-27T16:00:00.000Z"><a href="/2014/03/28/F2EWeekly/">3月 28, 2014</a></time>
+      
+      
+  
+    <h1 class="title">F2E Weekly-2014-03-28</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>这里是前端每周播报，本周让我们关注下 Mozilla、iOS、npm 的新闻，了解下新晋面向 web 组件的框架 Polymer，学习下 JavaScript MVC 风格指南，思考下在 MVC 中如何提高复杂模板渲染的效率，最后体验下面向移动端 H5 的新框架 PhoneJS ，希望能给你带来收获！</p>
+<a id="more"></a>
+
+<h3 id=" 业界快讯 ">业界快讯</h3>
+<ul>
+<li><p><a href="http://www.36kr.com/p/210639.html" target="_blank">JavaScript 发明人 Brenden Eich 接任 Mozilla 新 CEO ，首席 nerd 转任首席公仆</a></p>
+<ul>
+<li>Mozilla 本周二宣布联合创始人和现任首席技术官 ( CTO ) Brendan Eich 被任命为 Mozilla 首席执行官 ( CEO )。</li>
+</ul>
+</li>
+<li><p><a href="http://thenextweb.com/apple/2014/03/24/ios-7-adoption-hits-85-according-apples-app-store-usage-numbers-ios-6-slips-12/" target="_blank">根据苹果的 App Store 使用数据，iOS 7 占有率达 85%，iOS6 下滑至 12%</a></p>
+<ul>
+<li>Apple 本周又在 <a href="http://t.cn/8kVPbds" target="_blank">开发者支持页面</a> 更新了 iOS 版本占有率统计结果，供移动开发的童鞋参考。</li>
+</ul>
+</li>
+<li><p><a href="http://blog.npmjs.org/post/80789086446/nicer-perusal-method" target="_blank">更好的浏览方式</a></p>
+<ul>
+<li>npm 上的搜索功能一直不太好用，也是一个比较棘手的问题。npm 官方博客更新的这篇博文介绍了 npm 最近在这方面做出的努力，包括根据包的流行度对包进行评分、搜索关键词解析、结果页更丰富的数据展示、安全问题修复等。    </li>
+</ul>
+</li>
+<li><p><a href="http://blog.npmjs.org/post/80729916680/new-powerful-machines" target="_blank">新的更强大的机器</a></p>
+<ul>
+<li>最近 npm 又挂了几次，发布也相当慢，这篇博文介绍了出现宕机事故的原因以及 npm 背后的架构，众多 npm 镜像的出现也是造成 npm 服务器不堪重负的原因之一。幸运的是，硬件问题总还是有解的，有了更强大的负责写的主机和架构调整，目前一切顺利，如果发布还有问题建议升级 npm 版本。</li>
+</ul>
+</li>
+</ul>
+<h3 id=" 充电站 ">充电站</h3>
+<ul>
+<li><p><a href="https://www.youtube.com/watch?v=iqyyH0nfg7I" target="_blank">适配各框架的服务器渲染的单页应用</a></p>
+<ul>
+<li>单页应用为客户端带来更好的体验的同时也带来性能上的挑战，而且需要考虑 SEO 方面的问题，Clarence Leung 带来的演讲介绍了借助服务器端完成模板渲染以及与 MV* 框架适配的实现，包括前后端复用的模板和路由、 model 数据重建等，供大家参考。</li>
+</ul>
+</li>
+<li><p><a href="https://www.youtube.com/watch?v=3pYGVB2lG9w#t=2898" target="_blank">Polymer, Building blocks for the web</a></p>
+<ul>
+<li>来自 Google 的 Rob Dodson 带来的这篇关于 Polymer 的分享回顾了 web component 的过去和现在的解决方案，介绍了 Polymer 框架的设计和应用，包括使用现有的和编写自定义 HTML 元素，大家也可以到 <a href="http://t.cn/zHPXBKJ" target="_blank">Polymer</a> 官网打开控制台体验下自定义元素，另外 Youtube 同步的视频字幕很给力。</li>
+</ul>
+</li>
+<li><p><a href="http://www.nczonline.net/blog/2014/03/26/announcing-understanding-ecmascript-6/" target="_blank">Announcing Understanding ECMAScript 6</a></p>
+<ul>
+<li>Nicolas C. Zakas 宣布他的新书《理解 ECMAScript 6》的问世，与以往不同，这是一本免费且从头到尾保持开放的 CC 许可的自发行的电子书，同时你也可以在<a href="http://t.cn/8sc84d9" target="_blank">Github</a>上实时跟踪本书的最新进度，甚至你可以提 bugfix 的 pull request，看上去是一次激动人心的尝试！</li>
+</ul>
+</li>
+<li><p><a href="http://blog.sourcing.io/mvc-style-guide" target="_blank">JavaScript MVC 风格指南</a></p>
+<ul>
+<li>这篇指南中 Alex MacCaw 分享了他这些年来做 MVC 架构的 web 应用的总结的一些规则，包括 M-V-C 各个部分的职责和边界，以及路由、全局状态和模块化的设计，对照一下想想看你在自己的应用中是否合理地采用了 MVC 的架构了呢？<a href="http://dickeylth.github.io/2014/03/28/JavaScriptMVCStyleGuide/#more">参考译文可以见这里。</a></li>
+</ul>
+</li>
+<li><p><a href="http://flippinawesome.org/2014/03/24/string-templating-considered-harmful/" target="_blank">字符串模板被认为是有害的</a></p>
+<ul>
+<li>目前我们接触的大部分模板还是以字符串格式书写的，这篇文章中指出复杂模板下重复渲染的性能问题，也谈到 Knockout 和 Angular 中的 DOM 模板存在的缺陷，相信这也是很多童鞋纠结的问题，如何解决呢？作者提到的 <a href="http://ractivejs.org/" target="_blank">Ractive.js 框架</a> 通过 <a href="http://en.wikipedia.org/wiki/Abstract_syntax_tree" target="_blank">AST</a> 构建轻量级并行 DOM 按需更新 DOM 的思路值得思考。</li>
+</ul>
+</li>
+<li><p><a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html" target="_blank">undefined 与 null 的区别</a></p>
+<ul>
+<li>相信你肯定对 <code>undefined</code> 与 <code>null</code> 并不陌生，看到这个标题可能会嗤之以鼻，但不要急，你知道 Brendan Eich 当初设计这两个很相似的对象的初衷吗？究竟怎么区分这两者的使用场景呢？不妨读读这篇博文。</li>
+</ul>
+</li>
+</ul>
+<h3 id=" 百宝箱 ">百宝箱</h3>
+<ul>
+<li><p><a href="http://phonejs.devexpress.com/" target="_blank">PhoneJS</a></p>
+<ul>
+<li>移动端 H5 的框架如雨后春笋一般层出不穷，这个 PhoneJS 框架又有哪些特色呢？它同样针对单页单页富应用，提供为触摸优化的体验、与原生系统一致的微件渲染、直观的页面导航、视图管理和数据访问层，同样基于 MVVM，也能通过 PhoneGap 编译为可发布的软件包，官网上也提供了实时预览。</li>
+</ul>
+</li>
+<li><p><a href="http://codecondo.com/16-online-javascript-editors-for-web-developers/" target="_blank">为 Web 开发者打造的 16 个在线 JavaScript 编辑器</a></p>
+<ul>
+<li>在线 JavaScript 编辑器可以很好满足随时写 demo 随时分享的需求，除了流行的 JS BIN、JSFiddle、CodePen，这篇文章中还介绍了其他 13 种选择，有的小巧清爽，有的功能强大，看看有没有让你眼前一亮的？</li>
+</ul>
+</li>
+</ul>
+<h5 id=" 附所有链接：">附所有链接：</h5>
+<ul>
+<li>JavaScript 发明人 Brenden Eich 接任 Mozilla 新 CEO，首席 nerd 转任首席公仆<ul>
+<li><a href="http://www.36kr.com/p/210639.html" target="_blank">http://www.36kr.com/p/210639.html</a></li>
+</ul>
+</li>
+<li>iOS 7 adoption hits 85% according to Apple’s App Store usage numbers, iOS 6 slips to 12%<ul>
+<li><a href="http://thenextweb.com/apple/2014/03/24/ios-7-adoption-hits-85-according-apples-app-store-usage-numbers-ios-6-slips-12/" target="_blank">http://thenextweb.com/apple/2014/03/24/ios-7-adoption-hits-85-according-apples-app-store-usage-numbers-ios-6-slips-12/</a></li>
+</ul>
+</li>
+<li>Nicer Perusal Method<ul>
+<li><a href="http://blog.npmjs.org/post/80789086446/nicer-perusal-method" target="_blank">http://blog.npmjs.org/post/80789086446/nicer-perusal-method</a></li>
+</ul>
+</li>
+<li>New Powerful Machines<ul>
+<li><a href="http://blog.npmjs.org/post/80729916680/new-powerful-machines" target="_blank">http://blog.npmjs.org/post/80729916680/new-powerful-machines</a></li>
+</ul>
+</li>
+<li>Server-rendering Single Page Applications for Every Framework<ul>
+<li><a href="https://www.youtube.com/watch?v=iqyyH0nfg7I" target="_blank">https://www.youtube.com/watch?v=iqyyH0nfg7I</a></li>
+</ul>
+</li>
+<li>Polymer, Building blocks for the web<ul>
+<li><a href="https://www.youtube.com/watch?v=3pYGVB2lG9w#t=2898" target="_blank">https://www.youtube.com/watch?v=3pYGVB2lG9w#t=2898</a></li>
+</ul>
+</li>
+<li>Announcing Understanding ECMAScript 6<ul>
+<li><a href="http://www.nczonline.net/blog/2014/03/26/announcing-understanding-ecmascript-6/" target="_blank">http://www.nczonline.net/blog/2014/03/26/announcing-understanding-ecmascript-6/</a></li>
+</ul>
+</li>
+<li>JavaScript MVC Style Guide<ul>
+<li><a href="http://blog.sourcing.io/mvc-style-guide" target="_blank">http://blog.sourcing.io/mvc-style-guide</a></li>
+<li><a href="http://dickeylth.github.io/2014/03/28/JavaScriptMVCStyleGuide/#more">http://dickeylth.github.io/2014/03/28/JavaScriptMVCStyleGuide/#more</a></li>
+</ul>
+</li>
+<li>String Templating Considered Harmful<ul>
+<li><a href="http://flippinawesome.org/2014/03/24/string-templating-considered-harmful/" target="_blank">http://flippinawesome.org/2014/03/24/string-templating-considered-harmful/</a></li>
+</ul>
+</li>
+<li>undefined 与 null 的区别<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html" target="_blank">http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html</a></li>
+</ul>
+</li>
+<li>PhoneJS<ul>
+<li><a href="http://phonejs.devexpress.com/" target="_blank">http://phonejs.devexpress.com/</a></li>
+</ul>
+</li>
+<li>16 Online JavaScript Editors for Web Developers<ul>
+<li><a href="http://codecondo.com/16-online-javascript-editors-for-web-developers/" target="_blank">http://codecondo.com/16-online-javascript-editors-for-web-developers/</a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/每周播报/">每周播报</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/F2E Weekly/">F2E Weekly</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"dickeyblog"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- Duoshuo Comment END -->
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:dickeylth.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/每周播报/">每周播报</a><small>16</small></li>
+  
+    <li><a href="/categories/笔记/">笔记</a><small>7</small></li>
+  
+    <li><a href="/categories/翻译/">翻译</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/F2E Weekly/" style="font-size: 20.00px;">F2E Weekly</a><a href="/tags/Gulp/" style="font-size: 10.00px;">Gulp</a><a href="/tags/JavaScript/" style="font-size: 13.33px;">JavaScript</a><a href="/tags/JavaScript API/" style="font-size: 10.00px;">JavaScript API</a><a href="/tags/JavaScript设计模式/" style="font-size: 16.67px;">JavaScript设计模式</a><a href="/tags/MVC/" style="font-size: 10.00px;">MVC</a><a href="/tags/Node.js/" style="font-size: 10.00px;">Node.js</a><a href="/tags/Promise/" style="font-size: 13.33px;">Promise</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2014/05/30/F2EWeekly/">F2E Weekly-2014-05-30</a>
+      </li>
+    
+      <li>
+        <a href="/2014/05/28/GetIncrementId/">JavaScript 中返回自增计数的函数</a>
+      </li>
+    
+      <li>
+        <a href="/2014/05/25/F2EWeekly/">F2E Weekly-2014-05-25</a>
+      </li>
+    
+      <li>
+        <a href="/2014/05/17/F2EWeekly/">F2E Weekly-2014-05-17</a>
+      </li>
+    
+      <li>
+        <a href="/2014/05/09/F2EWeekly/">F2E Weekly-2014-05-09</a>
+      </li>
+    
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 Dickey Leo
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+<div id="google_translate_element"></div><script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'zh-CN', layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT, multilanguagePage: true, gaTrack: true, gaId: 'UA-44813171-1'}, 'google_translate_element');
+    }
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
