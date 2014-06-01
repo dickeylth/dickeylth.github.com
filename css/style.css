@@ -1,4 +1,15 @@
-@import url("//fonts.googleapis.com/css?family=Lato:400,400italic");
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Lato Regular'), local('Lato-Regular'), url(/fonts/lato.woff) format('woff');
+}
+@font-face {
+    font-family: 'Lato';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Lato Italic'), local('Lato-Italic'), url(/fonts/lato-italic.woff) format('woff');
+}
 @font-face {
   font-family: 'FontAwesome';
   font-style: normal;

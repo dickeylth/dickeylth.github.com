@@ -1,4 +1,15 @@
-@import url("//fonts.googleapis.com/css?family=Lato:400,400italic");
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url("font/lato.woff") format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Lato Italic'), local('Lato-Italic'), url("font/lato-italic.woff") format('woff');
+}
 @font-face {
   font-family: 'FontAwesome';
   font-style: normal;
@@ -159,14 +170,8 @@ article.post .icon:before {
   left: 10px;
   width: 50%;
   height: 9%;
-  -webkit-box-shadow: 0 15px 10px rgba(0,0,0,0.7);
-  -moz-box-shadow: 0 15px 10px rgba(0,0,0,0.7);
   -webkit-box-shadow: 0 15px 15px rgba(0,0,0,0.7);
   box-shadow: 0 15px 15px rgba(0,0,0,0.7);
-  -o-transform: rotate(-2deg);
-  -webkit-transform: rotate(-2deg);
-  -moz-transform: rotate(-2deg);
-  -ms-transform: rotate(-2deg);
   -webkit-transform: rotate(-2deg);
   -moz-transform: rotate(-2deg);
   -o-transform: rotate(-2deg);
@@ -180,17 +185,10 @@ article.post .icon:before {
   bottom: 15px;
   width: 50%;
   height: 9%;
-  -webkit-box-shadow: 0 15px 10px rgba(0,0,0,0.7);
-  -moz-box-shadow: 0 15px 10px rgba(0,0,0,0.7);
   -webkit-box-shadow: 0 15px 15px rgba(0,0,0,0.7);
   box-shadow: 0 15px 15px rgba(0,0,0,0.7);
   right: 10px;
   left: auto;
-  -webkit-transform: rotate(2deg);
-}
--moz-transform rotate(2deg) {
-  -o-transform: rotate(2deg);
-  -ms-transform: rotate(2deg);
   -webkit-transform: rotate(2deg);
   -moz-transform: rotate(2deg);
   -o-transform: rotate(2deg);

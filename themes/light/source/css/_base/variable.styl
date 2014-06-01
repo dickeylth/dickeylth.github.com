@@ -11,7 +11,18 @@ font-serif = "Georgia", serif
 font-mono = Monaco, Menlo, Consolas, Courier New, monospace
 font-title = "Lato", Helvetica Neue, Helvetica, Arial, sans-serif
 
-@import url("//fonts.googleapis.com/css?family=Lato:400,400italic")
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(font/lato.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Lato Italic'), local('Lato-Italic'), url(font/lato-italic.woff) format('woff');
+}
 
 font-icon = FontAwesome
 font-icon-path = 'font/fontawesome-webfont'
