@@ -1,6 +1,5 @@
 CACHE MANIFEST
 
-# Explicitly cached 'master entries'.
 CACHE:
 /favicon.ico
 http://libs.baidu.com/jquery/2.0.3/jquery.min.js
