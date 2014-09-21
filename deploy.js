@@ -10,6 +10,6 @@ function updateManifest() {
 }
 
 updateManifest();
-exec('hexo cache clean');
+exec('hexo clean');
 exec('hexo deploy -g');
 exec('git add . -A;git commit -m "update blog";git push origin src');
