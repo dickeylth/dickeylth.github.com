@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Vdom 的 demo</title>
+    <script src="http://g.tbcdn.cn/kissy/m/0.2.1/mini-full-min.js" charset="utf-8"></script>
+
+<style>
+    .container{
+        height: 200px;
+        overflow: scroll;
+    }
+    .container p{
+        margin: 0;
+        padding: 10px;
+    }
+    .container p.even{
+        background: #5EB5F1;
+        color: #fff;
+    }
+    .container p.odd{
+        background: #f0f0f0;
+        color: #0072DB;
+    }
+</style>
+</head>
+<body>
+<h2>Vdom 的 demo</h2>
+
+<div class="test">
+	<h4>测试节点</h4>
+	<p>测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点测试节点</p>
+</div>
+
+<div class="container J_Container"></div>
+
+<script type="text/juicer" id="J_Template">
+<div class="hook">
+    <h2 class="title-{@if even}even{@else}odd{@/if}">${title}</h2>
+	<input type="text" placeholder=" 来个输入框试试 "/>
+    <div class="list">
+        {@each list as item, idx}
+        <p key="${idx}" class="{@if (idx % 2 == 0)}even{@else}odd{@/if}">${item.name} 有 ${item.number} 个淘金币</p>
+        {@/each}
+    </div>
+</div>
+</script>
+
+<a href="http://m.kissyui.com/" target="_blank">KISSY MINI 官方文档</a>
+<span id="QRCode"></span>
+<script>
+    (function(S) {
+        var debug = true;
+
+        if (debug) {
+            var srcPath = "../../";
+            S.config({
+                debug: debug,
+                packages:[
+                    {
+                        name:"gallery/vdom",
+                        path:srcPath,
+                        charset:"utf-8",
+                        ignorePackageNameInUri:true
+                    }
+                ]
+            });
+        }
+
+        S.use('gallery/vdom/1.0/main, gallery/vdom/1.0/lib/juicer-mini', function (S, Vdom, JuicerMini) {
+
+            var template = JuicerMini(S.one('#J_Template').html());
+
+            var genData = function () {
+
+                var i = 0,
+                        names = ['Jack', 'Henry', 'Potter', 'Max', 'Lucy', 'Tom'],
+                        list = [],
+                        listCount = parseInt(Math.random() * 100 + 7, 10);
+
+                while(i < listCount) {
+                    list[i++] = {
+                        name: names[i % 5],
+                        number: parseInt(Math.random() * 10 + 11, 10)
+                    };
+                }
+
+                return {
+                    title: '这里有 ' + listCount + ' 个小朋友 ',
+                    even: Boolean(listCount % 2),
+                    count: listCount,
+                    list: list
+                };
+
+            };
+            var data = genData();
+
+//            var vDom = new Vdom({
+//                container: '.J_Container',
+//                template: template,
+//                data: data
+//            });
+
+            var container = S.one('.J_Container');
+            container.html(template.render(data));
+            setInterval(function(){
+
+                var data = genData();
+                container.html(template.render(data));
+
+            }, 1000);
+
+        })
+    })(KISSY);
+</script>
+<script type="text/javascript">
+    KISSY.use('gallery/qrcode/1.0/',function(S,QRCode){
+        var qrcode = new QRCode("QRCode", {
+            width: 128,
+            height: 128,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+
+        qrcode.makeCode(location.href);
+    });
+</script>
+</body>
+</html>

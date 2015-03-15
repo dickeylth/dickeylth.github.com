@@ -1,0 +1,271 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>[译]JavaScript MVC 风格指南 | 前端探幽</title>
+  <meta name="author" content="Dickey Leo">
+  
+  <meta name="description" content="JavaScript MVC 的框架越来越多，但是如何写出真正满足 MVC 约定规则的代码呢？这篇来自 Alex MacCaw 的分享介绍了他关于 JavaScript MVC 架构的代码的一些规则，值得学习一下。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="[译]JavaScript MVC 风格指南"/>
+  <meta property="og:site_name" content="前端探幽"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="前端探幽" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<meta name="google-translate-customization" content="a9a07b64678ddc7b-87bb7e79e577965f-gd475b0b319f70a25-13"></meta>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-44813171-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">前端探幽</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">所有文章</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-28T06:46:24.000Z"><a href="/2014/03/28/JavaScriptMVCStyleGuide/">3月 28, 2014</a></time>
+      
+      
+  
+    <h1 class="title">[译]JavaScript MVC 风格指南</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>JavaScript MVC 的框架越来越多，但是如何写出真正满足 MVC 约定规则的代码呢？这篇来自 <a href="https://twitter.com/maccaw" target="_blank">Alex MacCaw</a> 的分享介绍了他关于 JavaScript MVC 架构的代码的一些规则，值得学习一下。</p>
+<a id="more"></a>
+
+<p>原文链接：<a href="http://blog.sourcing.io/mvc-style-guide" target="_blank">《JavaScript MVC Style Guide》</a></p>
+<hr>
+<p>过去几年里我总结出一些 MVC web 应用的规则，很管用而且避免了庞大的代码库陷入混乱。尽管在专业术语上可能存在差异，这些规则对于像 Backbone 和 Ember 这样的诸多客户端 MVC 框架应该都适用。</p>
+<p>某些框架具有不同的 MVC 命名约定，并且在关注点分离上采取了略有不同的策略。在本文中，<em>控制器</em>连接模型和视图之间的胶水，<em>视图</em>是 HTML 模板，<em>模型</em>仅仅处理数据存取和修饰。这个定义可以很好地适应 Backbone 和 Spine 框架的术语。 Ember 也有类似的约定，但在将 DOM 访问从控制器逻辑中分离出来这一点上更进一步。</p>
+<h3 id=" 控制器 ">控制器</h3>
+<ul>
+<li>控制器是介于视图和模型之间的胶水，其中的主要逻辑关注于事件管理。请保持控制器逻辑比较紧凑。</li>
+<li>任何父控制器和子控制器之间的通信都应该使用事件（不要顺便传递一个父控制器的实例）。</li>
+<li>应该只知道子控制器。</li>
+<li>应该将作用域限定为单个元素，而不要访问或是改变 DOM 中的其他部分。</li>
+<li>应该有一个独特的 class 名，并且所有该控制器相关的 CSS 都应该放置到这个 class 名的命名空间下。</li>
+<li>应该在即使元素没有追加到 DOM 树的情况下也能正常工作。这对于测试和证实控制器确实正确地限定在作用域之内了很有用。</li>
+<li>应该可以通过在它们的子元素上以程序触发事件来测试。</li>
+<li>应该可以在任何时候无副作用地再次执行渲染。</li>
+<li>不应使用 DOM 来存储状态——把任何视图特定的状态存到控制器的实例属性中。</li>
+</ul>
+<h3 id=" 视图 ">视图</h3>
+<ul>
+<li>除了流程控制和辅助函数，应该只包含很少的逻辑。</li>
+<li>应该可以直接通过传入所有需要的数据完成渲染，在当前的作用域下应该全部可用。</li>
+</ul>
+<h3 id=" 模型 ">模型</h3>
+<ul>
+<li>应该只关心数据及其操作和修饰。</li>
+<li>永远不应访问控制器或视图。</li>
+<li>永远不应访问或返回 DOM 节点。</li>
+<li>应该只能在运行时访问或请求其他模型。</li>
+<li>应该将 XHR 连接从应用的其他部分中抽离出来。</li>
+<li>应该包含所有的数据校验。</li>
+</ul>
+<h3 id=" 路由 ">路由</h3>
+<ul>
+<li>应该尽可能的不包含逻辑。</li>
+<li>不应该知道或访问 DOM 。</li>
+</ul>
+<h3 id=" 全局状态 ">全局状态</h3>
+<ul>
+<li>应该保持为最小化的状态，因为可以说它的存在违背了 MVC 的思想。尽管某些东西你无法摆脱，像是当前用户、当前视图、 CSRF 令牌等。</li>
+<li>永远不应存储在全局变量中。</li>
+<li>应该全部存放到统一的位置（比如某个模型的单例实例）</li>
+</ul>
+<h3 id=" 模块 ">模块</h3>
+<ul>
+<li>应该始终采用一种模块系统，不论是 CommonJS 、 AMD 、ES6 模块或是其他类似的选择。</li>
+<li>永远不要设置或访问全局变量。</li>
+</ul>
+<hr>
+<h3 id=" 欢迎 Pull_request">欢迎 Pull request</h3>
+<p>一篇风格指南应该是一份与时俱进的文档，会随着你的团队遇到特定的问题获得经验而不断演进。它的主要目的是保持代码库的一致性和整洁。如果你对这份文档有任何的建议，通过 <a href="https://twitter.com/maccaw" target="_blank">@maccaw</a> 给我发 tweet 消息吧。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/翻译/">翻译</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/JavaScript/">JavaScript</a>, <a href="/tags/MVC/">MVC</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"dickeyblog"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- Duoshuo Comment END -->
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:dickeylth.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/每周播报/">每周播报</a><small>29</small></li>
+  
+    <li><a href="/categories/笔记/">笔记</a><small>7</small></li>
+  
+    <li><a href="/categories/翻译/">翻译</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/F2E Weekly/" style="font-size: 20.00px;">F2E Weekly</a><a href="/tags/Gulp/" style="font-size: 10.00px;">Gulp</a><a href="/tags/JavaScript/" style="font-size: 13.33px;">JavaScript</a><a href="/tags/JavaScript API/" style="font-size: 10.00px;">JavaScript API</a><a href="/tags/JavaScript设计模式/" style="font-size: 16.67px;">JavaScript设计模式</a><a href="/tags/MVC/" style="font-size: 10.00px;">MVC</a><a href="/tags/Node.js/" style="font-size: 10.00px;">Node.js</a><a href="/tags/Promise/" style="font-size: 13.33px;">Promise</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2015/03/15/F2EWeekly/">F2E Weekly-2015-03-15</a>
+      </li>
+    
+      <li>
+        <a href="/2014/12/07/F2EWeekly/">F2E Weekly-2014-12-07</a>
+      </li>
+    
+      <li>
+        <a href="/2014/11/09/F2EWeekly/">F2E Weekly-2014-11-09</a>
+      </li>
+    
+      <li>
+        <a href="/2014/09/21/F2EWeekly/">F2E Weekly-2014-09-21</a>
+      </li>
+    
+      <li>
+        <a href="/2014/09/08/F2EWeekly/">F2E Weekly-2014-09-08</a>
+      </li>
+    
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Dickey Leo
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- Baidu Statics -->
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9e7e898e944bfabd3e130209a93d1339' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>F2E Weekly-2014-04-11 | 前端探幽</title>
+  <meta name="author" content="Dickey Leo">
+  
+  <meta name="description" content="这里是前端每周播报，本周让我们关注下 OpenSSL、Chrome 和 YUI 的新闻，了解下 Angular 中的后端接口 mock ，学习下如何扩大 Node.js 应用规模以及 通过 Google Analytics 跟踪客户端错误，最后认识下 WebRTC 在点对点通信方面的技术，希望能给你带来收获！">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="F2E Weekly-2014-04-11"/>
+  <meta property="og:site_name" content="前端探幽"/>
+
+  
+    <meta property="og:image" content="/img/jspatterns/observer-cover.jpg" />
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="前端探幽" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<meta name="google-translate-customization" content="a9a07b64678ddc7b-87bb7e79e577965f-gd475b0b319f70a25-13"></meta>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-44813171-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">前端探幽</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">所有文章</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-10T16:00:00.000Z"><a href="/2014/04/11/F2EWeekly/">4月 11, 2014</a></time>
+      
+      
+  
+    <h1 class="title">F2E Weekly-2014-04-11</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>这里是前端每周播报，本周让我们关注下 OpenSSL、Chrome 和 YUI 的新闻，了解下 Angular 中的后端接口 mock ，学习下如何扩大 Node.js 应用规模以及 通过 Google Analytics 跟踪客户端错误，最后认识下 WebRTC 在点对点通信方面的技术，希望能给你带来收获！</p>
+<a id="more"></a>
+
+<h3 id=" 业界快讯 ">业界快讯</h3>
+<ul>
+<li><p><a href="http://zhuanlan.zhihu.com/Evi1m0/19722635" target="_blank">OpenSSL 漏洞爆发后</a></p>
+<ul>
+<li>本周最重大的新闻当属 OpenSSL 爆出的<code>Heartbleed</code>漏洞了，通过这篇专栏让我们简单了解下相关的知识和影响面。</li>
+</ul>
+</li>
+<li><p><a href="http://thenextweb.com/google/2014/04/08/chrome-34-launches-support-responsive-images-unprefixed-web-audio-importing-supervised-users/" target="_blank">Chrome 34 launches with support for responsive images, unprefixed Web Audio, and importing supervised users</a></p>
+<ul>
+<li>Google Chrome 34 带来了基于<code>srcset</code>属性的响应式图片和无前缀的 Web 语音 API 支持、可导入导出的监督用户配置、大量新的 Chrome apps 和扩展的 API、全新的 Win8 Metro 模式下的外观以及性能和稳定性提升。</li>
+</ul>
+</li>
+<li><p><a href="http://www.yuiblog.com/blog/2014/04/10/yui-3-16-0-released/" target="_blank">YUI 3.16.0 Released</a></p>
+<ul>
+<li>这一版本主题之一就是“社区参与”，大量的修复和更新都来自 YUI 社区提交者，另一个主题便是加载器，该版本中对加载器进行了修复以提升速度，并解决了临界情况下某些问题。</li>
+</ul>
+</li>
+</ul>
+<h3 id=" 充电站 ">充电站</h3>
+<ul>
+<li><p><a href="http://start.jcolemorrison.com/how-i-setup-angular-node-projects/" target="_blank">How I Setup Angular + Node Projects</a></p>
+<ul>
+<li>有了 Yeoman、Grunt、Bower，打造基于 Angular + Express 的项目开发环境越来越简单，可以很方便地针对开发环境和生成环境创建不同的配置，如果你还没有尝试过，不妨参考这篇博文体验下。</li>
+</ul>
+</li>
+<li><p><a href="http://www.codeorbits.com/blog/2013/12/20/rapid-angularjs-prototyping-without-real-backend/" target="_blank">Rapid AngularJS Prototyping Without Real Backend</a>    </p>
+<ul>
+<li>这篇教程介绍了如何借助 $httpBackend 和 $http，在开发 Angular 应用时轻松地 mock 后端接口，从而快速完成原型，并提供了一个<a href="http://www.codeorbits.com/trackit/index.html#/dashboard" target="_blank">在线 demo </a>可以体验。</li>
+</ul>
+</li>
+<li><p><a href="http://cjihrig.com/blog/scaling-node-js-applications/" target="_blank">Scaling Node.js Applications</a></p>
+<ul>
+<li>当你的 Node.js 应用程序规模越来越大，如何对其进行扩展以支撑更重的业务呢？Colin J. Ihrig 的这篇文章从多核运用、集群模式以及 nginx 的负载均衡等方面介绍了解决办法，以提升你的应用的服务能力。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><a href="http://davidwalsh.name/track-errors-google-analytics" target="_blank">Track JavaScript Errors with Google Analytics</a></p>
+<ul>
+<li>Google Analytics 除了可以用来统计分析网站流量之外还能干嘛呢？这篇博文介绍了另一种用途：客户端错误跟踪，实现起来也很简单，想想看我们的埋点服务是否也能轻松加入错误跟踪的支持呢？</li>
+</ul>
+</li>
+<li><p><a href="https://hacks.mozilla.org/2013/03/webrtc-data-channels-for-great-multiplayer/" target="_blank">WebRTC Data Channels for Great Multiplayer</a></p>
+<ul>
+<li>WebRTC 除了在语音和视频通信方面大放异彩，它还能支持点对点的数据通信。这篇博文中介绍了 data channel 的概念及如何应用，并通过一个项目实例介绍了如何将其应用到多人在线游戏中。</li>
+</ul>
+</li>
+</ul>
+<h3 id=" 百宝箱 ">百宝箱</h3>
+<ul>
+<li><p><a href="http://www.gitbook.io/" target="_blank">GitBook</a></p>
+<ul>
+<li>当 Github/Git 和 Markdown 相遇，写书也有了新的选择，现在可以使用 <a href="http://www.gitbook.io/" target="_blank">GitBook</a> 来编写美观的编程书和可交互的在线练习了，使用也很简单，也支持本地预览，常写教程的童鞋是不是又多了一个选择了？</li>
+</ul>
+</li>
+<li><p><a href="http://avow-ci.com/" target="_blank">Avow-CI</a></p>
+<ul>
+<li>Avow-CI 是一个开源的轻量级的持续集成系统，特别为 JavaScript 项目而设计，集成邮件服务和构建任务运行。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h5 id=" 附所有链接：">附所有链接：</h5>
+<ul>
+<li>OpenSSL 漏洞爆发后<ul>
+<li><a href="http://zhuanlan.zhihu.com/Evi1m0/19722635" target="_blank">http://zhuanlan.zhihu.com/Evi1m0/19722635</a></li>
+</ul>
+</li>
+<li>Chrome 34 launches with support for responsive images, unprefixed Web Audio, and importing supervised users<ul>
+<li><a href="http://thenextweb.com/google/2014/04/08/chrome-34-launches-support-responsive-images-unprefixed-web-audio-importing-supervised-users/" target="_blank">http://thenextweb.com/google/2014/04/08/chrome-34-launches-support-responsive-images-unprefixed-web-audio-importing-supervised-users/</a>)</li>
+</ul>
+</li>
+<li>YUI 3.16.0 Released<ul>
+<li><a href="http://www.yuiblog.com/blog/2014/04/10/yui-3-16-0-released/" target="_blank">http://www.yuiblog.com/blog/2014/04/10/yui-3-16-0-released/</a></li>
+</ul>
+</li>
+<li>How I Setup Angular + Node Projects<ul>
+<li><a href="http://start.jcolemorrison.com/how-i-setup-angular-node-projects/" target="_blank">http://start.jcolemorrison.com/how-i-setup-angular-node-projects/</a>)    </li>
+</ul>
+</li>
+<li>Rapid AngularJS Prototyping Without Real Backend<ul>
+<li><a href="http://www.codeorbits.com/blog/2013/12/20/rapid-angularjs-prototyping-without-real-backend/" target="_blank">http://www.codeorbits.com/blog/2013/12/20/rapid-angularjs-prototyping-without-real-backend/</a></li>
+</ul>
+</li>
+<li>Scaling Node.js Applications<ul>
+<li><a href="http://cjihrig.com/blog/scaling-node-js-applications/" target="_blank">http://cjihrig.com/blog/scaling-node-js-applications/</a></li>
+</ul>
+</li>
+<li>Track JavaScript Errors with Google Analytics<ul>
+<li><a href="http://davidwalsh.name/track-errors-google-analytics" target="_blank">http://davidwalsh.name/track-errors-google-analytics</a></li>
+</ul>
+</li>
+<li>WebRTC Data Channels for Great Multiplayer<ul>
+<li><a href="https://hacks.mozilla.org/2013/03/webrtc-data-channels-for-great-multiplayer/" target="_blank">https://hacks.mozilla.org/2013/03/webrtc-data-channels-for-great-multiplayer/</a>)</li>
+</ul>
+</li>
+<li>GitBook<ul>
+<li><a href="http://www.gitbook.io/" target="_blank">http://www.gitbook.io/</a></li>
+</ul>
+</li>
+<li>Avow-CI<ul>
+<li><a href="http://avow-ci.com/" target="_blank">http://avow-ci.com/</a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/每周播报/">每周播报</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/F2E Weekly/">F2E Weekly</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"dickeyblog"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- Duoshuo Comment END -->
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:dickeylth.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/每周播报/">每周播报</a><small>29</small></li>
+  
+    <li><a href="/categories/笔记/">笔记</a><small>7</small></li>
+  
+    <li><a href="/categories/翻译/">翻译</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/F2E Weekly/" style="font-size: 20.00px;">F2E Weekly</a><a href="/tags/Gulp/" style="font-size: 10.00px;">Gulp</a><a href="/tags/JavaScript/" style="font-size: 13.33px;">JavaScript</a><a href="/tags/JavaScript API/" style="font-size: 10.00px;">JavaScript API</a><a href="/tags/JavaScript设计模式/" style="font-size: 16.67px;">JavaScript设计模式</a><a href="/tags/MVC/" style="font-size: 10.00px;">MVC</a><a href="/tags/Node.js/" style="font-size: 10.00px;">Node.js</a><a href="/tags/Promise/" style="font-size: 13.33px;">Promise</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2015/03/15/F2EWeekly/">F2E Weekly-2015-03-15</a>
+      </li>
+    
+      <li>
+        <a href="/2014/12/07/F2EWeekly/">F2E Weekly-2014-12-07</a>
+      </li>
+    
+      <li>
+        <a href="/2014/11/09/F2EWeekly/">F2E Weekly-2014-11-09</a>
+      </li>
+    
+      <li>
+        <a href="/2014/09/21/F2EWeekly/">F2E Weekly-2014-09-21</a>
+      </li>
+    
+      <li>
+        <a href="/2014/09/08/F2EWeekly/">F2E Weekly-2014-09-08</a>
+      </li>
+    
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Dickey Leo
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- Baidu Statics -->
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9e7e898e944bfabd3e130209a93d1339' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>

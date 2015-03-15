@@ -1,0 +1,325 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>F2E Weekly-2014-05-09 | 前端探幽</title>
+  <meta name="author" content="Dickey Leo">
+  
+  <meta name="description" content="这里是前端每周播报，本周让我们关注下 jQuery 和 Node.js 的新闻，学习下移动端站点设计、使用 JXCore保护你的 Node.js 代码以及使用 React 构建 Chrome 扩展程序，思考下 URL如今扮演的角色和趋势，最后看看当前混合移动开发的现状和未来，希望能给你带来收获！">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="F2E Weekly-2014-05-09"/>
+  <meta property="og:site_name" content="前端探幽"/>
+
+  
+    <meta property="og:image" content="/img/jspatterns/observer-cover.jpg" />
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="前端探幽" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<meta name="google-translate-customization" content="a9a07b64678ddc7b-87bb7e79e577965f-gd475b0b319f70a25-13"></meta>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-44813171-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">前端探幽</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">所有文章</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-08T16:00:00.000Z"><a href="/2014/05/09/F2EWeekly/">5月 09, 2014</a></time>
+      
+      
+  
+    <h1 class="title">F2E Weekly-2014-05-09</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>这里是前端每周播报，本周让我们关注下 jQuery 和 Node.js 的新闻，学习下移动端站点设计、使用 <code>JXCore</code>保护你的 Node.js 代码以及使用 <code>React</code> 构建 Chrome 扩展程序，思考下 <code>URL</code>如今扮演的角色和趋势，最后看看当前混合移动开发的现状和未来，希望能给你带来收获！</p>
+<a id="more"></a>
+
+<h3 id=" 业界快讯 ">业界快讯</h3>
+<ul>
+<li><p><a href="http://blog.jquery.com/2014/05/01/jquery-1-11-1-and-2-1-1-released/" target="_blank">jQuery 1.11.1 and 2.1.1 Released</a></p>
+<ul>
+<li>jQuery 1.11.1 和 2.1.1 已发布，只是一些修复补丁的发布版本，应该不会造成任何严重的兼容性问题。</li>
+</ul>
+</li>
+<li><p><a href="http://blog.nodejs.org/2014/05/02/node-v0-10-28-stable/" target="_blank">Node.js v0.10.28 稳定版发布</a></p>
+<ul>
+<li>上周三、周四 Node.js 连续发布 2 个升级版本到 0.10.28，主要包括 <code>npm</code>、<code>openssl</code>、<code>uv</code>等模块的升级，<code>dns</code>、<code>assert</code>、<code>child_process</code>等模块的 bugfix 以及 <code>crypto</code>、<code>http</code>、<code>stream</code>、<code>util</code>等模块的优化。</li>
+</ul>
+</li>
+</ul>
+<h3 id=" 充电站 ">充电站</h3>
+<ul>
+<li><p><a href="http://www.google.com/think/multiscreen/whitepaper-sitedesign.html" target="_blank">Principles of Mobile Site Design: Delight Users and Drive Conversions</a></p>
+<ul>
+<li>Google 与 AnswerLab 合作的这份关于移动端站点设计的 24 条原则为打造更好的移动端站点提供了丰富全面的建议，从首页和站点导航、站内搜索、商业和切换、表单项、可用性等几个方面进行了讲解，值得一读！</li>
+</ul>
+</li>
+<li><p><a href="http://flippinawesome.org/2014/04/21/code-protection-and-packaging-for-node-js-projects-with-jxcore/" target="_blank">Code Protection and Packaging for Node.js Projects with JXCore</a></p>
+<ul>
+<li>由于 JavaScript 并不像 C++/Java 等后端语言存在编译的过程，当你交付代码的时候最多也只能是代码混淆，这篇博文中介绍了使用 <code>JXCore</code> 来实现代码保护和封装打包，也许有天你在开发商业项目时会用的上。</li>
+</ul>
+</li>
+<li><p><a href="https://medium.com/node-js-javascript/b63bfca0539" target="_blank">Finding the right Node.js WebSocket implementation</a></p>
+<ul>
+<li>这篇博文中 Deniz Ozger 对比了 <a href="https://github.com/einaros/ws" target="_blank">einaros/ws</a>、<a href="http://socket.io/" target="_blank">Socket.IO</a> 和 <a href="https://github.com/LearnBoost/engine.io" target="_blank">Engine.IO</a> 在资源占用和策略上的差异，讨论了影响基于 WebSocket 应用性能关键因素，如果你正在尝试使用 WebSocket 在客户端和基于 Node.js 的服务器端进行通信，不妨看看。</li>
+</ul>
+</li>
+<li><p><a href="http://brandontilley.com/2014/02/24/creating-chrome-extensions-with-react.html" target="_blank">Creating Chrome Extensions with React</a></p>
+<ul>
+<li>这篇博文中 Brandon Tilley 介绍了他使用 ReactJS 来构建 Chrome 扩展程序的过程，使用了 <code>browserify</code> 编写 node.js 风格的模块，解释了程序的逻辑实现以及 ReactJS 中组件的编写方式，如果你想尝试一下不妨参考参考。</li>
+</ul>
+</li>
+<li><p><a href="http://www.nczonline.net/blog/2014/05/06/urls-are-already-dead/" target="_blank">URL 已死</a></p>
+<ul>
+<li>Nicholas C. Zakas 在这篇博文中由 Chrome 正在尝试的实验性功能点——隐藏 URL 中除域名外的部分说起，谈到对于大部分小白用户而言，URL 的存在感其实很弱，同样还有协议、邮箱地址、手机号等，指出 URL 已死，是时候以更人性化的视角来看资源管理了。</li>
+</ul>
+</li>
+<li><p><a href="http://developer.telerik.com/featured/the-state-of-hybrid-mobile-development/" target="_blank">The State of Hybrid Mobile Development</a></p>
+<ul>
+<li>这篇博文中 jQuery UI 的贡献者之一 TJ VanToll 介绍了混合移动 Web 开发当前的状态，回顾了其技术生命周期，从 4 个方面介绍了当前工具改善的方面：远程调试、基于云的构建、UI 框架、后端管理平台，最后谈到性能和未来发展，值得一看！</li>
+</ul>
+</li>
+</ul>
+<h3 id=" 百宝箱 ">百宝箱</h3>
+<ul>
+<li><p><a href="https://github.com/sindresorhus/file-type" target="_blank">file-type</a></p>
+<ul>
+<li>当你在编写文件处理相关的 Node 应用需要准确判断文件类型时，这个工具就会派上用场了，只需要头 262 个字节就能判断出文件类型，同时提供 服务器端和浏览器端版本，支持<code>png</code>、<code>psd</code>、<code>7z</code>、<code>pdf</code>、<code>exe</code>、<code>mp3</code>等二十多种文件类型。</li>
+</ul>
+</li>
+<li><p><a href="http://www.gesturekit.com/" target="_blank">GestureKit</a></p>
+<ul>
+<li>GestureKit 是一个面向移动终端界面的创建和识别手势的 SDK ，提供了 Android 、 iOS 和 JavaScript 版本，目前面向客户端的库已开源，提供了基于事件驱动的 API 以响应手势，而面向服务器端的部分未来也会开源。 </li>
+</ul>
+</li>
+</ul>
+<hr>
+<h5 id=" 附所有链接：">附所有链接：</h5>
+<ul>
+<li>jQuery 1.11.1 and 2.1.1 Released<ul>
+<li><a href="http://blog.jquery.com/2014/05/01/jquery-1-11-1-and-2-1-1-released/" target="_blank">http://blog.jquery.com/2014/05/01/jquery-1-11-1-and-2-1-1-released/</a></li>
+</ul>
+</li>
+<li>Node.js v0.10.28 稳定版发布<ul>
+<li><a href="http://blog.nodejs.org/2014/05/02/node-v0-10-28-stable/" target="_blank">http://blog.nodejs.org/2014/05/02/node-v0-10-28-stable/</a></li>
+</ul>
+</li>
+<li>Principles of Mobile Site Design: Delight Users and Drive Conversions<ul>
+<li><a href="http://www.google.com/think/multiscreen/whitepaper-sitedesign.html" target="_blank">http://www.google.com/think/multiscreen/whitepaper-sitedesign.html</a></li>
+</ul>
+</li>
+<li>Code Protection and Packaging for Node.js Projects with JXCore<ul>
+<li><a href="http://flippinawesome.org/2014/04/21/code-protection-and-packaging-for-node-js-projects-with-jxcore/" target="_blank">http://flippinawesome.org/2014/04/21/code-protection-and-packaging-for-node-js-projects-with-jxcore/</a></li>
+</ul>
+</li>
+<li>Finding the right Node.js WebSocket implementation<ul>
+<li><a href="https://medium.com/node-js-javascript/b63bfca0539" target="_blank">https://medium.com/node-js-javascript/b63bfca0539</a></li>
+</ul>
+</li>
+<li>Creating Chrome Extensions with React<ul>
+<li><a href="http://brandontilley.com/2014/02/24/creating-chrome-extensions-with-react.html" target="_blank">http://brandontilley.com/2014/02/24/creating-chrome-extensions-with-react.html</a></li>
+</ul>
+</li>
+<li>URL 已死<ul>
+<li><a href="http://www.nczonline.net/blog/2014/05/06/urls-are-already-dead/" target="_blank">http://www.nczonline.net/blog/2014/05/06/urls-are-already-dead/</a></li>
+</ul>
+</li>
+<li>The State of Hybrid Mobile Development<ul>
+<li><a href="http://developer.telerik.com/featured/the-state-of-hybrid-mobile-development/" target="_blank">http://developer.telerik.com/featured/the-state-of-hybrid-mobile-development/</a></li>
+</ul>
+</li>
+<li>file-type<ul>
+<li><a href="https://github.com/sindresorhus/file-type" target="_blank">https://github.com/sindresorhus/file-type</a></li>
+</ul>
+</li>
+<li>GestureKit<ul>
+<li><a href="http://www.gesturekit.com/" target="_blank">http://www.gesturekit.com/</a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/每周播报/">每周播报</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/F2E Weekly/">F2E Weekly</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"dickeyblog"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- Duoshuo Comment END -->
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:dickeylth.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/每周播报/">每周播报</a><small>29</small></li>
+  
+    <li><a href="/categories/笔记/">笔记</a><small>7</small></li>
+  
+    <li><a href="/categories/翻译/">翻译</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/F2E Weekly/" style="font-size: 20.00px;">F2E Weekly</a><a href="/tags/Gulp/" style="font-size: 10.00px;">Gulp</a><a href="/tags/JavaScript/" style="font-size: 13.33px;">JavaScript</a><a href="/tags/JavaScript API/" style="font-size: 10.00px;">JavaScript API</a><a href="/tags/JavaScript设计模式/" style="font-size: 16.67px;">JavaScript设计模式</a><a href="/tags/MVC/" style="font-size: 10.00px;">MVC</a><a href="/tags/Node.js/" style="font-size: 10.00px;">Node.js</a><a href="/tags/Promise/" style="font-size: 13.33px;">Promise</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2015/03/15/F2EWeekly/">F2E Weekly-2015-03-15</a>
+      </li>
+    
+      <li>
+        <a href="/2014/12/07/F2EWeekly/">F2E Weekly-2014-12-07</a>
+      </li>
+    
+      <li>
+        <a href="/2014/11/09/F2EWeekly/">F2E Weekly-2014-11-09</a>
+      </li>
+    
+      <li>
+        <a href="/2014/09/21/F2EWeekly/">F2E Weekly-2014-09-21</a>
+      </li>
+    
+      <li>
+        <a href="/2014/09/08/F2EWeekly/">F2E Weekly-2014-09-08</a>
+      </li>
+    
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Dickey Leo
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- Baidu Statics -->
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9e7e898e944bfabd3e130209a93d1339' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>

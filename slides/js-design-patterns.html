@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript 设计模式</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="http://dickeylth.github.io/slides/css/reveal.min.css"/>
+    <link rel="stylesheet" href="http://dickeylth.github.io/slides/css/theme-sky-min.css"/>
+    <link rel="stylesheet" href="http://dickeylth.github.io/slides/css/zenburn.css"/>
+    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+</head>
+<body>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <h2>JavaScript 设计模式</h2>
+                <div>
+                    <p>弘树</p>
+                    <time>2013 年 11 月 21 日</time>
+                </div>
+            </section>
+
+            <section>
+                <h3>目录</h3>
+                <ul>
+                    <li>设计模式认识</li>
+                    <li>单例模式</li>
+                    <li>工厂模式</li>
+                    <li>装饰者模式</li>
+                    <li>策略模式</li>
+                    <li>观察者模式</li>
+                    <li>总结</li>
+                </ul>
+            </section>
+
+            <section class="overall">
+
+                <section>
+                    <h3>设计模式</h3>
+                    <blockquote>源于生活，高于生活。</blockquote>
+                </section>
+
+                <section>
+                    <a href="javascript:;" class="image navigate-down">
+                        <img data-src="http://gtms01.alicdn.com/tps/i1/T1yQ6JFlVXXXbo9PZk-634-290.jpg" width="634" height="290"/>
+                    </a>
+                </section>
+
+                <section>
+                    <a href="javascript:;" class="image">
+                        <img data-src="http://gtms01.alicdn.com/tps/i1/T1_CJdFBxXXXXkH4Ef-736-673.png" width="736" height="673"/>
+                    </a>
+                </section>
+
+                <section>
+                    <p class="fragment">
+                        <h3>关键词：</h3>
+                        <ul>
+                            <li class="fragment">模块内聚性</li>
+                            <li class="fragment">模块间解耦</li>
+                            <li class="fragment">抽象</li>
+                            <li class="fragment">目的——支撑业务复杂性的增长</li>
+                        </ul>
+                    </p>
+                </section>
+
+            </section>
+
+            <section class="singleton">
+
+                <section>
+                    <h3>单例模式</h3>
+                    <p class="fragment">
+                        <a href="javascript:;" class="image">
+                            <img data-src="http://gtms01.alicdn.com/tps/i1/T1c_nOFcVXXXXxXJZl-497-522.jpg" width="497" height="522"/>
+                        </a>
+                    </p>
+                </section>
+
+                <section>
+                    <p class="fragment">
+                        <h4>主要特点</h4>
+                        <ul>
+                            <li class="fragment">单个实例</li>
+                            <li class="fragment">初始化</li>
+                            <li class="fragment">对外提供访问接口</li>
+                        </ul>
+                    </p>
+                </section>
+
+                <section>
+                    <p class="fragment">
+                        <h4>实现方式</h4>
+                        <ul>
+                            <li class="fragment">对象字面量</li>
+                            <li class="fragment">使用<code>new</code>创建对象</li>
+                        </ul>
+                    </p>
+                </section>
+
+                <section>
+                    <h4>对象字面量</h4>
+                    <pre class="fragment">
+                        <code data-trim contenteditable>
+var x = {
+    attr: 'value'
+};
+
+var y = {
+    attr: 'value'
+};
+
+x == y;     // false
+x === y;    // false
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h4>加强版</h4>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/eFOHuWuP/1/embed?js,console"></div>
+                </section>
+
+                <section>
+                    <h4>使用<code>new</code>创建对象</h4>
+                    <pre class="fragment">
+                        <code data-trim contenteditable>
+var x = new SuperMario();
+var y = new SuperMario();
+x == y;     // true
+                        </code>
+                    </pre>
+                    <div class="fragment">
+                        <h4>可行的方案：</h4>
+                        <ul>
+                            <li>类的静态属性</li>
+                            <li>闭包</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h4>类的静态属性</h4>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/adaVOmes/1/embed?js,console"></div>
+                </section>
+
+                <section>
+                    <blockquote>
+                        <h4>构造函数的<code>return</code>：</h4>
+                        <ol>
+                            <li>当 return 一个引用对象（数组、函数、对象等）时，直接覆盖内部的隐式 this 对象，返回值就是该引用对象；</li>
+                            <li>当 return 5 种基本类型（undefined、null、Boolean、Number、String）之一时（无 return 时其实就是返回 undefined），返回内部隐式 this 对象。</li>
+                        </ol>
+                    </blockquote>
+                </section>
+
+                <section>
+                    <h4>闭包</h4>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/OjiFucu/8/embed?js,console"></div>
+                </section>
+
+                <section>
+                    <h4>闭包带来的问题</h4>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/OjiFucu/9/edit?js,console"></div>
+                </section>
+
+                <section>
+                    <h4>修复办法</h4>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/EBozomU/2/embed?js,console"></div>
+                </section>
+
+                <section>
+                    <h3>开源框架和库</h3>
+                    <ul>
+                        <li>
+                            <a class="fragment">
+                                <img data-src="http://gtms01.alicdn.com/tps/i1/T1pejIFl0XXXXKoVg8-117-52.png" alt="YUI" class="image" width="117" height="52"/>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="fragment">
+                                <img data-src="http://gtms01.alicdn.com/tps/i1/T1q44KFjBiXXchhRni-175-68.png" alt="KISSY" class="image" width="175" height="68"/>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="fragment">
+                                <img data-src="http://gtms01.alicdn.com/tps/i1/T12.6GFgXiXXXtQ7fr-243-66.png" alt="jQuery" class="image" width="243" height="66"/>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="fragment">
+                                <img data-src="http://gtms01.alicdn.com/tps/i1/T16HrKFXRXXXcamjLG-792-138.png" alt="underscore" class="image" width="792" height="138"/>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>jQuery 单例应用</h4>
+                    <pre class="fragment">
+                        <code data-trim contenteditable>
+(function( window, undefined ) {
+
+    var jQuery = (function() {
+
+        // 构建 jQuery 对象
+        var jQuery = function( selector, context ) {
+            return new jQuery.fn.init( selector, context, rootjQuery );
+        }
+
+        // jQuery 对象原型
+        jQuery.fn = jQuery.prototype = {
+            constructor: jQuery,
+            init: function( selector, context, rootjQuery ) {
+                // selector 有以下 7 种分支情况：
+                // DOM 元素
+                // body（优化）
+                // 字符串：HTML 标签、HTML 字符串、#id、选择器表达式
+                // 函数（作为 ready 回调函数）
+                // 最后返回伪数组
+            }
+        };
+
+        // 猜猜这句是干什么呢？
+        jQuery.fn.init.prototype = jQuery.fn;
+
+        // 合并内容到第一个参数中，后续大部分功能都通过该函数扩展
+        // 通过 jQuery.fn.extend 扩展的函数，大部分都会调用通过 jQuery.extend 扩展的同名函数
+        jQuery.extend = jQuery.fn.extend = function() {};
+
+        // 在 jQuery 上扩展静态方法
+        jQuery.extend({
+            // ready bindReady
+            // isPlainObject isEmptyObject
+            // parseJSON parseXML
+            // globalEval
+            // each makeArray inArray merge grep map
+            // proxy
+            // access
+            // uaMatch
+            // sub
+            // browser
+        });
+
+        // 到这里，jQuery 对象构造完成，后边的代码都是对 jQuery 或 jQuery 对象的扩展
+        return jQuery;
+
+    })();
+
+    window.jQuery = window.$ = jQuery;
+})(window);
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h4>KISSY 单例应用</h4>
+                    <pre class="fragment">
+                        <code data-trim contenteditable>
+/**
+* A seed where KISSY grows up from, KISS Yeah !
+*/
+var KISSY = (function (undefined) {
+    var host = this,
+    S,
+    guid = 0,
+    EMPTY = '';
+
+    var loggerLevel = {
+        'debug': 10,
+        'info': 20,
+        'warn': 30,
+        'error': 40
+    };
+
+    S = {
+        /**
+        * The build time of the library.
+        __BUILD_TIME: '@TIMESTAMP@',
+
+        /**
+        * KISSY Environment.
+        */
+        Env: {
+            host: host
+        },
+
+        /**
+        * KISSY Config.
+        */
+        Config: {
+            debug: '@DEBUG@',
+            fns: {}
+        },
+
+        /**
+        * The version of the library.
+        */
+        version: '@VERSION@',
+
+        /**
+        * set KISSY configuration
+        */
+        config: function (configName, configValue) {
+            ...
+        },
+
+        /**
+        * Prints debug info.
+        *
+        */
+        log: function (msg, cat, logger) {
+            ...
+        },
+
+        /**
+        * get log instance for specified logger
+        */
+        'getLogger': function (logger) {
+            return getLogger(logger);
+        },
+
+        /**
+        * Throws error message.
+        */
+        error: function (msg) {
+            ...
+        },
+
+        /*
+        * Generate a global unique id.
+        */
+        guid: function (pre) {
+            return (pre || EMPTY) + guid++;
+        }
+    };
+
+    if ('@DEBUG@') {
+        S.Config.logger = {
+            excludes: [
+                {
+                    logger: /^s\/.*/,
+                    maxLevel: 'info',
+                    minLevel: 'debug'
+                }
+            ]
+        };
+
+        /**
+        * Log class for specified logger
+        */
+        function Logger() {
+
+        }
+
+        /**
+        * print debug log
+        */
+        Logger.prototype.debug = function (str) {
+            ...
+        };
+        ...
+    }
+
+    function getLogger(logger) {
+        ...
+    }
+
+
+    /**
+    * Logger level enum
+    */
+    S.Logger = /**@type Function
+    @ignore */{};
+    S.Logger.Level = {
+        /**
+        * debug level
+        */
+        'DEBUG': 'debug',
+        ...
+    };
+
+return S;
+})();
+                        </code>
+                    </pre>
+                </section>
+
+            </section>
+
+            <section class="factory">
+
+                <section>
+                    <h3>工厂模式</h3>
+                    <p class="fragment">
+                        <a href="javascript:;" class="image">
+                            <img data-src="http://gtms01.alicdn.com/tps/i1/T1PiHzFmdXXXaYHFI2-902-497.jpg" width="902" height="497" alt=" 工厂模式 "/>
+                        </a>
+                    </p>
+                </section>
+
+                <section>
+                    <pre>
+                        <code data-trim contenteditable>
+var o = new Object(),
+n = new Object(1),
+s = Object('1'),
+b = Object(true);
+
+// test
+o.constructor === Object;	// true
+n.constructor === Number;	// true
+s.constructor === String;	// true
+b.constructor === Boolean;	// true
+                       </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h4>工厂 vs 构造函数 ？</h4>
+                    <pre class="fragment">
+                        <code data-trim contenteditable>
+var http = require("http");
+
+http.createServer(function(request, response) {
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write("Hello World");
+    response.end();
+}).listen(8888);
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <pre class="fragment">
+                        <code data-trim contenteditable>
+function Server(requestListener) {
+    if (!(this instanceof Server)) return new Server(requestListener);
+    net.Server.call(this, { allowHalfOpen: true });
+    ......
+}
+util.inherits(Server, net.Server);
+
+exports.Server = Server;
+
+exports.createServer = function(requestListener) {
+    return new Server(requestListener);
+};
+                        </code>
+                    </pre>
+
+                    <ul class="fragment">
+                        <li><a href="https://groups.google.com/forum/#!msg/nodejs/GTaCdFPlweI/M0q38C3SJpkJ" target="_blank">[nodejs] Why net.createServer() and not new net.Server()?</a></li>
+                        <li><a href="https://groups.google.com/forum/#!msg/nodejs/yoXogs7vNYU/uUKT59t_w-sJ" target="_blank">Why export both http.Server() and http.createServer()?</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <pre>
+                        <code data-trim contenteditable>
+new Date(2012).toLocaleString();
+// "1970 年 1 月 1 日 上午 8:00:02"
+
+new Date(2012, 1).toLocaleString();
+// "2012 年 2 月 1 日 上午 12:00:00"
+
+new Date(2012, 1, 1).toLocaleString();
+// "2012 年 2 月 1 日 上午 12:00:00"
+
+new Date(2012, 1, 1, 1).toLocaleString();
+// "2012 年 2 月 1 日 上午 1:00:00"
+
+new Date(2012, 1, 1, 1, 1).toLocaleString();
+// "2012 年 2 月 1 日 上午 1:01:00"
+
+new Date(2012, 1, 1, 1, 1, 1).toLocaleString();
+// "2012 年 2 月 1 日 上午 1:01:01"
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <pre>
+                        <code data-trim contenteditable>
+/*
+* 解析日期字符串，自动创建对应 Date 对象
+* @param String str 日期字符串
+* @return Date object
+*/
+function parseDate(str){
+
+    // native parse, with help from native Date constructor
+    var result = new Date(str);
+
+    if(!(result instanceof Date) || isNaN(result.getTime())){
+
+        // split numbers from string
+        var timeArr = str.match(/\d+/g);
+
+        // TODO
+        var toDate = createDate.apply(null, timeArr);
+    }
+}
+                        </code>
+                    </pre>
+
+                    <h4 class="fragment"><em>构造函数并不能直接通过 call 或者 apply 的方式传入参数数组来调用！</em></h4>
+                </section>
+
+                <section>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/IyOGuHO/3/embed?js,console"></div>
+                </section>
+
+            </section>
+
+            <section class="decorator">
+
+                <section>
+                    <h3>装饰者模式</h3>
+                    <p class="fragment">
+                        <a href="javascript:;" class="image">
+                            <img data-src="http://gtms01.alicdn.com/tps/i1/T1dO_BFllXXXXctJ3l-497-497.png" width="497" height="497"/>
+                        </a>
+                    </p>
+                </section>
+
+                <section>
+                    <h4>实现方式</h4>
+                    <ul>
+                        <li>继承</li>
+                        <li>列表</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>使用继承</h4>
+                    <pre class="fragment">
+                        <code data-trim contenteditable>
+var superMario = new SuperMario();
+superMario = superMario.decorate('mushroom');
+console.log(" 吃了红蘑菇，超级玛丽变身了，长到 " + superMario.getHeight() + " 了， 血变成 " + superMario.getBlood() + " 滴了 "); // " 吃了红蘑菇，超级玛丽变身了，长到 20 了， 血变成 1 滴了 "
+
+superMario = superMario.decorate('flower');
+console.log(" 吃了火力花，再次华丽变身，变成 " + superMario.getColor() + " 了，能战斗了：" + superMario.attack());   // " 吃了火力花，再次华丽变身，变成 white 了，能战斗了：超级玛丽吐火力弹！"
+
+superMario = superMario.undecorate2('mushroom');
+console.log(" 超级玛丽中枪了。。。红蘑菇失效了，身高：" + superMario.getHeight() + ", 还剩 " + superMario.getBlood() + " 滴血，颜色：" + superMario.getColor());   // " 超级玛丽中枪了。。。红蘑菇失效了，身高：10, 还剩 0 滴血，颜色：white"
+console.log(" 还能战斗吗：" + (typeof superMario.attack == 'function'));   // " 还能战斗吗：true"
+
+superMario = superMario.undecorate2('flower');
+console.log(" 超级玛丽中枪了。。。火力花也失效了，身高：" + superMario.getHeight() + ", 还剩 " + superMario.getBlood() + " 滴血，颜色：" + superMario.getColor());  // " 超级玛丽中枪了。。。火力花也失效了，身高：10, 还剩 0 滴血，颜色：green"
+console.log(" 还能战斗吗：" + (typeof superMario.attack == 'function'));   // " 还能战斗吗：false"
+                        </code>
+                    </pre>
+
+                </section>
+
+                <section>
+                    <h4>基于继承的实现</h4>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/IgivUnu/11/embed?js,console"></div>
+                </section>
+
+                <section>
+                    <h4>抽离装饰方法</h4>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/ArIQali/11/embed?js,console"></div>
+
+                    <p class="fragment">
+                        <h5>undecorate 的实现</h5>
+                        <ul>
+                            <li>
+                                <a href="https://developer.mozilla.org/zh-CN/docs/JavaScript/Reference/Global_Objects/Object/getPrototypeOf" target="_blank"><code>Object.getPrototypeof</code></a>
+                                <a href="https://developer.mozilla.org/zh-CN/docs/JavaScript/Reference/Global_Objects/Object/setPrototypeOf" target="_blank"><code>Object.setPrototypeof</code></a>
+                            </li>
+                        </ul>
+                    </p>
+                </section>
+
+                <section>
+                    <h4>使用列表</h4>
+                    <pre class="fragment">
+                        <code data-trim contenteditable>
+var superMario = new SuperMario();
+superMario.decorate({name: 'mushroom'});
+superMario.decorate({name: 'flower'});
+console.log(superMario.getDecorated({'field':'color'}));
+console.log(superMario.getDecorated({'method':'attack'}));
+
+superMario.undecorate({name: 'flower'});
+console.log(superMario.getDecorated({'field':'color'}));
+console.log(superMario.getDecorated({'method':'attack'}));
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h4>基于列表的实现</h4>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/oGexaci/10/embed?js,console"></div>
+                </section>
+
+                <section>
+                    <h3>开源框架中的应用</h3>
+                    <pre>
+                        <code data-trim contenteditable>
+(function($) {
+$.fn.pluginName = function() {
+    // Our plugin implementation code goes here.
+};
+})(jQuery);
+                        </code>
+                    </pre>
+
+                    <pre class="fragment">
+                        <code data-trim contenteditable>
+/**
+* @ignore
+* node
+* @author yiminghe@gmail.com
+*/
+KISSY.add('node', function (S, Node) {
+    S.mix(S, {
+            Node: Node,
+            NodeList: Node,
+            one: Node.one,
+            all: Node.all
+        });
+        return Node;
+    }, {
+    requires: [
+        'node/base',
+        'node/attach',
+        'node/override',
+        'node/anim'
+    ]
+});
+                        </code>
+                    </pre>
+                </section>
+            </section>
+
+            <section class="strategy">
+
+                <section>
+                    <h3>策略模式</h3>
+                    <p class="fragment">
+                        <a href="javascript:;" class="image">
+                            <img data-src="http://gtms01.alicdn.com/tps/i1/T1LyLEFlJXXXb2OLv7-520-402.png" width="520" height="402"/>
+                        </a>
+                    </p>
+                </section>
+
+                <section>
+                    <h4>预期目标</h4>
+                    <pre>
+                        <code>
+// 待校验的数据
+var data = {
+    name: ' 王 x',
+    gender: 1,
+    identity: '011110198806061234',
+    birthday: '1988-13-01',
+    mobile: '15800000000',
+    spareMobile: '13911111111',
+    email: 'abcdef.cn'
+};
+
+// 校验规则配置
+validator.config = {
+    name: {
+        text: ' 姓名 ',
+        validators: ['isNotEmpty', 'isValidName']
+    },
+    identity: {
+        text: ' 身份证号 ',
+        validators: ['isNotEmpty','isValidIdentity']
+    },
+    birthday: {
+        text: ' 生日 ',
+        validators: [['isBirthEqualTo','identity'],'isValidDate']
+    },
+    mobile: {
+        text: ' 手机号码 ',
+        validators: ['isValidMobile']
+    },
+    spareMobile: {
+        text: ' 备用手机号码 ',
+        validators: ['isValidMobile', ['isNotEqualTo', 'mobile']]
+    },
+    email: {
+        text: 'Email',
+        validators: ['isValidEmail']
+    }
+};
+
+// 调用获得校验结果
+validator.validate(data);
+if(validator.hasErrors()){
+    validator.messages.join('<br/>');
+}
+// 期望结果：
+/*
+姓名只能为 2-4 个字的汉字
+生日与身份证号不一致，请修改
+生日格式不合法，请按 "2008-01-01" 格式输入日期
+备用手机号码不得与手机号码相同，请重新输入
+Email 格式不合法，请输入正确的 Email 地址
+*/
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h4>实现方法</h4>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/uzEtEDu/2/embed?js,console"></div>
+                </section>
+
+                <section>
+                    <h4>现实应用</h4>
+                    <h5><a href="http://gallery.kissyui.com/uploader/1.5/guide/index.html" target="_blank">KISSY Uploader</a></h5>
+                </section>
+
+                <section>
+                    <h5>代码片段</h5>
+                    <pre>
+                        <code data-trim contenteditable="true">
+/**
+* 获取上传方式
+* @param {String} type 上传方式（根据 type 返回对应的上传类，比如 iframe 返回 IframeType）
+*/
+_getType:function (type) {
+    var self = this, types = Uploader.type, UploadType,
+        isSupportAjax = self.isSupportAjax(),
+        isSupportFlash = self.isSupportFlash();
+    switch (type) {
+        case types.IFRAME :
+            UploadType = IframeType;
+            break;
+        case types.AJAX :
+            UploadType = isSupportAjax && AjaxType || false;
+            break;
+        case types.FLASH :
+            UploadType = isSupportFlash && FlashType || false;
+            break;
+        default :
+            S.log(LOG_PREFIX + 'type 参数不合法 ');
+            return false;
+    }
+    if (UploadType) S.log(LOG_PREFIX + ' 使用 ' + type + ' 上传方式 ');
+    self.set('type', type);
+    return UploadType;
+},
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h5>代码片段</h5>
+                    <pre>
+                        <code data-trim contenteditable="true">
+/**
+* @fileoverview 异步文件上传组件
+* @author 剑平（明河）&lt;minghe36@126.com>, 紫英 &lt;daxingplay@gmail.com>
+**/
+KISSY.add(function (S, Node, RichBase,JSON,UA,IframeType, AjaxType, FlashType, HtmlButton, SwfButton, Queue) {
+...
+}, {requires:['node', 'rich-base','json', 'ua','./type/iframe', './type/ajax', './type/flash', ...]
+});
+                        </code>
+                    </pre>
+                </section>
+
+            </section>
+
+            <section class="observer">
+
+                <section>
+                    <h3>观察者模式</h3>
+                    <p class="fragment">
+                        <a href="javascript:;" class="image">
+                            <img data-src="http://gtms01.alicdn.com/tps/i1/T1xwPIFiRgXXaArJ3l-497-497.jpg" width="497" height="497"/>
+                        </a>
+                    </p>
+                </section>
+
+                <section>
+                    <h4>案例分析</h4>
+                    <p class="fragment">
+                        <a href="javascript:;" class="image">
+                            <img data-src="http://gtms01.alicdn.com/tps/i1/T1CBjIFf4XXXbuw6.M-863-676.png" width="863" height="676"/>
+                        </a>
+                    </p>
+                </section>
+
+                <section>
+                    <h4>原生简单模拟</h4>
+                    <div class="jsbin-embed" data-href="http://jsbin.com/AmilUmUh/1/embed?js,console"></div>
+                </section>
+
+                <section>
+                    <h4>发布者 - 事件 - 监听者</h4>
+                    <p class="fragment">
+                        <a href="javascript:;" class="image">
+                            <img data-src="http://gtms01.alicdn.com/tps/i1/T1DBPqFdNbXXbm2VE4-450-344.png" width="450" height="344"/>
+                        </a>
+                    </p>
+                </section>
+
+                <section>
+                    <h4>彪悍的 Glbevt</h4>
+                    <p class="fragment">
+                        <a href="javascript:;" class="image">
+                            <img data-src="http://gtms01.alicdn.com/tps/i1/T1yvDOFelfXXczXRDx-708-570.png" width="708" height="570"/>
+                        </a>
+                    </p>
+                </section>
+
+                <section>
+                    <hgroup>
+                        <h4>仔细观察下 Glbevt</h4>
+                        <h5>Glbevt 源码</h5>
+                    </hgroup>
+
+                    <pre>
+                        <code>
+/**
+* @fileoverview FlightOrder - Glbevt.
+* @author
+*/
+/**
+* KISSY.use('flight-order/glbevt/index',function(S,Glbevt){
+*		new Glbevt();
+* });
+*/
+KISSY.add(function (S) {
+    var Glbevt = S.mix({}, S.EventTarget);
+    Glbevt.simulateCheckBoxClick = function (node) {
+        if (!node) {
+            return;
+        }
+        node.prop('checked', !node.prop('checked'));
+        node.fire('click');
+        node.prop('checked', !node.prop('checked'));
+    }
+    var html = S.one('html');
+    var reflowCount = 0;
+    var __reflow = S.buffer(function () {
+        html.css('zoom', 1.001);
+        html.css('zoom', 1);
+    }, 100);
+    Glbevt.publish('reflow', {
+        defaultFn: function () {
+        __reflow();
+        }
+    });
+    return Glbevt;
+}, {requires: [ 'node', 'event']});
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <hgroup>
+                        <h4>仔细观察下 Glbevt</h4>
+                        <h5>运行时的 Glbevt</h5>
+                    </hgroup>
+
+                    <a href="javascript:;" class="fragment image">
+                        <img data-src="http://gtms01.alicdn.com/tps/i1/T1xzfEFl0XXXXIJagH-542-757.png" width="542" height="757"/>
+                    </a>
+                </section>
+
+                <section>
+                    <hgroup>
+                        <h4>仔细观察下 Glbevt</h4>
+                        <h5>运行时的 Glbevt</h5>
+                    </hgroup>
+                    <a href="javascript:;" class="fragment image">
+                        <img data-src="http://gtms01.alicdn.com/tps/i1/T1WoTHFlFXXXagkpvQ-403-254.png" width="403" height="254"/>
+                    </a>
+                </section>
+
+                <section>
+                    <hgroup>
+                        <h4>仔细观察下 Glbevt</h4>
+                        <h5>Glbevt 调用</h5>
+                    </hgroup>
+                    <pre>
+                        <code>
+// 提交数据
+Glbevt.on('confirm:getdata',
+    function (evt) {
+        that._savePassengers();
+        evt.fn({
+            name: PassengerList.NAME,
+            data: {
+                model: that.simpleModels(),
+                adultAmount: that.countAdult()
+            }
+        });
+    });
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h4>开源框架中的 Pub/Sub</h4>
+                    <pre>
+                        <code>
+// Publish
+
+// jQuery: $(obj).trigger("channel", data);
+$( el ).trigger( "/login", data );
+
+// YUI/KISSY: el.fire("channel", data);
+el.fire( "/login", data );
+
+
+// Subscribe
+
+// jQuery: $(obj).on( "channel", [data], fn );
+$( el ).on( "/login", function( event ){...} );
+
+// YUI/KISSY: el.on("channel", handler);
+el.on( "/login", function( data ){...} );
+
+
+// Unsubscribe
+
+// jQuery: $(obj).off( "channel" );
+$( el ).off( "/login" );
+
+// YUI/KISSY: el.detach("channel");
+el.detach( "/login" );
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h4>EventTarget</h4>
+                    <ul>
+                        <li>on：定义监听句柄<li>
+                        <li>detach: 移除监听句柄<li>
+                        <li>fire: 触发自定义事件<li>
+                        <li>publish: 定义可冒泡和拥有默认函数 defaultFn 的自定义事件<li>
+                        <li>addTarget/removeTarget： 控制事件冒泡到哪些对象</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>再来一个案例分析</h4>
+                    <a href="javascript:;" class="fragment image">
+                        <img data-src="http://gtms01.alicdn.com/tps/i1/T1EdYLFlVXXXXw7lUn-1018-1140.png" width="1018" height="1140"/>
+                    </a>
+                </section>
+
+                <section>
+                    <a href="javascript:;" class="image">
+                        <img data-src="http://gtms01.alicdn.com/tps/i1/T1SBbJFlxXXXbVJ7Pu-814-334.png" width="814" height="334"/>
+                    </a>
+                </section>
+
+            </section>
+                <section>
+                    <h3>回顾</h3>
+                    <h4 class="fragment">
+                        谢谢！
+                    </h4>
+                </section>
+            <section>
+
+            </section>
+
+        </div>
+    </div>
+
+    <script src="http://dickeylth.github.io/slides/js/head.min.js"></script>
+    <script src="http://dickeylth.github.io/slides/js/reveal.min.js"></script>
+
+    <script>
+
+        $(document).ready(function(){
+
+            $('.jsbin-embed').html('<div class="J_JsbinLoading pi-loading">' +
+                        '<i></i><span class="pi-loading-in">正在加载中，请稍后</span>' +
+                        '</div><iframe class="J_JsbinIframe" style="display:none;"></iframe>');
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Parallax scrolling
+                // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+                // parallaxBackgroundSize: '2100px 900px',
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'http://dickeylth.github.io/slides/js/plugin/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'http://dickeylth.github.io/slides/js/plugin/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'http://dickeylth.github.io/slides/js/plugin/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'http://dickeylth.github.io/slides/js/plugin/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'http://dickeylth.github.io/slides/js/plugin/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+            Reveal.addEventListener( 'slidechanged', function( event ) {
+                // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+                var currentSlide = $(event.currentSlide);
+                var images = currentSlide.find('img');
+                images.each(function(idx, item){
+                    $(item).attr('src', $(item).attr('data-src'));
+                });
+                var jsBin = currentSlide.find('.jsbin-embed');
+                if(jsBin[0] != null && (jsBin.attr('loaded') != 'true')){
+                    var iframe = jsBin.find('.J_JsbinIframe');
+                    iframe.attr('src', jsBin.data('href'));
+                    jsBin.find('.J_JsbinLoading').remove();
+                    iframe.fadeIn();
+                    jsBin.attr({
+                        loaded: true
+                    });
+                }
+            } );
+        });
+    </script>
+</body>
+</html>

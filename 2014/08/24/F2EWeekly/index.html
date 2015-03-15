@@ -1,0 +1,325 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>F2E Weekly-2014-08-24 | 前端探幽</title>
+  <meta name="author" content="Dickey Leo">
+  
+  <meta name="description" content="npm 2 即将迎来正式版，等不及的小伙伴可以先通过 npm -g install npm@next 升级体验啦！目前最新的 v2.0.0-beta.0 已发布，更新记录可以见 这里。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="F2E Weekly-2014-08-24"/>
+  <meta property="og:site_name" content="前端探幽"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="前端探幽" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<meta name="google-translate-customization" content="a9a07b64678ddc7b-87bb7e79e577965f-gd475b0b319f70a25-13"></meta>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-44813171-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">前端探幽</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">所有文章</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-08-23T16:00:00.000Z"><a href="/2014/08/24/F2EWeekly/">8月 24, 2014</a></time>
+      
+      
+  
+    <h1 class="title">F2E Weekly-2014-08-24</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>npm 2 即将迎来正式版，等不及的小伙伴可以先通过 <code>npm -g install npm@next</code> 升级体验啦！目前最新的 v2.0.0-beta.0 已发布，更新记录可以见 <a href="https://github.com/npm/npm/blob/master/CHANGELOG.md" target="_blank">这里</a>。</p>
+<a id="more"></a>
+
+<h3 id=" 业界动态 ">业界动态</h3>
+<ul>
+<li><p><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/3dLc0LIhDDk/ikXXhLlEMisJ" target="_blank">V8 Intent to implement: ES6 classes</a></p>
+<ul>
+<li>V8 已经开始着手 ES6 中类的实现了，包括类声明语法、对象字面量语法的增强以及 <code>super</code> 关键字和 <code>Function.prototype.toMethod</code> 等， 毫无疑问对于前端工程师而言这将是一件“开发者的大事，大快所有人心的大好事”。</li>
+</ul>
+</li>
+<li><p><a href="http://blog.npmjs.org/post/94662089625/the-future-of-the-npm-website-lets-map-this-road" target="_blank">The Future of the npm Website: Let’s Map this Road!</a></p>
+<ul>
+<li>npm 官方博客最新的博文介绍了 npm 官网接下来的路线图，包括彻底的重新设计、在线的包元数据编辑、支持包评估的更丰富的统计数据、支持组件集合、生态系统、更好的搜索，以及这些规划的时间线。</li>
+</ul>
+</li>
+<li><p><a href="http://blog.nodejs.org/2014/08/19/node-v0-10-31-stable/" target="_blank">Node v0.10.31 (Stable)</a></p>
+<ul>
+<li>Node v0.10.31 稳定版本周发布，变化包括 v8 方面 backport  <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-6668" target="_blank">CVE-2013-6668</a> 漏洞，openssl 升级至 v1.0.1i，npm 升级至 1.4.23，修复 cluster 模块断开连接同步执行问题，修复当遇到 <code>RangeError</code> 时 <code>fs.readFileSync</code> 的 fd 泄露问题（由朴灵大大提交）等。 </li>
+</ul>
+</li>
+</ul>
+<h3 id=" 充电站 ">充电站</h3>
+<ul>
+<li><p><a href="http://www.sitepoint.com/css-position-sticky-introduction-polyfills/" target="_blank">CSS “position: sticky” - Introduction and Polyfills</a></p>
+<ul>
+<li>你是否也经常遇到页面中滚动时固定如导航条之间的模块的需求？目前单纯依赖 CSS 基本很难解决。这篇文章介绍了 CSS 中新引入的 <code>positon:sticky</code> 属性值来解决这个问题，以及目前的浏览器兼容性和 Polyfill。</li>
+</ul>
+</li>
+<li><p><a href="https://www.youtube.com/watch?v=vE5kCqwoSUg" target="_blank">Web Security in Node.js and JavaScript Apps (SPAs)</a></p>
+<ul>
+<li>如果你关注 Web 应用尤其是 node.js 应用的安全问题，一定不能错过来自 PayPal 的 Mark Stuart 带来的这篇演讲，介绍了 Node.js 和 JavaScript SPA 应用中的关于 web 安全的一些反模式和最佳实践等。</li>
+</ul>
+</li>
+<li><p><a href="http://www.codetunnel.io/isolate-scopes-explained/" target="_blank">Isolate Scopes Explained</a></p>
+<ul>
+<li>AngularJS 中的 scope 是个很重要的概念，而 isolate scope 对于模块的封装和解耦十分重要，这篇文章中深入浅出地介绍了 isolate scope 的概念以及相关的绑定策略 <code>@</code>、<code>=</code> 和 <code>&amp;</code>，以及指令中的参数传递是如何实现的。</li>
+</ul>
+</li>
+<li><p><a href="http://benfrain.com/enduring-css-writing-style-sheets-rapidly-changing-long-lived-projects/" target="_blank">Enduring CSS: writing style sheets for rapidly changing, long-lived projects</a></p>
+<ul>
+<li>这篇博文中 Ben Frain 分享了他在为快速变化而生命周期长的项目编写样式表的过程中的一些经验，包括技术和工具方面的预处理、构建系统的选择、编写 CSS 中的一些最佳实践、项目组织结构的设计、常见的 CSS 书写中的陷阱等，值得一读。</li>
+</ul>
+</li>
+<li><p><a href="http://www.w3.org/2014/07/mobile-web-app-state/" target="_blank">Standards for Web Applications on Mobile: current state and roadmap</a></p>
+<ul>
+<li>时隔 3 个月，W3C 组织又更新了移动 Web 应用标准的当前进展和路线图文档，总结了包括图形、多媒体、设备适配、表单、用户交互、数据存储等 14 个方面牵涉的标准的当前状态和变化等，非常值得细读和收藏！    </li>
+</ul>
+</li>
+</ul>
+<h3 id=" 百宝箱 ">百宝箱</h3>
+<ul>
+<li><p><a href="http://browsenpm.org/package/verror" target="_blank">verror</a></p>
+<ul>
+<li>在 Node.js 应用中的错误处理往往比较麻烦琐碎，使用 <a href="http://browsenpm.org/package/verror" target="_blank">verror</a> 则可以比较方便地实现较为丰富的 JavaScript 错误类型，支持 printf 风格的错误构造器以及多个错误的合并，同时提供了包装为更上层的错误 <code>WError</code>。</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/gobwas/dm.js" target="_blank">gobwas/dm.js</a></p>
+<ul>
+<li>dm.js 是一个 JavaScript 依赖注入管理器，同时支持 node 端和浏览器端，提供异步创建、配置和注入对象也就是服务到你的代码中，帮助你更好地实现模块间的解耦。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h5 id=" 附所有链接：">附所有链接：</h5>
+<ul>
+<li>V8 Intent to implement: ES6 classes<ul>
+<li><a href="https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/3dLc0LIhDDk/ikXXhLlEMisJ" target="_blank">https://groups.google.com/a/chromium.org/forum/#!msg/blink-dev/3dLc0LIhDDk/ikXXhLlEMisJ</a></li>
+</ul>
+</li>
+<li>The Future of the npm Website: Let’s Map this Road!<ul>
+<li><a href="http://blog.npmjs.org/post/94662089625/the-future-of-the-npm-website-lets-map-this-road" target="_blank">http://blog.npmjs.org/post/94662089625/the-future-of-the-npm-website-lets-map-this-road</a></li>
+</ul>
+</li>
+<li>Node v0.10.31 (Stable)<ul>
+<li><a href="http://blog.nodejs.org/2014/08/19/node-v0-10-31-stable/" target="_blank">http://blog.nodejs.org/2014/08/19/node-v0-10-31-stable/</a></li>
+</ul>
+</li>
+<li>CSS “position: sticky” - Introduction and Polyfills<ul>
+<li><a href="http://www.sitepoint.com/css-position-sticky-introduction-polyfills/" target="_blank">http://www.sitepoint.com/css-position-sticky-introduction-polyfills/</a></li>
+</ul>
+</li>
+<li>Web Security in Node.js and JavaScript Apps (SPAs)<ul>
+<li><a href="https://www.youtube.com/watch?v=vE5kCqwoSUg" target="_blank">https://www.youtube.com/watch?v=vE5kCqwoSUg</a></li>
+</ul>
+</li>
+<li>Isolate Scopes Explained<ul>
+<li><a href="http://www.codetunnel.io/isolate-scopes-explained/" target="_blank">http://www.codetunnel.io/isolate-scopes-explained/</a></li>
+</ul>
+</li>
+<li>Enduring CSS: writing style sheets for rapidly changing, long-lived projects<ul>
+<li><a href="http://benfrain.com/enduring-css-writing-style-sheets-rapidly-changing-long-lived-projects/" target="_blank">http://benfrain.com/enduring-css-writing-style-sheets-rapidly-changing-long-lived-projects/</a></li>
+</ul>
+</li>
+<li>Standards for Web Applications on Mobile: current state and roadmap<ul>
+<li><a href="http://www.w3.org/2014/07/mobile-web-app-state/" target="_blank">http://www.w3.org/2014/07/mobile-web-app-state/</a></li>
+</ul>
+</li>
+<li>verror<ul>
+<li><a href="http://browsenpm.org/package/verror" target="_blank">http://browsenpm.org/package/verror</a></li>
+</ul>
+</li>
+<li>gobwas/dm.js<ul>
+<li><a href="https://github.com/gobwas/dm.js" target="_blank">https://github.com/gobwas/dm.js</a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/每周播报/">每周播报</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/F2E Weekly/">F2E Weekly</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"dickeyblog"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- Duoshuo Comment END -->
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:dickeylth.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/每周播报/">每周播报</a><small>29</small></li>
+  
+    <li><a href="/categories/笔记/">笔记</a><small>7</small></li>
+  
+    <li><a href="/categories/翻译/">翻译</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/F2E Weekly/" style="font-size: 20.00px;">F2E Weekly</a><a href="/tags/Gulp/" style="font-size: 10.00px;">Gulp</a><a href="/tags/JavaScript/" style="font-size: 13.33px;">JavaScript</a><a href="/tags/JavaScript API/" style="font-size: 10.00px;">JavaScript API</a><a href="/tags/JavaScript设计模式/" style="font-size: 16.67px;">JavaScript设计模式</a><a href="/tags/MVC/" style="font-size: 10.00px;">MVC</a><a href="/tags/Node.js/" style="font-size: 10.00px;">Node.js</a><a href="/tags/Promise/" style="font-size: 13.33px;">Promise</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2015/03/15/F2EWeekly/">F2E Weekly-2015-03-15</a>
+      </li>
+    
+      <li>
+        <a href="/2014/12/07/F2EWeekly/">F2E Weekly-2014-12-07</a>
+      </li>
+    
+      <li>
+        <a href="/2014/11/09/F2EWeekly/">F2E Weekly-2014-11-09</a>
+      </li>
+    
+      <li>
+        <a href="/2014/09/21/F2EWeekly/">F2E Weekly-2014-09-21</a>
+      </li>
+    
+      <li>
+        <a href="/2014/09/08/F2EWeekly/">F2E Weekly-2014-09-08</a>
+      </li>
+    
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Dickey Leo
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- Baidu Statics -->
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9e7e898e944bfabd3e130209a93d1339' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>

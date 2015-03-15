@@ -1,0 +1,327 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>F2E Weekly-2014-05-25 | 前端探幽</title>
+  <meta name="author" content="Dickey Leo">
+  
+  <meta name="description" content="这里是前端每周播报，本周让我们关注下最新版 Chrome 浏览器带来的新特性，学习下 RESTful API 设计和处理 Node.js 应用回调金字塔的方法，观摩如何利用 AST 构建 JavaScript 工具和用 JavaScript 与硬件打交道，希望能给你带来收获！">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="F2E Weekly-2014-05-25"/>
+  <meta property="og:site_name" content="前端探幽"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="前端探幽" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<meta name="google-translate-customization" content="a9a07b64678ddc7b-87bb7e79e577965f-gd475b0b319f70a25-13"></meta>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-44813171-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">前端探幽</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">所有文章</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-24T16:00:00.000Z"><a href="/2014/05/25/F2EWeekly/">5月 25, 2014</a></time>
+      
+      
+  
+    <h1 class="title">F2E Weekly-2014-05-25</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>这里是前端每周播报，本周让我们关注下最新版 Chrome 浏览器带来的新特性，学习下 RESTful API 设计和处理 Node.js 应用回调金字塔的方法，观摩如何利用 AST 构建 JavaScript 工具和用 JavaScript 与硬件打交道，希望能给你带来收获！</p>
+<a id="more"></a>
+
+<h3 id=" 业界资讯 ">业界资讯</h3>
+<ul>
+<li><a href="http://thenextweb.com/google/2014/05/20/chrome-35-launches-developer-control-touch-input-new-apis-javascript-features/" target="_blank">Chrome 35 launches with ‘OK Google’ voice search, more control over touch input, new APIs and JavaScript features</a><ul>
+<li>本周 Chrome 35 正式发布，除了正式加入语音搜索，更多的改进在于开发者方面，包括提供对于触摸和缩放输入的控制、无前缀的 Shadow DOM、一些新的 Chrome 应用和扩展程序的 API，以及加入新的 ES 6 特性：Promise、WeakMaps 和 WeakSets 以及 <code>Object.observe</code>，赶快来看看吧！</li>
+</ul>
+</li>
+</ul>
+<h3 id=" 充电站 ">充电站</h3>
+<ul>
+<li><p><a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html" target="_blank">RESTful API 设计指南</a></p>
+<ul>
+<li>如果你对 RESTful 还不太熟悉，阮一峰最新的这篇博文为你带来简明清晰的介绍，让你 5 分钟快速了解其中的基本概念。</li>
+</ul>
+</li>
+<li><p><a href="http://css-tricks.com/dangers-stopping-event-propagation/" target="_blank">The Dangers of Stopping Event Propagation</a></p>
+<ul>
+<li>很多时候出于性能考虑或是封装模块时我们往往会选择阻止事件传播，但有时它却会带来意想不到的问题。这篇博文中解释了阻止事件传播的 <code>stopPropagation</code> 方法可能会带来的副作用，建议只有在真的需要取消事件的场景下才阻止传播。</li>
+</ul>
+</li>
+<li><p><a href="https://hacks.mozilla.org/2014/05/editable-box-model-multiple-selection-sublime-text-keys-much-more-firefox-developer-tools-episode-31/" target="_blank">Firefox Developer Tools Episode 31</a></p>
+<ul>
+<li>如果你是 Firefox 的忠实粉丝，可以看看这篇博文中介绍的即将到来的 Firefox 31 中的开发者工具的更新，包括可编辑盒模型、取色器、复制为 cURL、console 可配置样式和堆栈跟踪、更强大的源代码编辑器、canvas 和附加组件调试支持等。    </li>
+</ul>
+</li>
+<li><p><a href="http://landongn.com/ember/things-i-wish-someone-had-told-me-when-i-was-learning-ember-js/" target="_blank">Things I wish someone had told me when I was learning Ember.js</a></p>
+<ul>
+<li>你是否有用过 <a href="http://emberjs.com/" target="_blank">Ember.js</a> 框架，这篇博文中 Landon 介绍了一些他使用 Ember.js 中的经验和心得，包括对 Ember.js 中模板、路由、控制器、模块间通信的一些最佳实践，供你参考。</li>
+</ul>
+</li>
+<li><p><a href="https://medium.com/@wavded/1fe03ba8baf" target="_blank">Managing Node.js Callback Hell</a></p>
+<ul>
+<li>这又是一篇介绍管理 Node.js 回调金字塔的博文，以获取指定目录下占据体积最大的文件为例分别演示了使用异步回调嵌套、模块化、<a href="https://github.com/caolan/async" target="_blank"><code>async</code></a> 、<a href="https://github.com/kriskowal/q" target="_blank"><code>Q</code></a> 和生成器的方式，介绍很全面！</li>
+</ul>
+</li>
+</ul>
+<h3 id=" 视频精选 ">视频精选</h3>
+<ul>
+<li><p><a href="https://www.youtube.com/watch?v=XA8_hZfVecI" target="_blank">Building JavaScript Tools</a></p>
+<ul>
+<li>今年 2 月份 jQuery 大会上来自 Greg Franko 的这篇演讲介绍了什么是 JavaScript 抽象语法树 ( ASTs )、如何使用它们创建强大的 Node.js 和客户端的 JavaScript 工具，以及丰富的相关资源。想要打造 JSHint、UglifyJS 这样强大的工具吗？一定不能错过哦！</li>
+</ul>
+</li>
+<li><p><a href="https://www.youtube.com/watch?v=7b_epE3XG34" target="_blank">Hardware Hacking for JS Developers</a></p>
+<ul>
+<li>相信有些童鞋已经把玩过树莓派了，用熟悉的 JavaScript 语言来驱动硬件与物理世界打交道的确令人兴奋。这篇演讲中展示了一些实时演示的例子以及背后驱动的 JavaScript 代码，看完之后相信你也一定会跃跃欲试。</li>
+</ul>
+</li>
+</ul>
+<h3 id=" 百宝箱 ">百宝箱</h3>
+<ul>
+<li><p><a href="http://anijs.github.io/" target="_blank">AniJS</a></p>
+<ul>
+<li>AniJS 是一个声明式的 CSS 动画库，通过直接在 DOM 元素的 <code>data-anijs</code> 属性上指定动画配置，使用起来很方便，其在 Github 上的官网也展示了精彩的 demo，可以体验下！</li>
+</ul>
+</li>
+<li><p><a href="http://customelements.io/" target="_blank">Custom Elements</a></p>
+<ul>
+<li>之前我们已经介绍过诸如 <a href="http://www.polymer-project.org/" target="_blank">Polymer</a>、<a href="http://www.x-tags.org/" target="_blank">X-Tag</a> 等致力于自定义 HTML 元素的类库，这个网站上提供了多达 200 个基于 Polymer、X-Tag 和 VanillaJS 构建的自定义元素的仓库，想要即刻体验自定义元素吗？动手吧！</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h5 id=" 附所有链接：">附所有链接：</h5>
+<ul>
+<li>Chrome 35 launches with ‘OK Google’ voice search, more control over touch input, new APIs and JavaScript features<ul>
+<li><a href="http://thenextweb.com/google/2014/05/20/chrome-35-launches-developer-control-touch-input-new-apis-javascript-features/" target="_blank">http://thenextweb.com/google/2014/05/20/chrome-35-launches-developer-control-touch-input-new-apis-javascript-features/</a></li>
+</ul>
+</li>
+<li>RESTful API 设计指南<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html" target="_blank">http://www.ruanyifeng.com/blog/2014/05/restful_api.html</a></li>
+</ul>
+</li>
+<li>The Dangers of Stopping Event Propagation<ul>
+<li><a href="http://css-tricks.com/dangers-stopping-event-propagation/" target="_blank">http://css-tricks.com/dangers-stopping-event-propagation/</a></li>
+</ul>
+</li>
+<li>Firefox Developer Tools Episode 31<ul>
+<li><a href="https://hacks.mozilla.org/2014/05/editable-box-model-multiple-selection-sublime-text-keys-much-more-firefox-developer-tools-episode-31/" target="_blank">https://hacks.mozilla.org/2014/05/editable-box-model-multiple-selection-sublime-text-keys-much-more-firefox-developer-tools-episode-31/</a></li>
+</ul>
+</li>
+<li>Things I wish someone had told me when I was learning Ember.js<ul>
+<li><a href="http://landongn.com/ember/things-i-wish-someone-had-told-me-when-i-was-learning-ember-js/" target="_blank">http://landongn.com/ember/things-i-wish-someone-had-told-me-when-i-was-learning-ember-js/</a></li>
+</ul>
+</li>
+<li>Managing Node.js Callback Hell<ul>
+<li><a href="https://medium.com/@wavded/1fe03ba8baf" target="_blank">https://medium.com/@wavded/1fe03ba8baf</a></li>
+</ul>
+</li>
+<li>Building JavaScript Tools<ul>
+<li><a href="https://www.youtube.com/watch?v=XA8_hZfVecI" target="_blank">https://www.youtube.com/watch?v=XA8_hZfVecI</a></li>
+</ul>
+</li>
+<li>Hardware Hacking for JS Developers<ul>
+<li><a href="https://www.youtube.com/watch?v=7b_epE3XG34" target="_blank">https://www.youtube.com/watch?v=7b_epE3XG34</a></li>
+</ul>
+</li>
+<li>AniJS<ul>
+<li><a href="http://anijs.github.io/" target="_blank">http://anijs.github.io/</a></li>
+</ul>
+</li>
+<li>Custom Elements<ul>
+<li><a href="http://customelements.io/" target="_blank">http://customelements.io/</a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/每周播报/">每周播报</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/F2E Weekly/">F2E Weekly</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"dickeyblog"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- Duoshuo Comment END -->
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:dickeylth.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/每周播报/">每周播报</a><small>29</small></li>
+  
+    <li><a href="/categories/笔记/">笔记</a><small>7</small></li>
+  
+    <li><a href="/categories/翻译/">翻译</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/F2E Weekly/" style="font-size: 20.00px;">F2E Weekly</a><a href="/tags/Gulp/" style="font-size: 10.00px;">Gulp</a><a href="/tags/JavaScript/" style="font-size: 13.33px;">JavaScript</a><a href="/tags/JavaScript API/" style="font-size: 10.00px;">JavaScript API</a><a href="/tags/JavaScript设计模式/" style="font-size: 16.67px;">JavaScript设计模式</a><a href="/tags/MVC/" style="font-size: 10.00px;">MVC</a><a href="/tags/Node.js/" style="font-size: 10.00px;">Node.js</a><a href="/tags/Promise/" style="font-size: 13.33px;">Promise</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2015/03/15/F2EWeekly/">F2E Weekly-2015-03-15</a>
+      </li>
+    
+      <li>
+        <a href="/2014/12/07/F2EWeekly/">F2E Weekly-2014-12-07</a>
+      </li>
+    
+      <li>
+        <a href="/2014/11/09/F2EWeekly/">F2E Weekly-2014-11-09</a>
+      </li>
+    
+      <li>
+        <a href="/2014/09/21/F2EWeekly/">F2E Weekly-2014-09-21</a>
+      </li>
+    
+      <li>
+        <a href="/2014/09/08/F2EWeekly/">F2E Weekly-2014-09-08</a>
+      </li>
+    
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Dickey Leo
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- Baidu Statics -->
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9e7e898e944bfabd3e130209a93d1339' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>
