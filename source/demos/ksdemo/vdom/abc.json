@@ -1,0 +1,17 @@
+{
+    "name": "vdom",
+    "comName":"Vdom",
+    "version": "1.0",
+    "desc": "",
+    "tag":"virtual-dom,kissy-mini",
+    "githubName":"dickeylth",
+    "author": {
+        "name": "弘树",
+        "email": "tiehang.lth@alibaba-inc.com",
+        "page": ""
+    },
+	"flexComboPort":"80",
+	"reserveServerPort":"8080",
+    "type": "kissy-gallery",
+    "type-url": "http://gallery.kissyui.com/guide"
+}

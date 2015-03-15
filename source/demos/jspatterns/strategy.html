@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>策略模式</title>
+    <meta charset="UTF-8">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <h3>策略模式：运行时按需选择算法处理特定任务</h3>
+    <div id="target">
+        <h4>典型案例：表单校验</h4>
+        <div class="ace-code"></div>
+
+<script class="ace-code-script" type="template">
+var data = {
+    name: '王x',
+    gender: 1,
+    identity: '011110198806061234',
+    birthday: '1988-13-01',
+    mobile: '15800000000',
+    spareMobile: '13911111111',
+    email: 'abcdef.cn'
+};
+
+validator.config = {
+    name: {
+        text: '姓名',
+        validators: ['isNotEmpty', 'isValidName']
+    },
+    identity: {
+        text: '身份证号',
+        validators: ['isNotEmpty','isValidIdentity']
+    },
+    birthday: {
+        text: '生日',
+        validators: [['isBirthEqualTo','identity'],'isValidDate']
+    },
+    mobile: {
+        text: '手机号码',
+        validators: ['isValidMobile']
+    },
+    spareMobile: {
+        text: '备用手机号码',
+        validators: ['isValidMobile', ['isNotEqualTo', 'mobile']]
+    },
+    email: {
+        text: 'Email',
+        validators: ['isValidEmail']
+    }
+};
+
+// 调用
+validator.validate(data);
+if(validator.hasErrors()){
+    validator.messages.join('<br/>');
+}
+//期望结果：
+/*
+姓名只能为2-4个字的汉字
+生日与身份证号不一致，请修改
+生日格式不合法，请按"2008-01-01"格式输入日期
+备用手机号码不得与手机号码相同，请重新输入
+Email格式不合法，请输入正确的Email地址
+*/
+</script>
+
+    </div>
+
+    <div class="methods">
+        <h4>实现：</h4>
+
+        <div class="method-container">
+            <div class="ace-code"></div>
+
+<script class="ace-code-script" type="template">
+var validator = {
+
+    // 所有可用的检查
+    types: {},
+
+    // 错误信息
+    messages: [],
+
+    // 当前校验配置
+    config: {},
+
+    // 接口方法
+    validate: function(data){
+        var i, msg, item, validators, validatorItem, checker, result;
+
+        // 重置错误消息
+        this.messages = [];
+
+        // 遍历要校验的键值对数据
+        for(i in data){
+            if(data.hasOwnProperty(i)){
+
+                // 获取校验项
+                item = this.config[i];
+
+                // 不存在校验项，不需要校验
+                if(!item){
+                    continue;
+                }
+
+                // 遍历校验项
+                validators = item.validators;
+                for(var v = 0, len = validators.length; v < len; v++){
+
+                    // 获取对应的校验模块
+                    validatorItem = validators[v];
+
+                    // 校验项为字符串，直接校验
+                    if(typeof validatorItem == 'string'){
+
+                        checker = this.types[validatorItem];
+                        if(!checker){
+                            throw {
+                                name: "ValidationError",
+                                message: "No handler to validate type " + validators[v]
+                            };
+                        }
+                        result = checker.validate(data[i]);
+
+                    }else if(Array.isArray(validatorItem)){
+
+                        checker = this.types[validatorItem[0]];
+                        if(!checker){
+                            throw {
+                                name: "ValidationError",
+                                message: "No handler to validate type " + validators[v]
+                            };
+                        }
+                        // 替换validatorItem第一个元素（validatorName）为data[i]（当前校验项值）
+                        result = checker.validate.apply(this, [data, i].concat(validatorItem.slice(1)));
+
+                    }else{
+
+                        throw {
+                            name: "ValidationError",
+                            message: "No such validator *" + validatorItem + "* found."
+                        }
+                    }
+
+                    // 校验不通过
+                    if(!result){
+
+                        // 校验器message类型可为string/function
+                        var msgType = typeof checker.message;
+                        if(msgType == 'string'){
+
+                            msg = item.text + checker.message;
+
+                        }else if(msgType == 'function'){
+
+                            msg = item.text + checker.message.call(null, this.config[validatorItem[1]].text);
+
+                        }
+
+                        this.messages.push(msg);
+
+                    }
+
+                }
+
+            }
+        }
+
+        return this.hasErrors();
+    },
+
+    hasErrors: function(){
+        return this.messages.length !== 0;
+    }
+};
+
+// 所有可用的检查
+validator.types = {
+
+    isNotEmpty: {
+        validate: function(value){
+            return value !== "";
+        },
+        message: "不得为空"
+    },
+
+    isNotEqualTo: {
+        validate: function(data, curField, compareField){
+            return data[curField] === data[compareField];
+        },
+        message: function(fieldText){
+            return "不得与" + fieldText + "相同，请重新输入";
+        }
+    },
+
+    isValidName: {
+        validate: function(value){
+            return /^[\u4e00-\u9fa5]{2,4}$/.test(value);
+        },
+        message: "只能为2-4个字的汉字"
+    },
+
+    isValidIdentity: {
+        validate: function(value){
+            return /^\d{6}(18|19|20)?\d{2}(0[1-9]|1[12])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i.test(value);
+        },
+        message: "不合法，请输入身份证上的18位身份证号"
+    },
+
+    isBirthEqualTo: {
+        validate: function(data, curField, compareField){
+            return data[curField].replace(/-/g, '') === data[compareField].substr(6, 8);
+        },
+        message: function(fieldText){
+            return "与" + fieldText + "中生日不一致，请修改";
+        }
+    },
+
+    isValidDate: {
+        validate: function(value){
+            var t = new Date(value),
+                paddingZero = function(value){
+                    return value < 10 ? ('0' + value) : value;
+                },
+                transStr = [t.getFullYear(), paddingZero(t.getMonth() + 1), paddingZero(t.getDate())].join('-');
+            return transStr === value;
+        },
+        message: '格式不合法，请按"2008-01-01"格式输入日期'
+    },
+
+    isValidMobile: {
+        validate: function(value){
+            return /^0?(13[0-9]|15[012356789]|18[02356789]|14[57])[0-9]{8}$/.test(value);
+        },
+        message: "格式不合法，请输入正确的手机号码"
+    },
+
+    isValidEmail: {
+        validate: function(value){
+            return /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(value);
+        },
+        message: "格式不合法，请输入正确的Email地址"
+    }
+
+};
+
+
+
+var data = {
+    name: '王x',
+    gender: 1,
+    identity: '011110198806061234',
+    birthday: '1988-13-01',
+    mobile: '15800000000',
+    spareMobile: '13911111111',
+    email: 'abcdef.cn'
+};
+
+validator.config = {
+    name: {
+        text: '姓名',
+        validators: ['isNotEmpty', 'isValidName']
+    },
+    identity: {
+        text: '身份证号',
+        validators: ['isNotEmpty','isValidIdentity']
+    },
+    birthday: {
+        text: '生日',
+        validators: [['isBirthEqualTo','identity'],'isValidDate']
+    },
+    mobile: {
+        text: '手机号码',
+        validators: ['isValidMobile']
+    },
+    spareMobile: {
+        text: '备用手机号码',
+        validators: ['isValidMobile', ['isNotEqualTo', 'mobile']]
+    },
+    email: {
+        text: 'Email',
+        validators: ['isValidEmail']
+    }
+};
+
+// 调用
+validator.validate(data);
+if(validator.hasErrors()){
+    validator.messages.join('<br/>');
+}
+//期望结果：
+
+</script>
+
+            <div class="result">
+                <button class="J_RunBtn btn btn-primary">运行</button>
+                <output class="J_Output"></output>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="http://g.tbcdn.cn/kissy/k/1.3.2/kissy-min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

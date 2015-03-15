@@ -1,0 +1,24 @@
+menu:
+  首页: /
+  所有文章: /archives
+
+widgets: 
+- search
+- category
+- tagcloud
+- recent_posts
+
+excerpt_link: 继续阅读
+
+addthis:
+  enable: false
+  pubid:
+  facebook: true
+  twitter: true
+  google: true
+  pinterest: true
+
+fancybox: true
+
+google_analytics: UA-44813171-1
+rss:

@@ -1,0 +1,21 @@
+CACHE MANIFEST
+
+# Revision 1411315179273
+
+CACHE:
+/favicon.ico
+http://libs.baidu.com/jquery/2.0.3/jquery.min.js
+js/jquery.imagesloaded.min.js
+js/gallery.js
+fancybox/jquery.fancybox.css
+fancybox/jquery.fancybox.pack.js
+
+css/font/lato.woff
+css/font/lato-italic.woff
+css/font/fontawesome-webfont.woff
+
+NETWORK:
+*
+
+FALLBACK:
+http://libs.baidu.com/jquery/2.0.3/jquery.min.js js/jquery-2.0.3.min.js
