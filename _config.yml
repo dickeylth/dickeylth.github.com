@@ -79,6 +79,6 @@ exclude_generator:
 # Deployment
 ## Docs: http://zespia.tw/hexo/docs/deploy.html
 deploy:
-  type: git
+  type: github
   repository: git@github.com:dickeylth/dickeylth.github.com.git
   branch: master
